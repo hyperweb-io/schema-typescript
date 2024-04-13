@@ -1,6 +1,6 @@
-# schema-type 
+# schema-typescript 
 
-Welcome to _schema-type_! This project provides robust tools for handling JSON schemas and converting them to TypeScript interfaces with ease and efficiency.
+Welcome to _schema-typescript_! This project provides robust tools for handling JSON schemas and converting them to TypeScript interfaces with ease and efficiency.
 
 ## Features 
 
@@ -14,10 +14,10 @@ Welcome to _schema-type_! This project provides robust tools for handling JSON s
 
 ## Getting Started 🏁
 
-To get started with _schema-type_, simply run:
+To get started with _schema-typescript_, simply run:
 
 ```bash
-npm install schema-type
+npm install schema-typescript
 ```
 
 ## Usage 📘
@@ -25,7 +25,7 @@ npm install schema-type
 Here's a quick example to show you how to convert a JSON schema into TypeScript interfaces:
 
 ```javascript
-import { generateTypeScript } from 'schema-type';
+import { generateTypeScript } from 'schema-typescript';
 
 const schema = {
   "$id": "https://example.com/person.schema.json",
@@ -77,7 +77,7 @@ Contributions are what make the open-source community such an amazing place to l
 
 ## Need Help?
 
-`schema-type` might not work perfectly for all JSON schemas yet. We value your feedback and contributions to make it better. If you encounter any issues or have suggestions for improvements, please [let us know](https://github.com/pyramation/schema-type/issues).
+`schema-typescript` might not work perfectly for all JSON schemas yet. We value your feedback and contributions to make it better. If you encounter any issues or have suggestions for improvements, please [let us know](https://github.com/pyramation/schema-typescript/issues).
 
 ## License 📜
 

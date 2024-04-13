@@ -1,9 +1,9 @@
 {
-  "name": "schema-type",
+  "name": "schema-typescript",
   "version": "0.0.1",
   "description": "Convert JSON Schema to TypeScript Definitions",
   "author": "Dan Lynch <pyramation@gmail.com>",
-  "homepage": "https://github.com/pyramation/schema-type#readme",
+  "homepage": "https://github.com/pyramation/schema-typescript#readme",
   "license": "SEE LICENSE IN LICENSE",
   "main": "index.js",
   "module": "esm/index.js",
@@ -14,10 +14,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pyramation/schema-type"
+    "url": "https://github.com/pyramation/schema-typescript"
   },
   "bugs": {
-    "url": "https://github.com/pyramation/schema-type/issues"
+    "url": "https://github.com/pyramation/schema-typescript/issues"
   },
   "scripts": {
     "copy": "copyfiles -f LICENSE README.md package.json dist",
