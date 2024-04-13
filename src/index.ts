@@ -19,25 +19,76 @@ type JSONSchemaProperty = {
   $ref?: string;
 };
 
-export function generateTypeScript(schema: JSONSchema): string {
+interface SchemaTSOptions {
+  useSingleQuotes: boolean;
+}
+
+interface SchemaTSContextI {
+  options: SchemaTSOptions;
+  root: JSONSchema;
+  schema: JSONSchema;
+  parents: JSONSchema[]
+}
+
+
+class SchemaTSContext implements SchemaTSContextI {
+  options: SchemaTSOptions;
+  root: JSONSchema;
+  schema: JSONSchema;
+  parents: JSONSchema[];
+
+  constructor(
+    options: SchemaTSOptions,
+    root: JSONSchema,
+    schema: JSONSchema,
+    parents: JSONSchema[] = []
+  ) {
+    this.options = options;
+    this.schema = schema;
+    this.root = root;
+    this.parents = parents;
+  }
+
+  // Clone the context with the option to add a new parent
+  clone(newParent: JSONSchema): Context {
+    // Create a new array for parents to avoid mutation of the original array
+    const newParents = [...this.parents, newParent];
+    return new SchemaTSContext(this.options, this.root, this.schema, newParents);
+  }
+}
+
+const defaultOptions: SchemaTSOptions = { useSingleQuotes: true };
+
+export function generateTypeScript(schema: JSONSchema, options?: SchemaTSOptions): string {
   const interfaces = [];
-  // Process definitions first
-  if (schema.$defs) {
-    for (const key in schema.$defs) {
-      interfaces.push(createInterfaceDeclaration(toPascalCase(key), schema.$defs[key]));
+  const opts = options || defaultOptions;
+  const ctx = new SchemaTSContext(opts, schema);
+
+  try {
+
+    // Process definitions first
+    if (schema.$defs) {
+      for (const key in schema.$defs) {
+        // asset requires denom, but is also a definition.
+        // maybe we just need to do a two-pass and register
+        interfaces.push(createInterfaceDeclaration(ctx, toPascalCase(key), schema.$defs[key]));
+      }
     }
+  } catch (e) {
+    console.error('Error processing interfaces');
+    throw e;
   }
   // Process the main schema
-  interfaces.push(createInterfaceDeclaration(toPascalCase(schema.title), schema));
+  interfaces.push(createInterfaceDeclaration(ctx, toPascalCase(schema.title), schema));
   return generate(t.file(t.program(interfaces))).code;
 }
 
-function createInterfaceDeclaration(name: string, schema: JSONSchema): t.TSInterfaceDeclaration {
+function createInterfaceDeclaration(ctx: SchemaTSContext, name: string, schema: JSONSchema): t.TSInterfaceDeclaration {
   const properties = schema.properties || {};
   const required = schema.required || [];
   const body = Object.keys(properties).map(key => {
     const prop = properties[key];
-    return createPropertySignature(key, prop, required, schema);
+    return createPropertySignature(ctx, key, prop, required, schema);
   });
 
   return t.tsInterfaceDeclaration(
@@ -48,26 +99,27 @@ function createInterfaceDeclaration(name: string, schema: JSONSchema): t.TSInter
   );
 }
 
+// Determine if the key is a valid JavaScript identifier
+function isValidIdentifier(key) {
+  return /^[$A-Z_][0-9A-Z_$]*$/i.test(key) && !/^[0-9]+$/.test(key);
+}
+
 function createPropertySignature(
+  ctx: SchemaTSContext,
   key: string,
   prop: JSONSchemaProperty,
   required: string[],
-  schema: JSONSchema,
-  useSingleQuotes = false // Add a new parameter with a default value
+  schema: JSONSchema
 ): t.TSPropertySignature {
-  // Helper function to determine if the key is a valid JavaScript identifier
-  function isValidIdentifier(key) {
-    return /^[$A-Z_][0-9A-Z_$]*$/i.test(key) && !/^[0-9]+$/.test(key);
-  }
 
   // Adjust the quoting style based on the useSingleQuotes flag
-  function formatKey(key) {
-    const quote = useSingleQuotes ? "'" : '"';
+  function formatKey(ctx: SchemaTSContext) {
+    const quote = ctx.options.useSingleQuotes ? "'" : '"';
     return `${quote}${key}${quote}`;
   }
 
-  const propType = getTypeForProp(prop, required, schema);
-  const identifier = isValidIdentifier(key) ? t.identifier(key) : t.stringLiteral(formatKey(key));
+  const propType = getTypeForProp(ctx, prop, required, schema);
+  const identifier = isValidIdentifier(key) ? t.identifier(key) : t.stringLiteral(formatKey(ctx, key));
   const propSig = t.tsPropertySignature(
     identifier,
     t.tsTypeAnnotation(propType)
@@ -77,9 +129,9 @@ function createPropertySignature(
 }
 
 
-function getTypeForProp(prop: JSONSchemaProperty, required: string[], schema: JSONSchema): t.TSType {
+function getTypeForProp(ctx: SchemaTSContext, prop: JSONSchemaProperty, required: string[], schema: JSONSchema): t.TSType {
   if (prop.$ref) {
-    return resolveRefType(prop.$ref, schema);
+    return resolveRefType(ctx, prop.$ref, schema);
   }
 
   switch (prop.type) {
@@ -92,7 +144,7 @@ function getTypeForProp(prop: JSONSchemaProperty, required: string[], schema: JS
       return t.tsBooleanKeyword();
     case 'array':
       if (prop.items) {
-        return t.tsArrayType(getTypeForProp(prop.items, required, schema));
+        return t.tsArrayType(getTypeForProp(ctx, prop.items, required, schema));
       } else {
         throw new Error('Array items specification is missing');
       }
@@ -102,7 +154,7 @@ function getTypeForProp(prop: JSONSchemaProperty, required: string[], schema: JS
         const nestedRequired = prop.required || [];
         const typeElements = Object.keys(nestedProperties).map(nestedKey => {
           const nestedProp = nestedProperties[nestedKey];
-          return createPropertySignature(nestedKey, nestedProp, nestedRequired, schema);
+          return createPropertySignature(ctx, nestedKey, nestedProp, nestedRequired, schema);
         });
         return t.tsTypeLiteral(typeElements);
       } else {
@@ -113,15 +165,24 @@ function getTypeForProp(prop: JSONSchemaProperty, required: string[], schema: JS
   }
 }
 
-function resolveRefType(ref: string, schema: JSONSchema): t.TSType {
+function resolveRefType(ctx: SchemaTSContext, ref: string, schema: JSONSchema): t.TSType {
   const path = ref.split('/');
   const definitionName = path.pop();
   if (definitionName && schema.$defs && schema.$defs[definitionName]) {
     return t.tsTypeReference(t.identifier(toPascalCase(definitionName)));
   }
+  // now look in root
+  if (definitionName && ctx.root.$defs && ctx.root.$defs[definitionName]) {
+    return t.tsTypeReference(t.identifier(toPascalCase(definitionName)));
+  }
+
   throw new Error(`Reference ${ref} not found in definitions.`);
 }
 
 function toPascalCase(str: string): string {
   return str.replace(/\w+/g, (w) => w[0].toUpperCase() + w.slice(1).toLowerCase()).replace(/_/g, '');
+}
+
+function toCamelCase(key: string): string {
+  return key.replace(/[-_\s]+(.)?/g, (_, c) => c ? c.toUpperCase() : '');
 }
