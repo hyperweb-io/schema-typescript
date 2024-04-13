@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`memo 1`] = `
+"export interface Memo {
+  $schema?: string;
+  memo_keys: {
+    key: string;
+    description: string;
+    git_repo: string;
+    memo: any;
+  }[];
+}"
+`;
+
+exports[`memo camelCase 1`] = `
+"export interface Memo {
+  schema?: string;
+  memoKeys: {
+    key: string;
+    description: string;
+    gitRepo: string;
+    memo: any;
+  }[];
+}"
+`;

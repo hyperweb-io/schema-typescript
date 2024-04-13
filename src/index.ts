@@ -18,6 +18,7 @@ type JSONSchemaProperty = {
   items?: JSONSchemaProperty;
   required?: string[];
   $ref?: string;
+  additionalProperties?: boolean | JSONSchemaProperty;
 };
 
 interface SchemaTSOptions {
@@ -79,27 +80,46 @@ export function generateTypeScript(schema: JSONSchema, options?: SchemaTSOptions
     throw e;
   }
   // Process the main schema
-  interfaces.push(createInterfaceDeclaration(ctx, toPascalCase(schema.title), schema));
+  const title = schema.title;
+  if (!title) {
+    console.error('schema or options require a title');
+  }
+  interfaces.push(createInterfaceDeclaration(ctx, toPascalCase(title), schema));
   return generate(t.file(t.program(interfaces))).code;
 }
 
 function createInterfaceDeclaration(ctx: SchemaTSContext, name: string, schema: JSONSchema): t.TSInterfaceDeclaration {
   const properties = schema.properties || {};
   const required = schema.required || [];
-  const body = Object.keys(properties).map(key => {
+  const bodyElements = Object.keys(properties).map(key => {
     const prop = properties[key];
     return createPropertySignature(ctx, key, prop, required, schema);
   });
+
+  // Handling additionalProperties
+  if (schema.additionalProperties) {
+    const additionalType = typeof schema.additionalProperties === 'boolean' ?
+      t.tsStringKeyword() : getTypeForProp(ctx, schema.additionalProperties, [], schema);
+
+    const indexSignature = t.tsIndexSignature(
+      [t.identifier("key")], // index name, can be any valid name
+      t.tsTypeAnnotation(additionalType)
+    );
+    indexSignature.parameters[0].typeAnnotation = t.tsTypeAnnotation(t.tsStringKeyword());
+    bodyElements.push(indexSignature);
+  }
+
   const interfaceDeclaration = t.tsInterfaceDeclaration(
     t.identifier(name),
     null,
     [],
-    t.tsInterfaceBody(body)
+    t.tsInterfaceBody(bodyElements)
   );
 
   // Make the interface exportable
   return t.exportNamedDeclaration(interfaceDeclaration);
 }
+
 
 // Determine if the key is a valid JavaScript identifier
 function isValidIdentifier(key) {
@@ -155,9 +175,12 @@ function getTypeForProp(ctx: SchemaTSContext, prop: JSONSchemaProperty, required
           return createPropertySignature(ctx, nestedKey, nestedProp, nestedRequired, schema);
         });
         return t.tsTypeLiteral(typeElements);
+      // } else {
+        // throw new Error('Object must have properties');
       } else {
-        throw new Error('Object must have properties');
+        return t.tsAnyKeyword();  
       }
+      break;
     default:
       return t.tsAnyKeyword();
   }

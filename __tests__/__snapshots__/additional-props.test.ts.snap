@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`additional 1`] = `
+"export interface Person {
+  firstName: string;
+  lastName: string;
+  age?: number;
+  [key: string]: string;
+}"
+`;
+
+exports[`additional 2`] = `
+"export interface Person {
+  firstName: string;
+  [key: string]: {
+    newProp: any;
+  };
+}"
+`;
