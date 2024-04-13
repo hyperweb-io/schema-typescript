@@ -48,15 +48,34 @@ function createInterfaceDeclaration(name: string, schema: JSONSchema): t.TSInter
   );
 }
 
-function createPropertySignature(key: string, prop: JSONSchemaProperty, required: string[], schema: JSONSchema): t.TSPropertySignature {
+function createPropertySignature(
+  key: string,
+  prop: JSONSchemaProperty,
+  required: string[],
+  schema: JSONSchema,
+  useSingleQuotes = false // Add a new parameter with a default value
+): t.TSPropertySignature {
+  // Helper function to determine if the key is a valid JavaScript identifier
+  function isValidIdentifier(key) {
+    return /^[$A-Z_][0-9A-Z_$]*$/i.test(key) && !/^[0-9]+$/.test(key);
+  }
+
+  // Adjust the quoting style based on the useSingleQuotes flag
+  function formatKey(key) {
+    const quote = useSingleQuotes ? "'" : '"';
+    return `${quote}${key}${quote}`;
+  }
+
   const propType = getTypeForProp(prop, required, schema);
+  const identifier = isValidIdentifier(key) ? t.identifier(key) : t.stringLiteral(formatKey(key));
   const propSig = t.tsPropertySignature(
-    t.identifier(key),
+    identifier,
     t.tsTypeAnnotation(propType)
   );
   propSig.optional = !required.includes(key);
   return propSig;
 }
+
 
 function getTypeForProp(prop: JSONSchemaProperty, required: string[], schema: JSONSchema): t.TSType {
   if (prop.$ref) {
