@@ -1,5 +1,12 @@
 # schema-typescript 
 
+<p align="center" width="100%">
+  <a href="https://github.com/pyramation/schema-typescript/actions/workflows/run-tests.yaml">
+    <img height="20" src="https://github.com/pyramation/schema-typescript/actions/workflows/run-tests.yaml/badge.svg" />
+  </a>
+   <a href="https://github.com/pyramation/schema-typescript/blob/main/LICENSE-MIT"><img height="20" src="https://img.shields.io/badge/license-MIT-blue.svg"/></a>
+</p>
+
 Welcome to _schema-typescript_! This project provides robust tools for handling JSON schemas and converting them to TypeScript interfaces with ease and efficiency.
 
 ## Features 
