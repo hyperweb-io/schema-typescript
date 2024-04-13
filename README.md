@@ -28,47 +28,40 @@ Here's a quick example to show you how to convert a JSON schema into TypeScript 
 import { generateTypeScript } from 'schema-typescript';
 
 const schema = {
-  "$id": "https://example.com/person.schema.json",
-  "$schema": "https://json-schema.org/draft-07/schema#",
-  "title": "Person",
-  "type": "object",
-  "properties": {
-    "firstName": {
-      "type": "string"
-    },
-    "lastName": {
-      "type": "string"
-    },
-    "age": {
-      "type": "integer"
-    },
-    "dogs": {
-      "type": "array",
-      "items": {
-        "$ref": "#/$defs/dog"
-      }
-    }
-  },
-  "$defs": {
-    "dog": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "breed": {
-          "type": "string"
-        },
-        "age": {
-          "type": "integer"
+    "$id": "https://example.com/person.schema.json",
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "Person",
+    "type": "object",
+    "properties": {
+        "firstName": { "type": "string" },
+        "pets": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/pet" }
         }
-      },
-      "required": ["name", "breed"]
+    },
+    "required": ["firstName", "pets"],
+    "$defs": {
+        "pet": {
+            "type": "object",
+            "properties": {
+                "name": { "type": "string" },
+                "type": { "type": "string" } 
+            },
+            "required": ["name", "type"]
+        }
     }
-  }
 };
 
 console.log(generateTypeScript(schema));
+// OUTPUT:
+interface Pet {
+  name: string;
+  type: string;
+}
+interface Person {
+  firstName: string;
+  pets: Pet[];
+}
 ```
 
 ## Contributing 🤝
