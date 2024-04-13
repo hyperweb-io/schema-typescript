@@ -1,5 +1,10 @@
-import assetlist from '../__fixtures__/schemas/assetlist.json';
+import { writeFileSync } from 'fs';
+
+import schema from '../__fixtures__/schemas/assetlist.json';
 import { generateTypeScript } from '../src';
+
 it('assetlist', () => {
-    expect(generateTypeScript(assetlist as any)).toMatchSnapshot();
+    const code = generateTypeScript(schema as any);
+    expect(code).toMatchSnapshot();
+    writeFileSync(__dirname + '/../__fixtures__/output/assetlist.ts', code);
 });
