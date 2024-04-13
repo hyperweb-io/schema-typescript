@@ -8,3 +8,12 @@ it('chain', () => {
     expect(code).toMatchSnapshot();
     writeFileSync(__dirname + '/../__fixtures__/output/chain.ts', code);
 });
+
+it('chain camelCase', () => {
+    const code = generateTypeScript(schema as any, {
+        useSingleQuotes: true,
+        useCamelCase: true
+    });
+    expect(code).toMatchSnapshot();
+    writeFileSync(__dirname + '/../__fixtures__/output/chain.camel.ts', code);
+});

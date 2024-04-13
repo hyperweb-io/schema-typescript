@@ -1,9 +1,9 @@
 export interface Asset {
   deprecated?: boolean;
   description?: string;
-  extended_description?: string;
-  denom_units: DenomUnit[];
-  type_asset?: string;
+  extendedDescription?: string;
+  denomUnits: DenomUnit[];
+  typeAsset?: string;
   address?: string;
   base: string;
   name: string;
@@ -11,25 +11,25 @@ export interface Asset {
   symbol: string;
   traces?: any[];
   ibc?: {
-    source_channel: string;
-    dst_channel: string;
-    source_denom: string;
+    sourceChannel: string;
+    dstChannel: string;
+    sourceDenom: string;
   };
-  logo_URIs?: {
+  logoURIs?: {
     png?: string;
     svg?: string;
   };
   images?: {
-    image_sync?: Pointer;
+    imageSync?: Pointer;
     png?: string;
     svg?: string;
     theme?: {
-      primary_color_hex?: string;
+      primaryColorHex?: string;
       circle?: boolean;
-      dark_mode?: boolean;
+      darkMode?: boolean;
     };
   }[];
-  coingecko_id?: string;
+  coingeckoId?: string;
   keywords?: string[];
   socials?: {
     website?: string;
@@ -42,40 +42,40 @@ export interface DenomUnit {
   aliases?: string[];
 }
 export interface Pointer {
-  chain_name: string;
-  base_denom?: string;
+  chainName: string;
+  baseDenom?: string;
 }
 export interface IbcTransition {
   type: string;
   counterparty: {
-    chain_name: string;
-    base_denom: string;
-    channel_id: string;
+    chainName: string;
+    baseDenom: string;
+    channelId: string;
   };
   chain: {
-    channel_id: string;
+    channelId: string;
     path: string;
   };
 }
 export interface IbcCw20Transition {
   type: string;
   counterparty: {
-    chain_name: string;
-    base_denom: string;
+    chainName: string;
+    baseDenom: string;
     port: string;
-    channel_id: string;
+    channelId: string;
   };
   chain: {
     port: string;
-    channel_id: string;
+    channelId: string;
     path: string;
   };
 }
 export interface NonIbcTransition {
   type: string;
   counterparty: {
-    chain_name: string;
-    base_denom: string;
+    chainName: string;
+    baseDenom: string;
     contract?: string;
   };
   chain?: {
@@ -84,7 +84,7 @@ export interface NonIbcTransition {
   provider: string;
 }
 export interface AssetLists {
-  $schema?: string;
-  chain_name: string;
+  schema?: string;
+  chainName: string;
   assets: Asset[];
 }

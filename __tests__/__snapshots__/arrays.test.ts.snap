@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`works 1`] = `
-"interface Dog {
+"export interface Dog {
   name: string;
   breed: string;
   age?: number;
 }
-interface Cat {
+export interface Cat {
   name: string;
   color: string;
   age?: number;
 }
-interface Person {
+export interface Person {
   firstName?: string;
   lastName: string;
   age: number;

@@ -8,3 +8,12 @@ it('assetlist', () => {
     expect(code).toMatchSnapshot();
     writeFileSync(__dirname + '/../__fixtures__/output/assetlist.ts', code);
 });
+
+it('assetlist camelCase', () => {
+    const code = generateTypeScript(schema as any, {
+        useSingleQuotes: true,
+        useCamelCase: true
+    });
+    expect(code).toMatchSnapshot();
+    writeFileSync(__dirname + '/../__fixtures__/output/assetlist.camel.ts', code);
+});

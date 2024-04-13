@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`assetlist 1`] = `
-"interface Asset {
+"export interface Asset {
   deprecated?: boolean;
   description?: string;
   extended_description?: string;
@@ -39,16 +39,16 @@ exports[`assetlist 1`] = `
     twitter?: string;
   };
 }
-interface DenomUnit {
+export interface DenomUnit {
   denom: string;
   exponent: number;
   aliases?: string[];
 }
-interface Pointer {
+export interface Pointer {
   chain_name: string;
   base_denom?: string;
 }
-interface IbcTransition {
+export interface IbcTransition {
   type: string;
   counterparty: {
     chain_name: string;
@@ -60,7 +60,7 @@ interface IbcTransition {
     path: string;
   };
 }
-interface IbcCw20Transition {
+export interface IbcCw20Transition {
   type: string;
   counterparty: {
     chain_name: string;
@@ -74,7 +74,7 @@ interface IbcCw20Transition {
     path: string;
   };
 }
-interface NonIbcTransition {
+export interface NonIbcTransition {
   type: string;
   counterparty: {
     chain_name: string;
@@ -86,9 +86,102 @@ interface NonIbcTransition {
   };
   provider: string;
 }
-interface AssetLists {
+export interface AssetLists {
   $schema?: string;
   chain_name: string;
+  assets: Asset[];
+}"
+`;
+
+exports[`assetlist camelCase 1`] = `
+"export interface Asset {
+  deprecated?: boolean;
+  description?: string;
+  extendedDescription?: string;
+  denomUnits: DenomUnit[];
+  typeAsset?: string;
+  address?: string;
+  base: string;
+  name: string;
+  display: string;
+  symbol: string;
+  traces?: any[];
+  ibc?: {
+    sourceChannel: string;
+    dstChannel: string;
+    sourceDenom: string;
+  };
+  logoURIs?: {
+    png?: string;
+    svg?: string;
+  };
+  images?: {
+    imageSync?: Pointer;
+    png?: string;
+    svg?: string;
+    theme?: {
+      primaryColorHex?: string;
+      circle?: boolean;
+      darkMode?: boolean;
+    };
+  }[];
+  coingeckoId?: string;
+  keywords?: string[];
+  socials?: {
+    website?: string;
+    twitter?: string;
+  };
+}
+export interface DenomUnit {
+  denom: string;
+  exponent: number;
+  aliases?: string[];
+}
+export interface Pointer {
+  chainName: string;
+  baseDenom?: string;
+}
+export interface IbcTransition {
+  type: string;
+  counterparty: {
+    chainName: string;
+    baseDenom: string;
+    channelId: string;
+  };
+  chain: {
+    channelId: string;
+    path: string;
+  };
+}
+export interface IbcCw20Transition {
+  type: string;
+  counterparty: {
+    chainName: string;
+    baseDenom: string;
+    port: string;
+    channelId: string;
+  };
+  chain: {
+    port: string;
+    channelId: string;
+    path: string;
+  };
+}
+export interface NonIbcTransition {
+  type: string;
+  counterparty: {
+    chainName: string;
+    baseDenom: string;
+    contract?: string;
+  };
+  chain?: {
+    contract: string;
+  };
+  provider: string;
+}
+export interface AssetLists {
+  schema?: string;
+  chainName: string;
   assets: Asset[];
 }"
 `;

@@ -11,39 +11,39 @@ export interface Endpoint {
 export interface Explorer {
   kind?: string;
   url?: string;
-  tx_page?: string;
-  account_page?: string;
+  txPage?: string;
+  accountPage?: string;
 }
 export interface FeeToken {
   denom: string;
-  fixed_min_gas_price?: number;
-  low_gas_price?: number;
-  average_gas_price?: number;
-  high_gas_price?: number;
-  gas_costs?: {
-    cosmos_send?: number;
-    ibc_transfer?: number;
+  fixedMinGasPrice?: number;
+  lowGasPrice?: number;
+  averageGasPrice?: number;
+  highGasPrice?: number;
+  gasCosts?: {
+    cosmosSend?: number;
+    ibcTransfer?: number;
   };
 }
 export interface StakingToken {
   denom: string;
 }
 export interface Pointer {
-  chain_name: string;
-  base_denom?: string;
+  chainName: string;
+  baseDenom?: string;
 }
 export interface CosmosChain {
-  $schema?: string;
-  chain_name: string;
-  chain_id: string;
-  pre_fork_chain_name?: string;
-  pretty_name?: string;
+  schema?: string;
+  chainName: string;
+  chainId: string;
+  preForkChainName?: string;
+  prettyName?: string;
   website?: string;
-  update_link?: string;
+  updateLink?: string;
   status?: any;
-  network_type?: any;
-  bech32_prefix: string;
-  bech32_config?: {
+  networkType?: any;
+  bech32Prefix: string;
+  bech32Config?: {
     bech32PrefixAccAddr?: string;
     bech32PrefixAccPub?: string;
     bech32PrefixValAddr?: string;
@@ -51,26 +51,26 @@ export interface CosmosChain {
     bech32PrefixConsAddr?: string;
     bech32PrefixConsPub?: string;
   };
-  daemon_name?: string;
-  node_home?: string;
-  key_algos?: string[];
+  daemonName?: string;
+  nodeHome?: string;
+  keyAlgos?: string[];
   slip44?: number;
-  alternative_slip44s?: number[];
+  alternativeSlip44s?: number[];
   fees?: {
-    fee_tokens: FeeToken[];
+    feeTokens: FeeToken[];
   };
   staking?: {
-    staking_tokens: StakingToken[];
-    lock_duration?: {
+    stakingTokens: StakingToken[];
+    lockDuration?: {
       blocks?: number;
       time?: string;
     };
   };
   codebase?: {
-    git_repo?: string;
-    recommended_version?: string;
-    go_version?: string;
-    compatible_versions?: string[];
+    gitRepo?: string;
+    recommendedVersion?: string;
+    goVersion?: string;
+    compatibleVersions?: string[];
     binaries?: {
       "linux/amd64"?: string;
       "linux/arm64"?: string;
@@ -79,41 +79,41 @@ export interface CosmosChain {
       "windows/amd64"?: string;
       "windows/arm64"?: string;
     };
-    cosmos_sdk_version?: string;
+    cosmosSdkVersion?: string;
     consensus?: {
       type: string;
       version?: string;
     };
-    cosmwasm_version?: string;
-    cosmwasm_enabled?: boolean;
-    cosmwasm_path?: string;
-    ibc_go_version?: string;
-    ics_enabled?: string[];
+    cosmwasmVersion?: string;
+    cosmwasmEnabled?: boolean;
+    cosmwasmPath?: string;
+    ibcGoVersion?: string;
+    icsEnabled?: string[];
     genesis?: {
       name?: string;
-      genesis_url: string;
-      ics_ccv_url?: string;
+      genesisUrl: string;
+      icsCcvUrl?: string;
     };
     versions?: {
       name: string;
       tag?: string;
       height?: number;
       proposal?: number;
-      previous_version_name?: string;
-      next_version_name?: string;
-      recommended_version?: string;
-      go_version?: string;
-      compatible_versions?: string[];
-      cosmos_sdk_version?: string;
+      previousVersionName?: string;
+      nextVersionName?: string;
+      recommendedVersion?: string;
+      goVersion?: string;
+      compatibleVersions?: string[];
+      cosmosSdkVersion?: string;
       consensus?: {
         type: string;
         version?: string;
       };
-      cosmwasm_version?: string;
-      cosmwasm_enabled?: boolean;
-      cosmwasm_path?: string;
-      ibc_go_version?: string;
-      ics_enabled?: string[];
+      cosmwasmVersion?: string;
+      cosmwasmEnabled?: boolean;
+      cosmwasmPath?: string;
+      ibcGoVersion?: string;
+      icsEnabled?: string[];
       binaries?: {
         "linux/amd64"?: string;
         "linux/arm64"?: string;
@@ -125,25 +125,25 @@ export interface CosmosChain {
     }[];
   };
   images?: {
-    image_sync?: Pointer;
+    imageSync?: Pointer;
     png?: string;
     svg?: string;
     theme?: {
-      primary_color_hex?: string;
+      primaryColorHex?: string;
       circle?: boolean;
-      dark_mode?: boolean;
+      darkMode?: boolean;
     };
     layout?: string;
-    text_position?: string;
+    textPosition?: string;
   }[];
-  logo_URIs?: {
+  logoURIs?: {
     png?: string;
     svg?: string;
   };
   description?: string;
   peers?: {
     seeds?: Peer[];
-    persistent_peers?: Peer[];
+    persistentPeers?: Peer[];
   };
   apis?: {
     rpc?: Endpoint[];
@@ -155,5 +155,5 @@ export interface CosmosChain {
   };
   explorers?: Explorer[];
   keywords?: string[];
-  extra_codecs?: string[];
+  extraCodecs?: string[];
 }

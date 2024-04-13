@@ -1,7 +1,7 @@
 // @ts-nocheck
 import * as t from "@babel/types";
 import generate from "@babel/generator";
-import { toPascalCase } from "./utils";
+import { toCamelCase, toPascalCase } from "./utils";
 
 interface JSONSchema {
   title: string;
@@ -22,6 +22,7 @@ type JSONSchemaProperty = {
 
 interface SchemaTSOptions {
   useSingleQuotes: boolean;
+  useCamelCase: boolean;
 }
 
 interface SchemaTSContextI {
@@ -58,7 +59,7 @@ class SchemaTSContext implements SchemaTSContextI {
   }
 }
 
-const defaultOptions: SchemaTSOptions = { useSingleQuotes: true };
+const defaultOptions: SchemaTSOptions = { useSingleQuotes: true, useCamelCase: false };
 
 export function generateTypeScript(schema: JSONSchema, options?: SchemaTSOptions): string {
   const interfaces = [];
@@ -70,8 +71,6 @@ export function generateTypeScript(schema: JSONSchema, options?: SchemaTSOptions
     // Process definitions first
     if (schema.$defs) {
       for (const key in schema.$defs) {
-        // asset requires denom, but is also a definition.
-        // maybe we just need to do a two-pass and register
         interfaces.push(createInterfaceDeclaration(ctx, toPascalCase(key), schema.$defs[key]));
       }
     }
@@ -91,13 +90,15 @@ function createInterfaceDeclaration(ctx: SchemaTSContext, name: string, schema: 
     const prop = properties[key];
     return createPropertySignature(ctx, key, prop, required, schema);
   });
-
-  return t.tsInterfaceDeclaration(
+  const interfaceDeclaration = t.tsInterfaceDeclaration(
     t.identifier(name),
     null,
     [],
     t.tsInterfaceBody(body)
   );
+
+  // Make the interface exportable
+  return t.exportNamedDeclaration(interfaceDeclaration);
 }
 
 // Determine if the key is a valid JavaScript identifier
@@ -113,14 +114,10 @@ function createPropertySignature(
   schema: JSONSchema
 ): t.TSPropertySignature {
 
-  // Adjust the quoting style based on the useSingleQuotes flag
-  function formatKey(ctx: SchemaTSContext) {
-    const quote = ctx.options.useSingleQuotes ? "'" : '"';
-    return `${quote}${key}${quote}`;
-  }
-
+  const isIdent = isValidIdentifier(key);
+  const name = ctx.options.useCamelCase ? toCamelCase(key) : key;
   const propType = getTypeForProp(ctx, prop, required, schema);
-  const identifier = isValidIdentifier(key) ? t.identifier(key) : t.stringLiteral(formatKey(ctx, key));
+  const identifier = isIdent ? t.identifier(name) : t.stringLiteral(key);
   const propSig = t.tsPropertySignature(
     identifier,
     t.tsTypeAnnotation(propType)
