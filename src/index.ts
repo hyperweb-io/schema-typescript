@@ -8,41 +8,61 @@ interface JSONSchema {
   required?: string[];
   type?: string;
   items?: JSONSchema;
+  $defs?: { [key: string]: JSONSchema };
 }
 
 type JSONSchemaProperty = {
-  type: string;
+  type?: string;
   properties?: { [key: string]: JSONSchemaProperty };
   items?: JSONSchemaProperty;
   required?: string[];
+  $ref?: string;
 };
 
 export function generateTypeScript(schema: JSONSchema): string {
-  const body: t.TSPropertySignature[] = [];
-
-  if (schema.properties) {
-    Object.keys(schema.properties).forEach(key => {
-      const prop = schema.properties[key];
-      const isOptional = schema.required ? !schema.required.includes(key) : true;
-      body.push(t.tsPropertySignature(
-        t.identifier(key),
-        t.tsTypeAnnotation(getTypeForProp(prop, schema.required)),
-        isOptional
-      ));
-    });
+  const interfaces = [];
+  // Process definitions first
+  if (schema.$defs) {
+    for (const key in schema.$defs) {
+      interfaces.push(createInterfaceDeclaration(toPascalCase(key), schema.$defs[key]));
+    }
   }
+  // Process the main schema
+  interfaces.push(createInterfaceDeclaration(toPascalCase(schema.title), schema));
+  return generate(t.file(t.program(interfaces))).code;
+}
 
-  const interfaceDeclaration = t.tsInterfaceDeclaration(
-    t.identifier(schema.title.replace(/\s+/g, '')),
+function createInterfaceDeclaration(name: string, schema: JSONSchema): t.TSInterfaceDeclaration {
+  const properties = schema.properties || {};
+  const required = schema.required || [];
+  const body = Object.keys(properties).map(key => {
+    const prop = properties[key];
+    return createPropertySignature(key, prop, required, schema);
+  });
+
+  return t.tsInterfaceDeclaration(
+    t.identifier(name),
     null,
     [],
     t.tsInterfaceBody(body)
   );
-
-  return generate(interfaceDeclaration).code;
 }
 
-function getTypeForProp(prop: JSONSchemaProperty, required?: string[]): t.TSType {
+function createPropertySignature(key: string, prop: JSONSchemaProperty, required: string[], schema: JSONSchema): t.TSPropertySignature {
+  const propType = getTypeForProp(prop, required, schema);
+  const propSig = t.tsPropertySignature(
+    t.identifier(key),
+    t.tsTypeAnnotation(propType)
+  );
+  propSig.optional = !required.includes(key);
+  return propSig;
+}
+
+function getTypeForProp(prop: JSONSchemaProperty, required: string[], schema: JSONSchema): t.TSType {
+  if (prop.$ref) {
+    return resolveRefType(prop.$ref, schema);
+  }
+
   switch (prop.type) {
     case 'string':
       return t.tsStringKeyword();
@@ -53,22 +73,17 @@ function getTypeForProp(prop: JSONSchemaProperty, required?: string[]): t.TSType
       return t.tsBooleanKeyword();
     case 'array':
       if (prop.items) {
-        return t.tsArrayType(getTypeForProp(prop.items, required));
+        return t.tsArrayType(getTypeForProp(prop.items, required, schema));
       } else {
         throw new Error('Array items specification is missing');
       }
     case 'object':
       if (prop.properties) {
-        // Create type literals for nested objects
-        const properties = prop.properties;
-        const typeElements: t.TSTypeElement[] = Object.keys(properties).map(key => {
-          const nestedProp = properties[key];
-          const isOptional = nestedProp.required ? !nestedProp.required.includes(key) : true;
-          return t.tsPropertySignature(
-            t.identifier(key),
-            t.tsTypeAnnotation(getTypeForProp(nestedProp, nestedProp.required)),
-            isOptional
-          );
+        const nestedProperties = prop.properties;
+        const nestedRequired = prop.required || [];
+        const typeElements = Object.keys(nestedProperties).map(nestedKey => {
+          const nestedProp = nestedProperties[nestedKey];
+          return createPropertySignature(nestedKey, nestedProp, nestedRequired, schema);
         });
         return t.tsTypeLiteral(typeElements);
       } else {
@@ -77,4 +92,17 @@ function getTypeForProp(prop: JSONSchemaProperty, required?: string[]): t.TSType
     default:
       return t.tsAnyKeyword();
   }
+}
+
+function resolveRefType(ref: string, schema: JSONSchema): t.TSType {
+  const path = ref.split('/');
+  const definitionName = path.pop();
+  if (definitionName && schema.$defs && schema.$defs[definitionName]) {
+    return t.tsTypeReference(t.identifier(toPascalCase(definitionName)));
+  }
+  throw new Error(`Reference ${ref} not found in definitions.`);
+}
+
+function toPascalCase(str: string): string {
+  return str.replace(/\w+/g, (w) => w[0].toUpperCase() + w.slice(1).toLowerCase()).replace(/_/g, '');
 }

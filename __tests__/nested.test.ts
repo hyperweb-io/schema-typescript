@@ -28,10 +28,10 @@ const exampleSchema = {
             "type": "integer"
           }
         },
-        "required": ["name", "breed", "age"]
+        "required": ["name", "breed"]
       }
     },
-    "required": ["firstName", "lastName", "age", "dog"]
+    "required": ["lastName", "age", "dog"]
   };
 
 it('works', () => {

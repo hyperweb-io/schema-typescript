@@ -4,6 +4,6 @@ exports[`works 1`] = `
 "interface Person {
   firstName: string;
   lastName: string;
-  age: number;
+  age?: number;
 }"
 `;
