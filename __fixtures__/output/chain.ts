@@ -14,7 +14,7 @@ interface Explorer {
   tx_page?: string;
   account_page?: string;
 }
-interface Feetoken {
+interface FeeToken {
   denom: string;
   fixed_min_gas_price?: number;
   low_gas_price?: number;
@@ -25,14 +25,14 @@ interface Feetoken {
     ibc_transfer?: number;
   };
 }
-interface Stakingtoken {
+interface StakingToken {
   denom: string;
 }
 interface Pointer {
   chain_name: string;
   base_denom?: string;
 }
-interface Cosmos Chain {
+interface CosmosChain {
   $schema?: string;
   chain_name: string;
   chain_id: string;
@@ -57,10 +57,10 @@ interface Cosmos Chain {
   slip44?: number;
   alternative_slip44s?: number[];
   fees?: {
-    fee_tokens: Feetoken[];
+    fee_tokens: FeeToken[];
   };
   staking?: {
-    staking_tokens: Stakingtoken[];
+    staking_tokens: StakingToken[];
     lock_duration?: {
       blocks?: number;
       time?: string;

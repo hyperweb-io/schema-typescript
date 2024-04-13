@@ -1,6 +1,7 @@
 // @ts-nocheck
 import * as t from "@babel/types";
 import generate from "@babel/generator";
+import { toPascalCase } from "./utils";
 
 interface JSONSchema {
   title: string;
@@ -177,12 +178,4 @@ function resolveRefType(ctx: SchemaTSContext, ref: string, schema: JSONSchema): 
   }
 
   throw new Error(`Reference ${ref} not found in definitions.`);
-}
-
-function toPascalCase(str: string): string {
-  return str.replace(/\w+/g, (w) => w[0].toUpperCase() + w.slice(1).toLowerCase()).replace(/_/g, '');
-}
-
-function toCamelCase(key: string): string {
-  return key.replace(/[-_\s]+(.)?/g, (_, c) => c ? c.toUpperCase() : '');
 }

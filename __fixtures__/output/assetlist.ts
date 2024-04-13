@@ -2,7 +2,7 @@ interface Asset {
   deprecated?: boolean;
   description?: string;
   extended_description?: string;
-  denom_units: Denomunit[];
+  denom_units: DenomUnit[];
   type_asset?: string;
   address?: string;
   base: string;
@@ -36,7 +36,7 @@ interface Asset {
     twitter?: string;
   };
 }
-interface Denomunit {
+interface DenomUnit {
   denom: string;
   exponent: number;
   aliases?: string[];
@@ -45,7 +45,7 @@ interface Pointer {
   chain_name: string;
   base_denom?: string;
 }
-interface Ibctransition {
+interface IbcTransition {
   type: string;
   counterparty: {
     chain_name: string;
@@ -57,7 +57,7 @@ interface Ibctransition {
     path: string;
   };
 }
-interface Ibccw20transition {
+interface IbcCw20Transition {
   type: string;
   counterparty: {
     chain_name: string;
@@ -71,7 +71,7 @@ interface Ibccw20transition {
     path: string;
   };
 }
-interface Nonibctransition {
+interface NonIbcTransition {
   type: string;
   counterparty: {
     chain_name: string;
@@ -83,7 +83,7 @@ interface Nonibctransition {
   };
   provider: string;
 }
-interface Asset Lists {
+interface AssetLists {
   $schema?: string;
   chain_name: string;
   assets: Asset[];
