@@ -1,5 +1,4 @@
 // @ts-nocheck
-// @ts-nocheck
 import * as t from "@babel/types";
 import generate from "@babel/generator";
 
