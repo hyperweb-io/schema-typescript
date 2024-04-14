@@ -1,6 +1,6 @@
-// @ts-nocheck
-import * as t from "@babel/types";
 import generate from "@babel/generator";
+import * as t from "@babel/types";
+
 import { toCamelCase, toPascalCase } from "./utils";
 
 interface JSONSchema {
@@ -10,6 +10,7 @@ interface JSONSchema {
   type?: string;
   items?: JSONSchema;
   $defs?: { [key: string]: JSONSchema };
+  additionalProperties?: boolean | JSONSchemaProperty;
 }
 
 type JSONSchemaProperty = {
@@ -53,7 +54,7 @@ class SchemaTSContext implements SchemaTSContextI {
   }
 
   // Clone the context with the option to add a new parent
-  clone(newParent: JSONSchema): Context {
+  clone(newParent: JSONSchema): SchemaTSContext {
     // Create a new array for parents to avoid mutation of the original array
     const newParents = [...this.parents, newParent];
     return new SchemaTSContext(this.options, this.root, this.schema, newParents);
@@ -65,7 +66,7 @@ const defaultOptions: SchemaTSOptions = { useSingleQuotes: true, useCamelCase: f
 export function generateTypeScript(schema: JSONSchema, options?: SchemaTSOptions): string {
   const interfaces = [];
   const opts = options || defaultOptions;
-  const ctx = new SchemaTSContext(opts, schema);
+  const ctx = new SchemaTSContext(opts, schema, schema, []);
 
   try {
 
@@ -88,10 +89,14 @@ export function generateTypeScript(schema: JSONSchema, options?: SchemaTSOptions
   return generate(t.file(t.program(interfaces))).code;
 }
 
-function createInterfaceDeclaration(ctx: SchemaTSContext, name: string, schema: JSONSchema): t.TSInterfaceDeclaration {
+function createInterfaceDeclaration(
+  ctx: SchemaTSContext,
+  name: string,
+  schema: JSONSchema
+): t.ExportNamedDeclaration {
   const properties = schema.properties || {};
   const required = schema.required || [];
-  const bodyElements = Object.keys(properties).map(key => {
+  const bodyElements: (t.TSIndexSignature | t.TSPropertySignature)[] = Object.keys(properties).map(key => {
     const prop = properties[key];
     return createPropertySignature(ctx, key, prop, required, schema);
   });
@@ -122,7 +127,7 @@ function createInterfaceDeclaration(ctx: SchemaTSContext, name: string, schema: 
 
 
 // Determine if the key is a valid JavaScript identifier
-function isValidIdentifier(key) {
+function isValidIdentifier(key: string) {
   return /^[$A-Z_][0-9A-Z_$]*$/i.test(key) && !/^[0-9]+$/.test(key);
 }
 
