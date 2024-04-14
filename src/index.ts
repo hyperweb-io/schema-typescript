@@ -1,67 +1,9 @@
 import generate from "@babel/generator";
 import * as t from "@babel/types";
 
+import { defaultOptions, SchemaTSContext, type SchemaTSOptions } from "./context";
+import type { JSONSchema, JSONSchemaProperty } from "./types";
 import { toCamelCase, toPascalCase } from "./utils";
-
-interface JSONSchema {
-  title: string;
-  properties?: { [key: string]: JSONSchemaProperty };
-  required?: string[];
-  type?: string;
-  items?: JSONSchema;
-  $defs?: { [key: string]: JSONSchema };
-  additionalProperties?: boolean | JSONSchemaProperty;
-}
-
-type JSONSchemaProperty = {
-  type?: string;
-  properties?: { [key: string]: JSONSchemaProperty };
-  items?: JSONSchemaProperty;
-  required?: string[];
-  $ref?: string;
-  additionalProperties?: boolean | JSONSchemaProperty;
-};
-
-interface SchemaTSOptions {
-  useSingleQuotes: boolean;
-  useCamelCase: boolean;
-}
-
-interface SchemaTSContextI {
-  options: SchemaTSOptions;
-  root: JSONSchema;
-  schema: JSONSchema;
-  parents: JSONSchema[]
-}
-
-
-class SchemaTSContext implements SchemaTSContextI {
-  options: SchemaTSOptions;
-  root: JSONSchema;
-  schema: JSONSchema;
-  parents: JSONSchema[];
-
-  constructor(
-    options: SchemaTSOptions,
-    root: JSONSchema,
-    schema: JSONSchema,
-    parents: JSONSchema[] = []
-  ) {
-    this.options = options;
-    this.schema = schema;
-    this.root = root;
-    this.parents = parents;
-  }
-
-  // Clone the context with the option to add a new parent
-  clone(newParent: JSONSchema): SchemaTSContext {
-    // Create a new array for parents to avoid mutation of the original array
-    const newParents = [...this.parents, newParent];
-    return new SchemaTSContext(this.options, this.root, this.schema, newParents);
-  }
-}
-
-const defaultOptions: SchemaTSOptions = { useSingleQuotes: true, useCamelCase: false };
 
 export function generateTypeScript(schema: JSONSchema, options?: SchemaTSOptions): string {
   const interfaces = [];
