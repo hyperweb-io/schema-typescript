@@ -3,7 +3,7 @@ import * as t from "@babel/types";
 
 import { defaultOptions, SchemaTSContext, type SchemaTSOptions } from "./context";
 import type { JSONSchema, JSONSchemaProperty } from "./types";
-import { toCamelCase, toPascalCase } from "./utils";
+import { isValidIdentifier, toCamelCase, toPascalCase } from "./utils";
 
 export function generateTypeScript(schema: JSONSchema, options?: SchemaTSOptions): string {
   const interfaces = [];
@@ -65,12 +65,6 @@ function createInterfaceDeclaration(
 
   // Make the interface exportable
   return t.exportNamedDeclaration(interfaceDeclaration);
-}
-
-
-// Determine if the key is a valid JavaScript identifier
-function isValidIdentifier(key: string) {
-  return /^[$A-Z_][0-9A-Z_$]*$/i.test(key) && !/^[0-9]+$/.test(key);
 }
 
 function createPropertySignature(
