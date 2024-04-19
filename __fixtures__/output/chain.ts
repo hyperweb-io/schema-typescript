@@ -53,7 +53,7 @@ export interface CosmosChain {
   };
   daemon_name?: string;
   node_home?: string;
-  key_algos?: string[];
+  key_algos?: ("secp256k1" | "ethsecp256k1" | "ed25519" | "sr25519" | "bn254")[];
   slip44?: number;
   alternative_slip44s?: number[];
   fees?: {
@@ -81,14 +81,14 @@ export interface CosmosChain {
     };
     cosmos_sdk_version?: string;
     consensus?: {
-      type: string;
+      type: "tendermint" | "cometbft" | "sei-tendermint";
       version?: string;
     };
     cosmwasm_version?: string;
     cosmwasm_enabled?: boolean;
     cosmwasm_path?: string;
     ibc_go_version?: string;
-    ics_enabled?: string[];
+    ics_enabled?: ("ics20-1" | "ics27-1" | "mauth")[];
     genesis?: {
       name?: string;
       genesis_url: string;
@@ -106,14 +106,14 @@ export interface CosmosChain {
       compatible_versions?: string[];
       cosmos_sdk_version?: string;
       consensus?: {
-        type: string;
+        type: "tendermint" | "cometbft" | "sei-tendermint";
         version?: string;
       };
       cosmwasm_version?: string;
       cosmwasm_enabled?: boolean;
       cosmwasm_path?: string;
       ibc_go_version?: string;
-      ics_enabled?: string[];
+      ics_enabled?: ("ics20-1" | "ics27-1" | "mauth")[];
       binaries?: {
         "linux/amd64"?: string;
         "linux/arm64"?: string;
@@ -133,8 +133,8 @@ export interface CosmosChain {
       circle?: boolean;
       dark_mode?: boolean;
     };
-    layout?: string;
-    text_position?: string;
+    layout?: "logo" | "logomark" | "logotype";
+    text_position?: "top" | "bottom" | "left" | "right" | "integrated";
   }[];
   logo_URIs?: {
     png?: string;
@@ -155,5 +155,5 @@ export interface CosmosChain {
   };
   explorers?: Explorer[];
   keywords?: string[];
-  extra_codecs?: string[];
+  extra_codecs?: ("ethermint" | "injective")[];
 }

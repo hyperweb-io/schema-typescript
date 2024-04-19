@@ -1,18 +1,11 @@
 export interface JSONSchema {
-  title: string;
-  properties?: { [key: string]: JSONSchemaProperty };
+  $ref?: string;
+  title?: string;
+  properties?: { [key: string]: JSONSchema };
   required?: string[];
   type?: string;
+  enum?: string[];
   items?: JSONSchema;
   $defs?: { [key: string]: JSONSchema };
-  additionalProperties?: boolean | JSONSchemaProperty;
+  additionalProperties?: boolean | JSONSchema;
 }
-
-export type JSONSchemaProperty = {
-  type?: string;
-  properties?: { [key: string]: JSONSchemaProperty };
-  items?: JSONSchemaProperty;
-  required?: string[];
-  $ref?: string;
-  additionalProperties?: boolean | JSONSchemaProperty;
-};

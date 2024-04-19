@@ -2,7 +2,7 @@ import generate from "@babel/generator";
 import * as t from "@babel/types";
 
 import { defaultOptions, SchemaTSContext, type SchemaTSOptions } from "./context";
-import type { JSONSchema, JSONSchemaProperty } from "./types";
+import type { JSONSchema } from "./types";
 import { isValidIdentifier, toCamelCase, toPascalCase } from "./utils";
 
 export function generateTypeScript(schema: JSONSchema, options?: SchemaTSOptions): string {
@@ -70,7 +70,7 @@ function createInterfaceDeclaration(
 function createPropertySignature(
   ctx: SchemaTSContext,
   key: string,
-  prop: JSONSchemaProperty,
+  prop: JSONSchema,
   required: string[],
   schema: JSONSchema
 ): t.TSPropertySignature {
@@ -88,14 +88,20 @@ function createPropertySignature(
 }
 
 
-function getTypeForProp(ctx: SchemaTSContext, prop: JSONSchemaProperty, required: string[], schema: JSONSchema): t.TSType {
+function getTypeForProp(ctx: SchemaTSContext, prop: JSONSchema, required: string[], schema: JSONSchema): t.TSType {
   if (prop.$ref) {
     return resolveRefType(ctx, prop.$ref, schema);
   }
 
   switch (prop.type) {
-    case 'string':
+    case 'string': {
+      if (prop.enum) {
+        // Convert each string in the enum to a TypeScript literal type and join them into a union
+        const enumType = prop.enum.map(enumValue => t.tsLiteralType(t.stringLiteral(enumValue)));
+        return t.tsUnionType(enumType);
+      }
       return t.tsStringKeyword();
+    }
     case 'number':
     case 'integer':
       return t.tsNumberKeyword();

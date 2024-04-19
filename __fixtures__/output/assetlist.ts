@@ -3,7 +3,7 @@ export interface Asset {
   description?: string;
   extended_description?: string;
   denom_units: DenomUnit[];
-  type_asset?: string;
+  type_asset?: "sdk.coin" | "cw20" | "erc20" | "ics20" | "snip20" | "snip25" | "bitcoin-like" | "evm-base" | "svm-base" | "substrate";
   address?: string;
   base: string;
   name: string;
@@ -46,7 +46,7 @@ export interface Pointer {
   base_denom?: string;
 }
 export interface IbcTransition {
-  type: string;
+  type: "ibc";
   counterparty: {
     chain_name: string;
     base_denom: string;
@@ -58,7 +58,7 @@ export interface IbcTransition {
   };
 }
 export interface IbcCw20Transition {
-  type: string;
+  type: "ibc-cw20";
   counterparty: {
     chain_name: string;
     base_denom: string;
@@ -72,7 +72,7 @@ export interface IbcCw20Transition {
   };
 }
 export interface NonIbcTransition {
-  type: string;
+  type: "bridge" | "liquid-stake" | "synthetic" | "wrapped" | "additional-mintage" | "test-mintage";
   counterparty: {
     chain_name: string;
     base_denom: string;
