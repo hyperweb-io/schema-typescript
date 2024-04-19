@@ -4,6 +4,7 @@ export interface JSONSchema {
   properties?: { [key: string]: JSONSchema };
   required?: string[];
   type?: string;
+  const?: string;
   enum?: string[];
   items?: JSONSchema;
   $defs?: { [key: string]: JSONSchema };  // (JSON Schema Draft 2019-09 and later)

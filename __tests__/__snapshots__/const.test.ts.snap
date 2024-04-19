@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`const 1`] = `
+"export interface Person {
+  firstName: "Dan";
+  age: number;
+  [key: string]: string;
+}"
+`;

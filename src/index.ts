@@ -149,6 +149,10 @@ function getTypeForProp(ctx: SchemaTSContext, prop: JSONSchema, required: string
     return t.tsUnionType(enumType);
   }
 
+  if (prop.const) {
+    return t.tsLiteralType(t.stringLiteral(prop.const));
+  }
+
   if (prop.type) {
     if (Array.isArray(prop.type)) {
       const arrayType = prop.type.map(type => getTypeForProp(ctx, {type, items: prop.items}, [], schema));
