@@ -36,13 +36,21 @@ export interface PoolConfig {
   pool_type: PoolType;
 }
 export type PoolType = {
-  xyk: any;
+  xyk: {
+    [key: string]: unknown;
+  };
 } | {
-  stable2_pool: any;
+  stable2_pool: {
+    [key: string]: unknown;
+  };
 } | {
-  stable3_pool: any;
+  stable3_pool: {
+    [key: string]: unknown;
+  };
 } | {
-  weighted: any;
+  weighted: {
+    [key: string]: unknown;
+  };
 } | {
   custom: string;
 };
@@ -56,9 +64,13 @@ export interface SingleSwapRequest {
   swap_type: SwapType;
 }
 export type SwapType = {
-  give_in: any;
+  give_in: {
+    [key: string]: unknown;
+  };
 } | {
-  give_out: any;
+  give_out: {
+    [key: string]: unknown;
+  };
 } | {
   custom: string;
 };
@@ -109,9 +121,13 @@ export type ExecuteMsg = {
     owner: string;
   };
 } | {
-  drop_ownership_proposal: any;
+  drop_ownership_proposal: {
+    [key: string]: unknown;
+  };
 } | {
-  claim_ownership: any;
+  claim_ownership: {
+    [key: string]: unknown;
+  };
 };"
 `;
 
@@ -151,13 +167,21 @@ export interface PoolConfig {
   poolType: PoolType;
 }
 export type PoolType = {
-  xyk: any;
+  xyk: {
+    [key: string]: unknown;
+  };
 } | {
-  stable2Pool: any;
+  stable2Pool: {
+    [key: string]: unknown;
+  };
 } | {
-  stable3Pool: any;
+  stable3Pool: {
+    [key: string]: unknown;
+  };
 } | {
-  weighted: any;
+  weighted: {
+    [key: string]: unknown;
+  };
 } | {
   custom: string;
 };
@@ -171,9 +195,13 @@ export interface SingleSwapRequest {
   swapType: SwapType;
 }
 export type SwapType = {
-  giveIn: any;
+  giveIn: {
+    [key: string]: unknown;
+  };
 } | {
-  giveOut: any;
+  giveOut: {
+    [key: string]: unknown;
+  };
 } | {
   custom: string;
 };
@@ -224,8 +252,12 @@ export type ExecuteMsg = {
     owner: string;
   };
 } | {
-  dropOwnershipProposal: any;
+  dropOwnershipProposal: {
+    [key: string]: unknown;
+  };
 } | {
-  claimOwnership: any;
+  claimOwnership: {
+    [key: string]: unknown;
+  };
 };"
 `;

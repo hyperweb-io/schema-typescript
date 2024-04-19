@@ -4,6 +4,8 @@ export interface Memo {
     key: string;
     description: string;
     gitRepo: string;
-    memo: any;
+    memo: {
+      [key: string]: unknown;
+    };
   }[];
 }

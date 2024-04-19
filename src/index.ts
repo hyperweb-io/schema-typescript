@@ -1,15 +1,32 @@
 import generate from "@babel/generator";
 import * as t from "@babel/types";
 
-import { defaultOptions, SchemaTSContext, type SchemaTSOptions } from "./context";
+import { SchemaTSContext, type SchemaTSOptions } from "./context";
 import type { JSONSchema } from "./types";
 import { isValidIdentifier, toCamelCase, toPascalCase } from "./utils";
 
+const identifier = (name: string, typeAnnotation: t.TSTypeAnnotation) => {
+  const i = t.identifier(name);
+  i.typeAnnotation = typeAnnotation;
+  return i;
+};
 
-export function generateTypeScript(schema: JSONSchema, options?: SchemaTSOptions): string {
+const anyOrObjectWithUnknownProps = (ctx: SchemaTSContext) => {
+  return ctx.options.strictTypeSafety ? t.tsTypeLiteral([
+    t.tsIndexSignature(
+      [
+        identifier('key', t.tsTypeAnnotation(
+          t.tsStringKeyword()
+        ))
+      ],
+      t.tsTypeAnnotation(t.tsUnknownKeyword())
+    )
+  ]) : t.tsAnyKeyword();
+}
+
+export function generateTypeScript(schema: JSONSchema, options?: Partial<SchemaTSOptions>): string {
   const interfaces = [];
-  const opts = options || defaultOptions;
-  const ctx = new SchemaTSContext(opts, schema, schema, []);
+  const ctx = new SchemaTSContext(options, schema, schema, []);
 
   try {
     // Process both $defs and definitions
@@ -93,7 +110,7 @@ function createInterfaceDeclaration(
   }
 
   if (schema.type) {
-    return t.exportNamedDeclaration(t.tsTypeAliasDeclaration(t.identifier(name), null, getTypeForProp(ctx, schema, [], schema)));  
+    return t.exportNamedDeclaration(t.tsTypeAliasDeclaration(t.identifier(name), null, getTypeForProp(ctx, schema, [], schema)));
   }
 
   // Fallback to exporting a basic type if nothing else is possible
@@ -157,31 +174,33 @@ function getTypeForProp(ctx: SchemaTSContext, prop: JSONSchema, required: string
           });
           return t.tsTypeLiteral(typeElements);
         } else {
-          return t.tsAnyKeyword();
+          // Handle dynamic properties with strict type safety option
+          return anyOrObjectWithUnknownProps(ctx);
         }
       default:
         return t.tsAnyKeyword();
     }
   }
 
+  // Handling oneOf, anyOf, allOf
   if (prop.anyOf) {
     const types = prop.anyOf.map((subProp) => getTypeForProp(ctx, subProp, required, schema));
     return t.tsUnionType(types);
   }
-
   if (prop.allOf) {
     const types = prop.allOf.map((subProp) => getTypeForProp(ctx, subProp, required, schema));
     return t.tsIntersectionType(types);
   }
-
   if (prop.oneOf) {
     const types = prop.oneOf.map((subProp) => getTypeForProp(ctx, subProp, required, schema));
     return t.tsUnionType(types);
   }
 
-  console.error(prop);
-  throw new Error('Unsupported property type or keyword');
+  // Fallback when no types are defined
+  return t.tsAnyKeyword()
+
 }
+
 
 function resolveRefType(ctx: SchemaTSContext, ref: string, schema: JSONSchema): t.TSType {
   const path = ref.split('/');

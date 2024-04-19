@@ -7,7 +7,9 @@ exports[`memo 1`] = `
     key: string;
     description: string;
     git_repo: string;
-    memo: any;
+    memo: {
+      [key: string]: unknown;
+    };
   }[];
 }"
 `;
@@ -19,7 +21,9 @@ exports[`memo camelCase 1`] = `
     key: string;
     description: string;
     gitRepo: string;
-    memo: any;
+    memo: {
+      [key: string]: unknown;
+    };
   }[];
 }"
 `;
