@@ -208,12 +208,7 @@ function getTypeForProp(ctx: SchemaTSContext, prop: JSONSchema, required: string
 
 }
 
-
-function resolveRefType(ctx: SchemaTSContext, ref: string, schema: JSONSchema): t.TSType {
-  const path = ref.split('/');
-  const definitionName = path.pop();
-
-  // Check both $defs and definitions in the local schema
+function getTypeReferenceFromSchema(schema: JSONSchema, definitionName: string): t.TSType | null {
   if (definitionName) {
     if (schema.$defs && schema.$defs[definitionName]) {
       return t.tsTypeReference(t.identifier(toPascalCase(definitionName)));
@@ -221,16 +216,26 @@ function resolveRefType(ctx: SchemaTSContext, ref: string, schema: JSONSchema): 
       return t.tsTypeReference(t.identifier(toPascalCase(definitionName)));
     }
   }
+  return null;  // Return null if no type reference is found
+}
 
-  // Check both $defs and definitions in the root schema
-  if (definitionName) {
-    if (ctx.root.$defs && ctx.root.$defs[definitionName]) {
-      return t.tsTypeReference(t.identifier(toPascalCase(definitionName)));
-    } else if (ctx.root.definitions && ctx.root.definitions[definitionName]) {
-      return t.tsTypeReference(t.identifier(toPascalCase(definitionName)));
-    }
+
+function resolveRefType(ctx: SchemaTSContext, ref: string, schema: JSONSchema): t.TSType {
+  const path = ref.split('/');
+  const definitionName = path.pop();
+
+  // Try to resolve the type reference from the local schema
+  const localTypeReference = getTypeReferenceFromSchema(schema, definitionName);
+  if (localTypeReference) {
+    return localTypeReference;
   }
 
-  // If no definitions are found, throw an error
+  // Try to resolve the type reference from the root schema
+  const rootTypeReference = getTypeReferenceFromSchema(ctx.root, definitionName);
+  if (rootTypeReference) {
+    return rootTypeReference;
+  }
+
+  // If no definitions are found in either schema, throw an error
   throw new Error(`Reference ${ref} not found in definitions or $defs.`);
 }
