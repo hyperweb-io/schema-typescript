@@ -40,8 +40,8 @@ export interface CosmosChain {
   prettyName?: string;
   website?: string;
   updateLink?: string;
-  status?: any;
-  networkType?: any;
+  status?: "live" | "upcoming" | "killed";
+  networkType?: "mainnet" | "testnet" | "devnet";
   bech32Prefix: string;
   bech32Config?: {
     bech32PrefixAccAddr?: string;

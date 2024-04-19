@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`works 1`] = `
+"export interface Dog {
+  name: string;
+  breed: string;
+  age?: number;
+}
+export interface Cat {
+  name: string;
+  breed: string;
+  age?: number;
+}
+export interface Person {
+  traces?: (Dog | Cat)[];
+  profile?: Dog & {
+    microchipped?: boolean;
+  };
+  identity?: {
+    passportNumber?: string;
+  } | {
+    driverLicense?: string;
+  };
+}"
+`;

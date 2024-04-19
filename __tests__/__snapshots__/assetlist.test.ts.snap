@@ -12,7 +12,7 @@ exports[`assetlist 1`] = `
   name: string;
   display: string;
   symbol: string;
-  traces?: any[];
+  traces?: (IbcTransition | IbcCw20Transition | NonIbcTransition)[];
   ibc?: {
     source_channel: string;
     dst_channel: string;
@@ -105,7 +105,7 @@ exports[`assetlist camelCase 1`] = `
   name: string;
   display: string;
   symbol: string;
-  traces?: any[];
+  traces?: (IbcTransition | IbcCw20Transition | NonIbcTransition)[];
   ibc?: {
     sourceChannel: string;
     dstChannel: string;

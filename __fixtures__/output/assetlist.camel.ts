@@ -9,7 +9,7 @@ export interface Asset {
   name: string;
   display: string;
   symbol: string;
-  traces?: any[];
+  traces?: (IbcTransition | IbcCw20Transition | NonIbcTransition)[];
   ibc?: {
     sourceChannel: string;
     dstChannel: string;
