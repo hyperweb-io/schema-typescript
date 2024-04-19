@@ -150,6 +150,11 @@ function getTypeForProp(ctx: SchemaTSContext, prop: JSONSchema, required: string
   }
 
   if (prop.type) {
+    if (Array.isArray(prop.type)) {
+      const arrayType = prop.type.map(type => getTypeForProp(ctx, {type, items: prop.items}, [], schema));
+      return t.tsUnionType(arrayType);  
+    }
+
     switch (prop.type) {
       case 'string':
         return t.tsStringKeyword();
@@ -158,6 +163,8 @@ function getTypeForProp(ctx: SchemaTSContext, prop: JSONSchema, required: string
         return t.tsNumberKeyword();
       case 'boolean':
         return t.tsBooleanKeyword();
+      case 'null':
+        return t.tsNullKeyword();
       case 'array':
         if (prop.items) {
           return t.tsArrayType(getTypeForProp(ctx, prop.items, required, schema));

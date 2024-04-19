@@ -21,7 +21,7 @@ export interface Cw20ReceiveMsg {
 export type Decimal = string;
 export interface FeeInfo {
   dev_fee_percent: number;
-  developer_addr?: Addr | any;
+  developer_addr?: Addr | null;
   protocol_fee_percent: number;
   total_fee_bps: number;
 }
@@ -55,8 +55,8 @@ export interface SingleSwapRequest {
   amount: Uint128;
   asset_in: AssetInfo;
   asset_out: AssetInfo;
-  belief_price?: Decimal | any;
-  max_spread?: Decimal | any;
+  belief_price?: Decimal | null;
+  max_spread?: Decimal | null;
   pool_id: Uint128;
   swap_type: SwapType;
 }
@@ -76,14 +76,14 @@ export type ExecuteMsg = {
   receive: Cw20ReceiveMsg;
 } | {
   update_config: {
-    fee_collector?: any;
-    generator_address?: any;
-    lp_token_code_id?: any;
+    fee_collector?: string | null;
+    generator_address?: string | null;
+    lp_token_code_id?: number | null;
   };
 } | {
   update_pool_config: {
-    is_disabled?: any;
-    new_fee_info?: FeeInfo | any;
+    is_disabled?: boolean | null;
+    new_fee_info?: FeeInfo | null;
     pool_type: PoolType;
   };
 } | {
@@ -93,23 +93,23 @@ export type ExecuteMsg = {
 } | {
   create_pool_instance: {
     asset_infos: AssetInfo[];
-    init_params?: Binary | any;
-    lp_token_name?: any;
-    lp_token_symbol?: any;
+    init_params?: Binary | null;
+    lp_token_name?: string | null;
+    lp_token_symbol?: string | null;
     pool_type: PoolType;
   };
 } | {
   join_pool: {
-    assets?: any;
-    auto_stake?: any;
-    lp_to_mint?: Uint128 | any;
+    assets?: Asset[] | null;
+    auto_stake?: boolean | null;
+    lp_to_mint?: Uint128 | null;
     pool_id: Uint128;
-    recipient?: any;
-    slippage_tolerance?: Decimal | any;
+    recipient?: string | null;
+    slippage_tolerance?: Decimal | null;
   };
 } | {
   swap: {
-    recipient?: any;
+    recipient?: string | null;
     swap_request: SingleSwapRequest;
   };
 } | {

@@ -21,7 +21,7 @@ export interface Cw20ReceiveMsg {
 export type Decimal = string;
 export interface FeeInfo {
   devFeePercent: number;
-  developerAddr?: Addr | any;
+  developerAddr?: Addr | null;
   protocolFeePercent: number;
   totalFeeBps: number;
 }
@@ -55,8 +55,8 @@ export interface SingleSwapRequest {
   amount: Uint128;
   assetIn: AssetInfo;
   assetOut: AssetInfo;
-  beliefPrice?: Decimal | any;
-  maxSpread?: Decimal | any;
+  beliefPrice?: Decimal | null;
+  maxSpread?: Decimal | null;
   poolId: Uint128;
   swapType: SwapType;
 }
@@ -76,14 +76,14 @@ export type ExecuteMsg = {
   receive: Cw20ReceiveMsg;
 } | {
   updateConfig: {
-    feeCollector?: any;
-    generatorAddress?: any;
-    lpTokenCodeId?: any;
+    feeCollector?: string | null;
+    generatorAddress?: string | null;
+    lpTokenCodeId?: number | null;
   };
 } | {
   updatePoolConfig: {
-    isDisabled?: any;
-    newFeeInfo?: FeeInfo | any;
+    isDisabled?: boolean | null;
+    newFeeInfo?: FeeInfo | null;
     poolType: PoolType;
   };
 } | {
@@ -93,23 +93,23 @@ export type ExecuteMsg = {
 } | {
   createPoolInstance: {
     assetInfos: AssetInfo[];
-    initParams?: Binary | any;
-    lpTokenName?: any;
-    lpTokenSymbol?: any;
+    initParams?: Binary | null;
+    lpTokenName?: string | null;
+    lpTokenSymbol?: string | null;
     poolType: PoolType;
   };
 } | {
   joinPool: {
-    assets?: any;
-    autoStake?: any;
-    lpToMint?: Uint128 | any;
+    assets?: Asset[] | null;
+    autoStake?: boolean | null;
+    lpToMint?: Uint128 | null;
     poolId: Uint128;
-    recipient?: any;
-    slippageTolerance?: Decimal | any;
+    recipient?: string | null;
+    slippageTolerance?: Decimal | null;
   };
 } | {
   swap: {
-    recipient?: any;
+    recipient?: string | null;
     swapRequest: SingleSwapRequest;
   };
 } | {
