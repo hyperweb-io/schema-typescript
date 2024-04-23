@@ -1,4 +1,5 @@
 export interface JSONSchema {
+  $schema?: string;
   $ref?: string;
   title?: string;
   properties?: { [key: string]: JSONSchema };
