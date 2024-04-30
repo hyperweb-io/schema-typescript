@@ -1,6 +1,6 @@
 {
   "name": "schema-typescript",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Convert JSON Schema to TypeScript Definitions",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "homepage": "https://github.com/pyramation/schema-typescript#readme",
