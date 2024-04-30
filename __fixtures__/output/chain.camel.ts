@@ -150,8 +150,8 @@ export interface CosmosChain {
     rest?: Endpoint[];
     grpc?: Endpoint[];
     wss?: Endpoint[];
-    "grpc-web"?: Endpoint[];
-    "evm-http-jsonrpc"?: Endpoint[];
+    grpcWeb?: Endpoint[];
+    evmHttpJsonrpc?: Endpoint[];
   };
   explorers?: Explorer[];
   keywords?: string[];

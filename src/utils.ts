@@ -12,7 +12,13 @@ export function toCamelCase(key: string) {
       .replace(/^./, (c) => c.toLowerCase());
 }
 
-// Determine if the key is a valid JavaScript identifier
+// // Determine if the key is a valid JavaScript identifier
 export function isValidIdentifier(key: string) {
   return /^[$A-Z_][0-9A-Z_$]*$/i.test(key) && !/^[0-9]+$/.test(key);
+}
+
+
+// Determine if the key is a valid JavaScript-like identifier, allowing internal hyphens
+export function isValidIdentifierCamelized(key: string) {
+  return /^[$A-Z_][0-9A-Z_$\-]*$/i.test(key) && !/^[0-9]+$/.test(key) && !/^-/.test(key);
 }

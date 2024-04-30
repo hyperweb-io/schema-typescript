@@ -3,7 +3,7 @@ import * as t from "@babel/types";
 
 import { SchemaTSContext, type SchemaTSOptions } from "./context";
 import type { JSONSchema } from "./types";
-import { isValidIdentifier, toCamelCase, toPascalCase } from "./utils";
+import { isValidIdentifier, isValidIdentifierCamelized, toCamelCase, toPascalCase } from "./utils";
 
 const identifier = (name: string, typeAnnotation: t.TSTypeAnnotation) => {
   const i = t.identifier(name);
@@ -126,13 +126,18 @@ function createPropertySignature(
   required: string[],
   schema: JSONSchema
 ): t.TSPropertySignature {
-
-  const isIdent = isValidIdentifier(key);
   let camelCaseFn: (str: string) => string = toCamelCase;
   if (ctx.options.camelCaseFn) camelCaseFn = ctx.options.camelCaseFn;
   const name = ctx.options.camelCase ? camelCaseFn(key) : key;
   const propType = getTypeForProp(ctx, prop, required, schema);
-  const identifier = isIdent ? t.identifier(name) : t.stringLiteral(key);
+  let identifier: t.Identifier | t.StringLiteral;
+  let isIdent: boolean;
+  if (ctx.options.camelCase) {
+    isIdent = isValidIdentifierCamelized(key);  
+  } else {
+    isIdent = isValidIdentifier(key);
+  }
+  identifier = isIdent ? t.identifier(name) : t.stringLiteral(key);
   const propSig = t.tsPropertySignature(
     identifier,
     t.tsTypeAnnotation(propType)
