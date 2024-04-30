@@ -12,7 +12,7 @@ it('contract', () => {
 it('contract camelCase', () => {
     const code = generateTypeScript(schema as any, {
         useSingleQuotes: true,
-        useCamelCase: true
+        camelCase: true
     });
     expect(code).toMatchSnapshot();
     writeFileSync(__dirname + '/../__fixtures__/output/contract.camel.ts', code);

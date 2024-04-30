@@ -12,7 +12,7 @@ it('assetlist', () => {
 it('assetlist camelCase', () => {
     const code = generateTypeScript(schema as any, {
         useSingleQuotes: true,
-        useCamelCase: true
+        camelCase: true
     });
     expect(code).toMatchSnapshot();
     writeFileSync(__dirname + '/../__fixtures__/output/assetlist.camel.ts', code);

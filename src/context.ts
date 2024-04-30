@@ -3,7 +3,8 @@ import deepmerge from 'deepmerge';
 
 export interface SchemaTSOptions {
   useSingleQuotes: boolean;
-  useCamelCase: boolean;
+  camelCase?: boolean; // defaults to false
+  camelCaseFn?: (str: string) => string; // optional function to convert keys to camelCase
   strictTypeSafety: boolean;  // true uses { [k: string]: unknown; }, false uses any
 }
 
@@ -44,6 +45,7 @@ export class SchemaTSContext implements SchemaTSContextI {
 
 export const defaultOptions: SchemaTSOptions = { 
   useSingleQuotes: true, 
-  useCamelCase: false,
+  camelCase: false,
+  camelCaseFn: null,
   strictTypeSafety: true
 };

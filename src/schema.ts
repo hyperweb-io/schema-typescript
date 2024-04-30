@@ -128,7 +128,9 @@ function createPropertySignature(
 ): t.TSPropertySignature {
 
   const isIdent = isValidIdentifier(key);
-  const name = ctx.options.useCamelCase ? toCamelCase(key) : key;
+  let camelCaseFn: (str: string) => string = toCamelCase;
+  if (ctx.options.camelCaseFn) camelCaseFn = ctx.options.camelCaseFn;
+  const name = ctx.options.camelCase ? camelCaseFn(key) : key;
   const propType = getTypeForProp(ctx, prop, required, schema);
   const identifier = isIdent ? t.identifier(name) : t.stringLiteral(key);
   const propSig = t.tsPropertySignature(
