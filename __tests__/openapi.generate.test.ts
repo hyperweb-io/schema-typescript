@@ -9,15 +9,47 @@ it('swagger', () => {
         // include: [
         //     '*.v1.*'
         // ],
-        includeMethodComments: true,
-        namingStrategy: {
-            useLastSegment: true
-        }
+        exclude: [
+            '*.v1beta1.*',
+            '*.v2beta1.*',
+            'io.k8s.api.events.v1.EventSeries',
+            'io.k8s.api.events.v1.Event',
+            'io.k8s.api.flowcontrol*'
+        ]
     })
     const code = generateOpenApiClient({
         ...options,
-        version: 'v1',
-        mergedParams: false
+        // version: 'v1',
+        paths: {
+            exclude: [
+                '*flowschema*',
+                '*v1beta1*',
+                '*v2beta1*'
+            ],
+            excludeRequests: [
+                'head',
+                'options'
+            ],
+            excludeTags: [
+                'storage_v1beta1',
+                '*v1beta1',
+                '*v2beta1',
+                '*v1beta1*',
+                '*v2beta1*'
+            ]
+        },
+        includeTypeComments: true,
+        includeMethodComments: true,
+        mergedParams: false,
+        namingStrategy: {
+            useLastSegment: true,
+            renameMap: {
+                'io.k8s.api.discovery.v1.EndpointPort': 'DiscoveryEndpointPort',
+                'io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.ServiceReference': 'ApiExtServiceReference',
+                'io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.WebhookClientConfig': 'ApiExtWebhookClientConfig',
+                'io.k8s.api.admissionregistration.v1.ServiceReference': 'AdmissionServiceReference'
+            }
+        }
     }, schema as any);
     expect(code).toMatchSnapshot();
     writeFileSync(__dirname + '/../__fixtures__/output/swagger-client.ts', code);

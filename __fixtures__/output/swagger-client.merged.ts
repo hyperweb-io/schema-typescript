@@ -1,3 +1,3280 @@
+import { APIClient } from "./api-client";
+export interface MutatingWebhook {
+  admissionReviewVersions: string[];
+  clientConfig: WebhookClientConfig;
+  failurePolicy?: string;
+  matchPolicy?: string;
+  name: string;
+  namespaceSelector?: LabelSelector;
+  objectSelector?: LabelSelector;
+  reinvocationPolicy?: string;
+  rules?: RuleWithOperations[];
+  sideEffects: string;
+  timeoutSeconds?: number;
+}
+export interface MutatingWebhookConfiguration {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  webhooks?: MutatingWebhook[];
+}
+export interface MutatingWebhookConfigurationList {
+  apiVersion?: string;
+  items: MutatingWebhookConfiguration[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface RuleWithOperations {
+  apiGroups?: string[];
+  apiVersions?: string[];
+  operations?: string[];
+  resources?: string[];
+  scope?: string;
+}
+export interface ServiceReference {
+  name: string;
+  namespace: string;
+  path?: string;
+  port?: number;
+}
+export interface ValidatingWebhook {
+  admissionReviewVersions: string[];
+  clientConfig: WebhookClientConfig;
+  failurePolicy?: string;
+  matchPolicy?: string;
+  name: string;
+  namespaceSelector?: LabelSelector;
+  objectSelector?: LabelSelector;
+  rules?: RuleWithOperations[];
+  sideEffects: string;
+  timeoutSeconds?: number;
+}
+export interface ValidatingWebhookConfiguration {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  webhooks?: ValidatingWebhook[];
+}
+export interface ValidatingWebhookConfigurationList {
+  apiVersion?: string;
+  items: ValidatingWebhookConfiguration[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface WebhookClientConfig {
+  caBundle?: string;
+  service?: ServiceReference;
+  url?: string;
+}
+export interface ControllerRevision {
+  apiVersion?: string;
+  data?: RawExtension;
+  kind?: string;
+  metadata?: ObjectMeta;
+  revision: number;
+}
+export interface ControllerRevisionList {
+  apiVersion?: string;
+  items: ControllerRevision[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface DaemonSet {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: DaemonSetSpec;
+  status?: DaemonSetStatus;
+}
+export interface DaemonSetCondition {
+  lastTransitionTime?: Time;
+  message?: string;
+  reason?: string;
+  status: string;
+  type: string;
+}
+export interface DaemonSetList {
+  apiVersion?: string;
+  items: DaemonSet[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface DaemonSetSpec {
+  minReadySeconds?: number;
+  revisionHistoryLimit?: number;
+  selector: LabelSelector;
+  template: PodTemplateSpec;
+  updateStrategy?: DaemonSetUpdateStrategy;
+}
+export interface DaemonSetStatus {
+  collisionCount?: number;
+  conditions?: DaemonSetCondition[];
+  currentNumberScheduled: number;
+  desiredNumberScheduled: number;
+  numberAvailable?: number;
+  numberMisscheduled: number;
+  numberReady: number;
+  numberUnavailable?: number;
+  observedGeneration?: number;
+  updatedNumberScheduled?: number;
+}
+export interface DaemonSetUpdateStrategy {
+  rollingUpdate?: RollingUpdateDaemonSet;
+  type?: string;
+}
+export interface Deployment {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: DeploymentSpec;
+  status?: DeploymentStatus;
+}
+export interface DeploymentCondition {
+  lastTransitionTime?: Time;
+  lastUpdateTime?: Time;
+  message?: string;
+  reason?: string;
+  status: string;
+  type: string;
+}
+export interface DeploymentList {
+  apiVersion?: string;
+  items: Deployment[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface DeploymentSpec {
+  minReadySeconds?: number;
+  paused?: boolean;
+  progressDeadlineSeconds?: number;
+  replicas?: number;
+  revisionHistoryLimit?: number;
+  selector: LabelSelector;
+  strategy?: DeploymentStrategy;
+  template: PodTemplateSpec;
+}
+export interface DeploymentStatus {
+  availableReplicas?: number;
+  collisionCount?: number;
+  conditions?: DeploymentCondition[];
+  observedGeneration?: number;
+  readyReplicas?: number;
+  replicas?: number;
+  unavailableReplicas?: number;
+  updatedReplicas?: number;
+}
+export interface DeploymentStrategy {
+  rollingUpdate?: RollingUpdateDeployment;
+  type?: string;
+}
+export interface ReplicaSet {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: ReplicaSetSpec;
+  status?: ReplicaSetStatus;
+}
+export interface ReplicaSetCondition {
+  lastTransitionTime?: Time;
+  message?: string;
+  reason?: string;
+  status: string;
+  type: string;
+}
+export interface ReplicaSetList {
+  apiVersion?: string;
+  items: ReplicaSet[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface ReplicaSetSpec {
+  minReadySeconds?: number;
+  replicas?: number;
+  selector: LabelSelector;
+  template?: PodTemplateSpec;
+}
+export interface ReplicaSetStatus {
+  availableReplicas?: number;
+  conditions?: ReplicaSetCondition[];
+  fullyLabeledReplicas?: number;
+  observedGeneration?: number;
+  readyReplicas?: number;
+  replicas: number;
+}
+export interface RollingUpdateDaemonSet {
+  maxSurge?: IntOrString;
+  maxUnavailable?: IntOrString;
+}
+export interface RollingUpdateDeployment {
+  maxSurge?: IntOrString;
+  maxUnavailable?: IntOrString;
+}
+export interface RollingUpdateStatefulSetStrategy {
+  partition?: number;
+}
+export interface StatefulSet {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: StatefulSetSpec;
+  status?: StatefulSetStatus;
+}
+export interface StatefulSetCondition {
+  lastTransitionTime?: Time;
+  message?: string;
+  reason?: string;
+  status: string;
+  type: string;
+}
+export interface StatefulSetList {
+  apiVersion?: string;
+  items: StatefulSet[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface StatefulSetSpec {
+  minReadySeconds?: number;
+  podManagementPolicy?: string;
+  replicas?: number;
+  revisionHistoryLimit?: number;
+  selector: LabelSelector;
+  serviceName: string;
+  template: PodTemplateSpec;
+  updateStrategy?: StatefulSetUpdateStrategy;
+  volumeClaimTemplates?: PersistentVolumeClaim[];
+}
+export interface StatefulSetStatus {
+  availableReplicas?: number;
+  collisionCount?: number;
+  conditions?: StatefulSetCondition[];
+  currentReplicas?: number;
+  currentRevision?: string;
+  observedGeneration?: number;
+  readyReplicas?: number;
+  replicas: number;
+  updateRevision?: string;
+  updatedReplicas?: number;
+}
+export interface StatefulSetUpdateStrategy {
+  rollingUpdate?: RollingUpdateStatefulSetStrategy;
+  type?: string;
+}
+export interface BoundObjectReference {
+  apiVersion?: string;
+  kind?: string;
+  name?: string;
+  uid?: string;
+}
+export interface TokenRequest {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec: TokenRequestSpec;
+  status?: TokenRequestStatus;
+}
+export interface TokenRequestSpec {
+  audiences: string[];
+  boundObjectRef?: BoundObjectReference;
+  expirationSeconds?: number;
+}
+export interface TokenRequestStatus {
+  expirationTimestamp: Time;
+  token: string;
+}
+export interface TokenReview {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec: TokenReviewSpec;
+  status?: TokenReviewStatus;
+}
+export interface TokenReviewSpec {
+  audiences?: string[];
+  token?: string;
+}
+export interface TokenReviewStatus {
+  audiences?: string[];
+  authenticated?: boolean;
+  error?: string;
+  user?: UserInfo;
+}
+export interface UserInfo {
+  extra?: {
+    [key: string]: unknown;
+  };
+  groups?: string[];
+  uid?: string;
+  username?: string;
+}
+export interface LocalSubjectAccessReview {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec: SubjectAccessReviewSpec;
+  status?: SubjectAccessReviewStatus;
+}
+export interface NonResourceAttributes {
+  path?: string;
+  verb?: string;
+}
+export interface NonResourceRule {
+  nonResourceURLs?: string[];
+  verbs: string[];
+}
+export interface ResourceAttributes {
+  group?: string;
+  name?: string;
+  namespace?: string;
+  resource?: string;
+  subresource?: string;
+  verb?: string;
+  version?: string;
+}
+export interface ResourceRule {
+  apiGroups?: string[];
+  resourceNames?: string[];
+  resources?: string[];
+  verbs: string[];
+}
+export interface SelfSubjectAccessReview {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec: SelfSubjectAccessReviewSpec;
+  status?: SubjectAccessReviewStatus;
+}
+export interface SelfSubjectAccessReviewSpec {
+  nonResourceAttributes?: NonResourceAttributes;
+  resourceAttributes?: ResourceAttributes;
+}
+export interface SelfSubjectRulesReview {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec: SelfSubjectRulesReviewSpec;
+  status?: SubjectRulesReviewStatus;
+}
+export interface SelfSubjectRulesReviewSpec {
+  namespace?: string;
+}
+export interface SubjectAccessReview {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec: SubjectAccessReviewSpec;
+  status?: SubjectAccessReviewStatus;
+}
+export interface SubjectAccessReviewSpec {
+  extra?: {
+    [key: string]: unknown;
+  };
+  groups?: string[];
+  nonResourceAttributes?: NonResourceAttributes;
+  resourceAttributes?: ResourceAttributes;
+  uid?: string;
+  user?: string;
+}
+export interface SubjectAccessReviewStatus {
+  allowed: boolean;
+  denied?: boolean;
+  evaluationError?: string;
+  reason?: string;
+}
+export interface SubjectRulesReviewStatus {
+  evaluationError?: string;
+  incomplete: boolean;
+  nonResourceRules: NonResourceRule[];
+  resourceRules: ResourceRule[];
+}
+export interface CrossVersionObjectReference {
+  apiVersion?: string;
+  kind: string;
+  name: string;
+}
+export interface HorizontalPodAutoscaler {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: HorizontalPodAutoscalerSpec;
+  status?: HorizontalPodAutoscalerStatus;
+}
+export interface HorizontalPodAutoscalerList {
+  apiVersion?: string;
+  items: HorizontalPodAutoscaler[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface HorizontalPodAutoscalerSpec {
+  maxReplicas: number;
+  minReplicas?: number;
+  scaleTargetRef: CrossVersionObjectReference;
+  targetCPUUtilizationPercentage?: number;
+}
+export interface HorizontalPodAutoscalerStatus {
+  currentCPUUtilizationPercentage?: number;
+  currentReplicas: number;
+  desiredReplicas: number;
+  lastScaleTime?: Time;
+  observedGeneration?: number;
+}
+export interface Scale {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: ScaleSpec;
+  status?: ScaleStatus;
+}
+export interface ScaleSpec {
+  replicas?: number;
+}
+export interface ScaleStatus {
+  replicas: number;
+  selector?: string;
+}
+export interface ContainerResourceMetricSource {
+  container: string;
+  name: string;
+  targetAverageUtilization?: number;
+  targetAverageValue?: Quantity;
+}
+export interface ContainerResourceMetricStatus {
+  container: string;
+  currentAverageUtilization?: number;
+  currentAverageValue: Quantity;
+  name: string;
+}
+export interface CrossVersionObjectReference {
+  apiVersion?: string;
+  kind: string;
+  name: string;
+}
+export interface ExternalMetricSource {
+  metricName: string;
+  metricSelector?: LabelSelector;
+  targetAverageValue?: Quantity;
+  targetValue?: Quantity;
+}
+export interface ExternalMetricStatus {
+  currentAverageValue?: Quantity;
+  currentValue: Quantity;
+  metricName: string;
+  metricSelector?: LabelSelector;
+}
+export interface HorizontalPodAutoscaler {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: HorizontalPodAutoscalerSpec;
+  status?: HorizontalPodAutoscalerStatus;
+}
+export interface HorizontalPodAutoscalerCondition {
+  lastTransitionTime?: Time;
+  message?: string;
+  reason?: string;
+  status: string;
+  type: string;
+}
+export interface HorizontalPodAutoscalerList {
+  apiVersion?: string;
+  items: HorizontalPodAutoscaler[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface HorizontalPodAutoscalerSpec {
+  maxReplicas: number;
+  metrics?: MetricSpec[];
+  minReplicas?: number;
+  scaleTargetRef: CrossVersionObjectReference;
+}
+export interface HorizontalPodAutoscalerStatus {
+  conditions: HorizontalPodAutoscalerCondition[];
+  currentMetrics?: MetricStatus[];
+  currentReplicas: number;
+  desiredReplicas: number;
+  lastScaleTime?: Time;
+  observedGeneration?: number;
+}
+export interface MetricSpec {
+  containerResource?: ContainerResourceMetricSource;
+  external?: ExternalMetricSource;
+  object?: ObjectMetricSource;
+  pods?: PodsMetricSource;
+  resource?: ResourceMetricSource;
+  type: string;
+}
+export interface MetricStatus {
+  containerResource?: ContainerResourceMetricStatus;
+  external?: ExternalMetricStatus;
+  object?: ObjectMetricStatus;
+  pods?: PodsMetricStatus;
+  resource?: ResourceMetricStatus;
+  type: string;
+}
+export interface ObjectMetricSource {
+  averageValue?: Quantity;
+  metricName: string;
+  selector?: LabelSelector;
+  target: CrossVersionObjectReference;
+  targetValue: Quantity;
+}
+export interface ObjectMetricStatus {
+  averageValue?: Quantity;
+  currentValue: Quantity;
+  metricName: string;
+  selector?: LabelSelector;
+  target: CrossVersionObjectReference;
+}
+export interface PodsMetricSource {
+  metricName: string;
+  selector?: LabelSelector;
+  targetAverageValue: Quantity;
+}
+export interface PodsMetricStatus {
+  currentAverageValue: Quantity;
+  metricName: string;
+  selector?: LabelSelector;
+}
+export interface ResourceMetricSource {
+  name: string;
+  targetAverageUtilization?: number;
+  targetAverageValue?: Quantity;
+}
+export interface ResourceMetricStatus {
+  currentAverageUtilization?: number;
+  currentAverageValue: Quantity;
+  name: string;
+}
+export interface ContainerResourceMetricSource {
+  container: string;
+  name: string;
+  target: MetricTarget;
+}
+export interface ContainerResourceMetricStatus {
+  container: string;
+  current: MetricValueStatus;
+  name: string;
+}
+export interface CrossVersionObjectReference {
+  apiVersion?: string;
+  kind: string;
+  name: string;
+}
+export interface ExternalMetricSource {
+  metric: MetricIdentifier;
+  target: MetricTarget;
+}
+export interface ExternalMetricStatus {
+  current: MetricValueStatus;
+  metric: MetricIdentifier;
+}
+export interface HPAScalingPolicy {
+  periodSeconds: number;
+  type: string;
+  value: number;
+}
+export interface HPAScalingRules {
+  policies?: HPAScalingPolicy[];
+  selectPolicy?: string;
+  stabilizationWindowSeconds?: number;
+}
+export interface HorizontalPodAutoscaler {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: HorizontalPodAutoscalerSpec;
+  status?: HorizontalPodAutoscalerStatus;
+}
+export interface HorizontalPodAutoscalerBehavior {
+  scaleDown?: HPAScalingRules;
+  scaleUp?: HPAScalingRules;
+}
+export interface HorizontalPodAutoscalerCondition {
+  lastTransitionTime?: Time;
+  message?: string;
+  reason?: string;
+  status: string;
+  type: string;
+}
+export interface HorizontalPodAutoscalerList {
+  apiVersion?: string;
+  items: HorizontalPodAutoscaler[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface HorizontalPodAutoscalerSpec {
+  behavior?: HorizontalPodAutoscalerBehavior;
+  maxReplicas: number;
+  metrics?: MetricSpec[];
+  minReplicas?: number;
+  scaleTargetRef: CrossVersionObjectReference;
+}
+export interface HorizontalPodAutoscalerStatus {
+  conditions: HorizontalPodAutoscalerCondition[];
+  currentMetrics?: MetricStatus[];
+  currentReplicas: number;
+  desiredReplicas: number;
+  lastScaleTime?: Time;
+  observedGeneration?: number;
+}
+export interface MetricIdentifier {
+  name: string;
+  selector?: LabelSelector;
+}
+export interface MetricSpec {
+  containerResource?: ContainerResourceMetricSource;
+  external?: ExternalMetricSource;
+  object?: ObjectMetricSource;
+  pods?: PodsMetricSource;
+  resource?: ResourceMetricSource;
+  type: string;
+}
+export interface MetricStatus {
+  containerResource?: ContainerResourceMetricStatus;
+  external?: ExternalMetricStatus;
+  object?: ObjectMetricStatus;
+  pods?: PodsMetricStatus;
+  resource?: ResourceMetricStatus;
+  type: string;
+}
+export interface MetricTarget {
+  averageUtilization?: number;
+  averageValue?: Quantity;
+  type: string;
+  value?: Quantity;
+}
+export interface MetricValueStatus {
+  averageUtilization?: number;
+  averageValue?: Quantity;
+  value?: Quantity;
+}
+export interface ObjectMetricSource {
+  describedObject: CrossVersionObjectReference;
+  metric: MetricIdentifier;
+  target: MetricTarget;
+}
+export interface ObjectMetricStatus {
+  current: MetricValueStatus;
+  describedObject: CrossVersionObjectReference;
+  metric: MetricIdentifier;
+}
+export interface PodsMetricSource {
+  metric: MetricIdentifier;
+  target: MetricTarget;
+}
+export interface PodsMetricStatus {
+  current: MetricValueStatus;
+  metric: MetricIdentifier;
+}
+export interface ResourceMetricSource {
+  name: string;
+  target: MetricTarget;
+}
+export interface ResourceMetricStatus {
+  current: MetricValueStatus;
+  name: string;
+}
+export interface CronJob {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: CronJobSpec;
+  status?: CronJobStatus;
+}
+export interface CronJobList {
+  apiVersion?: string;
+  items: CronJob[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface CronJobSpec {
+  concurrencyPolicy?: string;
+  failedJobsHistoryLimit?: number;
+  jobTemplate: JobTemplateSpec;
+  schedule: string;
+  startingDeadlineSeconds?: number;
+  successfulJobsHistoryLimit?: number;
+  suspend?: boolean;
+}
+export interface CronJobStatus {
+  active?: ObjectReference[];
+  lastScheduleTime?: Time;
+  lastSuccessfulTime?: Time;
+}
+export interface Job {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: JobSpec;
+  status?: JobStatus;
+}
+export interface JobCondition {
+  lastProbeTime?: Time;
+  lastTransitionTime?: Time;
+  message?: string;
+  reason?: string;
+  status: string;
+  type: string;
+}
+export interface JobList {
+  apiVersion?: string;
+  items: Job[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface JobSpec {
+  activeDeadlineSeconds?: number;
+  backoffLimit?: number;
+  completionMode?: string;
+  completions?: number;
+  manualSelector?: boolean;
+  parallelism?: number;
+  selector?: LabelSelector;
+  suspend?: boolean;
+  template: PodTemplateSpec;
+  ttlSecondsAfterFinished?: number;
+}
+export interface JobStatus {
+  active?: number;
+  completedIndexes?: string;
+  completionTime?: Time;
+  conditions?: JobCondition[];
+  failed?: number;
+  startTime?: Time;
+  succeeded?: number;
+  uncountedTerminatedPods?: UncountedTerminatedPods;
+}
+export interface JobTemplateSpec {
+  metadata?: ObjectMeta;
+  spec?: JobSpec;
+}
+export interface UncountedTerminatedPods {
+  failed?: string[];
+  succeeded?: string[];
+}
+export interface CronJob {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: CronJobSpec;
+  status?: CronJobStatus;
+}
+export interface CronJobList {
+  apiVersion?: string;
+  items: CronJob[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface CronJobSpec {
+  concurrencyPolicy?: string;
+  failedJobsHistoryLimit?: number;
+  jobTemplate: JobTemplateSpec;
+  schedule: string;
+  startingDeadlineSeconds?: number;
+  successfulJobsHistoryLimit?: number;
+  suspend?: boolean;
+}
+export interface CronJobStatus {
+  active?: ObjectReference[];
+  lastScheduleTime?: Time;
+  lastSuccessfulTime?: Time;
+}
+export interface JobTemplateSpec {
+  metadata?: ObjectMeta;
+  spec?: JobSpec;
+}
+export interface CertificateSigningRequest {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec: CertificateSigningRequestSpec;
+  status?: CertificateSigningRequestStatus;
+}
+export interface CertificateSigningRequestCondition {
+  lastTransitionTime?: Time;
+  lastUpdateTime?: Time;
+  message?: string;
+  reason?: string;
+  status: string;
+  type: string;
+}
+export interface CertificateSigningRequestList {
+  apiVersion?: string;
+  items: CertificateSigningRequest[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface CertificateSigningRequestSpec {
+  expirationSeconds?: number;
+  extra?: {
+    [key: string]: unknown;
+  };
+  groups?: string[];
+  request: string;
+  signerName: string;
+  uid?: string;
+  usages?: string[];
+  username?: string;
+}
+export interface CertificateSigningRequestStatus {
+  certificate?: string;
+  conditions?: CertificateSigningRequestCondition[];
+}
+export interface Lease {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: LeaseSpec;
+}
+export interface LeaseList {
+  apiVersion?: string;
+  items: Lease[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface LeaseSpec {
+  acquireTime?: MicroTime;
+  holderIdentity?: string;
+  leaseDurationSeconds?: number;
+  leaseTransitions?: number;
+  renewTime?: MicroTime;
+}
+export interface AWSElasticBlockStoreVolumeSource {
+  fsType?: string;
+  partition?: number;
+  readOnly?: boolean;
+  volumeID: string;
+}
+export interface Affinity {
+  nodeAffinity?: NodeAffinity;
+  podAffinity?: PodAffinity;
+  podAntiAffinity?: PodAntiAffinity;
+}
+export interface AttachedVolume {
+  devicePath: string;
+  name: string;
+}
+export interface AzureDiskVolumeSource {
+  cachingMode?: string;
+  diskName: string;
+  diskURI: string;
+  fsType?: string;
+  kind?: string;
+  readOnly?: boolean;
+}
+export interface AzureFilePersistentVolumeSource {
+  readOnly?: boolean;
+  secretName: string;
+  secretNamespace?: string;
+  shareName: string;
+}
+export interface AzureFileVolumeSource {
+  readOnly?: boolean;
+  secretName: string;
+  shareName: string;
+}
+export interface Binding {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  target: ObjectReference;
+}
+export interface CSIPersistentVolumeSource {
+  controllerExpandSecretRef?: SecretReference;
+  controllerPublishSecretRef?: SecretReference;
+  driver: string;
+  fsType?: string;
+  nodePublishSecretRef?: SecretReference;
+  nodeStageSecretRef?: SecretReference;
+  readOnly?: boolean;
+  volumeAttributes?: {
+    [key: string]: unknown;
+  };
+  volumeHandle: string;
+}
+export interface CSIVolumeSource {
+  driver: string;
+  fsType?: string;
+  nodePublishSecretRef?: LocalObjectReference;
+  readOnly?: boolean;
+  volumeAttributes?: {
+    [key: string]: unknown;
+  };
+}
+export interface Capabilities {
+  add?: string[];
+  drop?: string[];
+}
+export interface CephFSPersistentVolumeSource {
+  monitors: string[];
+  path?: string;
+  readOnly?: boolean;
+  secretFile?: string;
+  secretRef?: SecretReference;
+  user?: string;
+}
+export interface CephFSVolumeSource {
+  monitors: string[];
+  path?: string;
+  readOnly?: boolean;
+  secretFile?: string;
+  secretRef?: LocalObjectReference;
+  user?: string;
+}
+export interface CinderPersistentVolumeSource {
+  fsType?: string;
+  readOnly?: boolean;
+  secretRef?: SecretReference;
+  volumeID: string;
+}
+export interface CinderVolumeSource {
+  fsType?: string;
+  readOnly?: boolean;
+  secretRef?: LocalObjectReference;
+  volumeID: string;
+}
+export interface ClientIPConfig {
+  timeoutSeconds?: number;
+}
+export interface ComponentCondition {
+  error?: string;
+  message?: string;
+  status: string;
+  type: string;
+}
+export interface ComponentStatus {
+  apiVersion?: string;
+  conditions?: ComponentCondition[];
+  kind?: string;
+  metadata?: ObjectMeta;
+}
+export interface ComponentStatusList {
+  apiVersion?: string;
+  items: ComponentStatus[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface ConfigMap {
+  apiVersion?: string;
+  binaryData?: {
+    [key: string]: unknown;
+  };
+  data?: {
+    [key: string]: unknown;
+  };
+  immutable?: boolean;
+  kind?: string;
+  metadata?: ObjectMeta;
+}
+export interface ConfigMapEnvSource {
+  name?: string;
+  optional?: boolean;
+}
+export interface ConfigMapKeySelector {
+  key: string;
+  name?: string;
+  optional?: boolean;
+}
+export interface ConfigMapList {
+  apiVersion?: string;
+  items: ConfigMap[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface ConfigMapNodeConfigSource {
+  kubeletConfigKey: string;
+  name: string;
+  namespace: string;
+  resourceVersion?: string;
+  uid?: string;
+}
+export interface ConfigMapProjection {
+  items?: KeyToPath[];
+  name?: string;
+  optional?: boolean;
+}
+export interface ConfigMapVolumeSource {
+  defaultMode?: number;
+  items?: KeyToPath[];
+  name?: string;
+  optional?: boolean;
+}
+export interface Container {
+  args?: string[];
+  command?: string[];
+  env?: EnvVar[];
+  envFrom?: EnvFromSource[];
+  image?: string;
+  imagePullPolicy?: string;
+  lifecycle?: Lifecycle;
+  livenessProbe?: Probe;
+  name: string;
+  ports?: ContainerPort[];
+  readinessProbe?: Probe;
+  resources?: ResourceRequirements;
+  securityContext?: SecurityContext;
+  startupProbe?: Probe;
+  stdin?: boolean;
+  stdinOnce?: boolean;
+  terminationMessagePath?: string;
+  terminationMessagePolicy?: string;
+  tty?: boolean;
+  volumeDevices?: VolumeDevice[];
+  volumeMounts?: VolumeMount[];
+  workingDir?: string;
+}
+export interface ContainerImage {
+  names?: string[];
+  sizeBytes?: number;
+}
+export interface ContainerPort {
+  containerPort: number;
+  hostIP?: string;
+  hostPort?: number;
+  name?: string;
+  protocol?: string;
+}
+export interface ContainerState {
+  running?: ContainerStateRunning;
+  terminated?: ContainerStateTerminated;
+  waiting?: ContainerStateWaiting;
+}
+export interface ContainerStateRunning {
+  startedAt?: Time;
+}
+export interface ContainerStateTerminated {
+  containerID?: string;
+  exitCode: number;
+  finishedAt?: Time;
+  message?: string;
+  reason?: string;
+  signal?: number;
+  startedAt?: Time;
+}
+export interface ContainerStateWaiting {
+  message?: string;
+  reason?: string;
+}
+export interface ContainerStatus {
+  containerID?: string;
+  image: string;
+  imageID: string;
+  lastState?: ContainerState;
+  name: string;
+  ready: boolean;
+  restartCount: number;
+  started?: boolean;
+  state?: ContainerState;
+}
+export interface DaemonEndpoint {
+  Port: number;
+}
+export interface DownwardAPIProjection {
+  items?: DownwardAPIVolumeFile[];
+}
+export interface DownwardAPIVolumeFile {
+  fieldRef?: ObjectFieldSelector;
+  mode?: number;
+  path: string;
+  resourceFieldRef?: ResourceFieldSelector;
+}
+export interface DownwardAPIVolumeSource {
+  defaultMode?: number;
+  items?: DownwardAPIVolumeFile[];
+}
+export interface EmptyDirVolumeSource {
+  medium?: string;
+  sizeLimit?: Quantity;
+}
+export interface EndpointAddress {
+  hostname?: string;
+  ip: string;
+  nodeName?: string;
+  targetRef?: ObjectReference;
+}
+export interface EndpointPort {
+  appProtocol?: string;
+  name?: string;
+  port: number;
+  protocol?: string;
+}
+export interface EndpointSubset {
+  addresses?: EndpointAddress[];
+  notReadyAddresses?: EndpointAddress[];
+  ports?: EndpointPort[];
+}
+export interface Endpoints {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  subsets?: EndpointSubset[];
+}
+export interface EndpointsList {
+  apiVersion?: string;
+  items: Endpoints[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface EnvFromSource {
+  configMapRef?: ConfigMapEnvSource;
+  prefix?: string;
+  secretRef?: SecretEnvSource;
+}
+export interface EnvVar {
+  name: string;
+  value?: string;
+  valueFrom?: EnvVarSource;
+}
+export interface EnvVarSource {
+  configMapKeyRef?: ConfigMapKeySelector;
+  fieldRef?: ObjectFieldSelector;
+  resourceFieldRef?: ResourceFieldSelector;
+  secretKeyRef?: SecretKeySelector;
+}
+export interface EphemeralContainer {
+  args?: string[];
+  command?: string[];
+  env?: EnvVar[];
+  envFrom?: EnvFromSource[];
+  image?: string;
+  imagePullPolicy?: string;
+  lifecycle?: Lifecycle;
+  livenessProbe?: Probe;
+  name: string;
+  ports?: ContainerPort[];
+  readinessProbe?: Probe;
+  resources?: ResourceRequirements;
+  securityContext?: SecurityContext;
+  startupProbe?: Probe;
+  stdin?: boolean;
+  stdinOnce?: boolean;
+  targetContainerName?: string;
+  terminationMessagePath?: string;
+  terminationMessagePolicy?: string;
+  tty?: boolean;
+  volumeDevices?: VolumeDevice[];
+  volumeMounts?: VolumeMount[];
+  workingDir?: string;
+}
+export interface EphemeralVolumeSource {
+  volumeClaimTemplate?: PersistentVolumeClaimTemplate;
+}
+export interface Event {
+  action?: string;
+  apiVersion?: string;
+  count?: number;
+  eventTime?: MicroTime;
+  firstTimestamp?: Time;
+  involvedObject: ObjectReference;
+  kind?: string;
+  lastTimestamp?: Time;
+  message?: string;
+  metadata: ObjectMeta;
+  reason?: string;
+  related?: ObjectReference;
+  reportingComponent?: string;
+  reportingInstance?: string;
+  series?: EventSeries;
+  source?: EventSource;
+  type?: string;
+}
+export interface EventList {
+  apiVersion?: string;
+  items: Event[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface EventSeries {
+  count?: number;
+  lastObservedTime?: MicroTime;
+}
+export interface EventSource {
+  component?: string;
+  host?: string;
+}
+export interface ExecAction {
+  command?: string[];
+}
+export interface FCVolumeSource {
+  fsType?: string;
+  lun?: number;
+  readOnly?: boolean;
+  targetWWNs?: string[];
+  wwids?: string[];
+}
+export interface FlexPersistentVolumeSource {
+  driver: string;
+  fsType?: string;
+  options?: {
+    [key: string]: unknown;
+  };
+  readOnly?: boolean;
+  secretRef?: SecretReference;
+}
+export interface FlexVolumeSource {
+  driver: string;
+  fsType?: string;
+  options?: {
+    [key: string]: unknown;
+  };
+  readOnly?: boolean;
+  secretRef?: LocalObjectReference;
+}
+export interface FlockerVolumeSource {
+  datasetName?: string;
+  datasetUUID?: string;
+}
+export interface GCEPersistentDiskVolumeSource {
+  fsType?: string;
+  partition?: number;
+  pdName: string;
+  readOnly?: boolean;
+}
+export interface GitRepoVolumeSource {
+  directory?: string;
+  repository: string;
+  revision?: string;
+}
+export interface GlusterfsPersistentVolumeSource {
+  endpoints: string;
+  endpointsNamespace?: string;
+  path: string;
+  readOnly?: boolean;
+}
+export interface GlusterfsVolumeSource {
+  endpoints: string;
+  path: string;
+  readOnly?: boolean;
+}
+export interface HTTPGetAction {
+  host?: string;
+  httpHeaders?: HTTPHeader[];
+  path?: string;
+  port: IntOrString;
+  scheme?: string;
+}
+export interface HTTPHeader {
+  name: string;
+  value: string;
+}
+export interface Handler {
+  exec?: ExecAction;
+  httpGet?: HTTPGetAction;
+  tcpSocket?: TCPSocketAction;
+}
+export interface HostAlias {
+  hostnames?: string[];
+  ip?: string;
+}
+export interface HostPathVolumeSource {
+  path: string;
+  type?: string;
+}
+export interface ISCSIPersistentVolumeSource {
+  chapAuthDiscovery?: boolean;
+  chapAuthSession?: boolean;
+  fsType?: string;
+  initiatorName?: string;
+  iqn: string;
+  iscsiInterface?: string;
+  lun: number;
+  portals?: string[];
+  readOnly?: boolean;
+  secretRef?: SecretReference;
+  targetPortal: string;
+}
+export interface ISCSIVolumeSource {
+  chapAuthDiscovery?: boolean;
+  chapAuthSession?: boolean;
+  fsType?: string;
+  initiatorName?: string;
+  iqn: string;
+  iscsiInterface?: string;
+  lun: number;
+  portals?: string[];
+  readOnly?: boolean;
+  secretRef?: LocalObjectReference;
+  targetPortal: string;
+}
+export interface KeyToPath {
+  key: string;
+  mode?: number;
+  path: string;
+}
+export interface Lifecycle {
+  postStart?: Handler;
+  preStop?: Handler;
+}
+export interface LimitRange {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: LimitRangeSpec;
+}
+export interface LimitRangeItem {
+  default?: {
+    [key: string]: unknown;
+  };
+  defaultRequest?: {
+    [key: string]: unknown;
+  };
+  max?: {
+    [key: string]: unknown;
+  };
+  maxLimitRequestRatio?: {
+    [key: string]: unknown;
+  };
+  min?: {
+    [key: string]: unknown;
+  };
+  type: string;
+}
+export interface LimitRangeList {
+  apiVersion?: string;
+  items: LimitRange[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface LimitRangeSpec {
+  limits: LimitRangeItem[];
+}
+export interface LoadBalancerIngress {
+  hostname?: string;
+  ip?: string;
+  ports?: PortStatus[];
+}
+export interface LoadBalancerStatus {
+  ingress?: LoadBalancerIngress[];
+}
+export interface LocalObjectReference {
+  name?: string;
+}
+export interface LocalVolumeSource {
+  fsType?: string;
+  path: string;
+}
+export interface NFSVolumeSource {
+  path: string;
+  readOnly?: boolean;
+  server: string;
+}
+export interface Namespace {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: NamespaceSpec;
+  status?: NamespaceStatus;
+}
+export interface NamespaceCondition {
+  lastTransitionTime?: Time;
+  message?: string;
+  reason?: string;
+  status: string;
+  type: string;
+}
+export interface NamespaceList {
+  apiVersion?: string;
+  items: Namespace[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface NamespaceSpec {
+  finalizers?: string[];
+}
+export interface NamespaceStatus {
+  conditions?: NamespaceCondition[];
+  phase?: string;
+}
+export interface Node {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: NodeSpec;
+  status?: NodeStatus;
+}
+export interface NodeAddress {
+  address: string;
+  type: string;
+}
+export interface NodeAffinity {
+  preferredDuringSchedulingIgnoredDuringExecution?: PreferredSchedulingTerm[];
+  requiredDuringSchedulingIgnoredDuringExecution?: NodeSelector;
+}
+export interface NodeCondition {
+  lastHeartbeatTime?: Time;
+  lastTransitionTime?: Time;
+  message?: string;
+  reason?: string;
+  status: string;
+  type: string;
+}
+export interface NodeConfigSource {
+  configMap?: ConfigMapNodeConfigSource;
+}
+export interface NodeConfigStatus {
+  active?: NodeConfigSource;
+  assigned?: NodeConfigSource;
+  error?: string;
+  lastKnownGood?: NodeConfigSource;
+}
+export interface NodeDaemonEndpoints {
+  kubeletEndpoint?: DaemonEndpoint;
+}
+export interface NodeList {
+  apiVersion?: string;
+  items: Node[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface NodeSelector {
+  nodeSelectorTerms: NodeSelectorTerm[];
+}
+export interface NodeSelectorRequirement {
+  key: string;
+  operator: string;
+  values?: string[];
+}
+export interface NodeSelectorTerm {
+  matchExpressions?: NodeSelectorRequirement[];
+  matchFields?: NodeSelectorRequirement[];
+}
+export interface NodeSpec {
+  configSource?: NodeConfigSource;
+  externalID?: string;
+  podCIDR?: string;
+  podCIDRs?: string[];
+  providerID?: string;
+  taints?: Taint[];
+  unschedulable?: boolean;
+}
+export interface NodeStatus {
+  addresses?: NodeAddress[];
+  allocatable?: {
+    [key: string]: unknown;
+  };
+  capacity?: {
+    [key: string]: unknown;
+  };
+  conditions?: NodeCondition[];
+  config?: NodeConfigStatus;
+  daemonEndpoints?: NodeDaemonEndpoints;
+  images?: ContainerImage[];
+  nodeInfo?: NodeSystemInfo;
+  phase?: string;
+  volumesAttached?: AttachedVolume[];
+  volumesInUse?: string[];
+}
+export interface NodeSystemInfo {
+  architecture: string;
+  bootID: string;
+  containerRuntimeVersion: string;
+  kernelVersion: string;
+  kubeProxyVersion: string;
+  kubeletVersion: string;
+  machineID: string;
+  operatingSystem: string;
+  osImage: string;
+  systemUUID: string;
+}
+export interface ObjectFieldSelector {
+  apiVersion?: string;
+  fieldPath: string;
+}
+export interface ObjectReference {
+  apiVersion?: string;
+  fieldPath?: string;
+  kind?: string;
+  name?: string;
+  namespace?: string;
+  resourceVersion?: string;
+  uid?: string;
+}
+export interface PersistentVolume {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: PersistentVolumeSpec;
+  status?: PersistentVolumeStatus;
+}
+export interface PersistentVolumeClaim {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: PersistentVolumeClaimSpec;
+  status?: PersistentVolumeClaimStatus;
+}
+export interface PersistentVolumeClaimCondition {
+  lastProbeTime?: Time;
+  lastTransitionTime?: Time;
+  message?: string;
+  reason?: string;
+  status: string;
+  type: string;
+}
+export interface PersistentVolumeClaimList {
+  apiVersion?: string;
+  items: PersistentVolumeClaim[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface PersistentVolumeClaimSpec {
+  accessModes?: string[];
+  dataSource?: TypedLocalObjectReference;
+  dataSourceRef?: TypedLocalObjectReference;
+  resources?: ResourceRequirements;
+  selector?: LabelSelector;
+  storageClassName?: string;
+  volumeMode?: string;
+  volumeName?: string;
+}
+export interface PersistentVolumeClaimStatus {
+  accessModes?: string[];
+  capacity?: {
+    [key: string]: unknown;
+  };
+  conditions?: PersistentVolumeClaimCondition[];
+  phase?: string;
+}
+export interface PersistentVolumeClaimTemplate {
+  metadata?: ObjectMeta;
+  spec: PersistentVolumeClaimSpec;
+}
+export interface PersistentVolumeClaimVolumeSource {
+  claimName: string;
+  readOnly?: boolean;
+}
+export interface PersistentVolumeList {
+  apiVersion?: string;
+  items: PersistentVolume[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface PersistentVolumeSpec {
+  accessModes?: string[];
+  awsElasticBlockStore?: AWSElasticBlockStoreVolumeSource;
+  azureDisk?: AzureDiskVolumeSource;
+  azureFile?: AzureFilePersistentVolumeSource;
+  capacity?: {
+    [key: string]: unknown;
+  };
+  cephfs?: CephFSPersistentVolumeSource;
+  cinder?: CinderPersistentVolumeSource;
+  claimRef?: ObjectReference;
+  csi?: CSIPersistentVolumeSource;
+  fc?: FCVolumeSource;
+  flexVolume?: FlexPersistentVolumeSource;
+  flocker?: FlockerVolumeSource;
+  gcePersistentDisk?: GCEPersistentDiskVolumeSource;
+  glusterfs?: GlusterfsPersistentVolumeSource;
+  hostPath?: HostPathVolumeSource;
+  iscsi?: ISCSIPersistentVolumeSource;
+  local?: LocalVolumeSource;
+  mountOptions?: string[];
+  nfs?: NFSVolumeSource;
+  nodeAffinity?: VolumeNodeAffinity;
+  persistentVolumeReclaimPolicy?: string;
+  photonPersistentDisk?: PhotonPersistentDiskVolumeSource;
+  portworxVolume?: PortworxVolumeSource;
+  quobyte?: QuobyteVolumeSource;
+  rbd?: RBDPersistentVolumeSource;
+  scaleIO?: ScaleIOPersistentVolumeSource;
+  storageClassName?: string;
+  storageos?: StorageOSPersistentVolumeSource;
+  volumeMode?: string;
+  vsphereVolume?: VsphereVirtualDiskVolumeSource;
+}
+export interface PersistentVolumeStatus {
+  message?: string;
+  phase?: string;
+  reason?: string;
+}
+export interface PhotonPersistentDiskVolumeSource {
+  fsType?: string;
+  pdID: string;
+}
+export interface Pod {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: PodSpec;
+  status?: PodStatus;
+}
+export interface PodAffinity {
+  preferredDuringSchedulingIgnoredDuringExecution?: WeightedPodAffinityTerm[];
+  requiredDuringSchedulingIgnoredDuringExecution?: PodAffinityTerm[];
+}
+export interface PodAffinityTerm {
+  labelSelector?: LabelSelector;
+  namespaceSelector?: LabelSelector;
+  namespaces?: string[];
+  topologyKey: string;
+}
+export interface PodAntiAffinity {
+  preferredDuringSchedulingIgnoredDuringExecution?: WeightedPodAffinityTerm[];
+  requiredDuringSchedulingIgnoredDuringExecution?: PodAffinityTerm[];
+}
+export interface PodCondition {
+  lastProbeTime?: Time;
+  lastTransitionTime?: Time;
+  message?: string;
+  reason?: string;
+  status: string;
+  type: string;
+}
+export interface PodDNSConfig {
+  nameservers?: string[];
+  options?: PodDNSConfigOption[];
+  searches?: string[];
+}
+export interface PodDNSConfigOption {
+  name?: string;
+  value?: string;
+}
+export interface PodIP {
+  ip?: string;
+}
+export interface PodList {
+  apiVersion?: string;
+  items: Pod[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface PodReadinessGate {
+  conditionType: string;
+}
+export interface PodSecurityContext {
+  fsGroup?: number;
+  fsGroupChangePolicy?: string;
+  runAsGroup?: number;
+  runAsNonRoot?: boolean;
+  runAsUser?: number;
+  seLinuxOptions?: SELinuxOptions;
+  seccompProfile?: SeccompProfile;
+  supplementalGroups?: number[];
+  sysctls?: Sysctl[];
+  windowsOptions?: WindowsSecurityContextOptions;
+}
+export interface PodSpec {
+  activeDeadlineSeconds?: number;
+  affinity?: Affinity;
+  automountServiceAccountToken?: boolean;
+  containers: Container[];
+  dnsConfig?: PodDNSConfig;
+  dnsPolicy?: string;
+  enableServiceLinks?: boolean;
+  ephemeralContainers?: EphemeralContainer[];
+  hostAliases?: HostAlias[];
+  hostIPC?: boolean;
+  hostNetwork?: boolean;
+  hostPID?: boolean;
+  hostname?: string;
+  imagePullSecrets?: LocalObjectReference[];
+  initContainers?: Container[];
+  nodeName?: string;
+  nodeSelector?: {
+    [key: string]: unknown;
+  };
+  overhead?: {
+    [key: string]: unknown;
+  };
+  preemptionPolicy?: string;
+  priority?: number;
+  priorityClassName?: string;
+  readinessGates?: PodReadinessGate[];
+  restartPolicy?: string;
+  runtimeClassName?: string;
+  schedulerName?: string;
+  securityContext?: PodSecurityContext;
+  serviceAccount?: string;
+  serviceAccountName?: string;
+  setHostnameAsFQDN?: boolean;
+  shareProcessNamespace?: boolean;
+  subdomain?: string;
+  terminationGracePeriodSeconds?: number;
+  tolerations?: Toleration[];
+  topologySpreadConstraints?: TopologySpreadConstraint[];
+  volumes?: Volume[];
+}
+export interface PodStatus {
+  conditions?: PodCondition[];
+  containerStatuses?: ContainerStatus[];
+  ephemeralContainerStatuses?: ContainerStatus[];
+  hostIP?: string;
+  initContainerStatuses?: ContainerStatus[];
+  message?: string;
+  nominatedNodeName?: string;
+  phase?: string;
+  podIP?: string;
+  podIPs?: PodIP[];
+  qosClass?: string;
+  reason?: string;
+  startTime?: Time;
+}
+export interface PodTemplate {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  template?: PodTemplateSpec;
+}
+export interface PodTemplateList {
+  apiVersion?: string;
+  items: PodTemplate[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface PodTemplateSpec {
+  metadata?: ObjectMeta;
+  spec?: PodSpec;
+}
+export interface PortStatus {
+  error?: string;
+  port: number;
+  protocol: string;
+}
+export interface PortworxVolumeSource {
+  fsType?: string;
+  readOnly?: boolean;
+  volumeID: string;
+}
+export interface PreferredSchedulingTerm {
+  preference: NodeSelectorTerm;
+  weight: number;
+}
+export interface Probe {
+  exec?: ExecAction;
+  failureThreshold?: number;
+  httpGet?: HTTPGetAction;
+  initialDelaySeconds?: number;
+  periodSeconds?: number;
+  successThreshold?: number;
+  tcpSocket?: TCPSocketAction;
+  terminationGracePeriodSeconds?: number;
+  timeoutSeconds?: number;
+}
+export interface ProjectedVolumeSource {
+  defaultMode?: number;
+  sources?: VolumeProjection[];
+}
+export interface QuobyteVolumeSource {
+  group?: string;
+  readOnly?: boolean;
+  registry: string;
+  tenant?: string;
+  user?: string;
+  volume: string;
+}
+export interface RBDPersistentVolumeSource {
+  fsType?: string;
+  image: string;
+  keyring?: string;
+  monitors: string[];
+  pool?: string;
+  readOnly?: boolean;
+  secretRef?: SecretReference;
+  user?: string;
+}
+export interface RBDVolumeSource {
+  fsType?: string;
+  image: string;
+  keyring?: string;
+  monitors: string[];
+  pool?: string;
+  readOnly?: boolean;
+  secretRef?: LocalObjectReference;
+  user?: string;
+}
+export interface ReplicationController {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: ReplicationControllerSpec;
+  status?: ReplicationControllerStatus;
+}
+export interface ReplicationControllerCondition {
+  lastTransitionTime?: Time;
+  message?: string;
+  reason?: string;
+  status: string;
+  type: string;
+}
+export interface ReplicationControllerList {
+  apiVersion?: string;
+  items: ReplicationController[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface ReplicationControllerSpec {
+  minReadySeconds?: number;
+  replicas?: number;
+  selector?: {
+    [key: string]: unknown;
+  };
+  template?: PodTemplateSpec;
+}
+export interface ReplicationControllerStatus {
+  availableReplicas?: number;
+  conditions?: ReplicationControllerCondition[];
+  fullyLabeledReplicas?: number;
+  observedGeneration?: number;
+  readyReplicas?: number;
+  replicas: number;
+}
+export interface ResourceFieldSelector {
+  containerName?: string;
+  divisor?: Quantity;
+  resource: string;
+}
+export interface ResourceQuota {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: ResourceQuotaSpec;
+  status?: ResourceQuotaStatus;
+}
+export interface ResourceQuotaList {
+  apiVersion?: string;
+  items: ResourceQuota[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface ResourceQuotaSpec {
+  hard?: {
+    [key: string]: unknown;
+  };
+  scopeSelector?: ScopeSelector;
+  scopes?: string[];
+}
+export interface ResourceQuotaStatus {
+  hard?: {
+    [key: string]: unknown;
+  };
+  used?: {
+    [key: string]: unknown;
+  };
+}
+export interface ResourceRequirements {
+  limits?: {
+    [key: string]: unknown;
+  };
+  requests?: {
+    [key: string]: unknown;
+  };
+}
+export interface SELinuxOptions {
+  level?: string;
+  role?: string;
+  type?: string;
+  user?: string;
+}
+export interface ScaleIOPersistentVolumeSource {
+  fsType?: string;
+  gateway: string;
+  protectionDomain?: string;
+  readOnly?: boolean;
+  secretRef: SecretReference;
+  sslEnabled?: boolean;
+  storageMode?: string;
+  storagePool?: string;
+  system: string;
+  volumeName?: string;
+}
+export interface ScaleIOVolumeSource {
+  fsType?: string;
+  gateway: string;
+  protectionDomain?: string;
+  readOnly?: boolean;
+  secretRef: LocalObjectReference;
+  sslEnabled?: boolean;
+  storageMode?: string;
+  storagePool?: string;
+  system: string;
+  volumeName?: string;
+}
+export interface ScopeSelector {
+  matchExpressions?: ScopedResourceSelectorRequirement[];
+}
+export interface ScopedResourceSelectorRequirement {
+  operator: string;
+  scopeName: string;
+  values?: string[];
+}
+export interface SeccompProfile {
+  localhostProfile?: string;
+  type: string;
+}
+export interface Secret {
+  apiVersion?: string;
+  data?: {
+    [key: string]: unknown;
+  };
+  immutable?: boolean;
+  kind?: string;
+  metadata?: ObjectMeta;
+  stringData?: {
+    [key: string]: unknown;
+  };
+  type?: string;
+}
+export interface SecretEnvSource {
+  name?: string;
+  optional?: boolean;
+}
+export interface SecretKeySelector {
+  key: string;
+  name?: string;
+  optional?: boolean;
+}
+export interface SecretList {
+  apiVersion?: string;
+  items: Secret[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface SecretProjection {
+  items?: KeyToPath[];
+  name?: string;
+  optional?: boolean;
+}
+export interface SecretReference {
+  name?: string;
+  namespace?: string;
+}
+export interface SecretVolumeSource {
+  defaultMode?: number;
+  items?: KeyToPath[];
+  optional?: boolean;
+  secretName?: string;
+}
+export interface SecurityContext {
+  allowPrivilegeEscalation?: boolean;
+  capabilities?: Capabilities;
+  privileged?: boolean;
+  procMount?: string;
+  readOnlyRootFilesystem?: boolean;
+  runAsGroup?: number;
+  runAsNonRoot?: boolean;
+  runAsUser?: number;
+  seLinuxOptions?: SELinuxOptions;
+  seccompProfile?: SeccompProfile;
+  windowsOptions?: WindowsSecurityContextOptions;
+}
+export interface Service {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: ServiceSpec;
+  status?: ServiceStatus;
+}
+export interface ServiceAccount {
+  apiVersion?: string;
+  automountServiceAccountToken?: boolean;
+  imagePullSecrets?: LocalObjectReference[];
+  kind?: string;
+  metadata?: ObjectMeta;
+  secrets?: ObjectReference[];
+}
+export interface ServiceAccountList {
+  apiVersion?: string;
+  items: ServiceAccount[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface ServiceAccountTokenProjection {
+  audience?: string;
+  expirationSeconds?: number;
+  path: string;
+}
+export interface ServiceList {
+  apiVersion?: string;
+  items: Service[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface ServicePort {
+  appProtocol?: string;
+  name?: string;
+  nodePort?: number;
+  port: number;
+  protocol?: string;
+  targetPort?: IntOrString;
+}
+export interface ServiceSpec {
+  allocateLoadBalancerNodePorts?: boolean;
+  clusterIP?: string;
+  clusterIPs?: string[];
+  externalIPs?: string[];
+  externalName?: string;
+  externalTrafficPolicy?: string;
+  healthCheckNodePort?: number;
+  internalTrafficPolicy?: string;
+  ipFamilies?: string[];
+  ipFamilyPolicy?: string;
+  loadBalancerClass?: string;
+  loadBalancerIP?: string;
+  loadBalancerSourceRanges?: string[];
+  ports?: ServicePort[];
+  publishNotReadyAddresses?: boolean;
+  selector?: {
+    [key: string]: unknown;
+  };
+  sessionAffinity?: string;
+  sessionAffinityConfig?: SessionAffinityConfig;
+  type?: string;
+}
+export interface ServiceStatus {
+  conditions?: Condition[];
+  loadBalancer?: LoadBalancerStatus;
+}
+export interface SessionAffinityConfig {
+  clientIP?: ClientIPConfig;
+}
+export interface StorageOSPersistentVolumeSource {
+  fsType?: string;
+  readOnly?: boolean;
+  secretRef?: ObjectReference;
+  volumeName?: string;
+  volumeNamespace?: string;
+}
+export interface StorageOSVolumeSource {
+  fsType?: string;
+  readOnly?: boolean;
+  secretRef?: LocalObjectReference;
+  volumeName?: string;
+  volumeNamespace?: string;
+}
+export interface Sysctl {
+  name: string;
+  value: string;
+}
+export interface TCPSocketAction {
+  host?: string;
+  port: IntOrString;
+}
+export interface Taint {
+  effect: string;
+  key: string;
+  timeAdded?: Time;
+  value?: string;
+}
+export interface Toleration {
+  effect?: string;
+  key?: string;
+  operator?: string;
+  tolerationSeconds?: number;
+  value?: string;
+}
+export interface TopologySelectorLabelRequirement {
+  key: string;
+  values: string[];
+}
+export interface TopologySelectorTerm {
+  matchLabelExpressions?: TopologySelectorLabelRequirement[];
+}
+export interface TopologySpreadConstraint {
+  labelSelector?: LabelSelector;
+  maxSkew: number;
+  topologyKey: string;
+  whenUnsatisfiable: string;
+}
+export interface TypedLocalObjectReference {
+  apiGroup?: string;
+  kind: string;
+  name: string;
+}
+export interface Volume {
+  awsElasticBlockStore?: AWSElasticBlockStoreVolumeSource;
+  azureDisk?: AzureDiskVolumeSource;
+  azureFile?: AzureFileVolumeSource;
+  cephfs?: CephFSVolumeSource;
+  cinder?: CinderVolumeSource;
+  configMap?: ConfigMapVolumeSource;
+  csi?: CSIVolumeSource;
+  downwardAPI?: DownwardAPIVolumeSource;
+  emptyDir?: EmptyDirVolumeSource;
+  ephemeral?: EphemeralVolumeSource;
+  fc?: FCVolumeSource;
+  flexVolume?: FlexVolumeSource;
+  flocker?: FlockerVolumeSource;
+  gcePersistentDisk?: GCEPersistentDiskVolumeSource;
+  gitRepo?: GitRepoVolumeSource;
+  glusterfs?: GlusterfsVolumeSource;
+  hostPath?: HostPathVolumeSource;
+  iscsi?: ISCSIVolumeSource;
+  name: string;
+  nfs?: NFSVolumeSource;
+  persistentVolumeClaim?: PersistentVolumeClaimVolumeSource;
+  photonPersistentDisk?: PhotonPersistentDiskVolumeSource;
+  portworxVolume?: PortworxVolumeSource;
+  projected?: ProjectedVolumeSource;
+  quobyte?: QuobyteVolumeSource;
+  rbd?: RBDVolumeSource;
+  scaleIO?: ScaleIOVolumeSource;
+  secret?: SecretVolumeSource;
+  storageos?: StorageOSVolumeSource;
+  vsphereVolume?: VsphereVirtualDiskVolumeSource;
+}
+export interface VolumeDevice {
+  devicePath: string;
+  name: string;
+}
+export interface VolumeMount {
+  mountPath: string;
+  mountPropagation?: string;
+  name: string;
+  readOnly?: boolean;
+  subPath?: string;
+  subPathExpr?: string;
+}
+export interface VolumeNodeAffinity {
+  required?: NodeSelector;
+}
+export interface VolumeProjection {
+  configMap?: ConfigMapProjection;
+  downwardAPI?: DownwardAPIProjection;
+  secret?: SecretProjection;
+  serviceAccountToken?: ServiceAccountTokenProjection;
+}
+export interface VsphereVirtualDiskVolumeSource {
+  fsType?: string;
+  storagePolicyID?: string;
+  storagePolicyName?: string;
+  volumePath: string;
+}
+export interface WeightedPodAffinityTerm {
+  podAffinityTerm: PodAffinityTerm;
+  weight: number;
+}
+export interface WindowsSecurityContextOptions {
+  gmsaCredentialSpec?: string;
+  gmsaCredentialSpecName?: string;
+  hostProcess?: boolean;
+  runAsUserName?: string;
+}
+export interface Endpoint {
+  addresses: string[];
+  conditions?: EndpointConditions;
+  deprecatedTopology?: {
+    [key: string]: unknown;
+  };
+  hints?: EndpointHints;
+  hostname?: string;
+  nodeName?: string;
+  targetRef?: ObjectReference;
+  zone?: string;
+}
+export interface EndpointConditions {
+  ready?: boolean;
+  serving?: boolean;
+  terminating?: boolean;
+}
+export interface EndpointHints {
+  forZones?: ForZone[];
+}
+export interface EndpointPort {
+  appProtocol?: string;
+  name?: string;
+  port?: number;
+  protocol?: string;
+}
+export interface EndpointSlice {
+  addressType: string;
+  apiVersion?: string;
+  endpoints: Endpoint[];
+  kind?: string;
+  metadata?: ObjectMeta;
+  ports?: EndpointPort[];
+}
+export interface EndpointSliceList {
+  apiVersion?: string;
+  items: EndpointSlice[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface ForZone {
+  name: string;
+}
+export interface Endpoint {
+  addresses: string[];
+  conditions?: EndpointConditions;
+  hints?: EndpointHints;
+  hostname?: string;
+  nodeName?: string;
+  targetRef?: ObjectReference;
+  topology?: {
+    [key: string]: unknown;
+  };
+}
+export interface EndpointConditions {
+  ready?: boolean;
+  serving?: boolean;
+  terminating?: boolean;
+}
+export interface EndpointHints {
+  forZones?: ForZone[];
+}
+export interface EndpointPort {
+  appProtocol?: string;
+  name?: string;
+  port?: number;
+  protocol?: string;
+}
+export interface EndpointSlice {
+  addressType: string;
+  apiVersion?: string;
+  endpoints: Endpoint[];
+  kind?: string;
+  metadata?: ObjectMeta;
+  ports?: EndpointPort[];
+}
+export interface EndpointSliceList {
+  apiVersion?: string;
+  items: EndpointSlice[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface ForZone {
+  name: string;
+}
+export interface Event {
+  action?: string;
+  apiVersion?: string;
+  deprecatedCount?: number;
+  deprecatedFirstTimestamp?: Time;
+  deprecatedLastTimestamp?: Time;
+  deprecatedSource?: EventSource;
+  eventTime: MicroTime;
+  kind?: string;
+  metadata?: ObjectMeta;
+  note?: string;
+  reason?: string;
+  regarding?: ObjectReference;
+  related?: ObjectReference;
+  reportingController?: string;
+  reportingInstance?: string;
+  series?: EventSeries;
+  type?: string;
+}
+export interface EventList {
+  apiVersion?: string;
+  items: Event[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface EventSeries {
+  count: number;
+  lastObservedTime: MicroTime;
+}
+export interface Event {
+  action?: string;
+  apiVersion?: string;
+  deprecatedCount?: number;
+  deprecatedFirstTimestamp?: Time;
+  deprecatedLastTimestamp?: Time;
+  deprecatedSource?: EventSource;
+  eventTime: MicroTime;
+  kind?: string;
+  metadata?: ObjectMeta;
+  note?: string;
+  reason?: string;
+  regarding?: ObjectReference;
+  related?: ObjectReference;
+  reportingController?: string;
+  reportingInstance?: string;
+  series?: EventSeries;
+  type?: string;
+}
+export interface EventList {
+  apiVersion?: string;
+  items: Event[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface EventSeries {
+  count: number;
+  lastObservedTime: MicroTime;
+}
+export interface FlowDistinguisherMethod {
+  type: string;
+}
+export interface FlowSchema {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: FlowSchemaSpec;
+  status?: FlowSchemaStatus;
+}
+export interface FlowSchemaCondition {
+  lastTransitionTime?: Time;
+  message?: string;
+  reason?: string;
+  status?: string;
+  type?: string;
+}
+export interface FlowSchemaList {
+  apiVersion?: string;
+  items: FlowSchema[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface FlowSchemaSpec {
+  distinguisherMethod?: FlowDistinguisherMethod;
+  matchingPrecedence?: number;
+  priorityLevelConfiguration: PriorityLevelConfigurationReference;
+  rules?: PolicyRulesWithSubjects[];
+}
+export interface FlowSchemaStatus {
+  conditions?: FlowSchemaCondition[];
+}
+export interface GroupSubject {
+  name: string;
+}
+export interface LimitResponse {
+  queuing?: QueuingConfiguration;
+  type: string;
+}
+export interface LimitedPriorityLevelConfiguration {
+  assuredConcurrencyShares?: number;
+  limitResponse?: LimitResponse;
+}
+export interface NonResourcePolicyRule {
+  nonResourceURLs: string[];
+  verbs: string[];
+}
+export interface PolicyRulesWithSubjects {
+  nonResourceRules?: NonResourcePolicyRule[];
+  resourceRules?: ResourcePolicyRule[];
+  subjects: Subject[];
+}
+export interface PriorityLevelConfiguration {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: PriorityLevelConfigurationSpec;
+  status?: PriorityLevelConfigurationStatus;
+}
+export interface PriorityLevelConfigurationCondition {
+  lastTransitionTime?: Time;
+  message?: string;
+  reason?: string;
+  status?: string;
+  type?: string;
+}
+export interface PriorityLevelConfigurationList {
+  apiVersion?: string;
+  items: PriorityLevelConfiguration[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface PriorityLevelConfigurationReference {
+  name: string;
+}
+export interface PriorityLevelConfigurationSpec {
+  limited?: LimitedPriorityLevelConfiguration;
+  type: string;
+}
+export interface PriorityLevelConfigurationStatus {
+  conditions?: PriorityLevelConfigurationCondition[];
+}
+export interface QueuingConfiguration {
+  handSize?: number;
+  queueLengthLimit?: number;
+  queues?: number;
+}
+export interface ResourcePolicyRule {
+  apiGroups: string[];
+  clusterScope?: boolean;
+  namespaces?: string[];
+  resources: string[];
+  verbs: string[];
+}
+export interface ServiceAccountSubject {
+  name: string;
+  namespace: string;
+}
+export interface Subject {
+  group?: GroupSubject;
+  kind: string;
+  serviceAccount?: ServiceAccountSubject;
+  user?: UserSubject;
+}
+export interface UserSubject {
+  name: string;
+}
+export interface HTTPIngressPath {
+  backend: IngressBackend;
+  path?: string;
+  pathType: string;
+}
+export interface HTTPIngressRuleValue {
+  paths: HTTPIngressPath[];
+}
+export interface IPBlock {
+  cidr: string;
+  except?: string[];
+}
+export interface Ingress {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: IngressSpec;
+  status?: IngressStatus;
+}
+export interface IngressBackend {
+  resource?: TypedLocalObjectReference;
+  service?: IngressServiceBackend;
+}
+export interface IngressClass {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: IngressClassSpec;
+}
+export interface IngressClassList {
+  apiVersion?: string;
+  items: IngressClass[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface IngressClassParametersReference {
+  apiGroup?: string;
+  kind: string;
+  name: string;
+  namespace?: string;
+  scope?: string;
+}
+export interface IngressClassSpec {
+  controller?: string;
+  parameters?: IngressClassParametersReference;
+}
+export interface IngressList {
+  apiVersion?: string;
+  items: Ingress[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface IngressRule {
+  host?: string;
+  http?: HTTPIngressRuleValue;
+}
+export interface IngressServiceBackend {
+  name: string;
+  port?: ServiceBackendPort;
+}
+export interface IngressSpec {
+  defaultBackend?: IngressBackend;
+  ingressClassName?: string;
+  rules?: IngressRule[];
+  tls?: IngressTLS[];
+}
+export interface IngressStatus {
+  loadBalancer?: LoadBalancerStatus;
+}
+export interface IngressTLS {
+  hosts?: string[];
+  secretName?: string;
+}
+export interface NetworkPolicy {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: NetworkPolicySpec;
+}
+export interface NetworkPolicyEgressRule {
+  ports?: NetworkPolicyPort[];
+  to?: NetworkPolicyPeer[];
+}
+export interface NetworkPolicyIngressRule {
+  from?: NetworkPolicyPeer[];
+  ports?: NetworkPolicyPort[];
+}
+export interface NetworkPolicyList {
+  apiVersion?: string;
+  items: NetworkPolicy[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface NetworkPolicyPeer {
+  ipBlock?: IPBlock;
+  namespaceSelector?: LabelSelector;
+  podSelector?: LabelSelector;
+}
+export interface NetworkPolicyPort {
+  endPort?: number;
+  port?: IntOrString;
+  protocol?: string;
+}
+export interface NetworkPolicySpec {
+  egress?: NetworkPolicyEgressRule[];
+  ingress?: NetworkPolicyIngressRule[];
+  podSelector: LabelSelector;
+  policyTypes?: string[];
+}
+export interface ServiceBackendPort {
+  name?: string;
+  number?: number;
+}
+export interface Overhead {
+  podFixed?: {
+    [key: string]: unknown;
+  };
+}
+export interface RuntimeClass {
+  apiVersion?: string;
+  handler: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  overhead?: Overhead;
+  scheduling?: Scheduling;
+}
+export interface RuntimeClassList {
+  apiVersion?: string;
+  items: RuntimeClass[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface Scheduling {
+  nodeSelector?: {
+    [key: string]: unknown;
+  };
+  tolerations?: Toleration[];
+}
+export interface Overhead {
+  podFixed?: {
+    [key: string]: unknown;
+  };
+}
+export interface RuntimeClass {
+  apiVersion?: string;
+  handler: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  overhead?: Overhead;
+  scheduling?: Scheduling;
+}
+export interface RuntimeClassList {
+  apiVersion?: string;
+  items: RuntimeClass[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface Scheduling {
+  nodeSelector?: {
+    [key: string]: unknown;
+  };
+  tolerations?: Toleration[];
+}
+export interface Eviction {
+  apiVersion?: string;
+  deleteOptions?: DeleteOptions;
+  kind?: string;
+  metadata?: ObjectMeta;
+}
+export interface PodDisruptionBudget {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: PodDisruptionBudgetSpec;
+  status?: PodDisruptionBudgetStatus;
+}
+export interface PodDisruptionBudgetList {
+  apiVersion?: string;
+  items: PodDisruptionBudget[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface PodDisruptionBudgetSpec {
+  maxUnavailable?: IntOrString;
+  minAvailable?: IntOrString;
+  selector?: LabelSelector;
+}
+export interface PodDisruptionBudgetStatus {
+  conditions?: Condition[];
+  currentHealthy: number;
+  desiredHealthy: number;
+  disruptedPods?: {
+    [key: string]: unknown;
+  };
+  disruptionsAllowed: number;
+  expectedPods: number;
+  observedGeneration?: number;
+}
+export interface AllowedCSIDriver {
+  name: string;
+}
+export interface AllowedFlexVolume {
+  driver: string;
+}
+export interface AllowedHostPath {
+  pathPrefix?: string;
+  readOnly?: boolean;
+}
+export interface FSGroupStrategyOptions {
+  ranges?: IDRange[];
+  rule?: string;
+}
+export interface HostPortRange {
+  max: number;
+  min: number;
+}
+export interface IDRange {
+  max: number;
+  min: number;
+}
+export interface PodDisruptionBudget {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: PodDisruptionBudgetSpec;
+  status?: PodDisruptionBudgetStatus;
+}
+export interface PodDisruptionBudgetList {
+  apiVersion?: string;
+  items: PodDisruptionBudget[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface PodDisruptionBudgetSpec {
+  maxUnavailable?: IntOrString;
+  minAvailable?: IntOrString;
+  selector?: LabelSelector;
+}
+export interface PodDisruptionBudgetStatus {
+  conditions?: Condition[];
+  currentHealthy: number;
+  desiredHealthy: number;
+  disruptedPods?: {
+    [key: string]: unknown;
+  };
+  disruptionsAllowed: number;
+  expectedPods: number;
+  observedGeneration?: number;
+}
+export interface PodSecurityPolicy {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: PodSecurityPolicySpec;
+}
+export interface PodSecurityPolicyList {
+  apiVersion?: string;
+  items: PodSecurityPolicy[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface PodSecurityPolicySpec {
+  allowPrivilegeEscalation?: boolean;
+  allowedCSIDrivers?: AllowedCSIDriver[];
+  allowedCapabilities?: string[];
+  allowedFlexVolumes?: AllowedFlexVolume[];
+  allowedHostPaths?: AllowedHostPath[];
+  allowedProcMountTypes?: string[];
+  allowedUnsafeSysctls?: string[];
+  defaultAddCapabilities?: string[];
+  defaultAllowPrivilegeEscalation?: boolean;
+  forbiddenSysctls?: string[];
+  fsGroup: FSGroupStrategyOptions;
+  hostIPC?: boolean;
+  hostNetwork?: boolean;
+  hostPID?: boolean;
+  hostPorts?: HostPortRange[];
+  privileged?: boolean;
+  readOnlyRootFilesystem?: boolean;
+  requiredDropCapabilities?: string[];
+  runAsGroup?: RunAsGroupStrategyOptions;
+  runAsUser: RunAsUserStrategyOptions;
+  runtimeClass?: RuntimeClassStrategyOptions;
+  seLinux: SELinuxStrategyOptions;
+  supplementalGroups: SupplementalGroupsStrategyOptions;
+  volumes?: string[];
+}
+export interface RunAsGroupStrategyOptions {
+  ranges?: IDRange[];
+  rule: string;
+}
+export interface RunAsUserStrategyOptions {
+  ranges?: IDRange[];
+  rule: string;
+}
+export interface RuntimeClassStrategyOptions {
+  allowedRuntimeClassNames: string[];
+  defaultRuntimeClassName?: string;
+}
+export interface SELinuxStrategyOptions {
+  rule: string;
+  seLinuxOptions?: SELinuxOptions;
+}
+export interface SupplementalGroupsStrategyOptions {
+  ranges?: IDRange[];
+  rule?: string;
+}
+export interface AggregationRule {
+  clusterRoleSelectors?: LabelSelector[];
+}
+export interface ClusterRole {
+  aggregationRule?: AggregationRule;
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  rules?: PolicyRule[];
+}
+export interface ClusterRoleBinding {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  roleRef: RoleRef;
+  subjects?: Subject[];
+}
+export interface ClusterRoleBindingList {
+  apiVersion?: string;
+  items: ClusterRoleBinding[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface ClusterRoleList {
+  apiVersion?: string;
+  items: ClusterRole[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface PolicyRule {
+  apiGroups?: string[];
+  nonResourceURLs?: string[];
+  resourceNames?: string[];
+  resources?: string[];
+  verbs: string[];
+}
+export interface Role {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  rules?: PolicyRule[];
+}
+export interface RoleBinding {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  roleRef: RoleRef;
+  subjects?: Subject[];
+}
+export interface RoleBindingList {
+  apiVersion?: string;
+  items: RoleBinding[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface RoleList {
+  apiVersion?: string;
+  items: Role[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface RoleRef {
+  apiGroup: string;
+  kind: string;
+  name: string;
+}
+export interface Subject {
+  apiGroup?: string;
+  kind: string;
+  name: string;
+  namespace?: string;
+}
+export interface PriorityClass {
+  apiVersion?: string;
+  description?: string;
+  globalDefault?: boolean;
+  kind?: string;
+  metadata?: ObjectMeta;
+  preemptionPolicy?: string;
+  value: number;
+}
+export interface PriorityClassList {
+  apiVersion?: string;
+  items: PriorityClass[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface CSIDriver {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec: CSIDriverSpec;
+}
+export interface CSIDriverList {
+  apiVersion?: string;
+  items: CSIDriver[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface CSIDriverSpec {
+  attachRequired?: boolean;
+  fsGroupPolicy?: string;
+  podInfoOnMount?: boolean;
+  requiresRepublish?: boolean;
+  storageCapacity?: boolean;
+  tokenRequests?: TokenRequest[];
+  volumeLifecycleModes?: string[];
+}
+export interface CSINode {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec: CSINodeSpec;
+}
+export interface CSINodeDriver {
+  allocatable?: VolumeNodeResources;
+  name: string;
+  nodeID: string;
+  topologyKeys?: string[];
+}
+export interface CSINodeList {
+  apiVersion?: string;
+  items: CSINode[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface CSINodeSpec {
+  drivers: CSINodeDriver[];
+}
+export interface StorageClass {
+  allowVolumeExpansion?: boolean;
+  allowedTopologies?: TopologySelectorTerm[];
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  mountOptions?: string[];
+  parameters?: {
+    [key: string]: unknown;
+  };
+  provisioner: string;
+  reclaimPolicy?: string;
+  volumeBindingMode?: string;
+}
+export interface StorageClassList {
+  apiVersion?: string;
+  items: StorageClass[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface TokenRequest {
+  audience: string;
+  expirationSeconds?: number;
+}
+export interface VolumeAttachment {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec: VolumeAttachmentSpec;
+  status?: VolumeAttachmentStatus;
+}
+export interface VolumeAttachmentList {
+  apiVersion?: string;
+  items: VolumeAttachment[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface VolumeAttachmentSource {
+  inlineVolumeSpec?: PersistentVolumeSpec;
+  persistentVolumeName?: string;
+}
+export interface VolumeAttachmentSpec {
+  attacher: string;
+  nodeName: string;
+  source: VolumeAttachmentSource;
+}
+export interface VolumeAttachmentStatus {
+  attachError?: VolumeError;
+  attached: boolean;
+  attachmentMetadata?: {
+    [key: string]: unknown;
+  };
+  detachError?: VolumeError;
+}
+export interface VolumeError {
+  message?: string;
+  time?: Time;
+}
+export interface VolumeNodeResources {
+  count?: number;
+}
+export interface CSIStorageCapacity {
+  apiVersion?: string;
+  capacity?: Quantity;
+  kind?: string;
+  maximumVolumeSize?: Quantity;
+  metadata?: ObjectMeta;
+  nodeTopology?: LabelSelector;
+  storageClassName: string;
+}
+export interface CSIStorageCapacityList {
+  apiVersion?: string;
+  items: CSIStorageCapacity[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface CustomResourceColumnDefinition {
+  description?: string;
+  format?: string;
+  jsonPath: string;
+  name: string;
+  priority?: number;
+  type: string;
+}
+export interface CustomResourceConversion {
+  strategy: string;
+  webhook?: WebhookConversion;
+}
+export interface CustomResourceDefinition {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec: CustomResourceDefinitionSpec;
+  status?: CustomResourceDefinitionStatus;
+}
+export interface CustomResourceDefinitionCondition {
+  lastTransitionTime?: Time;
+  message?: string;
+  reason?: string;
+  status: string;
+  type: string;
+}
+export interface CustomResourceDefinitionList {
+  apiVersion?: string;
+  items: CustomResourceDefinition[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface CustomResourceDefinitionNames {
+  categories?: string[];
+  kind: string;
+  listKind?: string;
+  plural: string;
+  shortNames?: string[];
+  singular?: string;
+}
+export interface CustomResourceDefinitionSpec {
+  conversion?: CustomResourceConversion;
+  group: string;
+  names: CustomResourceDefinitionNames;
+  preserveUnknownFields?: boolean;
+  scope: string;
+  versions: CustomResourceDefinitionVersion[];
+}
+export interface CustomResourceDefinitionStatus {
+  acceptedNames?: CustomResourceDefinitionNames;
+  conditions?: CustomResourceDefinitionCondition[];
+  storedVersions?: string[];
+}
+export interface CustomResourceDefinitionVersion {
+  additionalPrinterColumns?: CustomResourceColumnDefinition[];
+  deprecated?: boolean;
+  deprecationWarning?: string;
+  name: string;
+  schema?: CustomResourceValidation;
+  served: boolean;
+  storage: boolean;
+  subresources?: CustomResourceSubresources;
+}
+export interface CustomResourceSubresourceScale {
+  labelSelectorPath?: string;
+  specReplicasPath: string;
+  statusReplicasPath: string;
+}
+export type CustomResourceSubresourceStatus = {
+  [key: string]: unknown;
+};
+export interface CustomResourceSubresources {
+  scale?: CustomResourceSubresourceScale;
+  status?: CustomResourceSubresourceStatus;
+}
+export interface CustomResourceValidation {
+  openAPIV3Schema?: JSONSchemaProps;
+}
+export interface ExternalDocumentation {
+  description?: string;
+  url?: string;
+}
+export type JSON = any;
+export interface JSONSchemaProps {
+  $ref?: string;
+  $schema?: string;
+  additionalItems?: JSONSchemaPropsOrBool;
+  additionalProperties?: JSONSchemaPropsOrBool;
+  allOf?: JSONSchemaProps[];
+  anyOf?: JSONSchemaProps[];
+  default?: JSON;
+  definitions?: {
+    [key: string]: unknown;
+  };
+  dependencies?: {
+    [key: string]: unknown;
+  };
+  description?: string;
+  enum?: JSON[];
+  example?: JSON;
+  exclusiveMaximum?: boolean;
+  exclusiveMinimum?: boolean;
+  externalDocs?: ExternalDocumentation;
+  format?: string;
+  id?: string;
+  items?: JSONSchemaPropsOrArray;
+  maxItems?: number;
+  maxLength?: number;
+  maxProperties?: number;
+  maximum?: number;
+  minItems?: number;
+  minLength?: number;
+  minProperties?: number;
+  minimum?: number;
+  multipleOf?: number;
+  not?: JSONSchemaProps;
+  nullable?: boolean;
+  oneOf?: JSONSchemaProps[];
+  pattern?: string;
+  patternProperties?: {
+    [key: string]: unknown;
+  };
+  properties?: {
+    [key: string]: unknown;
+  };
+  required?: string[];
+  title?: string;
+  type?: string;
+  uniqueItems?: boolean;
+  "x-kubernetes-embedded-resource"?: boolean;
+  "x-kubernetes-int-or-string"?: boolean;
+  "x-kubernetes-list-map-keys"?: string[];
+  "x-kubernetes-list-type"?: string;
+  "x-kubernetes-map-type"?: string;
+  "x-kubernetes-preserve-unknown-fields"?: boolean;
+}
+export type JSONSchemaPropsOrArray = any;
+export type JSONSchemaPropsOrBool = any;
+export type JSONSchemaPropsOrStringArray = any;
+export interface ServiceReference {
+  name: string;
+  namespace: string;
+  path?: string;
+  port?: number;
+}
+export interface WebhookClientConfig {
+  caBundle?: string;
+  service?: ServiceReference;
+  url?: string;
+}
+export interface WebhookConversion {
+  clientConfig?: WebhookClientConfig;
+  conversionReviewVersions: string[];
+}
+export type Quantity = string;
+export interface APIGroup {
+  apiVersion?: string;
+  kind?: string;
+  name: string;
+  preferredVersion?: GroupVersionForDiscovery;
+  serverAddressByClientCIDRs?: ServerAddressByClientCIDR[];
+  versions: GroupVersionForDiscovery[];
+}
+export interface APIGroupList {
+  apiVersion?: string;
+  groups: APIGroup[];
+  kind?: string;
+}
+export interface APIResource {
+  categories?: string[];
+  group?: string;
+  kind: string;
+  name: string;
+  namespaced: boolean;
+  shortNames?: string[];
+  singularName: string;
+  storageVersionHash?: string;
+  verbs: string[];
+  version?: string;
+}
+export interface APIResourceList {
+  apiVersion?: string;
+  groupVersion: string;
+  kind?: string;
+  resources: APIResource[];
+}
+export interface APIVersions {
+  apiVersion?: string;
+  kind?: string;
+  serverAddressByClientCIDRs: ServerAddressByClientCIDR[];
+  versions: string[];
+}
+export interface Condition {
+  lastTransitionTime: Time;
+  message: string;
+  observedGeneration?: number;
+  reason: string;
+  status: string;
+  type: string;
+}
+export interface DeleteOptions {
+  apiVersion?: string;
+  dryRun?: string[];
+  gracePeriodSeconds?: number;
+  kind?: string;
+  orphanDependents?: boolean;
+  preconditions?: Preconditions;
+  propagationPolicy?: string;
+}
+export type FieldsV1 = {
+  [key: string]: unknown;
+};
+export interface GroupVersionForDiscovery {
+  groupVersion: string;
+  version: string;
+}
+export interface LabelSelector {
+  matchExpressions?: LabelSelectorRequirement[];
+  matchLabels?: {
+    [key: string]: unknown;
+  };
+}
+export interface LabelSelectorRequirement {
+  key: string;
+  operator: string;
+  values?: string[];
+}
+export interface ListMeta {
+  continue?: string;
+  remainingItemCount?: number;
+  resourceVersion?: string;
+  selfLink?: string;
+}
+export interface ManagedFieldsEntry {
+  apiVersion?: string;
+  fieldsType?: string;
+  fieldsV1?: FieldsV1;
+  manager?: string;
+  operation?: string;
+  subresource?: string;
+  time?: Time;
+}
+export type MicroTime = string;
+export interface ObjectMeta {
+  annotations?: {
+    [key: string]: unknown;
+  };
+  clusterName?: string;
+  creationTimestamp?: Time;
+  deletionGracePeriodSeconds?: number;
+  deletionTimestamp?: Time;
+  finalizers?: string[];
+  generateName?: string;
+  generation?: number;
+  labels?: {
+    [key: string]: unknown;
+  };
+  managedFields?: ManagedFieldsEntry[];
+  name?: string;
+  namespace?: string;
+  ownerReferences?: OwnerReference[];
+  resourceVersion?: string;
+  selfLink?: string;
+  uid?: string;
+}
+export interface OwnerReference {
+  apiVersion: string;
+  blockOwnerDeletion?: boolean;
+  controller?: boolean;
+  kind: string;
+  name: string;
+  uid: string;
+}
+export type Patch = {
+  [key: string]: unknown;
+};
+export interface Preconditions {
+  resourceVersion?: string;
+  uid?: string;
+}
+export interface ServerAddressByClientCIDR {
+  clientCIDR: string;
+  serverAddress: string;
+}
+export interface Status {
+  apiVersion?: string;
+  code?: number;
+  details?: StatusDetails;
+  kind?: string;
+  message?: string;
+  metadata?: ListMeta;
+  reason?: string;
+  status?: string;
+}
+export interface StatusCause {
+  field?: string;
+  message?: string;
+  reason?: string;
+}
+export interface StatusDetails {
+  causes?: StatusCause[];
+  group?: string;
+  kind?: string;
+  name?: string;
+  retryAfterSeconds?: number;
+  uid?: string;
+}
+export type Time = string;
+export interface WatchEvent {
+  object: RawExtension;
+  type: string;
+}
+export type RawExtension = {
+  [key: string]: unknown;
+};
+export type IntOrString = string;
+export interface Info {
+  buildDate: string;
+  compiler: string;
+  gitCommit: string;
+  gitTreeState: string;
+  gitVersion: string;
+  goVersion: string;
+  major: string;
+  minor: string;
+  platform: string;
+}
+export interface APIService {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: APIServiceSpec;
+  status?: APIServiceStatus;
+}
+export interface APIServiceCondition {
+  lastTransitionTime?: Time;
+  message?: string;
+  reason?: string;
+  status: string;
+  type: string;
+}
+export interface APIServiceList {
+  apiVersion?: string;
+  items: APIService[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface APIServiceSpec {
+  caBundle?: string;
+  group?: string;
+  groupPriorityMinimum: number;
+  insecureSkipTLSVerify?: boolean;
+  service?: ServiceReference;
+  version?: string;
+  versionPriority: number;
+}
+export interface APIServiceStatus {
+  conditions?: APIServiceCondition[];
+}
+export interface ServiceReference {
+  name?: string;
+  namespace?: string;
+  port?: number;
+}
 export interface GetServiceAccountIssuerOpenIDConfigurationRequest {}
 export interface GetCoreAPIVersionsRequest {}
 export interface GetCoreV1APIResourcesRequest {}
@@ -6921,7 +10198,7 @@ export interface LogFileHandlerRequest {
 }
 export interface GetServiceAccountIssuerOpenIDKeysetRequest {}
 export interface GetCodeVersionRequest {}
-class KubernetesClient extends APIClient {
+export class KubernetesClient extends APIClient {
   constructor(options) {
     super(options);
   }
@@ -6929,3917 +10206,3136 @@ class KubernetesClient extends APIClient {
     const path = "/openapi/v2";
     return this.get(path);
   }
-  /* get service account issuer OpenID configuration, also known as the 'OIDC discovery doc' */
-  async getServiceAccountIssuerOpenIDConfiguration() {
-    const path = "/.well-known/openid-configuration/";
-    return this.get(path);
-  }
-  /* get available API versions */
-  async getCoreAPIVersions() {
-    const path = "/api/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getCoreV1APIResources() {
-    const path = "/api/v1/";
-    return this.get(path);
-  }
-  /* list objects of kind ComponentStatus */
-  async listCoreV1ComponentStatus() {
-    const path = "/api/v1/componentstatuses";
-    return this.get(path);
-  }
-  /* read the specified ComponentStatus */
-  async readCoreV1ComponentStatus() {
-    const path = "/api/v1/componentstatuses/{name}";
-    return this.get(path);
-  }
-  /* list or watch objects of kind ConfigMap */
-  async listCoreV1ConfigMapForAllNamespaces() {
-    const path = "/api/v1/configmaps";
-    return this.get(path);
-  }
-  /* list or watch objects of kind Endpoints */
-  async listCoreV1EndpointsForAllNamespaces() {
-    const path = "/api/v1/endpoints";
-    return this.get(path);
-  }
-  /* list or watch objects of kind Event */
-  async listCoreV1EventForAllNamespaces() {
-    const path = "/api/v1/events";
-    return this.get(path);
-  }
-  /* list or watch objects of kind LimitRange */
-  async listCoreV1LimitRangeForAllNamespaces() {
-    const path = "/api/v1/limitranges";
-    return this.get(path);
-  }
-  /* list or watch objects of kind Namespace */
-  async listCoreV1Namespace(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/api/v1/namespaces";
-    return this.get(path);
-  }
-  /* create a Namespace */
-  async createCoreV1Namespace(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces";
-    return this.post(path);
-  }
-  /* create a Binding */
-  async createCoreV1NamespacedBinding(body) {
-    const path = "/api/v1/namespaces/{namespace}/bindings";
-    return this.post(path);
-  }
-  /* list or watch objects of kind ConfigMap */
-  async listCoreV1NamespacedConfigMap(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/api/v1/namespaces/{namespace}/configmaps";
-    return this.get(path);
-  }
-  /* create a ConfigMap */
-  async createCoreV1NamespacedConfigMap(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/configmaps";
-    return this.post(path);
-  }
-  /* delete collection of ConfigMap */
-  async deleteCoreV1CollectionNamespacedConfigMap(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/api/v1/namespaces/{namespace}/configmaps";
-    return this.delete(path);
-  }
-  /* read the specified ConfigMap */
-  async readCoreV1NamespacedConfigMap() {
-    const path = "/api/v1/namespaces/{namespace}/configmaps/{name}";
-    return this.get(path);
-  }
-  /* replace the specified ConfigMap */
-  async replaceCoreV1NamespacedConfigMap(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/configmaps/{name}";
-    return this.put(path);
-  }
-  /* delete a ConfigMap */
-  async deleteCoreV1NamespacedConfigMap(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/api/v1/namespaces/{namespace}/configmaps/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified ConfigMap */
-  async patchCoreV1NamespacedConfigMap(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{namespace}/configmaps/{name}";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind Endpoints */
-  async listCoreV1NamespacedEndpoints(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/api/v1/namespaces/{namespace}/endpoints";
-    return this.get(path);
-  }
-  /* create Endpoints */
-  async createCoreV1NamespacedEndpoints(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/endpoints";
-    return this.post(path);
-  }
-  /* delete collection of Endpoints */
-  async deleteCoreV1CollectionNamespacedEndpoints(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/api/v1/namespaces/{namespace}/endpoints";
-    return this.delete(path);
-  }
-  /* read the specified Endpoints */
-  async readCoreV1NamespacedEndpoints() {
-    const path = "/api/v1/namespaces/{namespace}/endpoints/{name}";
-    return this.get(path);
-  }
-  /* replace the specified Endpoints */
-  async replaceCoreV1NamespacedEndpoints(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/endpoints/{name}";
-    return this.put(path);
-  }
-  /* delete Endpoints */
-  async deleteCoreV1NamespacedEndpoints(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/api/v1/namespaces/{namespace}/endpoints/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified Endpoints */
-  async patchCoreV1NamespacedEndpoints(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{namespace}/endpoints/{name}";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind Event */
-  async listCoreV1NamespacedEvent(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/api/v1/namespaces/{namespace}/events";
-    return this.get(path);
-  }
-  /* create an Event */
-  async createCoreV1NamespacedEvent(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/events";
-    return this.post(path);
-  }
-  /* delete collection of Event */
-  async deleteCoreV1CollectionNamespacedEvent(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/api/v1/namespaces/{namespace}/events";
-    return this.delete(path);
-  }
-  /* read the specified Event */
-  async readCoreV1NamespacedEvent() {
-    const path = "/api/v1/namespaces/{namespace}/events/{name}";
-    return this.get(path);
-  }
-  /* replace the specified Event */
-  async replaceCoreV1NamespacedEvent(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/events/{name}";
-    return this.put(path);
-  }
-  /* delete an Event */
-  async deleteCoreV1NamespacedEvent(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/api/v1/namespaces/{namespace}/events/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified Event */
-  async patchCoreV1NamespacedEvent(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{namespace}/events/{name}";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind LimitRange */
-  async listCoreV1NamespacedLimitRange(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/api/v1/namespaces/{namespace}/limitranges";
-    return this.get(path);
-  }
-  /* create a LimitRange */
-  async createCoreV1NamespacedLimitRange(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/limitranges";
-    return this.post(path);
-  }
-  /* delete collection of LimitRange */
-  async deleteCoreV1CollectionNamespacedLimitRange(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/api/v1/namespaces/{namespace}/limitranges";
-    return this.delete(path);
-  }
-  /* read the specified LimitRange */
-  async readCoreV1NamespacedLimitRange() {
-    const path = "/api/v1/namespaces/{namespace}/limitranges/{name}";
-    return this.get(path);
-  }
-  /* replace the specified LimitRange */
-  async replaceCoreV1NamespacedLimitRange(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/limitranges/{name}";
-    return this.put(path);
-  }
-  /* delete a LimitRange */
-  async deleteCoreV1NamespacedLimitRange(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/api/v1/namespaces/{namespace}/limitranges/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified LimitRange */
-  async patchCoreV1NamespacedLimitRange(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{namespace}/limitranges/{name}";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind PersistentVolumeClaim */
-  async listCoreV1NamespacedPersistentVolumeClaim(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/api/v1/namespaces/{namespace}/persistentvolumeclaims";
-    return this.get(path);
-  }
-  /* create a PersistentVolumeClaim */
-  async createCoreV1NamespacedPersistentVolumeClaim(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/persistentvolumeclaims";
-    return this.post(path);
-  }
-  /* delete collection of PersistentVolumeClaim */
-  async deleteCoreV1CollectionNamespacedPersistentVolumeClaim(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/api/v1/namespaces/{namespace}/persistentvolumeclaims";
-    return this.delete(path);
-  }
-  /* read the specified PersistentVolumeClaim */
-  async readCoreV1NamespacedPersistentVolumeClaim() {
-    const path = "/api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}";
-    return this.get(path);
-  }
-  /* replace the specified PersistentVolumeClaim */
-  async replaceCoreV1NamespacedPersistentVolumeClaim(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}";
-    return this.put(path);
-  }
-  /* delete a PersistentVolumeClaim */
-  async deleteCoreV1NamespacedPersistentVolumeClaim(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified PersistentVolumeClaim */
-  async patchCoreV1NamespacedPersistentVolumeClaim(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}";
-    return this.patch(path);
-  }
-  /* read status of the specified PersistentVolumeClaim */
-  async readCoreV1NamespacedPersistentVolumeClaimStatus() {
-    const path = "/api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified PersistentVolumeClaim */
-  async replaceCoreV1NamespacedPersistentVolumeClaimStatus(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified PersistentVolumeClaim */
-  async patchCoreV1NamespacedPersistentVolumeClaimStatus(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}/status";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind Pod */
-  async listCoreV1NamespacedPod(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/api/v1/namespaces/{namespace}/pods";
-    return this.get(path);
-  }
-  /* create a Pod */
-  async createCoreV1NamespacedPod(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/pods";
-    return this.post(path);
-  }
-  /* delete collection of Pod */
-  async deleteCoreV1CollectionNamespacedPod(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/api/v1/namespaces/{namespace}/pods";
-    return this.delete(path);
-  }
-  /* read the specified Pod */
-  async readCoreV1NamespacedPod() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}";
-    return this.get(path);
-  }
-  /* replace the specified Pod */
-  async replaceCoreV1NamespacedPod(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}";
-    return this.put(path);
-  }
-  /* delete a Pod */
-  async deleteCoreV1NamespacedPod(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified Pod */
-  async patchCoreV1NamespacedPod(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}";
-    return this.patch(path);
-  }
-  /* connect GET requests to attach of Pod */
-  async connectCoreV1GetNamespacedPodAttach() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/attach";
-    return this.get(path);
-  }
-  /* connect POST requests to attach of Pod */
-  async connectCoreV1PostNamespacedPodAttach() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/attach";
-    return this.post(path);
-  }
-  /* create binding of a Pod */
-  async createCoreV1NamespacedPodBinding(body) {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/binding";
-    return this.post(path);
-  }
-  /* create eviction of a Pod */
-  async createCoreV1NamespacedPodEviction(body) {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/eviction";
-    return this.post(path);
-  }
-  /* connect GET requests to exec of Pod */
-  async connectCoreV1GetNamespacedPodExec() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/exec";
-    return this.get(path);
-  }
-  /* connect POST requests to exec of Pod */
-  async connectCoreV1PostNamespacedPodExec() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/exec";
-    return this.post(path);
-  }
-  /* read log of the specified Pod */
-  async readCoreV1NamespacedPodLog() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/log";
-    return this.get(path);
-  }
-  /* connect GET requests to portforward of Pod */
-  async connectCoreV1GetNamespacedPodPortforward() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/portforward";
-    return this.get(path);
-  }
-  /* connect POST requests to portforward of Pod */
-  async connectCoreV1PostNamespacedPodPortforward() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/portforward";
-    return this.post(path);
-  }
-  /* connect GET requests to proxy of Pod */
-  async connectCoreV1GetNamespacedPodProxy() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/proxy";
-    return this.get(path);
-  }
-  /* connect POST requests to proxy of Pod */
-  async connectCoreV1PostNamespacedPodProxy() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/proxy";
-    return this.post(path);
-  }
-  /* connect PUT requests to proxy of Pod */
-  async connectCoreV1PutNamespacedPodProxy() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/proxy";
-    return this.put(path);
-  }
-  /* connect DELETE requests to proxy of Pod */
-  async connectCoreV1DeleteNamespacedPodProxy() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/proxy";
-    return this.delete(path);
-  }
-  /* connect OPTIONS requests to proxy of Pod */
-  async connectCoreV1OptionsNamespacedPodProxy() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/proxy";
-    return this.options(path);
-  }
-  /* connect HEAD requests to proxy of Pod */
-  async connectCoreV1HeadNamespacedPodProxy() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/proxy";
-    return this.head(path);
-  }
-  /* connect PATCH requests to proxy of Pod */
-  async connectCoreV1PatchNamespacedPodProxy() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/proxy";
-    return this.patch(path);
-  }
-  /* connect GET requests to proxy of Pod */
-  async connectCoreV1GetNamespacedPodProxyWithPath() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/proxy/{path}";
-    return this.get(path);
-  }
-  /* connect POST requests to proxy of Pod */
-  async connectCoreV1PostNamespacedPodProxyWithPath() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/proxy/{path}";
-    return this.post(path);
-  }
-  /* connect PUT requests to proxy of Pod */
-  async connectCoreV1PutNamespacedPodProxyWithPath() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/proxy/{path}";
-    return this.put(path);
-  }
-  /* connect DELETE requests to proxy of Pod */
-  async connectCoreV1DeleteNamespacedPodProxyWithPath() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/proxy/{path}";
-    return this.delete(path);
-  }
-  /* connect OPTIONS requests to proxy of Pod */
-  async connectCoreV1OptionsNamespacedPodProxyWithPath() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/proxy/{path}";
-    return this.options(path);
-  }
-  /* connect HEAD requests to proxy of Pod */
-  async connectCoreV1HeadNamespacedPodProxyWithPath() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/proxy/{path}";
-    return this.head(path);
-  }
-  /* connect PATCH requests to proxy of Pod */
-  async connectCoreV1PatchNamespacedPodProxyWithPath() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/proxy/{path}";
-    return this.patch(path);
-  }
-  /* read status of the specified Pod */
-  async readCoreV1NamespacedPodStatus() {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified Pod */
-  async replaceCoreV1NamespacedPodStatus(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified Pod */
-  async patchCoreV1NamespacedPodStatus(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{namespace}/pods/{name}/status";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind PodTemplate */
-  async listCoreV1NamespacedPodTemplate(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/api/v1/namespaces/{namespace}/podtemplates";
-    return this.get(path);
-  }
-  /* create a PodTemplate */
-  async createCoreV1NamespacedPodTemplate(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/podtemplates";
-    return this.post(path);
-  }
-  /* delete collection of PodTemplate */
-  async deleteCoreV1CollectionNamespacedPodTemplate(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/api/v1/namespaces/{namespace}/podtemplates";
-    return this.delete(path);
-  }
-  /* read the specified PodTemplate */
-  async readCoreV1NamespacedPodTemplate() {
-    const path = "/api/v1/namespaces/{namespace}/podtemplates/{name}";
-    return this.get(path);
-  }
-  /* replace the specified PodTemplate */
-  async replaceCoreV1NamespacedPodTemplate(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/podtemplates/{name}";
-    return this.put(path);
-  }
-  /* delete a PodTemplate */
-  async deleteCoreV1NamespacedPodTemplate(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/api/v1/namespaces/{namespace}/podtemplates/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified PodTemplate */
-  async patchCoreV1NamespacedPodTemplate(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{namespace}/podtemplates/{name}";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind ReplicationController */
-  async listCoreV1NamespacedReplicationController(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/api/v1/namespaces/{namespace}/replicationcontrollers";
-    return this.get(path);
-  }
-  /* create a ReplicationController */
-  async createCoreV1NamespacedReplicationController(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/replicationcontrollers";
-    return this.post(path);
-  }
-  /* delete collection of ReplicationController */
-  async deleteCoreV1CollectionNamespacedReplicationController(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/api/v1/namespaces/{namespace}/replicationcontrollers";
-    return this.delete(path);
-  }
-  /* read the specified ReplicationController */
-  async readCoreV1NamespacedReplicationController() {
-    const path = "/api/v1/namespaces/{namespace}/replicationcontrollers/{name}";
-    return this.get(path);
-  }
-  /* replace the specified ReplicationController */
-  async replaceCoreV1NamespacedReplicationController(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/replicationcontrollers/{name}";
-    return this.put(path);
-  }
-  /* delete a ReplicationController */
-  async deleteCoreV1NamespacedReplicationController(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/api/v1/namespaces/{namespace}/replicationcontrollers/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified ReplicationController */
-  async patchCoreV1NamespacedReplicationController(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{namespace}/replicationcontrollers/{name}";
-    return this.patch(path);
-  }
-  /* read scale of the specified ReplicationController */
-  async readCoreV1NamespacedReplicationControllerScale() {
-    const path = "/api/v1/namespaces/{namespace}/replicationcontrollers/{name}/scale";
-    return this.get(path);
-  }
-  /* replace scale of the specified ReplicationController */
-  async replaceCoreV1NamespacedReplicationControllerScale(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/replicationcontrollers/{name}/scale";
-    return this.put(path);
-  }
-  /* partially update scale of the specified ReplicationController */
-  async patchCoreV1NamespacedReplicationControllerScale(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{namespace}/replicationcontrollers/{name}/scale";
-    return this.patch(path);
-  }
-  /* read status of the specified ReplicationController */
-  async readCoreV1NamespacedReplicationControllerStatus() {
-    const path = "/api/v1/namespaces/{namespace}/replicationcontrollers/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified ReplicationController */
-  async replaceCoreV1NamespacedReplicationControllerStatus(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/replicationcontrollers/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified ReplicationController */
-  async patchCoreV1NamespacedReplicationControllerStatus(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{namespace}/replicationcontrollers/{name}/status";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind ResourceQuota */
-  async listCoreV1NamespacedResourceQuota(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/api/v1/namespaces/{namespace}/resourcequotas";
-    return this.get(path);
-  }
-  /* create a ResourceQuota */
-  async createCoreV1NamespacedResourceQuota(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/resourcequotas";
-    return this.post(path);
-  }
-  /* delete collection of ResourceQuota */
-  async deleteCoreV1CollectionNamespacedResourceQuota(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/api/v1/namespaces/{namespace}/resourcequotas";
-    return this.delete(path);
-  }
-  /* read the specified ResourceQuota */
-  async readCoreV1NamespacedResourceQuota() {
-    const path = "/api/v1/namespaces/{namespace}/resourcequotas/{name}";
-    return this.get(path);
-  }
-  /* replace the specified ResourceQuota */
-  async replaceCoreV1NamespacedResourceQuota(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/resourcequotas/{name}";
-    return this.put(path);
-  }
-  /* delete a ResourceQuota */
-  async deleteCoreV1NamespacedResourceQuota(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/api/v1/namespaces/{namespace}/resourcequotas/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified ResourceQuota */
-  async patchCoreV1NamespacedResourceQuota(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{namespace}/resourcequotas/{name}";
-    return this.patch(path);
-  }
-  /* read status of the specified ResourceQuota */
-  async readCoreV1NamespacedResourceQuotaStatus() {
-    const path = "/api/v1/namespaces/{namespace}/resourcequotas/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified ResourceQuota */
-  async replaceCoreV1NamespacedResourceQuotaStatus(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/resourcequotas/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified ResourceQuota */
-  async patchCoreV1NamespacedResourceQuotaStatus(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{namespace}/resourcequotas/{name}/status";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind Secret */
-  async listCoreV1NamespacedSecret(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/api/v1/namespaces/{namespace}/secrets";
-    return this.get(path);
-  }
-  /* create a Secret */
-  async createCoreV1NamespacedSecret(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/secrets";
-    return this.post(path);
-  }
-  /* delete collection of Secret */
-  async deleteCoreV1CollectionNamespacedSecret(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/api/v1/namespaces/{namespace}/secrets";
-    return this.delete(path);
-  }
-  /* read the specified Secret */
-  async readCoreV1NamespacedSecret() {
-    const path = "/api/v1/namespaces/{namespace}/secrets/{name}";
-    return this.get(path);
-  }
-  /* replace the specified Secret */
-  async replaceCoreV1NamespacedSecret(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/secrets/{name}";
-    return this.put(path);
-  }
-  /* delete a Secret */
-  async deleteCoreV1NamespacedSecret(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/api/v1/namespaces/{namespace}/secrets/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified Secret */
-  async patchCoreV1NamespacedSecret(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{namespace}/secrets/{name}";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind ServiceAccount */
-  async listCoreV1NamespacedServiceAccount(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/api/v1/namespaces/{namespace}/serviceaccounts";
-    return this.get(path);
-  }
-  /* create a ServiceAccount */
-  async createCoreV1NamespacedServiceAccount(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/serviceaccounts";
-    return this.post(path);
-  }
-  /* delete collection of ServiceAccount */
-  async deleteCoreV1CollectionNamespacedServiceAccount(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/api/v1/namespaces/{namespace}/serviceaccounts";
-    return this.delete(path);
-  }
-  /* read the specified ServiceAccount */
-  async readCoreV1NamespacedServiceAccount() {
-    const path = "/api/v1/namespaces/{namespace}/serviceaccounts/{name}";
-    return this.get(path);
-  }
-  /* replace the specified ServiceAccount */
-  async replaceCoreV1NamespacedServiceAccount(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/serviceaccounts/{name}";
-    return this.put(path);
-  }
-  /* delete a ServiceAccount */
-  async deleteCoreV1NamespacedServiceAccount(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/api/v1/namespaces/{namespace}/serviceaccounts/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified ServiceAccount */
-  async patchCoreV1NamespacedServiceAccount(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{namespace}/serviceaccounts/{name}";
-    return this.patch(path);
-  }
-  /* create token of a ServiceAccount */
-  async createCoreV1NamespacedServiceAccountToken(body) {
-    const path = "/api/v1/namespaces/{namespace}/serviceaccounts/{name}/token";
-    return this.post(path);
-  }
-  /* list or watch objects of kind Service */
-  async listCoreV1NamespacedService(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/api/v1/namespaces/{namespace}/services";
-    return this.get(path);
-  }
-  /* create a Service */
-  async createCoreV1NamespacedService(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/services";
-    return this.post(path);
-  }
-  /* read the specified Service */
-  async readCoreV1NamespacedService() {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}";
-    return this.get(path);
-  }
-  /* replace the specified Service */
-  async replaceCoreV1NamespacedService(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}";
-    return this.put(path);
-  }
-  /* delete a Service */
-  async deleteCoreV1NamespacedService(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified Service */
-  async patchCoreV1NamespacedService(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}";
-    return this.patch(path);
-  }
-  /* connect GET requests to proxy of Service */
-  async connectCoreV1GetNamespacedServiceProxy() {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}/proxy";
-    return this.get(path);
-  }
-  /* connect POST requests to proxy of Service */
-  async connectCoreV1PostNamespacedServiceProxy() {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}/proxy";
-    return this.post(path);
-  }
-  /* connect PUT requests to proxy of Service */
-  async connectCoreV1PutNamespacedServiceProxy() {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}/proxy";
-    return this.put(path);
-  }
-  /* connect DELETE requests to proxy of Service */
-  async connectCoreV1DeleteNamespacedServiceProxy() {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}/proxy";
-    return this.delete(path);
-  }
-  /* connect OPTIONS requests to proxy of Service */
-  async connectCoreV1OptionsNamespacedServiceProxy() {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}/proxy";
-    return this.options(path);
-  }
-  /* connect HEAD requests to proxy of Service */
-  async connectCoreV1HeadNamespacedServiceProxy() {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}/proxy";
-    return this.head(path);
-  }
-  /* connect PATCH requests to proxy of Service */
-  async connectCoreV1PatchNamespacedServiceProxy() {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}/proxy";
-    return this.patch(path);
-  }
-  /* connect GET requests to proxy of Service */
-  async connectCoreV1GetNamespacedServiceProxyWithPath() {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}/proxy/{path}";
-    return this.get(path);
-  }
-  /* connect POST requests to proxy of Service */
-  async connectCoreV1PostNamespacedServiceProxyWithPath() {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}/proxy/{path}";
-    return this.post(path);
-  }
-  /* connect PUT requests to proxy of Service */
-  async connectCoreV1PutNamespacedServiceProxyWithPath() {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}/proxy/{path}";
-    return this.put(path);
-  }
-  /* connect DELETE requests to proxy of Service */
-  async connectCoreV1DeleteNamespacedServiceProxyWithPath() {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}/proxy/{path}";
-    return this.delete(path);
-  }
-  /* connect OPTIONS requests to proxy of Service */
-  async connectCoreV1OptionsNamespacedServiceProxyWithPath() {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}/proxy/{path}";
-    return this.options(path);
-  }
-  /* connect HEAD requests to proxy of Service */
-  async connectCoreV1HeadNamespacedServiceProxyWithPath() {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}/proxy/{path}";
-    return this.head(path);
-  }
-  /* connect PATCH requests to proxy of Service */
-  async connectCoreV1PatchNamespacedServiceProxyWithPath() {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}/proxy/{path}";
-    return this.patch(path);
-  }
-  /* read status of the specified Service */
-  async readCoreV1NamespacedServiceStatus() {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified Service */
-  async replaceCoreV1NamespacedServiceStatus(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified Service */
-  async patchCoreV1NamespacedServiceStatus(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{namespace}/services/{name}/status";
-    return this.patch(path);
-  }
-  /* read the specified Namespace */
-  async readCoreV1Namespace() {
-    const path = "/api/v1/namespaces/{name}";
-    return this.get(path);
-  }
-  /* replace the specified Namespace */
-  async replaceCoreV1Namespace(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{name}";
-    return this.put(path);
-  }
-  /* delete a Namespace */
-  async deleteCoreV1Namespace(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/api/v1/namespaces/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified Namespace */
-  async patchCoreV1Namespace(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{name}";
-    return this.patch(path);
-  }
-  /* replace finalize of the specified Namespace */
-  async replaceCoreV1NamespaceFinalize(body) {
-    const path = "/api/v1/namespaces/{name}/finalize";
-    return this.put(path);
-  }
-  /* read status of the specified Namespace */
-  async readCoreV1NamespaceStatus() {
-    const path = "/api/v1/namespaces/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified Namespace */
-  async replaceCoreV1NamespaceStatus(body, dryRun, fieldManager) {
-    const path = "/api/v1/namespaces/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified Namespace */
-  async patchCoreV1NamespaceStatus(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/namespaces/{name}/status";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind Node */
-  async listCoreV1Node(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/api/v1/nodes";
-    return this.get(path);
-  }
-  /* create a Node */
-  async createCoreV1Node(body, dryRun, fieldManager) {
-    const path = "/api/v1/nodes";
-    return this.post(path);
-  }
-  /* delete collection of Node */
-  async deleteCoreV1CollectionNode(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/api/v1/nodes";
-    return this.delete(path);
-  }
-  /* read the specified Node */
-  async readCoreV1Node() {
-    const path = "/api/v1/nodes/{name}";
-    return this.get(path);
-  }
-  /* replace the specified Node */
-  async replaceCoreV1Node(body, dryRun, fieldManager) {
-    const path = "/api/v1/nodes/{name}";
-    return this.put(path);
-  }
-  /* delete a Node */
-  async deleteCoreV1Node(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/api/v1/nodes/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified Node */
-  async patchCoreV1Node(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/nodes/{name}";
-    return this.patch(path);
-  }
-  /* connect GET requests to proxy of Node */
-  async connectCoreV1GetNodeProxy() {
-    const path = "/api/v1/nodes/{name}/proxy";
-    return this.get(path);
-  }
-  /* connect POST requests to proxy of Node */
-  async connectCoreV1PostNodeProxy() {
-    const path = "/api/v1/nodes/{name}/proxy";
-    return this.post(path);
-  }
-  /* connect PUT requests to proxy of Node */
-  async connectCoreV1PutNodeProxy() {
-    const path = "/api/v1/nodes/{name}/proxy";
-    return this.put(path);
-  }
-  /* connect DELETE requests to proxy of Node */
-  async connectCoreV1DeleteNodeProxy() {
-    const path = "/api/v1/nodes/{name}/proxy";
-    return this.delete(path);
-  }
-  /* connect OPTIONS requests to proxy of Node */
-  async connectCoreV1OptionsNodeProxy() {
-    const path = "/api/v1/nodes/{name}/proxy";
-    return this.options(path);
-  }
-  /* connect HEAD requests to proxy of Node */
-  async connectCoreV1HeadNodeProxy() {
-    const path = "/api/v1/nodes/{name}/proxy";
-    return this.head(path);
-  }
-  /* connect PATCH requests to proxy of Node */
-  async connectCoreV1PatchNodeProxy() {
-    const path = "/api/v1/nodes/{name}/proxy";
-    return this.patch(path);
-  }
-  /* connect GET requests to proxy of Node */
-  async connectCoreV1GetNodeProxyWithPath() {
-    const path = "/api/v1/nodes/{name}/proxy/{path}";
-    return this.get(path);
-  }
-  /* connect POST requests to proxy of Node */
-  async connectCoreV1PostNodeProxyWithPath() {
-    const path = "/api/v1/nodes/{name}/proxy/{path}";
-    return this.post(path);
-  }
-  /* connect PUT requests to proxy of Node */
-  async connectCoreV1PutNodeProxyWithPath() {
-    const path = "/api/v1/nodes/{name}/proxy/{path}";
-    return this.put(path);
-  }
-  /* connect DELETE requests to proxy of Node */
-  async connectCoreV1DeleteNodeProxyWithPath() {
-    const path = "/api/v1/nodes/{name}/proxy/{path}";
-    return this.delete(path);
-  }
-  /* connect OPTIONS requests to proxy of Node */
-  async connectCoreV1OptionsNodeProxyWithPath() {
-    const path = "/api/v1/nodes/{name}/proxy/{path}";
-    return this.options(path);
-  }
-  /* connect HEAD requests to proxy of Node */
-  async connectCoreV1HeadNodeProxyWithPath() {
-    const path = "/api/v1/nodes/{name}/proxy/{path}";
-    return this.head(path);
-  }
-  /* connect PATCH requests to proxy of Node */
-  async connectCoreV1PatchNodeProxyWithPath() {
-    const path = "/api/v1/nodes/{name}/proxy/{path}";
-    return this.patch(path);
-  }
-  /* read status of the specified Node */
-  async readCoreV1NodeStatus() {
-    const path = "/api/v1/nodes/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified Node */
-  async replaceCoreV1NodeStatus(body, dryRun, fieldManager) {
-    const path = "/api/v1/nodes/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified Node */
-  async patchCoreV1NodeStatus(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/nodes/{name}/status";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind PersistentVolumeClaim */
-  async listCoreV1PersistentVolumeClaimForAllNamespaces() {
-    const path = "/api/v1/persistentvolumeclaims";
-    return this.get(path);
-  }
-  /* list or watch objects of kind PersistentVolume */
-  async listCoreV1PersistentVolume(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/api/v1/persistentvolumes";
-    return this.get(path);
-  }
-  /* create a PersistentVolume */
-  async createCoreV1PersistentVolume(body, dryRun, fieldManager) {
-    const path = "/api/v1/persistentvolumes";
-    return this.post(path);
-  }
-  /* delete collection of PersistentVolume */
-  async deleteCoreV1CollectionPersistentVolume(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/api/v1/persistentvolumes";
-    return this.delete(path);
-  }
-  /* read the specified PersistentVolume */
-  async readCoreV1PersistentVolume() {
-    const path = "/api/v1/persistentvolumes/{name}";
-    return this.get(path);
-  }
-  /* replace the specified PersistentVolume */
-  async replaceCoreV1PersistentVolume(body, dryRun, fieldManager) {
-    const path = "/api/v1/persistentvolumes/{name}";
-    return this.put(path);
-  }
-  /* delete a PersistentVolume */
-  async deleteCoreV1PersistentVolume(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/api/v1/persistentvolumes/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified PersistentVolume */
-  async patchCoreV1PersistentVolume(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/persistentvolumes/{name}";
-    return this.patch(path);
-  }
-  /* read status of the specified PersistentVolume */
-  async readCoreV1PersistentVolumeStatus() {
-    const path = "/api/v1/persistentvolumes/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified PersistentVolume */
-  async replaceCoreV1PersistentVolumeStatus(body, dryRun, fieldManager) {
-    const path = "/api/v1/persistentvolumes/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified PersistentVolume */
-  async patchCoreV1PersistentVolumeStatus(body, dryRun, fieldManager, force) {
-    const path = "/api/v1/persistentvolumes/{name}/status";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind Pod */
-  async listCoreV1PodForAllNamespaces() {
-    const path = "/api/v1/pods";
-    return this.get(path);
-  }
-  /* list or watch objects of kind PodTemplate */
-  async listCoreV1PodTemplateForAllNamespaces() {
-    const path = "/api/v1/podtemplates";
-    return this.get(path);
-  }
-  /* list or watch objects of kind ReplicationController */
-  async listCoreV1ReplicationControllerForAllNamespaces() {
-    const path = "/api/v1/replicationcontrollers";
-    return this.get(path);
-  }
-  /* list or watch objects of kind ResourceQuota */
-  async listCoreV1ResourceQuotaForAllNamespaces() {
-    const path = "/api/v1/resourcequotas";
-    return this.get(path);
-  }
-  /* list or watch objects of kind Secret */
-  async listCoreV1SecretForAllNamespaces() {
-    const path = "/api/v1/secrets";
-    return this.get(path);
-  }
-  /* list or watch objects of kind ServiceAccount */
-  async listCoreV1ServiceAccountForAllNamespaces() {
-    const path = "/api/v1/serviceaccounts";
-    return this.get(path);
-  }
-  /* list or watch objects of kind Service */
-  async listCoreV1ServiceForAllNamespaces() {
-    const path = "/api/v1/services";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of ConfigMap. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1ConfigMapListForAllNamespaces() {
-    const path = "/api/v1/watch/configmaps";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Endpoints. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1EndpointsListForAllNamespaces() {
-    const path = "/api/v1/watch/endpoints";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Event. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1EventListForAllNamespaces() {
-    const path = "/api/v1/watch/events";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of LimitRange. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1LimitRangeListForAllNamespaces() {
-    const path = "/api/v1/watch/limitranges";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Namespace. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1NamespaceList() {
-    const path = "/api/v1/watch/namespaces";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of ConfigMap. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1NamespacedConfigMapList() {
-    const path = "/api/v1/watch/namespaces/{namespace}/configmaps";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind ConfigMap. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchCoreV1NamespacedConfigMap() {
-    const path = "/api/v1/watch/namespaces/{namespace}/configmaps/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Endpoints. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1NamespacedEndpointsList() {
-    const path = "/api/v1/watch/namespaces/{namespace}/endpoints";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind Endpoints. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchCoreV1NamespacedEndpoints() {
-    const path = "/api/v1/watch/namespaces/{namespace}/endpoints/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Event. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1NamespacedEventList() {
-    const path = "/api/v1/watch/namespaces/{namespace}/events";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind Event. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchCoreV1NamespacedEvent() {
-    const path = "/api/v1/watch/namespaces/{namespace}/events/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of LimitRange. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1NamespacedLimitRangeList() {
-    const path = "/api/v1/watch/namespaces/{namespace}/limitranges";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind LimitRange. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchCoreV1NamespacedLimitRange() {
-    const path = "/api/v1/watch/namespaces/{namespace}/limitranges/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of PersistentVolumeClaim. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1NamespacedPersistentVolumeClaimList() {
-    const path = "/api/v1/watch/namespaces/{namespace}/persistentvolumeclaims";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind PersistentVolumeClaim. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchCoreV1NamespacedPersistentVolumeClaim() {
-    const path = "/api/v1/watch/namespaces/{namespace}/persistentvolumeclaims/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Pod. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1NamespacedPodList() {
-    const path = "/api/v1/watch/namespaces/{namespace}/pods";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind Pod. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchCoreV1NamespacedPod() {
-    const path = "/api/v1/watch/namespaces/{namespace}/pods/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of PodTemplate. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1NamespacedPodTemplateList() {
-    const path = "/api/v1/watch/namespaces/{namespace}/podtemplates";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind PodTemplate. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchCoreV1NamespacedPodTemplate() {
-    const path = "/api/v1/watch/namespaces/{namespace}/podtemplates/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of ReplicationController. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1NamespacedReplicationControllerList() {
-    const path = "/api/v1/watch/namespaces/{namespace}/replicationcontrollers";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind ReplicationController. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchCoreV1NamespacedReplicationController() {
-    const path = "/api/v1/watch/namespaces/{namespace}/replicationcontrollers/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of ResourceQuota. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1NamespacedResourceQuotaList() {
-    const path = "/api/v1/watch/namespaces/{namespace}/resourcequotas";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind ResourceQuota. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchCoreV1NamespacedResourceQuota() {
-    const path = "/api/v1/watch/namespaces/{namespace}/resourcequotas/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Secret. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1NamespacedSecretList() {
-    const path = "/api/v1/watch/namespaces/{namespace}/secrets";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind Secret. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchCoreV1NamespacedSecret() {
-    const path = "/api/v1/watch/namespaces/{namespace}/secrets/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of ServiceAccount. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1NamespacedServiceAccountList() {
-    const path = "/api/v1/watch/namespaces/{namespace}/serviceaccounts";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind ServiceAccount. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchCoreV1NamespacedServiceAccount() {
-    const path = "/api/v1/watch/namespaces/{namespace}/serviceaccounts/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Service. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1NamespacedServiceList() {
-    const path = "/api/v1/watch/namespaces/{namespace}/services";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind Service. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchCoreV1NamespacedService() {
-    const path = "/api/v1/watch/namespaces/{namespace}/services/{name}";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind Namespace. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchCoreV1Namespace() {
-    const path = "/api/v1/watch/namespaces/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Node. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1NodeList() {
-    const path = "/api/v1/watch/nodes";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind Node. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchCoreV1Node() {
-    const path = "/api/v1/watch/nodes/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of PersistentVolumeClaim. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1PersistentVolumeClaimListForAllNamespaces() {
-    const path = "/api/v1/watch/persistentvolumeclaims";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of PersistentVolume. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1PersistentVolumeList() {
-    const path = "/api/v1/watch/persistentvolumes";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind PersistentVolume. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchCoreV1PersistentVolume() {
-    const path = "/api/v1/watch/persistentvolumes/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Pod. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1PodListForAllNamespaces() {
-    const path = "/api/v1/watch/pods";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of PodTemplate. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1PodTemplateListForAllNamespaces() {
-    const path = "/api/v1/watch/podtemplates";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of ReplicationController. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1ReplicationControllerListForAllNamespaces() {
-    const path = "/api/v1/watch/replicationcontrollers";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of ResourceQuota. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1ResourceQuotaListForAllNamespaces() {
-    const path = "/api/v1/watch/resourcequotas";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Secret. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1SecretListForAllNamespaces() {
-    const path = "/api/v1/watch/secrets";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of ServiceAccount. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1ServiceAccountListForAllNamespaces() {
-    const path = "/api/v1/watch/serviceaccounts";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Service. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoreV1ServiceListForAllNamespaces() {
-    const path = "/api/v1/watch/services";
-    return this.get(path);
-  }
-  /* get available API versions */
-  async getAPIVersions() {
-    const path = "/apis/";
-    return this.get(path);
-  }
-  /* get information of a group */
-  async getAdmissionregistrationAPIGroup() {
-    const path = "/apis/admissionregistration.k8s.io/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getAdmissionregistrationV1APIResources() {
-    const path = "/apis/admissionregistration.k8s.io/v1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind MutatingWebhookConfiguration */
-  async listAdmissionregistrationV1MutatingWebhookConfiguration(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations";
-    return this.get(path);
-  }
-  /* create a MutatingWebhookConfiguration */
-  async createAdmissionregistrationV1MutatingWebhookConfiguration(body, dryRun, fieldManager) {
-    const path = "/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations";
-    return this.post(path);
-  }
-  /* delete collection of MutatingWebhookConfiguration */
-  async deleteAdmissionregistrationV1CollectionMutatingWebhookConfiguration(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations";
-    return this.delete(path);
-  }
-  /* read the specified MutatingWebhookConfiguration */
-  async readAdmissionregistrationV1MutatingWebhookConfiguration() {
-    const path = "/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations/{name}";
-    return this.get(path);
-  }
-  /* replace the specified MutatingWebhookConfiguration */
-  async replaceAdmissionregistrationV1MutatingWebhookConfiguration(body, dryRun, fieldManager) {
-    const path = "/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations/{name}";
-    return this.put(path);
-  }
-  /* delete a MutatingWebhookConfiguration */
-  async deleteAdmissionregistrationV1MutatingWebhookConfiguration(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified MutatingWebhookConfiguration */
-  async patchAdmissionregistrationV1MutatingWebhookConfiguration(body, dryRun, fieldManager, force) {
-    const path = "/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations/{name}";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind ValidatingWebhookConfiguration */
-  async listAdmissionregistrationV1ValidatingWebhookConfiguration(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations";
-    return this.get(path);
-  }
-  /* create a ValidatingWebhookConfiguration */
-  async createAdmissionregistrationV1ValidatingWebhookConfiguration(body, dryRun, fieldManager) {
-    const path = "/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations";
-    return this.post(path);
-  }
-  /* delete collection of ValidatingWebhookConfiguration */
-  async deleteAdmissionregistrationV1CollectionValidatingWebhookConfiguration(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations";
-    return this.delete(path);
-  }
-  /* read the specified ValidatingWebhookConfiguration */
-  async readAdmissionregistrationV1ValidatingWebhookConfiguration() {
-    const path = "/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations/{name}";
-    return this.get(path);
-  }
-  /* replace the specified ValidatingWebhookConfiguration */
-  async replaceAdmissionregistrationV1ValidatingWebhookConfiguration(body, dryRun, fieldManager) {
-    const path = "/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations/{name}";
-    return this.put(path);
-  }
-  /* delete a ValidatingWebhookConfiguration */
-  async deleteAdmissionregistrationV1ValidatingWebhookConfiguration(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified ValidatingWebhookConfiguration */
-  async patchAdmissionregistrationV1ValidatingWebhookConfiguration(body, dryRun, fieldManager, force) {
-    const path = "/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations/{name}";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of MutatingWebhookConfiguration. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchAdmissionregistrationV1MutatingWebhookConfigurationList() {
-    const path = "/apis/admissionregistration.k8s.io/v1/watch/mutatingwebhookconfigurations";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind MutatingWebhookConfiguration. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchAdmissionregistrationV1MutatingWebhookConfiguration() {
-    const path = "/apis/admissionregistration.k8s.io/v1/watch/mutatingwebhookconfigurations/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of ValidatingWebhookConfiguration. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchAdmissionregistrationV1ValidatingWebhookConfigurationList() {
-    const path = "/apis/admissionregistration.k8s.io/v1/watch/validatingwebhookconfigurations";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind ValidatingWebhookConfiguration. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchAdmissionregistrationV1ValidatingWebhookConfiguration() {
-    const path = "/apis/admissionregistration.k8s.io/v1/watch/validatingwebhookconfigurations/{name}";
-    return this.get(path);
-  }
-  /* get information of a group */
-  async getApiextensionsAPIGroup() {
-    const path = "/apis/apiextensions.k8s.io/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getApiextensionsV1APIResources() {
-    const path = "/apis/apiextensions.k8s.io/v1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind CustomResourceDefinition */
-  async listApiextensionsV1CustomResourceDefinition(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/apiextensions.k8s.io/v1/customresourcedefinitions";
-    return this.get(path);
-  }
-  /* create a CustomResourceDefinition */
-  async createApiextensionsV1CustomResourceDefinition(body, dryRun, fieldManager) {
-    const path = "/apis/apiextensions.k8s.io/v1/customresourcedefinitions";
-    return this.post(path);
-  }
-  /* delete collection of CustomResourceDefinition */
-  async deleteApiextensionsV1CollectionCustomResourceDefinition(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/apiextensions.k8s.io/v1/customresourcedefinitions";
-    return this.delete(path);
-  }
-  /* read the specified CustomResourceDefinition */
-  async readApiextensionsV1CustomResourceDefinition() {
-    const path = "/apis/apiextensions.k8s.io/v1/customresourcedefinitions/{name}";
-    return this.get(path);
-  }
-  /* replace the specified CustomResourceDefinition */
-  async replaceApiextensionsV1CustomResourceDefinition(body, dryRun, fieldManager) {
-    const path = "/apis/apiextensions.k8s.io/v1/customresourcedefinitions/{name}";
-    return this.put(path);
-  }
-  /* delete a CustomResourceDefinition */
-  async deleteApiextensionsV1CustomResourceDefinition(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/apiextensions.k8s.io/v1/customresourcedefinitions/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified CustomResourceDefinition */
-  async patchApiextensionsV1CustomResourceDefinition(body, dryRun, fieldManager, force) {
-    const path = "/apis/apiextensions.k8s.io/v1/customresourcedefinitions/{name}";
-    return this.patch(path);
-  }
-  /* read status of the specified CustomResourceDefinition */
-  async readApiextensionsV1CustomResourceDefinitionStatus() {
-    const path = "/apis/apiextensions.k8s.io/v1/customresourcedefinitions/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified CustomResourceDefinition */
-  async replaceApiextensionsV1CustomResourceDefinitionStatus(body, dryRun, fieldManager) {
-    const path = "/apis/apiextensions.k8s.io/v1/customresourcedefinitions/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified CustomResourceDefinition */
-  async patchApiextensionsV1CustomResourceDefinitionStatus(body, dryRun, fieldManager, force) {
-    const path = "/apis/apiextensions.k8s.io/v1/customresourcedefinitions/{name}/status";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of CustomResourceDefinition. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchApiextensionsV1CustomResourceDefinitionList() {
-    const path = "/apis/apiextensions.k8s.io/v1/watch/customresourcedefinitions";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind CustomResourceDefinition. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchApiextensionsV1CustomResourceDefinition() {
-    const path = "/apis/apiextensions.k8s.io/v1/watch/customresourcedefinitions/{name}";
-    return this.get(path);
-  }
-  /* get information of a group */
-  async getApiregistrationAPIGroup() {
-    const path = "/apis/apiregistration.k8s.io/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getApiregistrationV1APIResources() {
-    const path = "/apis/apiregistration.k8s.io/v1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind APIService */
-  async listApiregistrationV1APIService(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/apiregistration.k8s.io/v1/apiservices";
-    return this.get(path);
-  }
-  /* create an APIService */
-  async createApiregistrationV1APIService(body, dryRun, fieldManager) {
-    const path = "/apis/apiregistration.k8s.io/v1/apiservices";
-    return this.post(path);
-  }
-  /* delete collection of APIService */
-  async deleteApiregistrationV1CollectionAPIService(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/apiregistration.k8s.io/v1/apiservices";
-    return this.delete(path);
-  }
-  /* read the specified APIService */
-  async readApiregistrationV1APIService() {
-    const path = "/apis/apiregistration.k8s.io/v1/apiservices/{name}";
-    return this.get(path);
-  }
-  /* replace the specified APIService */
-  async replaceApiregistrationV1APIService(body, dryRun, fieldManager) {
-    const path = "/apis/apiregistration.k8s.io/v1/apiservices/{name}";
-    return this.put(path);
-  }
-  /* delete an APIService */
-  async deleteApiregistrationV1APIService(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/apiregistration.k8s.io/v1/apiservices/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified APIService */
-  async patchApiregistrationV1APIService(body, dryRun, fieldManager, force) {
-    const path = "/apis/apiregistration.k8s.io/v1/apiservices/{name}";
-    return this.patch(path);
-  }
-  /* read status of the specified APIService */
-  async readApiregistrationV1APIServiceStatus() {
-    const path = "/apis/apiregistration.k8s.io/v1/apiservices/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified APIService */
-  async replaceApiregistrationV1APIServiceStatus(body, dryRun, fieldManager) {
-    const path = "/apis/apiregistration.k8s.io/v1/apiservices/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified APIService */
-  async patchApiregistrationV1APIServiceStatus(body, dryRun, fieldManager, force) {
-    const path = "/apis/apiregistration.k8s.io/v1/apiservices/{name}/status";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of APIService. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchApiregistrationV1APIServiceList() {
-    const path = "/apis/apiregistration.k8s.io/v1/watch/apiservices";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind APIService. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchApiregistrationV1APIService() {
-    const path = "/apis/apiregistration.k8s.io/v1/watch/apiservices/{name}";
-    return this.get(path);
-  }
-  /* get information of a group */
-  async getAppsAPIGroup() {
-    const path = "/apis/apps/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getAppsV1APIResources() {
-    const path = "/apis/apps/v1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind ControllerRevision */
-  async listAppsV1ControllerRevisionForAllNamespaces() {
-    const path = "/apis/apps/v1/controllerrevisions";
-    return this.get(path);
-  }
-  /* list or watch objects of kind DaemonSet */
-  async listAppsV1DaemonSetForAllNamespaces() {
-    const path = "/apis/apps/v1/daemonsets";
-    return this.get(path);
-  }
-  /* list or watch objects of kind Deployment */
-  async listAppsV1DeploymentForAllNamespaces() {
-    const path = "/apis/apps/v1/deployments";
-    return this.get(path);
-  }
-  /* list or watch objects of kind ControllerRevision */
-  async listAppsV1NamespacedControllerRevision(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/controllerrevisions";
-    return this.get(path);
-  }
-  /* create a ControllerRevision */
-  async createAppsV1NamespacedControllerRevision(body, dryRun, fieldManager) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/controllerrevisions";
-    return this.post(path);
-  }
-  /* delete collection of ControllerRevision */
-  async deleteAppsV1CollectionNamespacedControllerRevision(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/controllerrevisions";
-    return this.delete(path);
-  }
-  /* read the specified ControllerRevision */
-  async readAppsV1NamespacedControllerRevision() {
-    const path = "/apis/apps/v1/namespaces/{namespace}/controllerrevisions/{name}";
-    return this.get(path);
-  }
-  /* replace the specified ControllerRevision */
-  async replaceAppsV1NamespacedControllerRevision(body, dryRun, fieldManager) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/controllerrevisions/{name}";
-    return this.put(path);
-  }
-  /* delete a ControllerRevision */
-  async deleteAppsV1NamespacedControllerRevision(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/controllerrevisions/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified ControllerRevision */
-  async patchAppsV1NamespacedControllerRevision(body, dryRun, fieldManager, force) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/controllerrevisions/{name}";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind DaemonSet */
-  async listAppsV1NamespacedDaemonSet(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/daemonsets";
-    return this.get(path);
-  }
-  /* create a DaemonSet */
-  async createAppsV1NamespacedDaemonSet(body, dryRun, fieldManager) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/daemonsets";
-    return this.post(path);
-  }
-  /* delete collection of DaemonSet */
-  async deleteAppsV1CollectionNamespacedDaemonSet(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/daemonsets";
-    return this.delete(path);
-  }
-  /* read the specified DaemonSet */
-  async readAppsV1NamespacedDaemonSet() {
-    const path = "/apis/apps/v1/namespaces/{namespace}/daemonsets/{name}";
-    return this.get(path);
-  }
-  /* replace the specified DaemonSet */
-  async replaceAppsV1NamespacedDaemonSet(body, dryRun, fieldManager) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/daemonsets/{name}";
-    return this.put(path);
-  }
-  /* delete a DaemonSet */
-  async deleteAppsV1NamespacedDaemonSet(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/daemonsets/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified DaemonSet */
-  async patchAppsV1NamespacedDaemonSet(body, dryRun, fieldManager, force) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/daemonsets/{name}";
-    return this.patch(path);
-  }
-  /* read status of the specified DaemonSet */
-  async readAppsV1NamespacedDaemonSetStatus() {
-    const path = "/apis/apps/v1/namespaces/{namespace}/daemonsets/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified DaemonSet */
-  async replaceAppsV1NamespacedDaemonSetStatus(body, dryRun, fieldManager) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/daemonsets/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified DaemonSet */
-  async patchAppsV1NamespacedDaemonSetStatus(body, dryRun, fieldManager, force) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/daemonsets/{name}/status";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind Deployment */
-  async listAppsV1NamespacedDeployment(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/deployments";
-    return this.get(path);
-  }
-  /* create a Deployment */
-  async createAppsV1NamespacedDeployment(body, dryRun, fieldManager) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/deployments";
-    return this.post(path);
-  }
-  /* delete collection of Deployment */
-  async deleteAppsV1CollectionNamespacedDeployment(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/deployments";
-    return this.delete(path);
-  }
-  /* read the specified Deployment */
-  async readAppsV1NamespacedDeployment() {
-    const path = "/apis/apps/v1/namespaces/{namespace}/deployments/{name}";
-    return this.get(path);
-  }
-  /* replace the specified Deployment */
-  async replaceAppsV1NamespacedDeployment(body, dryRun, fieldManager) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/deployments/{name}";
-    return this.put(path);
-  }
-  /* delete a Deployment */
-  async deleteAppsV1NamespacedDeployment(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/deployments/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified Deployment */
-  async patchAppsV1NamespacedDeployment(body, dryRun, fieldManager, force) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/deployments/{name}";
-    return this.patch(path);
-  }
-  /* read scale of the specified Deployment */
-  async readAppsV1NamespacedDeploymentScale() {
-    const path = "/apis/apps/v1/namespaces/{namespace}/deployments/{name}/scale";
-    return this.get(path);
-  }
-  /* replace scale of the specified Deployment */
-  async replaceAppsV1NamespacedDeploymentScale(body, dryRun, fieldManager) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/deployments/{name}/scale";
-    return this.put(path);
-  }
-  /* partially update scale of the specified Deployment */
-  async patchAppsV1NamespacedDeploymentScale(body, dryRun, fieldManager, force) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/deployments/{name}/scale";
-    return this.patch(path);
-  }
-  /* read status of the specified Deployment */
-  async readAppsV1NamespacedDeploymentStatus() {
-    const path = "/apis/apps/v1/namespaces/{namespace}/deployments/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified Deployment */
-  async replaceAppsV1NamespacedDeploymentStatus(body, dryRun, fieldManager) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/deployments/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified Deployment */
-  async patchAppsV1NamespacedDeploymentStatus(body, dryRun, fieldManager, force) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/deployments/{name}/status";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind ReplicaSet */
-  async listAppsV1NamespacedReplicaSet(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/replicasets";
-    return this.get(path);
-  }
-  /* create a ReplicaSet */
-  async createAppsV1NamespacedReplicaSet(body, dryRun, fieldManager) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/replicasets";
-    return this.post(path);
-  }
-  /* delete collection of ReplicaSet */
-  async deleteAppsV1CollectionNamespacedReplicaSet(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/replicasets";
-    return this.delete(path);
-  }
-  /* read the specified ReplicaSet */
-  async readAppsV1NamespacedReplicaSet() {
-    const path = "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}";
-    return this.get(path);
-  }
-  /* replace the specified ReplicaSet */
-  async replaceAppsV1NamespacedReplicaSet(body, dryRun, fieldManager) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}";
-    return this.put(path);
-  }
-  /* delete a ReplicaSet */
-  async deleteAppsV1NamespacedReplicaSet(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified ReplicaSet */
-  async patchAppsV1NamespacedReplicaSet(body, dryRun, fieldManager, force) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}";
-    return this.patch(path);
-  }
-  /* read scale of the specified ReplicaSet */
-  async readAppsV1NamespacedReplicaSetScale() {
-    const path = "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}/scale";
-    return this.get(path);
-  }
-  /* replace scale of the specified ReplicaSet */
-  async replaceAppsV1NamespacedReplicaSetScale(body, dryRun, fieldManager) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}/scale";
-    return this.put(path);
-  }
-  /* partially update scale of the specified ReplicaSet */
-  async patchAppsV1NamespacedReplicaSetScale(body, dryRun, fieldManager, force) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}/scale";
-    return this.patch(path);
-  }
-  /* read status of the specified ReplicaSet */
-  async readAppsV1NamespacedReplicaSetStatus() {
-    const path = "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified ReplicaSet */
-  async replaceAppsV1NamespacedReplicaSetStatus(body, dryRun, fieldManager) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified ReplicaSet */
-  async patchAppsV1NamespacedReplicaSetStatus(body, dryRun, fieldManager, force) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}/status";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind StatefulSet */
-  async listAppsV1NamespacedStatefulSet(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/statefulsets";
-    return this.get(path);
-  }
-  /* create a StatefulSet */
-  async createAppsV1NamespacedStatefulSet(body, dryRun, fieldManager) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/statefulsets";
-    return this.post(path);
-  }
-  /* delete collection of StatefulSet */
-  async deleteAppsV1CollectionNamespacedStatefulSet(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/statefulsets";
-    return this.delete(path);
-  }
-  /* read the specified StatefulSet */
-  async readAppsV1NamespacedStatefulSet() {
-    const path = "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}";
-    return this.get(path);
-  }
-  /* replace the specified StatefulSet */
-  async replaceAppsV1NamespacedStatefulSet(body, dryRun, fieldManager) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}";
-    return this.put(path);
-  }
-  /* delete a StatefulSet */
-  async deleteAppsV1NamespacedStatefulSet(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified StatefulSet */
-  async patchAppsV1NamespacedStatefulSet(body, dryRun, fieldManager, force) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}";
-    return this.patch(path);
-  }
-  /* read scale of the specified StatefulSet */
-  async readAppsV1NamespacedStatefulSetScale() {
-    const path = "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/scale";
-    return this.get(path);
-  }
-  /* replace scale of the specified StatefulSet */
-  async replaceAppsV1NamespacedStatefulSetScale(body, dryRun, fieldManager) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/scale";
-    return this.put(path);
-  }
-  /* partially update scale of the specified StatefulSet */
-  async patchAppsV1NamespacedStatefulSetScale(body, dryRun, fieldManager, force) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/scale";
-    return this.patch(path);
-  }
-  /* read status of the specified StatefulSet */
-  async readAppsV1NamespacedStatefulSetStatus() {
-    const path = "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified StatefulSet */
-  async replaceAppsV1NamespacedStatefulSetStatus(body, dryRun, fieldManager) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified StatefulSet */
-  async patchAppsV1NamespacedStatefulSetStatus(body, dryRun, fieldManager, force) {
-    const path = "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/status";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind ReplicaSet */
-  async listAppsV1ReplicaSetForAllNamespaces() {
-    const path = "/apis/apps/v1/replicasets";
-    return this.get(path);
-  }
-  /* list or watch objects of kind StatefulSet */
-  async listAppsV1StatefulSetForAllNamespaces() {
-    const path = "/apis/apps/v1/statefulsets";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of ControllerRevision. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchAppsV1ControllerRevisionListForAllNamespaces() {
-    const path = "/apis/apps/v1/watch/controllerrevisions";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of DaemonSet. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchAppsV1DaemonSetListForAllNamespaces() {
-    const path = "/apis/apps/v1/watch/daemonsets";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Deployment. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchAppsV1DeploymentListForAllNamespaces() {
-    const path = "/apis/apps/v1/watch/deployments";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of ControllerRevision. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchAppsV1NamespacedControllerRevisionList() {
-    const path = "/apis/apps/v1/watch/namespaces/{namespace}/controllerrevisions";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind ControllerRevision. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchAppsV1NamespacedControllerRevision() {
-    const path = "/apis/apps/v1/watch/namespaces/{namespace}/controllerrevisions/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of DaemonSet. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchAppsV1NamespacedDaemonSetList() {
-    const path = "/apis/apps/v1/watch/namespaces/{namespace}/daemonsets";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind DaemonSet. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchAppsV1NamespacedDaemonSet() {
-    const path = "/apis/apps/v1/watch/namespaces/{namespace}/daemonsets/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Deployment. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchAppsV1NamespacedDeploymentList() {
-    const path = "/apis/apps/v1/watch/namespaces/{namespace}/deployments";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind Deployment. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchAppsV1NamespacedDeployment() {
-    const path = "/apis/apps/v1/watch/namespaces/{namespace}/deployments/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of ReplicaSet. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchAppsV1NamespacedReplicaSetList() {
-    const path = "/apis/apps/v1/watch/namespaces/{namespace}/replicasets";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind ReplicaSet. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchAppsV1NamespacedReplicaSet() {
-    const path = "/apis/apps/v1/watch/namespaces/{namespace}/replicasets/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of StatefulSet. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchAppsV1NamespacedStatefulSetList() {
-    const path = "/apis/apps/v1/watch/namespaces/{namespace}/statefulsets";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind StatefulSet. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchAppsV1NamespacedStatefulSet() {
-    const path = "/apis/apps/v1/watch/namespaces/{namespace}/statefulsets/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of ReplicaSet. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchAppsV1ReplicaSetListForAllNamespaces() {
-    const path = "/apis/apps/v1/watch/replicasets";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of StatefulSet. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchAppsV1StatefulSetListForAllNamespaces() {
-    const path = "/apis/apps/v1/watch/statefulsets";
-    return this.get(path);
-  }
-  /* get information of a group */
-  async getAuthenticationAPIGroup() {
-    const path = "/apis/authentication.k8s.io/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getAuthenticationV1APIResources() {
-    const path = "/apis/authentication.k8s.io/v1/";
-    return this.get(path);
-  }
-  /* create a TokenReview */
-  async createAuthenticationV1TokenReview(body) {
-    const path = "/apis/authentication.k8s.io/v1/tokenreviews";
-    return this.post(path);
-  }
-  /* get information of a group */
-  async getAuthorizationAPIGroup() {
-    const path = "/apis/authorization.k8s.io/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getAuthorizationV1APIResources() {
-    const path = "/apis/authorization.k8s.io/v1/";
-    return this.get(path);
-  }
-  /* create a LocalSubjectAccessReview */
-  async createAuthorizationV1NamespacedLocalSubjectAccessReview(body) {
-    const path = "/apis/authorization.k8s.io/v1/namespaces/{namespace}/localsubjectaccessreviews";
-    return this.post(path);
-  }
-  /* create a SelfSubjectAccessReview */
-  async createAuthorizationV1SelfSubjectAccessReview(body) {
-    const path = "/apis/authorization.k8s.io/v1/selfsubjectaccessreviews";
-    return this.post(path);
-  }
-  /* create a SelfSubjectRulesReview */
-  async createAuthorizationV1SelfSubjectRulesReview(body) {
-    const path = "/apis/authorization.k8s.io/v1/selfsubjectrulesreviews";
-    return this.post(path);
-  }
-  /* create a SubjectAccessReview */
-  async createAuthorizationV1SubjectAccessReview(body) {
-    const path = "/apis/authorization.k8s.io/v1/subjectaccessreviews";
-    return this.post(path);
-  }
-  /* get information of a group */
-  async getAutoscalingAPIGroup() {
-    const path = "/apis/autoscaling/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getAutoscalingV1APIResources() {
-    const path = "/apis/autoscaling/v1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind HorizontalPodAutoscaler */
-  async listAutoscalingV1HorizontalPodAutoscalerForAllNamespaces() {
-    const path = "/apis/autoscaling/v1/horizontalpodautoscalers";
-    return this.get(path);
-  }
-  /* list or watch objects of kind HorizontalPodAutoscaler */
-  async listAutoscalingV1NamespacedHorizontalPodAutoscaler(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/autoscaling/v1/namespaces/{namespace}/horizontalpodautoscalers";
-    return this.get(path);
-  }
-  /* create a HorizontalPodAutoscaler */
-  async createAutoscalingV1NamespacedHorizontalPodAutoscaler(body, dryRun, fieldManager) {
-    const path = "/apis/autoscaling/v1/namespaces/{namespace}/horizontalpodautoscalers";
-    return this.post(path);
-  }
-  /* delete collection of HorizontalPodAutoscaler */
-  async deleteAutoscalingV1CollectionNamespacedHorizontalPodAutoscaler(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/autoscaling/v1/namespaces/{namespace}/horizontalpodautoscalers";
-    return this.delete(path);
-  }
-  /* read the specified HorizontalPodAutoscaler */
-  async readAutoscalingV1NamespacedHorizontalPodAutoscaler() {
-    const path = "/apis/autoscaling/v1/namespaces/{namespace}/horizontalpodautoscalers/{name}";
-    return this.get(path);
-  }
-  /* replace the specified HorizontalPodAutoscaler */
-  async replaceAutoscalingV1NamespacedHorizontalPodAutoscaler(body, dryRun, fieldManager) {
-    const path = "/apis/autoscaling/v1/namespaces/{namespace}/horizontalpodautoscalers/{name}";
-    return this.put(path);
-  }
-  /* delete a HorizontalPodAutoscaler */
-  async deleteAutoscalingV1NamespacedHorizontalPodAutoscaler(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/autoscaling/v1/namespaces/{namespace}/horizontalpodautoscalers/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified HorizontalPodAutoscaler */
-  async patchAutoscalingV1NamespacedHorizontalPodAutoscaler(body, dryRun, fieldManager, force) {
-    const path = "/apis/autoscaling/v1/namespaces/{namespace}/horizontalpodautoscalers/{name}";
-    return this.patch(path);
-  }
-  /* read status of the specified HorizontalPodAutoscaler */
-  async readAutoscalingV1NamespacedHorizontalPodAutoscalerStatus() {
-    const path = "/apis/autoscaling/v1/namespaces/{namespace}/horizontalpodautoscalers/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified HorizontalPodAutoscaler */
-  async replaceAutoscalingV1NamespacedHorizontalPodAutoscalerStatus(body, dryRun, fieldManager) {
-    const path = "/apis/autoscaling/v1/namespaces/{namespace}/horizontalpodautoscalers/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified HorizontalPodAutoscaler */
-  async patchAutoscalingV1NamespacedHorizontalPodAutoscalerStatus(body, dryRun, fieldManager, force) {
-    const path = "/apis/autoscaling/v1/namespaces/{namespace}/horizontalpodautoscalers/{name}/status";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchAutoscalingV1HorizontalPodAutoscalerListForAllNamespaces() {
-    const path = "/apis/autoscaling/v1/watch/horizontalpodautoscalers";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchAutoscalingV1NamespacedHorizontalPodAutoscalerList() {
-    const path = "/apis/autoscaling/v1/watch/namespaces/{namespace}/horizontalpodautoscalers";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchAutoscalingV1NamespacedHorizontalPodAutoscaler() {
-    const path = "/apis/autoscaling/v1/watch/namespaces/{namespace}/horizontalpodautoscalers/{name}";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getAutoscalingV2beta1APIResources() {
-    const path = "/apis/autoscaling/v2beta1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind HorizontalPodAutoscaler */
-  async listAutoscalingV2beta1HorizontalPodAutoscalerForAllNamespaces() {
-    const path = "/apis/autoscaling/v2beta1/horizontalpodautoscalers";
-    return this.get(path);
-  }
-  /* list or watch objects of kind HorizontalPodAutoscaler */
-  async listAutoscalingV2beta1NamespacedHorizontalPodAutoscaler(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/autoscaling/v2beta1/namespaces/{namespace}/horizontalpodautoscalers";
-    return this.get(path);
-  }
-  /* create a HorizontalPodAutoscaler */
-  async createAutoscalingV2beta1NamespacedHorizontalPodAutoscaler(body, dryRun, fieldManager) {
-    const path = "/apis/autoscaling/v2beta1/namespaces/{namespace}/horizontalpodautoscalers";
-    return this.post(path);
-  }
-  /* delete collection of HorizontalPodAutoscaler */
-  async deleteAutoscalingV2beta1CollectionNamespacedHorizontalPodAutoscaler(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/autoscaling/v2beta1/namespaces/{namespace}/horizontalpodautoscalers";
-    return this.delete(path);
-  }
-  /* read the specified HorizontalPodAutoscaler */
-  async readAutoscalingV2beta1NamespacedHorizontalPodAutoscaler() {
-    const path = "/apis/autoscaling/v2beta1/namespaces/{namespace}/horizontalpodautoscalers/{name}";
-    return this.get(path);
-  }
-  /* replace the specified HorizontalPodAutoscaler */
-  async replaceAutoscalingV2beta1NamespacedHorizontalPodAutoscaler(body, dryRun, fieldManager) {
-    const path = "/apis/autoscaling/v2beta1/namespaces/{namespace}/horizontalpodautoscalers/{name}";
-    return this.put(path);
-  }
-  /* delete a HorizontalPodAutoscaler */
-  async deleteAutoscalingV2beta1NamespacedHorizontalPodAutoscaler(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/autoscaling/v2beta1/namespaces/{namespace}/horizontalpodautoscalers/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified HorizontalPodAutoscaler */
-  async patchAutoscalingV2beta1NamespacedHorizontalPodAutoscaler(body, dryRun, fieldManager, force) {
-    const path = "/apis/autoscaling/v2beta1/namespaces/{namespace}/horizontalpodautoscalers/{name}";
-    return this.patch(path);
-  }
-  /* read status of the specified HorizontalPodAutoscaler */
-  async readAutoscalingV2beta1NamespacedHorizontalPodAutoscalerStatus() {
-    const path = "/apis/autoscaling/v2beta1/namespaces/{namespace}/horizontalpodautoscalers/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified HorizontalPodAutoscaler */
-  async replaceAutoscalingV2beta1NamespacedHorizontalPodAutoscalerStatus(body, dryRun, fieldManager) {
-    const path = "/apis/autoscaling/v2beta1/namespaces/{namespace}/horizontalpodautoscalers/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified HorizontalPodAutoscaler */
-  async patchAutoscalingV2beta1NamespacedHorizontalPodAutoscalerStatus(body, dryRun, fieldManager, force) {
-    const path = "/apis/autoscaling/v2beta1/namespaces/{namespace}/horizontalpodautoscalers/{name}/status";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchAutoscalingV2beta1HorizontalPodAutoscalerListForAllNamespaces() {
-    const path = "/apis/autoscaling/v2beta1/watch/horizontalpodautoscalers";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchAutoscalingV2beta1NamespacedHorizontalPodAutoscalerList() {
-    const path = "/apis/autoscaling/v2beta1/watch/namespaces/{namespace}/horizontalpodautoscalers";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchAutoscalingV2beta1NamespacedHorizontalPodAutoscaler() {
-    const path = "/apis/autoscaling/v2beta1/watch/namespaces/{namespace}/horizontalpodautoscalers/{name}";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getAutoscalingV2beta2APIResources() {
-    const path = "/apis/autoscaling/v2beta2/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind HorizontalPodAutoscaler */
-  async listAutoscalingV2beta2HorizontalPodAutoscalerForAllNamespaces() {
-    const path = "/apis/autoscaling/v2beta2/horizontalpodautoscalers";
-    return this.get(path);
-  }
-  /* list or watch objects of kind HorizontalPodAutoscaler */
-  async listAutoscalingV2beta2NamespacedHorizontalPodAutoscaler(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/autoscaling/v2beta2/namespaces/{namespace}/horizontalpodautoscalers";
-    return this.get(path);
-  }
-  /* create a HorizontalPodAutoscaler */
-  async createAutoscalingV2beta2NamespacedHorizontalPodAutoscaler(body, dryRun, fieldManager) {
-    const path = "/apis/autoscaling/v2beta2/namespaces/{namespace}/horizontalpodautoscalers";
-    return this.post(path);
-  }
-  /* delete collection of HorizontalPodAutoscaler */
-  async deleteAutoscalingV2beta2CollectionNamespacedHorizontalPodAutoscaler(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/autoscaling/v2beta2/namespaces/{namespace}/horizontalpodautoscalers";
-    return this.delete(path);
-  }
-  /* read the specified HorizontalPodAutoscaler */
-  async readAutoscalingV2beta2NamespacedHorizontalPodAutoscaler() {
-    const path = "/apis/autoscaling/v2beta2/namespaces/{namespace}/horizontalpodautoscalers/{name}";
-    return this.get(path);
-  }
-  /* replace the specified HorizontalPodAutoscaler */
-  async replaceAutoscalingV2beta2NamespacedHorizontalPodAutoscaler(body, dryRun, fieldManager) {
-    const path = "/apis/autoscaling/v2beta2/namespaces/{namespace}/horizontalpodautoscalers/{name}";
-    return this.put(path);
-  }
-  /* delete a HorizontalPodAutoscaler */
-  async deleteAutoscalingV2beta2NamespacedHorizontalPodAutoscaler(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/autoscaling/v2beta2/namespaces/{namespace}/horizontalpodautoscalers/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified HorizontalPodAutoscaler */
-  async patchAutoscalingV2beta2NamespacedHorizontalPodAutoscaler(body, dryRun, fieldManager, force) {
-    const path = "/apis/autoscaling/v2beta2/namespaces/{namespace}/horizontalpodautoscalers/{name}";
-    return this.patch(path);
-  }
-  /* read status of the specified HorizontalPodAutoscaler */
-  async readAutoscalingV2beta2NamespacedHorizontalPodAutoscalerStatus() {
-    const path = "/apis/autoscaling/v2beta2/namespaces/{namespace}/horizontalpodautoscalers/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified HorizontalPodAutoscaler */
-  async replaceAutoscalingV2beta2NamespacedHorizontalPodAutoscalerStatus(body, dryRun, fieldManager) {
-    const path = "/apis/autoscaling/v2beta2/namespaces/{namespace}/horizontalpodautoscalers/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified HorizontalPodAutoscaler */
-  async patchAutoscalingV2beta2NamespacedHorizontalPodAutoscalerStatus(body, dryRun, fieldManager, force) {
-    const path = "/apis/autoscaling/v2beta2/namespaces/{namespace}/horizontalpodautoscalers/{name}/status";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchAutoscalingV2beta2HorizontalPodAutoscalerListForAllNamespaces() {
-    const path = "/apis/autoscaling/v2beta2/watch/horizontalpodautoscalers";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchAutoscalingV2beta2NamespacedHorizontalPodAutoscalerList() {
-    const path = "/apis/autoscaling/v2beta2/watch/namespaces/{namespace}/horizontalpodautoscalers";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchAutoscalingV2beta2NamespacedHorizontalPodAutoscaler() {
-    const path = "/apis/autoscaling/v2beta2/watch/namespaces/{namespace}/horizontalpodautoscalers/{name}";
-    return this.get(path);
-  }
-  /* get information of a group */
-  async getBatchAPIGroup() {
-    const path = "/apis/batch/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getBatchV1APIResources() {
-    const path = "/apis/batch/v1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind CronJob */
-  async listBatchV1CronJobForAllNamespaces() {
-    const path = "/apis/batch/v1/cronjobs";
-    return this.get(path);
-  }
-  /* list or watch objects of kind Job */
-  async listBatchV1JobForAllNamespaces() {
-    const path = "/apis/batch/v1/jobs";
-    return this.get(path);
-  }
-  /* list or watch objects of kind CronJob */
-  async listBatchV1NamespacedCronJob(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/batch/v1/namespaces/{namespace}/cronjobs";
-    return this.get(path);
-  }
-  /* create a CronJob */
-  async createBatchV1NamespacedCronJob(body, dryRun, fieldManager) {
-    const path = "/apis/batch/v1/namespaces/{namespace}/cronjobs";
-    return this.post(path);
-  }
-  /* delete collection of CronJob */
-  async deleteBatchV1CollectionNamespacedCronJob(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/batch/v1/namespaces/{namespace}/cronjobs";
-    return this.delete(path);
-  }
-  /* read the specified CronJob */
-  async readBatchV1NamespacedCronJob() {
-    const path = "/apis/batch/v1/namespaces/{namespace}/cronjobs/{name}";
-    return this.get(path);
-  }
-  /* replace the specified CronJob */
-  async replaceBatchV1NamespacedCronJob(body, dryRun, fieldManager) {
-    const path = "/apis/batch/v1/namespaces/{namespace}/cronjobs/{name}";
-    return this.put(path);
-  }
-  /* delete a CronJob */
-  async deleteBatchV1NamespacedCronJob(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/batch/v1/namespaces/{namespace}/cronjobs/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified CronJob */
-  async patchBatchV1NamespacedCronJob(body, dryRun, fieldManager, force) {
-    const path = "/apis/batch/v1/namespaces/{namespace}/cronjobs/{name}";
-    return this.patch(path);
-  }
-  /* read status of the specified CronJob */
-  async readBatchV1NamespacedCronJobStatus() {
-    const path = "/apis/batch/v1/namespaces/{namespace}/cronjobs/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified CronJob */
-  async replaceBatchV1NamespacedCronJobStatus(body, dryRun, fieldManager) {
-    const path = "/apis/batch/v1/namespaces/{namespace}/cronjobs/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified CronJob */
-  async patchBatchV1NamespacedCronJobStatus(body, dryRun, fieldManager, force) {
-    const path = "/apis/batch/v1/namespaces/{namespace}/cronjobs/{name}/status";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind Job */
-  async listBatchV1NamespacedJob(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/batch/v1/namespaces/{namespace}/jobs";
-    return this.get(path);
-  }
-  /* create a Job */
-  async createBatchV1NamespacedJob(body, dryRun, fieldManager) {
-    const path = "/apis/batch/v1/namespaces/{namespace}/jobs";
-    return this.post(path);
-  }
-  /* delete collection of Job */
-  async deleteBatchV1CollectionNamespacedJob(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/batch/v1/namespaces/{namespace}/jobs";
-    return this.delete(path);
-  }
-  /* read the specified Job */
-  async readBatchV1NamespacedJob() {
-    const path = "/apis/batch/v1/namespaces/{namespace}/jobs/{name}";
-    return this.get(path);
-  }
-  /* replace the specified Job */
-  async replaceBatchV1NamespacedJob(body, dryRun, fieldManager) {
-    const path = "/apis/batch/v1/namespaces/{namespace}/jobs/{name}";
-    return this.put(path);
-  }
-  /* delete a Job */
-  async deleteBatchV1NamespacedJob(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/batch/v1/namespaces/{namespace}/jobs/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified Job */
-  async patchBatchV1NamespacedJob(body, dryRun, fieldManager, force) {
-    const path = "/apis/batch/v1/namespaces/{namespace}/jobs/{name}";
-    return this.patch(path);
-  }
-  /* read status of the specified Job */
-  async readBatchV1NamespacedJobStatus() {
-    const path = "/apis/batch/v1/namespaces/{namespace}/jobs/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified Job */
-  async replaceBatchV1NamespacedJobStatus(body, dryRun, fieldManager) {
-    const path = "/apis/batch/v1/namespaces/{namespace}/jobs/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified Job */
-  async patchBatchV1NamespacedJobStatus(body, dryRun, fieldManager, force) {
-    const path = "/apis/batch/v1/namespaces/{namespace}/jobs/{name}/status";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of CronJob. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchBatchV1CronJobListForAllNamespaces() {
-    const path = "/apis/batch/v1/watch/cronjobs";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Job. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchBatchV1JobListForAllNamespaces() {
-    const path = "/apis/batch/v1/watch/jobs";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of CronJob. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchBatchV1NamespacedCronJobList() {
-    const path = "/apis/batch/v1/watch/namespaces/{namespace}/cronjobs";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind CronJob. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchBatchV1NamespacedCronJob() {
-    const path = "/apis/batch/v1/watch/namespaces/{namespace}/cronjobs/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Job. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchBatchV1NamespacedJobList() {
-    const path = "/apis/batch/v1/watch/namespaces/{namespace}/jobs";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind Job. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchBatchV1NamespacedJob() {
-    const path = "/apis/batch/v1/watch/namespaces/{namespace}/jobs/{name}";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getBatchV1beta1APIResources() {
-    const path = "/apis/batch/v1beta1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind CronJob */
-  async listBatchV1beta1CronJobForAllNamespaces() {
-    const path = "/apis/batch/v1beta1/cronjobs";
-    return this.get(path);
-  }
-  /* list or watch objects of kind CronJob */
-  async listBatchV1beta1NamespacedCronJob(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/batch/v1beta1/namespaces/{namespace}/cronjobs";
-    return this.get(path);
-  }
-  /* create a CronJob */
-  async createBatchV1beta1NamespacedCronJob(body, dryRun, fieldManager) {
-    const path = "/apis/batch/v1beta1/namespaces/{namespace}/cronjobs";
-    return this.post(path);
-  }
-  /* delete collection of CronJob */
-  async deleteBatchV1beta1CollectionNamespacedCronJob(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/batch/v1beta1/namespaces/{namespace}/cronjobs";
-    return this.delete(path);
-  }
-  /* read the specified CronJob */
-  async readBatchV1beta1NamespacedCronJob() {
-    const path = "/apis/batch/v1beta1/namespaces/{namespace}/cronjobs/{name}";
-    return this.get(path);
-  }
-  /* replace the specified CronJob */
-  async replaceBatchV1beta1NamespacedCronJob(body, dryRun, fieldManager) {
-    const path = "/apis/batch/v1beta1/namespaces/{namespace}/cronjobs/{name}";
-    return this.put(path);
-  }
-  /* delete a CronJob */
-  async deleteBatchV1beta1NamespacedCronJob(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/batch/v1beta1/namespaces/{namespace}/cronjobs/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified CronJob */
-  async patchBatchV1beta1NamespacedCronJob(body, dryRun, fieldManager, force) {
-    const path = "/apis/batch/v1beta1/namespaces/{namespace}/cronjobs/{name}";
-    return this.patch(path);
-  }
-  /* read status of the specified CronJob */
-  async readBatchV1beta1NamespacedCronJobStatus() {
-    const path = "/apis/batch/v1beta1/namespaces/{namespace}/cronjobs/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified CronJob */
-  async replaceBatchV1beta1NamespacedCronJobStatus(body, dryRun, fieldManager) {
-    const path = "/apis/batch/v1beta1/namespaces/{namespace}/cronjobs/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified CronJob */
-  async patchBatchV1beta1NamespacedCronJobStatus(body, dryRun, fieldManager, force) {
-    const path = "/apis/batch/v1beta1/namespaces/{namespace}/cronjobs/{name}/status";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of CronJob. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchBatchV1beta1CronJobListForAllNamespaces() {
-    const path = "/apis/batch/v1beta1/watch/cronjobs";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of CronJob. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchBatchV1beta1NamespacedCronJobList() {
-    const path = "/apis/batch/v1beta1/watch/namespaces/{namespace}/cronjobs";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind CronJob. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchBatchV1beta1NamespacedCronJob() {
-    const path = "/apis/batch/v1beta1/watch/namespaces/{namespace}/cronjobs/{name}";
-    return this.get(path);
-  }
-  /* get information of a group */
-  async getCertificatesAPIGroup() {
-    const path = "/apis/certificates.k8s.io/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getCertificatesV1APIResources() {
-    const path = "/apis/certificates.k8s.io/v1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind CertificateSigningRequest */
-  async listCertificatesV1CertificateSigningRequest(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/certificates.k8s.io/v1/certificatesigningrequests";
-    return this.get(path);
-  }
-  /* create a CertificateSigningRequest */
-  async createCertificatesV1CertificateSigningRequest(body, dryRun, fieldManager) {
-    const path = "/apis/certificates.k8s.io/v1/certificatesigningrequests";
-    return this.post(path);
-  }
-  /* delete collection of CertificateSigningRequest */
-  async deleteCertificatesV1CollectionCertificateSigningRequest(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/certificates.k8s.io/v1/certificatesigningrequests";
-    return this.delete(path);
-  }
-  /* read the specified CertificateSigningRequest */
-  async readCertificatesV1CertificateSigningRequest() {
-    const path = "/apis/certificates.k8s.io/v1/certificatesigningrequests/{name}";
-    return this.get(path);
-  }
-  /* replace the specified CertificateSigningRequest */
-  async replaceCertificatesV1CertificateSigningRequest(body, dryRun, fieldManager) {
-    const path = "/apis/certificates.k8s.io/v1/certificatesigningrequests/{name}";
-    return this.put(path);
-  }
-  /* delete a CertificateSigningRequest */
-  async deleteCertificatesV1CertificateSigningRequest(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/certificates.k8s.io/v1/certificatesigningrequests/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified CertificateSigningRequest */
-  async patchCertificatesV1CertificateSigningRequest(body, dryRun, fieldManager, force) {
-    const path = "/apis/certificates.k8s.io/v1/certificatesigningrequests/{name}";
-    return this.patch(path);
-  }
-  /* read approval of the specified CertificateSigningRequest */
-  async readCertificatesV1CertificateSigningRequestApproval() {
-    const path = "/apis/certificates.k8s.io/v1/certificatesigningrequests/{name}/approval";
-    return this.get(path);
-  }
-  /* replace approval of the specified CertificateSigningRequest */
-  async replaceCertificatesV1CertificateSigningRequestApproval(body, dryRun, fieldManager) {
-    const path = "/apis/certificates.k8s.io/v1/certificatesigningrequests/{name}/approval";
-    return this.put(path);
-  }
-  /* partially update approval of the specified CertificateSigningRequest */
-  async patchCertificatesV1CertificateSigningRequestApproval(body, dryRun, fieldManager, force) {
-    const path = "/apis/certificates.k8s.io/v1/certificatesigningrequests/{name}/approval";
-    return this.patch(path);
-  }
-  /* read status of the specified CertificateSigningRequest */
-  async readCertificatesV1CertificateSigningRequestStatus() {
-    const path = "/apis/certificates.k8s.io/v1/certificatesigningrequests/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified CertificateSigningRequest */
-  async replaceCertificatesV1CertificateSigningRequestStatus(body, dryRun, fieldManager) {
-    const path = "/apis/certificates.k8s.io/v1/certificatesigningrequests/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified CertificateSigningRequest */
-  async patchCertificatesV1CertificateSigningRequestStatus(body, dryRun, fieldManager, force) {
-    const path = "/apis/certificates.k8s.io/v1/certificatesigningrequests/{name}/status";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of CertificateSigningRequest. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCertificatesV1CertificateSigningRequestList() {
-    const path = "/apis/certificates.k8s.io/v1/watch/certificatesigningrequests";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind CertificateSigningRequest. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchCertificatesV1CertificateSigningRequest() {
-    const path = "/apis/certificates.k8s.io/v1/watch/certificatesigningrequests/{name}";
-    return this.get(path);
-  }
-  /* get information of a group */
-  async getCoordinationAPIGroup() {
-    const path = "/apis/coordination.k8s.io/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getCoordinationV1APIResources() {
-    const path = "/apis/coordination.k8s.io/v1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind Lease */
-  async listCoordinationV1LeaseForAllNamespaces() {
-    const path = "/apis/coordination.k8s.io/v1/leases";
-    return this.get(path);
-  }
-  /* list or watch objects of kind Lease */
-  async listCoordinationV1NamespacedLease(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/coordination.k8s.io/v1/namespaces/{namespace}/leases";
-    return this.get(path);
-  }
-  /* create a Lease */
-  async createCoordinationV1NamespacedLease(body, dryRun, fieldManager) {
-    const path = "/apis/coordination.k8s.io/v1/namespaces/{namespace}/leases";
-    return this.post(path);
-  }
-  /* delete collection of Lease */
-  async deleteCoordinationV1CollectionNamespacedLease(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/coordination.k8s.io/v1/namespaces/{namespace}/leases";
-    return this.delete(path);
-  }
-  /* read the specified Lease */
-  async readCoordinationV1NamespacedLease() {
-    const path = "/apis/coordination.k8s.io/v1/namespaces/{namespace}/leases/{name}";
-    return this.get(path);
-  }
-  /* replace the specified Lease */
-  async replaceCoordinationV1NamespacedLease(body, dryRun, fieldManager) {
-    const path = "/apis/coordination.k8s.io/v1/namespaces/{namespace}/leases/{name}";
-    return this.put(path);
-  }
-  /* delete a Lease */
-  async deleteCoordinationV1NamespacedLease(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/coordination.k8s.io/v1/namespaces/{namespace}/leases/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified Lease */
-  async patchCoordinationV1NamespacedLease(body, dryRun, fieldManager, force) {
-    const path = "/apis/coordination.k8s.io/v1/namespaces/{namespace}/leases/{name}";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of Lease. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoordinationV1LeaseListForAllNamespaces() {
-    const path = "/apis/coordination.k8s.io/v1/watch/leases";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Lease. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchCoordinationV1NamespacedLeaseList() {
-    const path = "/apis/coordination.k8s.io/v1/watch/namespaces/{namespace}/leases";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind Lease. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchCoordinationV1NamespacedLease() {
-    const path = "/apis/coordination.k8s.io/v1/watch/namespaces/{namespace}/leases/{name}";
-    return this.get(path);
-  }
-  /* get information of a group */
-  async getDiscoveryAPIGroup() {
-    const path = "/apis/discovery.k8s.io/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getDiscoveryV1APIResources() {
-    const path = "/apis/discovery.k8s.io/v1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind EndpointSlice */
-  async listDiscoveryV1EndpointSliceForAllNamespaces() {
-    const path = "/apis/discovery.k8s.io/v1/endpointslices";
-    return this.get(path);
-  }
-  /* list or watch objects of kind EndpointSlice */
-  async listDiscoveryV1NamespacedEndpointSlice(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/discovery.k8s.io/v1/namespaces/{namespace}/endpointslices";
-    return this.get(path);
-  }
-  /* create an EndpointSlice */
-  async createDiscoveryV1NamespacedEndpointSlice(body, dryRun, fieldManager) {
-    const path = "/apis/discovery.k8s.io/v1/namespaces/{namespace}/endpointslices";
-    return this.post(path);
-  }
-  /* delete collection of EndpointSlice */
-  async deleteDiscoveryV1CollectionNamespacedEndpointSlice(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/discovery.k8s.io/v1/namespaces/{namespace}/endpointslices";
-    return this.delete(path);
-  }
-  /* read the specified EndpointSlice */
-  async readDiscoveryV1NamespacedEndpointSlice() {
-    const path = "/apis/discovery.k8s.io/v1/namespaces/{namespace}/endpointslices/{name}";
-    return this.get(path);
-  }
-  /* replace the specified EndpointSlice */
-  async replaceDiscoveryV1NamespacedEndpointSlice(body, dryRun, fieldManager) {
-    const path = "/apis/discovery.k8s.io/v1/namespaces/{namespace}/endpointslices/{name}";
-    return this.put(path);
-  }
-  /* delete an EndpointSlice */
-  async deleteDiscoveryV1NamespacedEndpointSlice(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/discovery.k8s.io/v1/namespaces/{namespace}/endpointslices/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified EndpointSlice */
-  async patchDiscoveryV1NamespacedEndpointSlice(body, dryRun, fieldManager, force) {
-    const path = "/apis/discovery.k8s.io/v1/namespaces/{namespace}/endpointslices/{name}";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of EndpointSlice. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchDiscoveryV1EndpointSliceListForAllNamespaces() {
-    const path = "/apis/discovery.k8s.io/v1/watch/endpointslices";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of EndpointSlice. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchDiscoveryV1NamespacedEndpointSliceList() {
-    const path = "/apis/discovery.k8s.io/v1/watch/namespaces/{namespace}/endpointslices";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind EndpointSlice. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchDiscoveryV1NamespacedEndpointSlice() {
-    const path = "/apis/discovery.k8s.io/v1/watch/namespaces/{namespace}/endpointslices/{name}";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getDiscoveryV1beta1APIResources() {
-    const path = "/apis/discovery.k8s.io/v1beta1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind EndpointSlice */
-  async listDiscoveryV1beta1EndpointSliceForAllNamespaces() {
-    const path = "/apis/discovery.k8s.io/v1beta1/endpointslices";
-    return this.get(path);
-  }
-  /* list or watch objects of kind EndpointSlice */
-  async listDiscoveryV1beta1NamespacedEndpointSlice(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/discovery.k8s.io/v1beta1/namespaces/{namespace}/endpointslices";
-    return this.get(path);
-  }
-  /* create an EndpointSlice */
-  async createDiscoveryV1beta1NamespacedEndpointSlice(body, dryRun, fieldManager) {
-    const path = "/apis/discovery.k8s.io/v1beta1/namespaces/{namespace}/endpointslices";
-    return this.post(path);
-  }
-  /* delete collection of EndpointSlice */
-  async deleteDiscoveryV1beta1CollectionNamespacedEndpointSlice(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/discovery.k8s.io/v1beta1/namespaces/{namespace}/endpointslices";
-    return this.delete(path);
-  }
-  /* read the specified EndpointSlice */
-  async readDiscoveryV1beta1NamespacedEndpointSlice() {
-    const path = "/apis/discovery.k8s.io/v1beta1/namespaces/{namespace}/endpointslices/{name}";
-    return this.get(path);
-  }
-  /* replace the specified EndpointSlice */
-  async replaceDiscoveryV1beta1NamespacedEndpointSlice(body, dryRun, fieldManager) {
-    const path = "/apis/discovery.k8s.io/v1beta1/namespaces/{namespace}/endpointslices/{name}";
-    return this.put(path);
-  }
-  /* delete an EndpointSlice */
-  async deleteDiscoveryV1beta1NamespacedEndpointSlice(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/discovery.k8s.io/v1beta1/namespaces/{namespace}/endpointslices/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified EndpointSlice */
-  async patchDiscoveryV1beta1NamespacedEndpointSlice(body, dryRun, fieldManager, force) {
-    const path = "/apis/discovery.k8s.io/v1beta1/namespaces/{namespace}/endpointslices/{name}";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of EndpointSlice. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchDiscoveryV1beta1EndpointSliceListForAllNamespaces() {
-    const path = "/apis/discovery.k8s.io/v1beta1/watch/endpointslices";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of EndpointSlice. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchDiscoveryV1beta1NamespacedEndpointSliceList() {
-    const path = "/apis/discovery.k8s.io/v1beta1/watch/namespaces/{namespace}/endpointslices";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind EndpointSlice. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchDiscoveryV1beta1NamespacedEndpointSlice() {
-    const path = "/apis/discovery.k8s.io/v1beta1/watch/namespaces/{namespace}/endpointslices/{name}";
-    return this.get(path);
-  }
-  /* get information of a group */
-  async getEventsAPIGroup() {
-    const path = "/apis/events.k8s.io/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getEventsV1APIResources() {
-    const path = "/apis/events.k8s.io/v1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind Event */
-  async listEventsV1EventForAllNamespaces() {
-    const path = "/apis/events.k8s.io/v1/events";
-    return this.get(path);
-  }
-  /* list or watch objects of kind Event */
-  async listEventsV1NamespacedEvent(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/events.k8s.io/v1/namespaces/{namespace}/events";
-    return this.get(path);
-  }
-  /* create an Event */
-  async createEventsV1NamespacedEvent(body, dryRun, fieldManager) {
-    const path = "/apis/events.k8s.io/v1/namespaces/{namespace}/events";
-    return this.post(path);
-  }
-  /* delete collection of Event */
-  async deleteEventsV1CollectionNamespacedEvent(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/events.k8s.io/v1/namespaces/{namespace}/events";
-    return this.delete(path);
-  }
-  /* read the specified Event */
-  async readEventsV1NamespacedEvent() {
-    const path = "/apis/events.k8s.io/v1/namespaces/{namespace}/events/{name}";
-    return this.get(path);
-  }
-  /* replace the specified Event */
-  async replaceEventsV1NamespacedEvent(body, dryRun, fieldManager) {
-    const path = "/apis/events.k8s.io/v1/namespaces/{namespace}/events/{name}";
-    return this.put(path);
-  }
-  /* delete an Event */
-  async deleteEventsV1NamespacedEvent(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/events.k8s.io/v1/namespaces/{namespace}/events/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified Event */
-  async patchEventsV1NamespacedEvent(body, dryRun, fieldManager, force) {
-    const path = "/apis/events.k8s.io/v1/namespaces/{namespace}/events/{name}";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of Event. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchEventsV1EventListForAllNamespaces() {
-    const path = "/apis/events.k8s.io/v1/watch/events";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Event. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchEventsV1NamespacedEventList() {
-    const path = "/apis/events.k8s.io/v1/watch/namespaces/{namespace}/events";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind Event. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchEventsV1NamespacedEvent() {
-    const path = "/apis/events.k8s.io/v1/watch/namespaces/{namespace}/events/{name}";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getEventsV1beta1APIResources() {
-    const path = "/apis/events.k8s.io/v1beta1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind Event */
-  async listEventsV1beta1EventForAllNamespaces() {
-    const path = "/apis/events.k8s.io/v1beta1/events";
-    return this.get(path);
-  }
-  /* list or watch objects of kind Event */
-  async listEventsV1beta1NamespacedEvent(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/events.k8s.io/v1beta1/namespaces/{namespace}/events";
-    return this.get(path);
-  }
-  /* create an Event */
-  async createEventsV1beta1NamespacedEvent(body, dryRun, fieldManager) {
-    const path = "/apis/events.k8s.io/v1beta1/namespaces/{namespace}/events";
-    return this.post(path);
-  }
-  /* delete collection of Event */
-  async deleteEventsV1beta1CollectionNamespacedEvent(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/events.k8s.io/v1beta1/namespaces/{namespace}/events";
-    return this.delete(path);
-  }
-  /* read the specified Event */
-  async readEventsV1beta1NamespacedEvent() {
-    const path = "/apis/events.k8s.io/v1beta1/namespaces/{namespace}/events/{name}";
-    return this.get(path);
-  }
-  /* replace the specified Event */
-  async replaceEventsV1beta1NamespacedEvent(body, dryRun, fieldManager) {
-    const path = "/apis/events.k8s.io/v1beta1/namespaces/{namespace}/events/{name}";
-    return this.put(path);
-  }
-  /* delete an Event */
-  async deleteEventsV1beta1NamespacedEvent(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/events.k8s.io/v1beta1/namespaces/{namespace}/events/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified Event */
-  async patchEventsV1beta1NamespacedEvent(body, dryRun, fieldManager, force) {
-    const path = "/apis/events.k8s.io/v1beta1/namespaces/{namespace}/events/{name}";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of Event. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchEventsV1beta1EventListForAllNamespaces() {
-    const path = "/apis/events.k8s.io/v1beta1/watch/events";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Event. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchEventsV1beta1NamespacedEventList() {
-    const path = "/apis/events.k8s.io/v1beta1/watch/namespaces/{namespace}/events";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind Event. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchEventsV1beta1NamespacedEvent() {
-    const path = "/apis/events.k8s.io/v1beta1/watch/namespaces/{namespace}/events/{name}";
-    return this.get(path);
-  }
-  /* get information of a group */
-  async getFlowcontrolApiserverAPIGroup() {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getFlowcontrolApiserverV1beta1APIResources() {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind FlowSchema */
-  async listFlowcontrolApiserverV1beta1FlowSchema(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas";
-    return this.get(path);
-  }
-  /* create a FlowSchema */
-  async createFlowcontrolApiserverV1beta1FlowSchema(body, dryRun, fieldManager) {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas";
-    return this.post(path);
-  }
-  /* delete collection of FlowSchema */
-  async deleteFlowcontrolApiserverV1beta1CollectionFlowSchema(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas";
-    return this.delete(path);
-  }
-  /* read the specified FlowSchema */
-  async readFlowcontrolApiserverV1beta1FlowSchema() {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/{name}";
-    return this.get(path);
-  }
-  /* replace the specified FlowSchema */
-  async replaceFlowcontrolApiserverV1beta1FlowSchema(body, dryRun, fieldManager) {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/{name}";
-    return this.put(path);
-  }
-  /* delete a FlowSchema */
-  async deleteFlowcontrolApiserverV1beta1FlowSchema(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified FlowSchema */
-  async patchFlowcontrolApiserverV1beta1FlowSchema(body, dryRun, fieldManager, force) {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/{name}";
-    return this.patch(path);
-  }
-  /* read status of the specified FlowSchema */
-  async readFlowcontrolApiserverV1beta1FlowSchemaStatus() {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified FlowSchema */
-  async replaceFlowcontrolApiserverV1beta1FlowSchemaStatus(body, dryRun, fieldManager) {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified FlowSchema */
-  async patchFlowcontrolApiserverV1beta1FlowSchemaStatus(body, dryRun, fieldManager, force) {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/{name}/status";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind PriorityLevelConfiguration */
-  async listFlowcontrolApiserverV1beta1PriorityLevelConfiguration(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations";
-    return this.get(path);
-  }
-  /* create a PriorityLevelConfiguration */
-  async createFlowcontrolApiserverV1beta1PriorityLevelConfiguration(body, dryRun, fieldManager) {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations";
-    return this.post(path);
-  }
-  /* delete collection of PriorityLevelConfiguration */
-  async deleteFlowcontrolApiserverV1beta1CollectionPriorityLevelConfiguration(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations";
-    return this.delete(path);
-  }
-  /* read the specified PriorityLevelConfiguration */
-  async readFlowcontrolApiserverV1beta1PriorityLevelConfiguration() {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations/{name}";
-    return this.get(path);
-  }
-  /* replace the specified PriorityLevelConfiguration */
-  async replaceFlowcontrolApiserverV1beta1PriorityLevelConfiguration(body, dryRun, fieldManager) {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations/{name}";
-    return this.put(path);
-  }
-  /* delete a PriorityLevelConfiguration */
-  async deleteFlowcontrolApiserverV1beta1PriorityLevelConfiguration(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified PriorityLevelConfiguration */
-  async patchFlowcontrolApiserverV1beta1PriorityLevelConfiguration(body, dryRun, fieldManager, force) {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations/{name}";
-    return this.patch(path);
-  }
-  /* read status of the specified PriorityLevelConfiguration */
-  async readFlowcontrolApiserverV1beta1PriorityLevelConfigurationStatus() {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified PriorityLevelConfiguration */
-  async replaceFlowcontrolApiserverV1beta1PriorityLevelConfigurationStatus(body, dryRun, fieldManager) {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified PriorityLevelConfiguration */
-  async patchFlowcontrolApiserverV1beta1PriorityLevelConfigurationStatus(body, dryRun, fieldManager, force) {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations/{name}/status";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of FlowSchema. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchFlowcontrolApiserverV1beta1FlowSchemaList() {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/watch/flowschemas";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind FlowSchema. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchFlowcontrolApiserverV1beta1FlowSchema() {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/watch/flowschemas/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of PriorityLevelConfiguration. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchFlowcontrolApiserverV1beta1PriorityLevelConfigurationList() {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/watch/prioritylevelconfigurations";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind PriorityLevelConfiguration. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchFlowcontrolApiserverV1beta1PriorityLevelConfiguration() {
-    const path = "/apis/flowcontrol.apiserver.k8s.io/v1beta1/watch/prioritylevelconfigurations/{name}";
-    return this.get(path);
-  }
-  /* get information of a group */
-  async getNetworkingAPIGroup() {
-    const path = "/apis/networking.k8s.io/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getNetworkingV1APIResources() {
-    const path = "/apis/networking.k8s.io/v1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind IngressClass */
-  async listNetworkingV1IngressClass(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/networking.k8s.io/v1/ingressclasses";
-    return this.get(path);
-  }
-  /* create an IngressClass */
-  async createNetworkingV1IngressClass(body, dryRun, fieldManager) {
-    const path = "/apis/networking.k8s.io/v1/ingressclasses";
-    return this.post(path);
-  }
-  /* delete collection of IngressClass */
-  async deleteNetworkingV1CollectionIngressClass(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/networking.k8s.io/v1/ingressclasses";
-    return this.delete(path);
-  }
-  /* read the specified IngressClass */
-  async readNetworkingV1IngressClass() {
-    const path = "/apis/networking.k8s.io/v1/ingressclasses/{name}";
-    return this.get(path);
-  }
-  /* replace the specified IngressClass */
-  async replaceNetworkingV1IngressClass(body, dryRun, fieldManager) {
-    const path = "/apis/networking.k8s.io/v1/ingressclasses/{name}";
-    return this.put(path);
-  }
-  /* delete an IngressClass */
-  async deleteNetworkingV1IngressClass(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/networking.k8s.io/v1/ingressclasses/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified IngressClass */
-  async patchNetworkingV1IngressClass(body, dryRun, fieldManager, force) {
-    const path = "/apis/networking.k8s.io/v1/ingressclasses/{name}";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind Ingress */
-  async listNetworkingV1IngressForAllNamespaces() {
-    const path = "/apis/networking.k8s.io/v1/ingresses";
-    return this.get(path);
-  }
-  /* list or watch objects of kind Ingress */
-  async listNetworkingV1NamespacedIngress(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses";
-    return this.get(path);
-  }
-  /* create an Ingress */
-  async createNetworkingV1NamespacedIngress(body, dryRun, fieldManager) {
-    const path = "/apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses";
-    return this.post(path);
-  }
-  /* delete collection of Ingress */
-  async deleteNetworkingV1CollectionNamespacedIngress(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses";
-    return this.delete(path);
-  }
-  /* read the specified Ingress */
-  async readNetworkingV1NamespacedIngress() {
-    const path = "/apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses/{name}";
-    return this.get(path);
-  }
-  /* replace the specified Ingress */
-  async replaceNetworkingV1NamespacedIngress(body, dryRun, fieldManager) {
-    const path = "/apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses/{name}";
-    return this.put(path);
-  }
-  /* delete an Ingress */
-  async deleteNetworkingV1NamespacedIngress(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified Ingress */
-  async patchNetworkingV1NamespacedIngress(body, dryRun, fieldManager, force) {
-    const path = "/apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses/{name}";
-    return this.patch(path);
-  }
-  /* read status of the specified Ingress */
-  async readNetworkingV1NamespacedIngressStatus() {
-    const path = "/apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified Ingress */
-  async replaceNetworkingV1NamespacedIngressStatus(body, dryRun, fieldManager) {
-    const path = "/apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified Ingress */
-  async patchNetworkingV1NamespacedIngressStatus(body, dryRun, fieldManager, force) {
-    const path = "/apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses/{name}/status";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind NetworkPolicy */
-  async listNetworkingV1NamespacedNetworkPolicy(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/networking.k8s.io/v1/namespaces/{namespace}/networkpolicies";
-    return this.get(path);
-  }
-  /* create a NetworkPolicy */
-  async createNetworkingV1NamespacedNetworkPolicy(body, dryRun, fieldManager) {
-    const path = "/apis/networking.k8s.io/v1/namespaces/{namespace}/networkpolicies";
-    return this.post(path);
-  }
-  /* delete collection of NetworkPolicy */
-  async deleteNetworkingV1CollectionNamespacedNetworkPolicy(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/networking.k8s.io/v1/namespaces/{namespace}/networkpolicies";
-    return this.delete(path);
-  }
-  /* read the specified NetworkPolicy */
-  async readNetworkingV1NamespacedNetworkPolicy() {
-    const path = "/apis/networking.k8s.io/v1/namespaces/{namespace}/networkpolicies/{name}";
-    return this.get(path);
-  }
-  /* replace the specified NetworkPolicy */
-  async replaceNetworkingV1NamespacedNetworkPolicy(body, dryRun, fieldManager) {
-    const path = "/apis/networking.k8s.io/v1/namespaces/{namespace}/networkpolicies/{name}";
-    return this.put(path);
-  }
-  /* delete a NetworkPolicy */
-  async deleteNetworkingV1NamespacedNetworkPolicy(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/networking.k8s.io/v1/namespaces/{namespace}/networkpolicies/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified NetworkPolicy */
-  async patchNetworkingV1NamespacedNetworkPolicy(body, dryRun, fieldManager, force) {
-    const path = "/apis/networking.k8s.io/v1/namespaces/{namespace}/networkpolicies/{name}";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind NetworkPolicy */
-  async listNetworkingV1NetworkPolicyForAllNamespaces() {
-    const path = "/apis/networking.k8s.io/v1/networkpolicies";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of IngressClass. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchNetworkingV1IngressClassList() {
-    const path = "/apis/networking.k8s.io/v1/watch/ingressclasses";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind IngressClass. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchNetworkingV1IngressClass() {
-    const path = "/apis/networking.k8s.io/v1/watch/ingressclasses/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Ingress. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchNetworkingV1IngressListForAllNamespaces() {
-    const path = "/apis/networking.k8s.io/v1/watch/ingresses";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Ingress. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchNetworkingV1NamespacedIngressList() {
-    const path = "/apis/networking.k8s.io/v1/watch/namespaces/{namespace}/ingresses";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind Ingress. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchNetworkingV1NamespacedIngress() {
-    const path = "/apis/networking.k8s.io/v1/watch/namespaces/{namespace}/ingresses/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of NetworkPolicy. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchNetworkingV1NamespacedNetworkPolicyList() {
-    const path = "/apis/networking.k8s.io/v1/watch/namespaces/{namespace}/networkpolicies";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind NetworkPolicy. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchNetworkingV1NamespacedNetworkPolicy() {
-    const path = "/apis/networking.k8s.io/v1/watch/namespaces/{namespace}/networkpolicies/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of NetworkPolicy. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchNetworkingV1NetworkPolicyListForAllNamespaces() {
-    const path = "/apis/networking.k8s.io/v1/watch/networkpolicies";
-    return this.get(path);
-  }
-  /* get information of a group */
-  async getNodeAPIGroup() {
-    const path = "/apis/node.k8s.io/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getNodeV1APIResources() {
-    const path = "/apis/node.k8s.io/v1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind RuntimeClass */
-  async listNodeV1RuntimeClass(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/node.k8s.io/v1/runtimeclasses";
-    return this.get(path);
-  }
-  /* create a RuntimeClass */
-  async createNodeV1RuntimeClass(body, dryRun, fieldManager) {
-    const path = "/apis/node.k8s.io/v1/runtimeclasses";
-    return this.post(path);
-  }
-  /* delete collection of RuntimeClass */
-  async deleteNodeV1CollectionRuntimeClass(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/node.k8s.io/v1/runtimeclasses";
-    return this.delete(path);
-  }
-  /* read the specified RuntimeClass */
-  async readNodeV1RuntimeClass() {
-    const path = "/apis/node.k8s.io/v1/runtimeclasses/{name}";
-    return this.get(path);
-  }
-  /* replace the specified RuntimeClass */
-  async replaceNodeV1RuntimeClass(body, dryRun, fieldManager) {
-    const path = "/apis/node.k8s.io/v1/runtimeclasses/{name}";
-    return this.put(path);
-  }
-  /* delete a RuntimeClass */
-  async deleteNodeV1RuntimeClass(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/node.k8s.io/v1/runtimeclasses/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified RuntimeClass */
-  async patchNodeV1RuntimeClass(body, dryRun, fieldManager, force) {
-    const path = "/apis/node.k8s.io/v1/runtimeclasses/{name}";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of RuntimeClass. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchNodeV1RuntimeClassList() {
-    const path = "/apis/node.k8s.io/v1/watch/runtimeclasses";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind RuntimeClass. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchNodeV1RuntimeClass() {
-    const path = "/apis/node.k8s.io/v1/watch/runtimeclasses/{name}";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getNodeV1beta1APIResources() {
-    const path = "/apis/node.k8s.io/v1beta1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind RuntimeClass */
-  async listNodeV1beta1RuntimeClass(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/node.k8s.io/v1beta1/runtimeclasses";
-    return this.get(path);
-  }
-  /* create a RuntimeClass */
-  async createNodeV1beta1RuntimeClass(body, dryRun, fieldManager) {
-    const path = "/apis/node.k8s.io/v1beta1/runtimeclasses";
-    return this.post(path);
-  }
-  /* delete collection of RuntimeClass */
-  async deleteNodeV1beta1CollectionRuntimeClass(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/node.k8s.io/v1beta1/runtimeclasses";
-    return this.delete(path);
-  }
-  /* read the specified RuntimeClass */
-  async readNodeV1beta1RuntimeClass() {
-    const path = "/apis/node.k8s.io/v1beta1/runtimeclasses/{name}";
-    return this.get(path);
-  }
-  /* replace the specified RuntimeClass */
-  async replaceNodeV1beta1RuntimeClass(body, dryRun, fieldManager) {
-    const path = "/apis/node.k8s.io/v1beta1/runtimeclasses/{name}";
-    return this.put(path);
-  }
-  /* delete a RuntimeClass */
-  async deleteNodeV1beta1RuntimeClass(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/node.k8s.io/v1beta1/runtimeclasses/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified RuntimeClass */
-  async patchNodeV1beta1RuntimeClass(body, dryRun, fieldManager, force) {
-    const path = "/apis/node.k8s.io/v1beta1/runtimeclasses/{name}";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of RuntimeClass. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchNodeV1beta1RuntimeClassList() {
-    const path = "/apis/node.k8s.io/v1beta1/watch/runtimeclasses";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind RuntimeClass. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchNodeV1beta1RuntimeClass() {
-    const path = "/apis/node.k8s.io/v1beta1/watch/runtimeclasses/{name}";
-    return this.get(path);
-  }
-  /* get information of a group */
-  async getPolicyAPIGroup() {
-    const path = "/apis/policy/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getPolicyV1APIResources() {
-    const path = "/apis/policy/v1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind PodDisruptionBudget */
-  async listPolicyV1NamespacedPodDisruptionBudget(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets";
-    return this.get(path);
-  }
-  /* create a PodDisruptionBudget */
-  async createPolicyV1NamespacedPodDisruptionBudget(body, dryRun, fieldManager) {
-    const path = "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets";
-    return this.post(path);
-  }
-  /* delete collection of PodDisruptionBudget */
-  async deletePolicyV1CollectionNamespacedPodDisruptionBudget(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets";
-    return this.delete(path);
-  }
-  /* read the specified PodDisruptionBudget */
-  async readPolicyV1NamespacedPodDisruptionBudget() {
-    const path = "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name}";
-    return this.get(path);
-  }
-  /* replace the specified PodDisruptionBudget */
-  async replacePolicyV1NamespacedPodDisruptionBudget(body, dryRun, fieldManager) {
-    const path = "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name}";
-    return this.put(path);
-  }
-  /* delete a PodDisruptionBudget */
-  async deletePolicyV1NamespacedPodDisruptionBudget(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified PodDisruptionBudget */
-  async patchPolicyV1NamespacedPodDisruptionBudget(body, dryRun, fieldManager, force) {
-    const path = "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name}";
-    return this.patch(path);
-  }
-  /* read status of the specified PodDisruptionBudget */
-  async readPolicyV1NamespacedPodDisruptionBudgetStatus() {
-    const path = "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified PodDisruptionBudget */
-  async replacePolicyV1NamespacedPodDisruptionBudgetStatus(body, dryRun, fieldManager) {
-    const path = "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified PodDisruptionBudget */
-  async patchPolicyV1NamespacedPodDisruptionBudgetStatus(body, dryRun, fieldManager, force) {
-    const path = "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name}/status";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind PodDisruptionBudget */
-  async listPolicyV1PodDisruptionBudgetForAllNamespaces() {
-    const path = "/apis/policy/v1/poddisruptionbudgets";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of PodDisruptionBudget. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchPolicyV1NamespacedPodDisruptionBudgetList() {
-    const path = "/apis/policy/v1/watch/namespaces/{namespace}/poddisruptionbudgets";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind PodDisruptionBudget. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchPolicyV1NamespacedPodDisruptionBudget() {
-    const path = "/apis/policy/v1/watch/namespaces/{namespace}/poddisruptionbudgets/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of PodDisruptionBudget. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchPolicyV1PodDisruptionBudgetListForAllNamespaces() {
-    const path = "/apis/policy/v1/watch/poddisruptionbudgets";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getPolicyV1beta1APIResources() {
-    const path = "/apis/policy/v1beta1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind PodDisruptionBudget */
-  async listPolicyV1beta1NamespacedPodDisruptionBudget(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/policy/v1beta1/namespaces/{namespace}/poddisruptionbudgets";
-    return this.get(path);
-  }
-  /* create a PodDisruptionBudget */
-  async createPolicyV1beta1NamespacedPodDisruptionBudget(body, dryRun, fieldManager) {
-    const path = "/apis/policy/v1beta1/namespaces/{namespace}/poddisruptionbudgets";
-    return this.post(path);
-  }
-  /* delete collection of PodDisruptionBudget */
-  async deletePolicyV1beta1CollectionNamespacedPodDisruptionBudget(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/policy/v1beta1/namespaces/{namespace}/poddisruptionbudgets";
-    return this.delete(path);
-  }
-  /* read the specified PodDisruptionBudget */
-  async readPolicyV1beta1NamespacedPodDisruptionBudget() {
-    const path = "/apis/policy/v1beta1/namespaces/{namespace}/poddisruptionbudgets/{name}";
-    return this.get(path);
-  }
-  /* replace the specified PodDisruptionBudget */
-  async replacePolicyV1beta1NamespacedPodDisruptionBudget(body, dryRun, fieldManager) {
-    const path = "/apis/policy/v1beta1/namespaces/{namespace}/poddisruptionbudgets/{name}";
-    return this.put(path);
-  }
-  /* delete a PodDisruptionBudget */
-  async deletePolicyV1beta1NamespacedPodDisruptionBudget(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/policy/v1beta1/namespaces/{namespace}/poddisruptionbudgets/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified PodDisruptionBudget */
-  async patchPolicyV1beta1NamespacedPodDisruptionBudget(body, dryRun, fieldManager, force) {
-    const path = "/apis/policy/v1beta1/namespaces/{namespace}/poddisruptionbudgets/{name}";
-    return this.patch(path);
-  }
-  /* read status of the specified PodDisruptionBudget */
-  async readPolicyV1beta1NamespacedPodDisruptionBudgetStatus() {
-    const path = "/apis/policy/v1beta1/namespaces/{namespace}/poddisruptionbudgets/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified PodDisruptionBudget */
-  async replacePolicyV1beta1NamespacedPodDisruptionBudgetStatus(body, dryRun, fieldManager) {
-    const path = "/apis/policy/v1beta1/namespaces/{namespace}/poddisruptionbudgets/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified PodDisruptionBudget */
-  async patchPolicyV1beta1NamespacedPodDisruptionBudgetStatus(body, dryRun, fieldManager, force) {
-    const path = "/apis/policy/v1beta1/namespaces/{namespace}/poddisruptionbudgets/{name}/status";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind PodDisruptionBudget */
-  async listPolicyV1beta1PodDisruptionBudgetForAllNamespaces() {
-    const path = "/apis/policy/v1beta1/poddisruptionbudgets";
-    return this.get(path);
-  }
-  /* list or watch objects of kind PodSecurityPolicy */
-  async listPolicyV1beta1PodSecurityPolicy(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/policy/v1beta1/podsecuritypolicies";
-    return this.get(path);
-  }
-  /* create a PodSecurityPolicy */
-  async createPolicyV1beta1PodSecurityPolicy(body, dryRun, fieldManager) {
-    const path = "/apis/policy/v1beta1/podsecuritypolicies";
-    return this.post(path);
-  }
-  /* delete collection of PodSecurityPolicy */
-  async deletePolicyV1beta1CollectionPodSecurityPolicy(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/policy/v1beta1/podsecuritypolicies";
-    return this.delete(path);
-  }
-  /* read the specified PodSecurityPolicy */
-  async readPolicyV1beta1PodSecurityPolicy() {
-    const path = "/apis/policy/v1beta1/podsecuritypolicies/{name}";
-    return this.get(path);
-  }
-  /* replace the specified PodSecurityPolicy */
-  async replacePolicyV1beta1PodSecurityPolicy(body, dryRun, fieldManager) {
-    const path = "/apis/policy/v1beta1/podsecuritypolicies/{name}";
-    return this.put(path);
-  }
-  /* delete a PodSecurityPolicy */
-  async deletePolicyV1beta1PodSecurityPolicy(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/policy/v1beta1/podsecuritypolicies/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified PodSecurityPolicy */
-  async patchPolicyV1beta1PodSecurityPolicy(body, dryRun, fieldManager, force) {
-    const path = "/apis/policy/v1beta1/podsecuritypolicies/{name}";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of PodDisruptionBudget. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchPolicyV1beta1NamespacedPodDisruptionBudgetList() {
-    const path = "/apis/policy/v1beta1/watch/namespaces/{namespace}/poddisruptionbudgets";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind PodDisruptionBudget. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchPolicyV1beta1NamespacedPodDisruptionBudget() {
-    const path = "/apis/policy/v1beta1/watch/namespaces/{namespace}/poddisruptionbudgets/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of PodDisruptionBudget. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchPolicyV1beta1PodDisruptionBudgetListForAllNamespaces() {
-    const path = "/apis/policy/v1beta1/watch/poddisruptionbudgets";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of PodSecurityPolicy. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchPolicyV1beta1PodSecurityPolicyList() {
-    const path = "/apis/policy/v1beta1/watch/podsecuritypolicies";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind PodSecurityPolicy. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchPolicyV1beta1PodSecurityPolicy() {
-    const path = "/apis/policy/v1beta1/watch/podsecuritypolicies/{name}";
-    return this.get(path);
-  }
-  /* get information of a group */
-  async getRbacAuthorizationAPIGroup() {
-    const path = "/apis/rbac.authorization.k8s.io/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getRbacAuthorizationV1APIResources() {
-    const path = "/apis/rbac.authorization.k8s.io/v1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind ClusterRoleBinding */
-  async listRbacAuthorizationV1ClusterRoleBinding(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/clusterrolebindings";
-    return this.get(path);
-  }
-  /* create a ClusterRoleBinding */
-  async createRbacAuthorizationV1ClusterRoleBinding(body, dryRun, fieldManager) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/clusterrolebindings";
-    return this.post(path);
-  }
-  /* delete collection of ClusterRoleBinding */
-  async deleteRbacAuthorizationV1CollectionClusterRoleBinding(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/clusterrolebindings";
-    return this.delete(path);
-  }
-  /* read the specified ClusterRoleBinding */
-  async readRbacAuthorizationV1ClusterRoleBinding() {
-    const path = "/apis/rbac.authorization.k8s.io/v1/clusterrolebindings/{name}";
-    return this.get(path);
-  }
-  /* replace the specified ClusterRoleBinding */
-  async replaceRbacAuthorizationV1ClusterRoleBinding(body, dryRun, fieldManager) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/clusterrolebindings/{name}";
-    return this.put(path);
-  }
-  /* delete a ClusterRoleBinding */
-  async deleteRbacAuthorizationV1ClusterRoleBinding(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/clusterrolebindings/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified ClusterRoleBinding */
-  async patchRbacAuthorizationV1ClusterRoleBinding(body, dryRun, fieldManager, force) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/clusterrolebindings/{name}";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind ClusterRole */
-  async listRbacAuthorizationV1ClusterRole(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/clusterroles";
-    return this.get(path);
-  }
-  /* create a ClusterRole */
-  async createRbacAuthorizationV1ClusterRole(body, dryRun, fieldManager) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/clusterroles";
-    return this.post(path);
-  }
-  /* delete collection of ClusterRole */
-  async deleteRbacAuthorizationV1CollectionClusterRole(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/clusterroles";
-    return this.delete(path);
-  }
-  /* read the specified ClusterRole */
-  async readRbacAuthorizationV1ClusterRole() {
-    const path = "/apis/rbac.authorization.k8s.io/v1/clusterroles/{name}";
-    return this.get(path);
-  }
-  /* replace the specified ClusterRole */
-  async replaceRbacAuthorizationV1ClusterRole(body, dryRun, fieldManager) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/clusterroles/{name}";
-    return this.put(path);
-  }
-  /* delete a ClusterRole */
-  async deleteRbacAuthorizationV1ClusterRole(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/clusterroles/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified ClusterRole */
-  async patchRbacAuthorizationV1ClusterRole(body, dryRun, fieldManager, force) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/clusterroles/{name}";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind RoleBinding */
-  async listRbacAuthorizationV1NamespacedRoleBinding(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/rolebindings";
-    return this.get(path);
-  }
-  /* create a RoleBinding */
-  async createRbacAuthorizationV1NamespacedRoleBinding(body, dryRun, fieldManager) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/rolebindings";
-    return this.post(path);
-  }
-  /* delete collection of RoleBinding */
-  async deleteRbacAuthorizationV1CollectionNamespacedRoleBinding(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/rolebindings";
-    return this.delete(path);
-  }
-  /* read the specified RoleBinding */
-  async readRbacAuthorizationV1NamespacedRoleBinding() {
-    const path = "/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/rolebindings/{name}";
-    return this.get(path);
-  }
-  /* replace the specified RoleBinding */
-  async replaceRbacAuthorizationV1NamespacedRoleBinding(body, dryRun, fieldManager) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/rolebindings/{name}";
-    return this.put(path);
-  }
-  /* delete a RoleBinding */
-  async deleteRbacAuthorizationV1NamespacedRoleBinding(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/rolebindings/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified RoleBinding */
-  async patchRbacAuthorizationV1NamespacedRoleBinding(body, dryRun, fieldManager, force) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/rolebindings/{name}";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind Role */
-  async listRbacAuthorizationV1NamespacedRole(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/roles";
-    return this.get(path);
-  }
-  /* create a Role */
-  async createRbacAuthorizationV1NamespacedRole(body, dryRun, fieldManager) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/roles";
-    return this.post(path);
-  }
-  /* delete collection of Role */
-  async deleteRbacAuthorizationV1CollectionNamespacedRole(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/roles";
-    return this.delete(path);
-  }
-  /* read the specified Role */
-  async readRbacAuthorizationV1NamespacedRole() {
-    const path = "/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/roles/{name}";
-    return this.get(path);
-  }
-  /* replace the specified Role */
-  async replaceRbacAuthorizationV1NamespacedRole(body, dryRun, fieldManager) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/roles/{name}";
-    return this.put(path);
-  }
-  /* delete a Role */
-  async deleteRbacAuthorizationV1NamespacedRole(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/roles/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified Role */
-  async patchRbacAuthorizationV1NamespacedRole(body, dryRun, fieldManager, force) {
-    const path = "/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/roles/{name}";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind RoleBinding */
-  async listRbacAuthorizationV1RoleBindingForAllNamespaces() {
-    const path = "/apis/rbac.authorization.k8s.io/v1/rolebindings";
-    return this.get(path);
-  }
-  /* list or watch objects of kind Role */
-  async listRbacAuthorizationV1RoleForAllNamespaces() {
-    const path = "/apis/rbac.authorization.k8s.io/v1/roles";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of ClusterRoleBinding. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchRbacAuthorizationV1ClusterRoleBindingList() {
-    const path = "/apis/rbac.authorization.k8s.io/v1/watch/clusterrolebindings";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind ClusterRoleBinding. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchRbacAuthorizationV1ClusterRoleBinding() {
-    const path = "/apis/rbac.authorization.k8s.io/v1/watch/clusterrolebindings/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of ClusterRole. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchRbacAuthorizationV1ClusterRoleList() {
-    const path = "/apis/rbac.authorization.k8s.io/v1/watch/clusterroles";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind ClusterRole. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchRbacAuthorizationV1ClusterRole() {
-    const path = "/apis/rbac.authorization.k8s.io/v1/watch/clusterroles/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of RoleBinding. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchRbacAuthorizationV1NamespacedRoleBindingList() {
-    const path = "/apis/rbac.authorization.k8s.io/v1/watch/namespaces/{namespace}/rolebindings";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind RoleBinding. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchRbacAuthorizationV1NamespacedRoleBinding() {
-    const path = "/apis/rbac.authorization.k8s.io/v1/watch/namespaces/{namespace}/rolebindings/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Role. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchRbacAuthorizationV1NamespacedRoleList() {
-    const path = "/apis/rbac.authorization.k8s.io/v1/watch/namespaces/{namespace}/roles";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind Role. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchRbacAuthorizationV1NamespacedRole() {
-    const path = "/apis/rbac.authorization.k8s.io/v1/watch/namespaces/{namespace}/roles/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of RoleBinding. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchRbacAuthorizationV1RoleBindingListForAllNamespaces() {
-    const path = "/apis/rbac.authorization.k8s.io/v1/watch/rolebindings";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of Role. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchRbacAuthorizationV1RoleListForAllNamespaces() {
-    const path = "/apis/rbac.authorization.k8s.io/v1/watch/roles";
-    return this.get(path);
-  }
-  /* get information of a group */
-  async getSchedulingAPIGroup() {
-    const path = "/apis/scheduling.k8s.io/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getSchedulingV1APIResources() {
-    const path = "/apis/scheduling.k8s.io/v1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind PriorityClass */
-  async listSchedulingV1PriorityClass(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/scheduling.k8s.io/v1/priorityclasses";
-    return this.get(path);
-  }
-  /* create a PriorityClass */
-  async createSchedulingV1PriorityClass(body, dryRun, fieldManager) {
-    const path = "/apis/scheduling.k8s.io/v1/priorityclasses";
-    return this.post(path);
-  }
-  /* delete collection of PriorityClass */
-  async deleteSchedulingV1CollectionPriorityClass(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/scheduling.k8s.io/v1/priorityclasses";
-    return this.delete(path);
-  }
-  /* read the specified PriorityClass */
-  async readSchedulingV1PriorityClass() {
-    const path = "/apis/scheduling.k8s.io/v1/priorityclasses/{name}";
-    return this.get(path);
-  }
-  /* replace the specified PriorityClass */
-  async replaceSchedulingV1PriorityClass(body, dryRun, fieldManager) {
-    const path = "/apis/scheduling.k8s.io/v1/priorityclasses/{name}";
-    return this.put(path);
-  }
-  /* delete a PriorityClass */
-  async deleteSchedulingV1PriorityClass(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/scheduling.k8s.io/v1/priorityclasses/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified PriorityClass */
-  async patchSchedulingV1PriorityClass(body, dryRun, fieldManager, force) {
-    const path = "/apis/scheduling.k8s.io/v1/priorityclasses/{name}";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of PriorityClass. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchSchedulingV1PriorityClassList() {
-    const path = "/apis/scheduling.k8s.io/v1/watch/priorityclasses";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind PriorityClass. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchSchedulingV1PriorityClass() {
-    const path = "/apis/scheduling.k8s.io/v1/watch/priorityclasses/{name}";
-    return this.get(path);
-  }
-  /* get information of a group */
-  async getStorageAPIGroup() {
-    const path = "/apis/storage.k8s.io/";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getStorageV1APIResources() {
-    const path = "/apis/storage.k8s.io/v1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind CSIDriver */
-  async listStorageV1CSIDriver(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/storage.k8s.io/v1/csidrivers";
-    return this.get(path);
-  }
-  /* create a CSIDriver */
-  async createStorageV1CSIDriver(body, dryRun, fieldManager) {
-    const path = "/apis/storage.k8s.io/v1/csidrivers";
-    return this.post(path);
-  }
-  /* delete collection of CSIDriver */
-  async deleteStorageV1CollectionCSIDriver(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/storage.k8s.io/v1/csidrivers";
-    return this.delete(path);
-  }
-  /* read the specified CSIDriver */
-  async readStorageV1CSIDriver() {
-    const path = "/apis/storage.k8s.io/v1/csidrivers/{name}";
-    return this.get(path);
-  }
-  /* replace the specified CSIDriver */
-  async replaceStorageV1CSIDriver(body, dryRun, fieldManager) {
-    const path = "/apis/storage.k8s.io/v1/csidrivers/{name}";
-    return this.put(path);
-  }
-  /* delete a CSIDriver */
-  async deleteStorageV1CSIDriver(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/storage.k8s.io/v1/csidrivers/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified CSIDriver */
-  async patchStorageV1CSIDriver(body, dryRun, fieldManager, force) {
-    const path = "/apis/storage.k8s.io/v1/csidrivers/{name}";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind CSINode */
-  async listStorageV1CSINode(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/storage.k8s.io/v1/csinodes";
-    return this.get(path);
-  }
-  /* create a CSINode */
-  async createStorageV1CSINode(body, dryRun, fieldManager) {
-    const path = "/apis/storage.k8s.io/v1/csinodes";
-    return this.post(path);
-  }
-  /* delete collection of CSINode */
-  async deleteStorageV1CollectionCSINode(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/storage.k8s.io/v1/csinodes";
-    return this.delete(path);
-  }
-  /* read the specified CSINode */
-  async readStorageV1CSINode() {
-    const path = "/apis/storage.k8s.io/v1/csinodes/{name}";
-    return this.get(path);
-  }
-  /* replace the specified CSINode */
-  async replaceStorageV1CSINode(body, dryRun, fieldManager) {
-    const path = "/apis/storage.k8s.io/v1/csinodes/{name}";
-    return this.put(path);
-  }
-  /* delete a CSINode */
-  async deleteStorageV1CSINode(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/storage.k8s.io/v1/csinodes/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified CSINode */
-  async patchStorageV1CSINode(body, dryRun, fieldManager, force) {
-    const path = "/apis/storage.k8s.io/v1/csinodes/{name}";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind StorageClass */
-  async listStorageV1StorageClass(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/storage.k8s.io/v1/storageclasses";
-    return this.get(path);
-  }
-  /* create a StorageClass */
-  async createStorageV1StorageClass(body, dryRun, fieldManager) {
-    const path = "/apis/storage.k8s.io/v1/storageclasses";
-    return this.post(path);
-  }
-  /* delete collection of StorageClass */
-  async deleteStorageV1CollectionStorageClass(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/storage.k8s.io/v1/storageclasses";
-    return this.delete(path);
-  }
-  /* read the specified StorageClass */
-  async readStorageV1StorageClass() {
-    const path = "/apis/storage.k8s.io/v1/storageclasses/{name}";
-    return this.get(path);
-  }
-  /* replace the specified StorageClass */
-  async replaceStorageV1StorageClass(body, dryRun, fieldManager) {
-    const path = "/apis/storage.k8s.io/v1/storageclasses/{name}";
-    return this.put(path);
-  }
-  /* delete a StorageClass */
-  async deleteStorageV1StorageClass(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/storage.k8s.io/v1/storageclasses/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified StorageClass */
-  async patchStorageV1StorageClass(body, dryRun, fieldManager, force) {
-    const path = "/apis/storage.k8s.io/v1/storageclasses/{name}";
-    return this.patch(path);
-  }
-  /* list or watch objects of kind VolumeAttachment */
-  async listStorageV1VolumeAttachment(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/storage.k8s.io/v1/volumeattachments";
-    return this.get(path);
-  }
-  /* create a VolumeAttachment */
-  async createStorageV1VolumeAttachment(body, dryRun, fieldManager) {
-    const path = "/apis/storage.k8s.io/v1/volumeattachments";
-    return this.post(path);
-  }
-  /* delete collection of VolumeAttachment */
-  async deleteStorageV1CollectionVolumeAttachment(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/storage.k8s.io/v1/volumeattachments";
-    return this.delete(path);
-  }
-  /* read the specified VolumeAttachment */
-  async readStorageV1VolumeAttachment() {
-    const path = "/apis/storage.k8s.io/v1/volumeattachments/{name}";
-    return this.get(path);
-  }
-  /* replace the specified VolumeAttachment */
-  async replaceStorageV1VolumeAttachment(body, dryRun, fieldManager) {
-    const path = "/apis/storage.k8s.io/v1/volumeattachments/{name}";
-    return this.put(path);
-  }
-  /* delete a VolumeAttachment */
-  async deleteStorageV1VolumeAttachment(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/storage.k8s.io/v1/volumeattachments/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified VolumeAttachment */
-  async patchStorageV1VolumeAttachment(body, dryRun, fieldManager, force) {
-    const path = "/apis/storage.k8s.io/v1/volumeattachments/{name}";
-    return this.patch(path);
-  }
-  /* read status of the specified VolumeAttachment */
-  async readStorageV1VolumeAttachmentStatus() {
-    const path = "/apis/storage.k8s.io/v1/volumeattachments/{name}/status";
-    return this.get(path);
-  }
-  /* replace status of the specified VolumeAttachment */
-  async replaceStorageV1VolumeAttachmentStatus(body, dryRun, fieldManager) {
-    const path = "/apis/storage.k8s.io/v1/volumeattachments/{name}/status";
-    return this.put(path);
-  }
-  /* partially update status of the specified VolumeAttachment */
-  async patchStorageV1VolumeAttachmentStatus(body, dryRun, fieldManager, force) {
-    const path = "/apis/storage.k8s.io/v1/volumeattachments/{name}/status";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of CSIDriver. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchStorageV1CSIDriverList() {
-    const path = "/apis/storage.k8s.io/v1/watch/csidrivers";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind CSIDriver. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchStorageV1CSIDriver() {
-    const path = "/apis/storage.k8s.io/v1/watch/csidrivers/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of CSINode. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchStorageV1CSINodeList() {
-    const path = "/apis/storage.k8s.io/v1/watch/csinodes";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind CSINode. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchStorageV1CSINode() {
-    const path = "/apis/storage.k8s.io/v1/watch/csinodes/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of StorageClass. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchStorageV1StorageClassList() {
-    const path = "/apis/storage.k8s.io/v1/watch/storageclasses";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind StorageClass. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchStorageV1StorageClass() {
-    const path = "/apis/storage.k8s.io/v1/watch/storageclasses/{name}";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of VolumeAttachment. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchStorageV1VolumeAttachmentList() {
-    const path = "/apis/storage.k8s.io/v1/watch/volumeattachments";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind VolumeAttachment. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchStorageV1VolumeAttachment() {
-    const path = "/apis/storage.k8s.io/v1/watch/volumeattachments/{name}";
-    return this.get(path);
-  }
-  /* get available resources */
-  async getStorageV1beta1APIResources() {
-    const path = "/apis/storage.k8s.io/v1beta1/";
-    return this.get(path);
-  }
-  /* list or watch objects of kind CSIStorageCapacity */
-  async listStorageV1beta1CSIStorageCapacityForAllNamespaces() {
-    const path = "/apis/storage.k8s.io/v1beta1/csistoragecapacities";
-    return this.get(path);
-  }
-  /* list or watch objects of kind CSIStorageCapacity */
-  async listStorageV1beta1NamespacedCSIStorageCapacity(allowWatchBookmarks, continue, fieldSelector, labelSelector, limit, resourceVersion, resourceVersionMatch, timeoutSeconds, watch) {
-    const path = "/apis/storage.k8s.io/v1beta1/namespaces/{namespace}/csistoragecapacities";
-    return this.get(path);
-  }
-  /* create a CSIStorageCapacity */
-  async createStorageV1beta1NamespacedCSIStorageCapacity(body, dryRun, fieldManager) {
-    const path = "/apis/storage.k8s.io/v1beta1/namespaces/{namespace}/csistoragecapacities";
-    return this.post(path);
-  }
-  /* delete collection of CSIStorageCapacity */
-  async deleteStorageV1beta1CollectionNamespacedCSIStorageCapacity(body, continue, dryRun, fieldSelector, gracePeriodSeconds, labelSelector, limit, orphanDependents, propagationPolicy, resourceVersion, resourceVersionMatch, timeoutSeconds) {
-    const path = "/apis/storage.k8s.io/v1beta1/namespaces/{namespace}/csistoragecapacities";
-    return this.delete(path);
-  }
-  /* read the specified CSIStorageCapacity */
-  async readStorageV1beta1NamespacedCSIStorageCapacity() {
-    const path = "/apis/storage.k8s.io/v1beta1/namespaces/{namespace}/csistoragecapacities/{name}";
-    return this.get(path);
-  }
-  /* replace the specified CSIStorageCapacity */
-  async replaceStorageV1beta1NamespacedCSIStorageCapacity(body, dryRun, fieldManager) {
-    const path = "/apis/storage.k8s.io/v1beta1/namespaces/{namespace}/csistoragecapacities/{name}";
-    return this.put(path);
-  }
-  /* delete a CSIStorageCapacity */
-  async deleteStorageV1beta1NamespacedCSIStorageCapacity(body, dryRun, gracePeriodSeconds, orphanDependents, propagationPolicy) {
-    const path = "/apis/storage.k8s.io/v1beta1/namespaces/{namespace}/csistoragecapacities/{name}";
-    return this.delete(path);
-  }
-  /* partially update the specified CSIStorageCapacity */
-  async patchStorageV1beta1NamespacedCSIStorageCapacity(body, dryRun, fieldManager, force) {
-    const path = "/apis/storage.k8s.io/v1beta1/namespaces/{namespace}/csistoragecapacities/{name}";
-    return this.patch(path);
-  }
-  /* watch individual changes to a list of CSIStorageCapacity. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchStorageV1beta1CSIStorageCapacityListForAllNamespaces() {
-    const path = "/apis/storage.k8s.io/v1beta1/watch/csistoragecapacities";
-    return this.get(path);
-  }
-  /* watch individual changes to a list of CSIStorageCapacity. deprecated: use the 'watch' parameter with a list operation instead. */
-  async watchStorageV1beta1NamespacedCSIStorageCapacityList() {
-    const path = "/apis/storage.k8s.io/v1beta1/watch/namespaces/{namespace}/csistoragecapacities";
-    return this.get(path);
-  }
-  /* watch changes to an object of kind CSIStorageCapacity. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-  async watchStorageV1beta1NamespacedCSIStorageCapacity() {
-    const path = "/apis/storage.k8s.io/v1beta1/watch/namespaces/{namespace}/csistoragecapacities/{name}";
-    return this.get(path);
-  }
-  async logFileListHandler() {
-    const path = "/logs/";
-    return this.get(path);
-  }
-  async logFileHandler() {
-    const path = "/logs/{logpath}";
-    return this.get(path);
-  }
-  /* get service account issuer OpenID JSON Web Key Set (contains public token verification keys) */
-  async getServiceAccountIssuerOpenIDKeyset() {
-    const path = "/openid/v1/jwks/";
-    return this.get(path);
-  }
-  /* get the code version */
-  async getCodeVersion() {
-    const path = "/version/";
-    return this.get(path);
+  async getServiceAccountIssuerOpenIDConfiguration(params: GetServiceAccountIssuerOpenIDConfigurationRequest): Promise<string> {
+    const path = `/.well-known/openid-configuration/`;
+    return await this.get<string>(path);
+  }
+  async getCoreAPIVersions(params: GetCoreAPIVersionsRequest): Promise<APIVersions> {
+    const path = `/api/`;
+    return await this.get<APIVersions>(path);
+  }
+  async getCoreV1APIResources(params: GetCoreV1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/api/v1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listCoreV1ComponentStatus(params: ListCoreV1ComponentStatusRequest): Promise<ComponentStatusList> {
+    const path = `/api/v1/componentstatuses`;
+    return await this.get<ComponentStatusList>(path);
+  }
+  async readCoreV1ComponentStatus(params: ReadCoreV1ComponentStatusRequest): Promise<ComponentStatus> {
+    const path = `/api/v1/componentstatuses/${params.name}`;
+    return await this.get<ComponentStatus>(path);
+  }
+  async listCoreV1ConfigMapForAllNamespaces(params: ListCoreV1ConfigMapForAllNamespacesRequest): Promise<ConfigMapList> {
+    const path = `/api/v1/configmaps`;
+    return await this.get<ConfigMapList>(path);
+  }
+  async listCoreV1EndpointsForAllNamespaces(params: ListCoreV1EndpointsForAllNamespacesRequest): Promise<EndpointsList> {
+    const path = `/api/v1/endpoints`;
+    return await this.get<EndpointsList>(path);
+  }
+  async listCoreV1EventForAllNamespaces(params: ListCoreV1EventForAllNamespacesRequest): Promise<EventList> {
+    const path = `/api/v1/events`;
+    return await this.get<EventList>(path);
+  }
+  async listCoreV1LimitRangeForAllNamespaces(params: ListCoreV1LimitRangeForAllNamespacesRequest): Promise<LimitRangeList> {
+    const path = `/api/v1/limitranges`;
+    return await this.get<LimitRangeList>(path);
+  }
+  async listCoreV1Namespace(params: ListCoreV1NamespaceRequest): Promise<NamespaceList> {
+    const path = `/api/v1/namespaces`;
+    return await this.get<NamespaceList>(path);
+  }
+  async createCoreV1Namespace(params: CreateCoreV1NamespaceRequest): Promise<Namespace> {
+    const path = `/api/v1/namespaces`;
+    return await this.post<Namespace>(path, params.body);
+  }
+  async createCoreV1NamespacedBinding(params: CreateCoreV1NamespacedBindingRequest): Promise<Binding> {
+    const path = `/api/v1/namespaces/${params.namespace}/bindings`;
+    return await this.post<Binding>(path, params.body);
+  }
+  async listCoreV1NamespacedConfigMap(params: ListCoreV1NamespacedConfigMapRequest): Promise<ConfigMapList> {
+    const path = `/api/v1/namespaces/${params.namespace}/configmaps`;
+    return await this.get<ConfigMapList>(path);
+  }
+  async createCoreV1NamespacedConfigMap(params: CreateCoreV1NamespacedConfigMapRequest): Promise<ConfigMap> {
+    const path = `/api/v1/namespaces/${params.namespace}/configmaps`;
+    return await this.post<ConfigMap>(path, params.body);
+  }
+  async deleteCoreV1CollectionNamespacedConfigMap(params: DeleteCoreV1CollectionNamespacedConfigMapRequest): Promise<Status> {
+    const path = `/api/v1/namespaces/${params.namespace}/configmaps`;
+    return await this.delete<Status>(path);
+  }
+  async readCoreV1NamespacedConfigMap(params: ReadCoreV1NamespacedConfigMapRequest): Promise<ConfigMap> {
+    const path = `/api/v1/namespaces/${params.namespace}/configmaps/${params.name}`;
+    return await this.get<ConfigMap>(path);
+  }
+  async replaceCoreV1NamespacedConfigMap(params: ReplaceCoreV1NamespacedConfigMapRequest): Promise<ConfigMap> {
+    const path = `/api/v1/namespaces/${params.namespace}/configmaps/${params.name}`;
+    return await this.put<ConfigMap>(path, params.body);
+  }
+  async deleteCoreV1NamespacedConfigMap(params: DeleteCoreV1NamespacedConfigMapRequest): Promise<Status> {
+    const path = `/api/v1/namespaces/${params.namespace}/configmaps/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchCoreV1NamespacedConfigMap(params: PatchCoreV1NamespacedConfigMapRequest): Promise<ConfigMap> {
+    const path = `/api/v1/namespaces/${params.namespace}/configmaps/${params.name}`;
+    return await this.patch<ConfigMap>(path, params.body);
+  }
+  async listCoreV1NamespacedEndpoints(params: ListCoreV1NamespacedEndpointsRequest): Promise<EndpointsList> {
+    const path = `/api/v1/namespaces/${params.namespace}/endpoints`;
+    return await this.get<EndpointsList>(path);
+  }
+  async createCoreV1NamespacedEndpoints(params: CreateCoreV1NamespacedEndpointsRequest): Promise<Endpoints> {
+    const path = `/api/v1/namespaces/${params.namespace}/endpoints`;
+    return await this.post<Endpoints>(path, params.body);
+  }
+  async deleteCoreV1CollectionNamespacedEndpoints(params: DeleteCoreV1CollectionNamespacedEndpointsRequest): Promise<Status> {
+    const path = `/api/v1/namespaces/${params.namespace}/endpoints`;
+    return await this.delete<Status>(path);
+  }
+  async readCoreV1NamespacedEndpoints(params: ReadCoreV1NamespacedEndpointsRequest): Promise<Endpoints> {
+    const path = `/api/v1/namespaces/${params.namespace}/endpoints/${params.name}`;
+    return await this.get<Endpoints>(path);
+  }
+  async replaceCoreV1NamespacedEndpoints(params: ReplaceCoreV1NamespacedEndpointsRequest): Promise<Endpoints> {
+    const path = `/api/v1/namespaces/${params.namespace}/endpoints/${params.name}`;
+    return await this.put<Endpoints>(path, params.body);
+  }
+  async deleteCoreV1NamespacedEndpoints(params: DeleteCoreV1NamespacedEndpointsRequest): Promise<Status> {
+    const path = `/api/v1/namespaces/${params.namespace}/endpoints/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchCoreV1NamespacedEndpoints(params: PatchCoreV1NamespacedEndpointsRequest): Promise<Endpoints> {
+    const path = `/api/v1/namespaces/${params.namespace}/endpoints/${params.name}`;
+    return await this.patch<Endpoints>(path, params.body);
+  }
+  async listCoreV1NamespacedEvent(params: ListCoreV1NamespacedEventRequest): Promise<EventList> {
+    const path = `/api/v1/namespaces/${params.namespace}/events`;
+    return await this.get<EventList>(path);
+  }
+  async createCoreV1NamespacedEvent(params: CreateCoreV1NamespacedEventRequest): Promise<Event> {
+    const path = `/api/v1/namespaces/${params.namespace}/events`;
+    return await this.post<Event>(path, params.body);
+  }
+  async deleteCoreV1CollectionNamespacedEvent(params: DeleteCoreV1CollectionNamespacedEventRequest): Promise<Status> {
+    const path = `/api/v1/namespaces/${params.namespace}/events`;
+    return await this.delete<Status>(path);
+  }
+  async readCoreV1NamespacedEvent(params: ReadCoreV1NamespacedEventRequest): Promise<Event> {
+    const path = `/api/v1/namespaces/${params.namespace}/events/${params.name}`;
+    return await this.get<Event>(path);
+  }
+  async replaceCoreV1NamespacedEvent(params: ReplaceCoreV1NamespacedEventRequest): Promise<Event> {
+    const path = `/api/v1/namespaces/${params.namespace}/events/${params.name}`;
+    return await this.put<Event>(path, params.body);
+  }
+  async deleteCoreV1NamespacedEvent(params: DeleteCoreV1NamespacedEventRequest): Promise<Status> {
+    const path = `/api/v1/namespaces/${params.namespace}/events/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchCoreV1NamespacedEvent(params: PatchCoreV1NamespacedEventRequest): Promise<Event> {
+    const path = `/api/v1/namespaces/${params.namespace}/events/${params.name}`;
+    return await this.patch<Event>(path, params.body);
+  }
+  async listCoreV1NamespacedLimitRange(params: ListCoreV1NamespacedLimitRangeRequest): Promise<LimitRangeList> {
+    const path = `/api/v1/namespaces/${params.namespace}/limitranges`;
+    return await this.get<LimitRangeList>(path);
+  }
+  async createCoreV1NamespacedLimitRange(params: CreateCoreV1NamespacedLimitRangeRequest): Promise<LimitRange> {
+    const path = `/api/v1/namespaces/${params.namespace}/limitranges`;
+    return await this.post<LimitRange>(path, params.body);
+  }
+  async deleteCoreV1CollectionNamespacedLimitRange(params: DeleteCoreV1CollectionNamespacedLimitRangeRequest): Promise<Status> {
+    const path = `/api/v1/namespaces/${params.namespace}/limitranges`;
+    return await this.delete<Status>(path);
+  }
+  async readCoreV1NamespacedLimitRange(params: ReadCoreV1NamespacedLimitRangeRequest): Promise<LimitRange> {
+    const path = `/api/v1/namespaces/${params.namespace}/limitranges/${params.name}`;
+    return await this.get<LimitRange>(path);
+  }
+  async replaceCoreV1NamespacedLimitRange(params: ReplaceCoreV1NamespacedLimitRangeRequest): Promise<LimitRange> {
+    const path = `/api/v1/namespaces/${params.namespace}/limitranges/${params.name}`;
+    return await this.put<LimitRange>(path, params.body);
+  }
+  async deleteCoreV1NamespacedLimitRange(params: DeleteCoreV1NamespacedLimitRangeRequest): Promise<Status> {
+    const path = `/api/v1/namespaces/${params.namespace}/limitranges/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchCoreV1NamespacedLimitRange(params: PatchCoreV1NamespacedLimitRangeRequest): Promise<LimitRange> {
+    const path = `/api/v1/namespaces/${params.namespace}/limitranges/${params.name}`;
+    return await this.patch<LimitRange>(path, params.body);
+  }
+  async listCoreV1NamespacedPersistentVolumeClaim(params: ListCoreV1NamespacedPersistentVolumeClaimRequest): Promise<PersistentVolumeClaimList> {
+    const path = `/api/v1/namespaces/${params.namespace}/persistentvolumeclaims`;
+    return await this.get<PersistentVolumeClaimList>(path);
+  }
+  async createCoreV1NamespacedPersistentVolumeClaim(params: CreateCoreV1NamespacedPersistentVolumeClaimRequest): Promise<PersistentVolumeClaim> {
+    const path = `/api/v1/namespaces/${params.namespace}/persistentvolumeclaims`;
+    return await this.post<PersistentVolumeClaim>(path, params.body);
+  }
+  async deleteCoreV1CollectionNamespacedPersistentVolumeClaim(params: DeleteCoreV1CollectionNamespacedPersistentVolumeClaimRequest): Promise<Status> {
+    const path = `/api/v1/namespaces/${params.namespace}/persistentvolumeclaims`;
+    return await this.delete<Status>(path);
+  }
+  async readCoreV1NamespacedPersistentVolumeClaim(params: ReadCoreV1NamespacedPersistentVolumeClaimRequest): Promise<PersistentVolumeClaim> {
+    const path = `/api/v1/namespaces/${params.namespace}/persistentvolumeclaims/${params.name}`;
+    return await this.get<PersistentVolumeClaim>(path);
+  }
+  async replaceCoreV1NamespacedPersistentVolumeClaim(params: ReplaceCoreV1NamespacedPersistentVolumeClaimRequest): Promise<PersistentVolumeClaim> {
+    const path = `/api/v1/namespaces/${params.namespace}/persistentvolumeclaims/${params.name}`;
+    return await this.put<PersistentVolumeClaim>(path, params.body);
+  }
+  async deleteCoreV1NamespacedPersistentVolumeClaim(params: DeleteCoreV1NamespacedPersistentVolumeClaimRequest): Promise<PersistentVolumeClaim> {
+    const path = `/api/v1/namespaces/${params.namespace}/persistentvolumeclaims/${params.name}`;
+    return await this.delete<PersistentVolumeClaim>(path);
+  }
+  async patchCoreV1NamespacedPersistentVolumeClaim(params: PatchCoreV1NamespacedPersistentVolumeClaimRequest): Promise<PersistentVolumeClaim> {
+    const path = `/api/v1/namespaces/${params.namespace}/persistentvolumeclaims/${params.name}`;
+    return await this.patch<PersistentVolumeClaim>(path, params.body);
+  }
+  async readCoreV1NamespacedPersistentVolumeClaimStatus(params: ReadCoreV1NamespacedPersistentVolumeClaimStatusRequest): Promise<PersistentVolumeClaim> {
+    const path = `/api/v1/namespaces/${params.namespace}/persistentvolumeclaims/${params.name}/status`;
+    return await this.get<PersistentVolumeClaim>(path);
+  }
+  async replaceCoreV1NamespacedPersistentVolumeClaimStatus(params: ReplaceCoreV1NamespacedPersistentVolumeClaimStatusRequest): Promise<PersistentVolumeClaim> {
+    const path = `/api/v1/namespaces/${params.namespace}/persistentvolumeclaims/${params.name}/status`;
+    return await this.put<PersistentVolumeClaim>(path, params.body);
+  }
+  async patchCoreV1NamespacedPersistentVolumeClaimStatus(params: PatchCoreV1NamespacedPersistentVolumeClaimStatusRequest): Promise<PersistentVolumeClaim> {
+    const path = `/api/v1/namespaces/${params.namespace}/persistentvolumeclaims/${params.name}/status`;
+    return await this.patch<PersistentVolumeClaim>(path, params.body);
+  }
+  async listCoreV1NamespacedPod(params: ListCoreV1NamespacedPodRequest): Promise<PodList> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods`;
+    return await this.get<PodList>(path);
+  }
+  async createCoreV1NamespacedPod(params: CreateCoreV1NamespacedPodRequest): Promise<Pod> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods`;
+    return await this.post<Pod>(path, params.body);
+  }
+  async deleteCoreV1CollectionNamespacedPod(params: DeleteCoreV1CollectionNamespacedPodRequest): Promise<Status> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods`;
+    return await this.delete<Status>(path);
+  }
+  async readCoreV1NamespacedPod(params: ReadCoreV1NamespacedPodRequest): Promise<Pod> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}`;
+    return await this.get<Pod>(path);
+  }
+  async replaceCoreV1NamespacedPod(params: ReplaceCoreV1NamespacedPodRequest): Promise<Pod> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}`;
+    return await this.put<Pod>(path, params.body);
+  }
+  async deleteCoreV1NamespacedPod(params: DeleteCoreV1NamespacedPodRequest): Promise<Pod> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}`;
+    return await this.delete<Pod>(path);
+  }
+  async patchCoreV1NamespacedPod(params: PatchCoreV1NamespacedPodRequest): Promise<Pod> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}`;
+    return await this.patch<Pod>(path, params.body);
+  }
+  async connectCoreV1GetNamespacedPodAttach(params: ConnectCoreV1GetNamespacedPodAttachRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/attach`;
+    return await this.get<string>(path);
+  }
+  async connectCoreV1PostNamespacedPodAttach(params: ConnectCoreV1PostNamespacedPodAttachRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/attach`;
+    return await this.post<string>(path, params.body);
+  }
+  async createCoreV1NamespacedPodBinding(params: CreateCoreV1NamespacedPodBindingRequest): Promise<Binding> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/binding`;
+    return await this.post<Binding>(path, params.body);
+  }
+  async createCoreV1NamespacedPodEviction(params: CreateCoreV1NamespacedPodEvictionRequest): Promise<Eviction> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/eviction`;
+    return await this.post<Eviction>(path, params.body);
+  }
+  async connectCoreV1GetNamespacedPodExec(params: ConnectCoreV1GetNamespacedPodExecRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/exec`;
+    return await this.get<string>(path);
+  }
+  async connectCoreV1PostNamespacedPodExec(params: ConnectCoreV1PostNamespacedPodExecRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/exec`;
+    return await this.post<string>(path, params.body);
+  }
+  async readCoreV1NamespacedPodLog(params: ReadCoreV1NamespacedPodLogRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/log`;
+    return await this.get<string>(path);
+  }
+  async connectCoreV1GetNamespacedPodPortforward(params: ConnectCoreV1GetNamespacedPodPortforwardRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/portforward`;
+    return await this.get<string>(path);
+  }
+  async connectCoreV1PostNamespacedPodPortforward(params: ConnectCoreV1PostNamespacedPodPortforwardRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/portforward`;
+    return await this.post<string>(path, params.body);
+  }
+  async connectCoreV1GetNamespacedPodProxy(params: ConnectCoreV1GetNamespacedPodProxyRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/proxy`;
+    return await this.get<string>(path);
+  }
+  async connectCoreV1PostNamespacedPodProxy(params: ConnectCoreV1PostNamespacedPodProxyRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/proxy`;
+    return await this.post<string>(path, params.body);
+  }
+  async connectCoreV1PutNamespacedPodProxy(params: ConnectCoreV1PutNamespacedPodProxyRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/proxy`;
+    return await this.put<string>(path, params.body);
+  }
+  async connectCoreV1DeleteNamespacedPodProxy(params: ConnectCoreV1DeleteNamespacedPodProxyRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/proxy`;
+    return await this.delete<string>(path);
+  }
+  async connectCoreV1OptionsNamespacedPodProxy(params: ConnectCoreV1OptionsNamespacedPodProxyRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/proxy`;
+    return await this.options<string>(path);
+  }
+  async connectCoreV1HeadNamespacedPodProxy(params: ConnectCoreV1HeadNamespacedPodProxyRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/proxy`;
+    return await this.head<string>(path);
+  }
+  async connectCoreV1PatchNamespacedPodProxy(params: ConnectCoreV1PatchNamespacedPodProxyRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/proxy`;
+    return await this.patch<string>(path, params.body);
+  }
+  async connectCoreV1GetNamespacedPodProxyWithPath(params: ConnectCoreV1GetNamespacedPodProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/proxy/${params.path}`;
+    return await this.get<string>(path);
+  }
+  async connectCoreV1PostNamespacedPodProxyWithPath(params: ConnectCoreV1PostNamespacedPodProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/proxy/${params.path}`;
+    return await this.post<string>(path, params.body);
+  }
+  async connectCoreV1PutNamespacedPodProxyWithPath(params: ConnectCoreV1PutNamespacedPodProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/proxy/${params.path}`;
+    return await this.put<string>(path, params.body);
+  }
+  async connectCoreV1DeleteNamespacedPodProxyWithPath(params: ConnectCoreV1DeleteNamespacedPodProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/proxy/${params.path}`;
+    return await this.delete<string>(path);
+  }
+  async connectCoreV1OptionsNamespacedPodProxyWithPath(params: ConnectCoreV1OptionsNamespacedPodProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/proxy/${params.path}`;
+    return await this.options<string>(path);
+  }
+  async connectCoreV1HeadNamespacedPodProxyWithPath(params: ConnectCoreV1HeadNamespacedPodProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/proxy/${params.path}`;
+    return await this.head<string>(path);
+  }
+  async connectCoreV1PatchNamespacedPodProxyWithPath(params: ConnectCoreV1PatchNamespacedPodProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/proxy/${params.path}`;
+    return await this.patch<string>(path, params.body);
+  }
+  async readCoreV1NamespacedPodStatus(params: ReadCoreV1NamespacedPodStatusRequest): Promise<Pod> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/status`;
+    return await this.get<Pod>(path);
+  }
+  async replaceCoreV1NamespacedPodStatus(params: ReplaceCoreV1NamespacedPodStatusRequest): Promise<Pod> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/status`;
+    return await this.put<Pod>(path, params.body);
+  }
+  async patchCoreV1NamespacedPodStatus(params: PatchCoreV1NamespacedPodStatusRequest): Promise<Pod> {
+    const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}/status`;
+    return await this.patch<Pod>(path, params.body);
+  }
+  async listCoreV1NamespacedPodTemplate(params: ListCoreV1NamespacedPodTemplateRequest): Promise<PodTemplateList> {
+    const path = `/api/v1/namespaces/${params.namespace}/podtemplates`;
+    return await this.get<PodTemplateList>(path);
+  }
+  async createCoreV1NamespacedPodTemplate(params: CreateCoreV1NamespacedPodTemplateRequest): Promise<PodTemplate> {
+    const path = `/api/v1/namespaces/${params.namespace}/podtemplates`;
+    return await this.post<PodTemplate>(path, params.body);
+  }
+  async deleteCoreV1CollectionNamespacedPodTemplate(params: DeleteCoreV1CollectionNamespacedPodTemplateRequest): Promise<Status> {
+    const path = `/api/v1/namespaces/${params.namespace}/podtemplates`;
+    return await this.delete<Status>(path);
+  }
+  async readCoreV1NamespacedPodTemplate(params: ReadCoreV1NamespacedPodTemplateRequest): Promise<PodTemplate> {
+    const path = `/api/v1/namespaces/${params.namespace}/podtemplates/${params.name}`;
+    return await this.get<PodTemplate>(path);
+  }
+  async replaceCoreV1NamespacedPodTemplate(params: ReplaceCoreV1NamespacedPodTemplateRequest): Promise<PodTemplate> {
+    const path = `/api/v1/namespaces/${params.namespace}/podtemplates/${params.name}`;
+    return await this.put<PodTemplate>(path, params.body);
+  }
+  async deleteCoreV1NamespacedPodTemplate(params: DeleteCoreV1NamespacedPodTemplateRequest): Promise<PodTemplate> {
+    const path = `/api/v1/namespaces/${params.namespace}/podtemplates/${params.name}`;
+    return await this.delete<PodTemplate>(path);
+  }
+  async patchCoreV1NamespacedPodTemplate(params: PatchCoreV1NamespacedPodTemplateRequest): Promise<PodTemplate> {
+    const path = `/api/v1/namespaces/${params.namespace}/podtemplates/${params.name}`;
+    return await this.patch<PodTemplate>(path, params.body);
+  }
+  async listCoreV1NamespacedReplicationController(params: ListCoreV1NamespacedReplicationControllerRequest): Promise<ReplicationControllerList> {
+    const path = `/api/v1/namespaces/${params.namespace}/replicationcontrollers`;
+    return await this.get<ReplicationControllerList>(path);
+  }
+  async createCoreV1NamespacedReplicationController(params: CreateCoreV1NamespacedReplicationControllerRequest): Promise<ReplicationController> {
+    const path = `/api/v1/namespaces/${params.namespace}/replicationcontrollers`;
+    return await this.post<ReplicationController>(path, params.body);
+  }
+  async deleteCoreV1CollectionNamespacedReplicationController(params: DeleteCoreV1CollectionNamespacedReplicationControllerRequest): Promise<Status> {
+    const path = `/api/v1/namespaces/${params.namespace}/replicationcontrollers`;
+    return await this.delete<Status>(path);
+  }
+  async readCoreV1NamespacedReplicationController(params: ReadCoreV1NamespacedReplicationControllerRequest): Promise<ReplicationController> {
+    const path = `/api/v1/namespaces/${params.namespace}/replicationcontrollers/${params.name}`;
+    return await this.get<ReplicationController>(path);
+  }
+  async replaceCoreV1NamespacedReplicationController(params: ReplaceCoreV1NamespacedReplicationControllerRequest): Promise<ReplicationController> {
+    const path = `/api/v1/namespaces/${params.namespace}/replicationcontrollers/${params.name}`;
+    return await this.put<ReplicationController>(path, params.body);
+  }
+  async deleteCoreV1NamespacedReplicationController(params: DeleteCoreV1NamespacedReplicationControllerRequest): Promise<Status> {
+    const path = `/api/v1/namespaces/${params.namespace}/replicationcontrollers/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchCoreV1NamespacedReplicationController(params: PatchCoreV1NamespacedReplicationControllerRequest): Promise<ReplicationController> {
+    const path = `/api/v1/namespaces/${params.namespace}/replicationcontrollers/${params.name}`;
+    return await this.patch<ReplicationController>(path, params.body);
+  }
+  async readCoreV1NamespacedReplicationControllerScale(params: ReadCoreV1NamespacedReplicationControllerScaleRequest): Promise<Scale> {
+    const path = `/api/v1/namespaces/${params.namespace}/replicationcontrollers/${params.name}/scale`;
+    return await this.get<Scale>(path);
+  }
+  async replaceCoreV1NamespacedReplicationControllerScale(params: ReplaceCoreV1NamespacedReplicationControllerScaleRequest): Promise<Scale> {
+    const path = `/api/v1/namespaces/${params.namespace}/replicationcontrollers/${params.name}/scale`;
+    return await this.put<Scale>(path, params.body);
+  }
+  async patchCoreV1NamespacedReplicationControllerScale(params: PatchCoreV1NamespacedReplicationControllerScaleRequest): Promise<Scale> {
+    const path = `/api/v1/namespaces/${params.namespace}/replicationcontrollers/${params.name}/scale`;
+    return await this.patch<Scale>(path, params.body);
+  }
+  async readCoreV1NamespacedReplicationControllerStatus(params: ReadCoreV1NamespacedReplicationControllerStatusRequest): Promise<ReplicationController> {
+    const path = `/api/v1/namespaces/${params.namespace}/replicationcontrollers/${params.name}/status`;
+    return await this.get<ReplicationController>(path);
+  }
+  async replaceCoreV1NamespacedReplicationControllerStatus(params: ReplaceCoreV1NamespacedReplicationControllerStatusRequest): Promise<ReplicationController> {
+    const path = `/api/v1/namespaces/${params.namespace}/replicationcontrollers/${params.name}/status`;
+    return await this.put<ReplicationController>(path, params.body);
+  }
+  async patchCoreV1NamespacedReplicationControllerStatus(params: PatchCoreV1NamespacedReplicationControllerStatusRequest): Promise<ReplicationController> {
+    const path = `/api/v1/namespaces/${params.namespace}/replicationcontrollers/${params.name}/status`;
+    return await this.patch<ReplicationController>(path, params.body);
+  }
+  async listCoreV1NamespacedResourceQuota(params: ListCoreV1NamespacedResourceQuotaRequest): Promise<ResourceQuotaList> {
+    const path = `/api/v1/namespaces/${params.namespace}/resourcequotas`;
+    return await this.get<ResourceQuotaList>(path);
+  }
+  async createCoreV1NamespacedResourceQuota(params: CreateCoreV1NamespacedResourceQuotaRequest): Promise<ResourceQuota> {
+    const path = `/api/v1/namespaces/${params.namespace}/resourcequotas`;
+    return await this.post<ResourceQuota>(path, params.body);
+  }
+  async deleteCoreV1CollectionNamespacedResourceQuota(params: DeleteCoreV1CollectionNamespacedResourceQuotaRequest): Promise<Status> {
+    const path = `/api/v1/namespaces/${params.namespace}/resourcequotas`;
+    return await this.delete<Status>(path);
+  }
+  async readCoreV1NamespacedResourceQuota(params: ReadCoreV1NamespacedResourceQuotaRequest): Promise<ResourceQuota> {
+    const path = `/api/v1/namespaces/${params.namespace}/resourcequotas/${params.name}`;
+    return await this.get<ResourceQuota>(path);
+  }
+  async replaceCoreV1NamespacedResourceQuota(params: ReplaceCoreV1NamespacedResourceQuotaRequest): Promise<ResourceQuota> {
+    const path = `/api/v1/namespaces/${params.namespace}/resourcequotas/${params.name}`;
+    return await this.put<ResourceQuota>(path, params.body);
+  }
+  async deleteCoreV1NamespacedResourceQuota(params: DeleteCoreV1NamespacedResourceQuotaRequest): Promise<ResourceQuota> {
+    const path = `/api/v1/namespaces/${params.namespace}/resourcequotas/${params.name}`;
+    return await this.delete<ResourceQuota>(path);
+  }
+  async patchCoreV1NamespacedResourceQuota(params: PatchCoreV1NamespacedResourceQuotaRequest): Promise<ResourceQuota> {
+    const path = `/api/v1/namespaces/${params.namespace}/resourcequotas/${params.name}`;
+    return await this.patch<ResourceQuota>(path, params.body);
+  }
+  async readCoreV1NamespacedResourceQuotaStatus(params: ReadCoreV1NamespacedResourceQuotaStatusRequest): Promise<ResourceQuota> {
+    const path = `/api/v1/namespaces/${params.namespace}/resourcequotas/${params.name}/status`;
+    return await this.get<ResourceQuota>(path);
+  }
+  async replaceCoreV1NamespacedResourceQuotaStatus(params: ReplaceCoreV1NamespacedResourceQuotaStatusRequest): Promise<ResourceQuota> {
+    const path = `/api/v1/namespaces/${params.namespace}/resourcequotas/${params.name}/status`;
+    return await this.put<ResourceQuota>(path, params.body);
+  }
+  async patchCoreV1NamespacedResourceQuotaStatus(params: PatchCoreV1NamespacedResourceQuotaStatusRequest): Promise<ResourceQuota> {
+    const path = `/api/v1/namespaces/${params.namespace}/resourcequotas/${params.name}/status`;
+    return await this.patch<ResourceQuota>(path, params.body);
+  }
+  async listCoreV1NamespacedSecret(params: ListCoreV1NamespacedSecretRequest): Promise<SecretList> {
+    const path = `/api/v1/namespaces/${params.namespace}/secrets`;
+    return await this.get<SecretList>(path);
+  }
+  async createCoreV1NamespacedSecret(params: CreateCoreV1NamespacedSecretRequest): Promise<Secret> {
+    const path = `/api/v1/namespaces/${params.namespace}/secrets`;
+    return await this.post<Secret>(path, params.body);
+  }
+  async deleteCoreV1CollectionNamespacedSecret(params: DeleteCoreV1CollectionNamespacedSecretRequest): Promise<Status> {
+    const path = `/api/v1/namespaces/${params.namespace}/secrets`;
+    return await this.delete<Status>(path);
+  }
+  async readCoreV1NamespacedSecret(params: ReadCoreV1NamespacedSecretRequest): Promise<Secret> {
+    const path = `/api/v1/namespaces/${params.namespace}/secrets/${params.name}`;
+    return await this.get<Secret>(path);
+  }
+  async replaceCoreV1NamespacedSecret(params: ReplaceCoreV1NamespacedSecretRequest): Promise<Secret> {
+    const path = `/api/v1/namespaces/${params.namespace}/secrets/${params.name}`;
+    return await this.put<Secret>(path, params.body);
+  }
+  async deleteCoreV1NamespacedSecret(params: DeleteCoreV1NamespacedSecretRequest): Promise<Status> {
+    const path = `/api/v1/namespaces/${params.namespace}/secrets/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchCoreV1NamespacedSecret(params: PatchCoreV1NamespacedSecretRequest): Promise<Secret> {
+    const path = `/api/v1/namespaces/${params.namespace}/secrets/${params.name}`;
+    return await this.patch<Secret>(path, params.body);
+  }
+  async listCoreV1NamespacedServiceAccount(params: ListCoreV1NamespacedServiceAccountRequest): Promise<ServiceAccountList> {
+    const path = `/api/v1/namespaces/${params.namespace}/serviceaccounts`;
+    return await this.get<ServiceAccountList>(path);
+  }
+  async createCoreV1NamespacedServiceAccount(params: CreateCoreV1NamespacedServiceAccountRequest): Promise<ServiceAccount> {
+    const path = `/api/v1/namespaces/${params.namespace}/serviceaccounts`;
+    return await this.post<ServiceAccount>(path, params.body);
+  }
+  async deleteCoreV1CollectionNamespacedServiceAccount(params: DeleteCoreV1CollectionNamespacedServiceAccountRequest): Promise<Status> {
+    const path = `/api/v1/namespaces/${params.namespace}/serviceaccounts`;
+    return await this.delete<Status>(path);
+  }
+  async readCoreV1NamespacedServiceAccount(params: ReadCoreV1NamespacedServiceAccountRequest): Promise<ServiceAccount> {
+    const path = `/api/v1/namespaces/${params.namespace}/serviceaccounts/${params.name}`;
+    return await this.get<ServiceAccount>(path);
+  }
+  async replaceCoreV1NamespacedServiceAccount(params: ReplaceCoreV1NamespacedServiceAccountRequest): Promise<ServiceAccount> {
+    const path = `/api/v1/namespaces/${params.namespace}/serviceaccounts/${params.name}`;
+    return await this.put<ServiceAccount>(path, params.body);
+  }
+  async deleteCoreV1NamespacedServiceAccount(params: DeleteCoreV1NamespacedServiceAccountRequest): Promise<ServiceAccount> {
+    const path = `/api/v1/namespaces/${params.namespace}/serviceaccounts/${params.name}`;
+    return await this.delete<ServiceAccount>(path);
+  }
+  async patchCoreV1NamespacedServiceAccount(params: PatchCoreV1NamespacedServiceAccountRequest): Promise<ServiceAccount> {
+    const path = `/api/v1/namespaces/${params.namespace}/serviceaccounts/${params.name}`;
+    return await this.patch<ServiceAccount>(path, params.body);
+  }
+  async createCoreV1NamespacedServiceAccountToken(params: CreateCoreV1NamespacedServiceAccountTokenRequest): Promise<TokenRequest> {
+    const path = `/api/v1/namespaces/${params.namespace}/serviceaccounts/${params.name}/token`;
+    return await this.post<TokenRequest>(path, params.body);
+  }
+  async listCoreV1NamespacedService(params: ListCoreV1NamespacedServiceRequest): Promise<ServiceList> {
+    const path = `/api/v1/namespaces/${params.namespace}/services`;
+    return await this.get<ServiceList>(path);
+  }
+  async createCoreV1NamespacedService(params: CreateCoreV1NamespacedServiceRequest): Promise<Service> {
+    const path = `/api/v1/namespaces/${params.namespace}/services`;
+    return await this.post<Service>(path, params.body);
+  }
+  async readCoreV1NamespacedService(params: ReadCoreV1NamespacedServiceRequest): Promise<Service> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}`;
+    return await this.get<Service>(path);
+  }
+  async replaceCoreV1NamespacedService(params: ReplaceCoreV1NamespacedServiceRequest): Promise<Service> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}`;
+    return await this.put<Service>(path, params.body);
+  }
+  async deleteCoreV1NamespacedService(params: DeleteCoreV1NamespacedServiceRequest): Promise<Status> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchCoreV1NamespacedService(params: PatchCoreV1NamespacedServiceRequest): Promise<Service> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}`;
+    return await this.patch<Service>(path, params.body);
+  }
+  async connectCoreV1GetNamespacedServiceProxy(params: ConnectCoreV1GetNamespacedServiceProxyRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}/proxy`;
+    return await this.get<string>(path);
+  }
+  async connectCoreV1PostNamespacedServiceProxy(params: ConnectCoreV1PostNamespacedServiceProxyRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}/proxy`;
+    return await this.post<string>(path, params.body);
+  }
+  async connectCoreV1PutNamespacedServiceProxy(params: ConnectCoreV1PutNamespacedServiceProxyRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}/proxy`;
+    return await this.put<string>(path, params.body);
+  }
+  async connectCoreV1DeleteNamespacedServiceProxy(params: ConnectCoreV1DeleteNamespacedServiceProxyRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}/proxy`;
+    return await this.delete<string>(path);
+  }
+  async connectCoreV1OptionsNamespacedServiceProxy(params: ConnectCoreV1OptionsNamespacedServiceProxyRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}/proxy`;
+    return await this.options<string>(path);
+  }
+  async connectCoreV1HeadNamespacedServiceProxy(params: ConnectCoreV1HeadNamespacedServiceProxyRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}/proxy`;
+    return await this.head<string>(path);
+  }
+  async connectCoreV1PatchNamespacedServiceProxy(params: ConnectCoreV1PatchNamespacedServiceProxyRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}/proxy`;
+    return await this.patch<string>(path, params.body);
+  }
+  async connectCoreV1GetNamespacedServiceProxyWithPath(params: ConnectCoreV1GetNamespacedServiceProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}/proxy/${params.path}`;
+    return await this.get<string>(path);
+  }
+  async connectCoreV1PostNamespacedServiceProxyWithPath(params: ConnectCoreV1PostNamespacedServiceProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}/proxy/${params.path}`;
+    return await this.post<string>(path, params.body);
+  }
+  async connectCoreV1PutNamespacedServiceProxyWithPath(params: ConnectCoreV1PutNamespacedServiceProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}/proxy/${params.path}`;
+    return await this.put<string>(path, params.body);
+  }
+  async connectCoreV1DeleteNamespacedServiceProxyWithPath(params: ConnectCoreV1DeleteNamespacedServiceProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}/proxy/${params.path}`;
+    return await this.delete<string>(path);
+  }
+  async connectCoreV1OptionsNamespacedServiceProxyWithPath(params: ConnectCoreV1OptionsNamespacedServiceProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}/proxy/${params.path}`;
+    return await this.options<string>(path);
+  }
+  async connectCoreV1HeadNamespacedServiceProxyWithPath(params: ConnectCoreV1HeadNamespacedServiceProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}/proxy/${params.path}`;
+    return await this.head<string>(path);
+  }
+  async connectCoreV1PatchNamespacedServiceProxyWithPath(params: ConnectCoreV1PatchNamespacedServiceProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}/proxy/${params.path}`;
+    return await this.patch<string>(path, params.body);
+  }
+  async readCoreV1NamespacedServiceStatus(params: ReadCoreV1NamespacedServiceStatusRequest): Promise<Service> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}/status`;
+    return await this.get<Service>(path);
+  }
+  async replaceCoreV1NamespacedServiceStatus(params: ReplaceCoreV1NamespacedServiceStatusRequest): Promise<Service> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}/status`;
+    return await this.put<Service>(path, params.body);
+  }
+  async patchCoreV1NamespacedServiceStatus(params: PatchCoreV1NamespacedServiceStatusRequest): Promise<Service> {
+    const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}/status`;
+    return await this.patch<Service>(path, params.body);
+  }
+  async readCoreV1Namespace(params: ReadCoreV1NamespaceRequest): Promise<Namespace> {
+    const path = `/api/v1/namespaces/${params.name}`;
+    return await this.get<Namespace>(path);
+  }
+  async replaceCoreV1Namespace(params: ReplaceCoreV1NamespaceRequest): Promise<Namespace> {
+    const path = `/api/v1/namespaces/${params.name}`;
+    return await this.put<Namespace>(path, params.body);
+  }
+  async deleteCoreV1Namespace(params: DeleteCoreV1NamespaceRequest): Promise<Status> {
+    const path = `/api/v1/namespaces/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchCoreV1Namespace(params: PatchCoreV1NamespaceRequest): Promise<Namespace> {
+    const path = `/api/v1/namespaces/${params.name}`;
+    return await this.patch<Namespace>(path, params.body);
+  }
+  async replaceCoreV1NamespaceFinalize(params: ReplaceCoreV1NamespaceFinalizeRequest): Promise<Namespace> {
+    const path = `/api/v1/namespaces/${params.name}/finalize`;
+    return await this.put<Namespace>(path, params.body);
+  }
+  async readCoreV1NamespaceStatus(params: ReadCoreV1NamespaceStatusRequest): Promise<Namespace> {
+    const path = `/api/v1/namespaces/${params.name}/status`;
+    return await this.get<Namespace>(path);
+  }
+  async replaceCoreV1NamespaceStatus(params: ReplaceCoreV1NamespaceStatusRequest): Promise<Namespace> {
+    const path = `/api/v1/namespaces/${params.name}/status`;
+    return await this.put<Namespace>(path, params.body);
+  }
+  async patchCoreV1NamespaceStatus(params: PatchCoreV1NamespaceStatusRequest): Promise<Namespace> {
+    const path = `/api/v1/namespaces/${params.name}/status`;
+    return await this.patch<Namespace>(path, params.body);
+  }
+  async listCoreV1Node(params: ListCoreV1NodeRequest): Promise<NodeList> {
+    const path = `/api/v1/nodes`;
+    return await this.get<NodeList>(path);
+  }
+  async createCoreV1Node(params: CreateCoreV1NodeRequest): Promise<Node> {
+    const path = `/api/v1/nodes`;
+    return await this.post<Node>(path, params.body);
+  }
+  async deleteCoreV1CollectionNode(params: DeleteCoreV1CollectionNodeRequest): Promise<Status> {
+    const path = `/api/v1/nodes`;
+    return await this.delete<Status>(path);
+  }
+  async readCoreV1Node(params: ReadCoreV1NodeRequest): Promise<Node> {
+    const path = `/api/v1/nodes/${params.name}`;
+    return await this.get<Node>(path);
+  }
+  async replaceCoreV1Node(params: ReplaceCoreV1NodeRequest): Promise<Node> {
+    const path = `/api/v1/nodes/${params.name}`;
+    return await this.put<Node>(path, params.body);
+  }
+  async deleteCoreV1Node(params: DeleteCoreV1NodeRequest): Promise<Status> {
+    const path = `/api/v1/nodes/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchCoreV1Node(params: PatchCoreV1NodeRequest): Promise<Node> {
+    const path = `/api/v1/nodes/${params.name}`;
+    return await this.patch<Node>(path, params.body);
+  }
+  async connectCoreV1GetNodeProxy(params: ConnectCoreV1GetNodeProxyRequest): Promise<string> {
+    const path = `/api/v1/nodes/${params.name}/proxy`;
+    return await this.get<string>(path);
+  }
+  async connectCoreV1PostNodeProxy(params: ConnectCoreV1PostNodeProxyRequest): Promise<string> {
+    const path = `/api/v1/nodes/${params.name}/proxy`;
+    return await this.post<string>(path, params.body);
+  }
+  async connectCoreV1PutNodeProxy(params: ConnectCoreV1PutNodeProxyRequest): Promise<string> {
+    const path = `/api/v1/nodes/${params.name}/proxy`;
+    return await this.put<string>(path, params.body);
+  }
+  async connectCoreV1DeleteNodeProxy(params: ConnectCoreV1DeleteNodeProxyRequest): Promise<string> {
+    const path = `/api/v1/nodes/${params.name}/proxy`;
+    return await this.delete<string>(path);
+  }
+  async connectCoreV1OptionsNodeProxy(params: ConnectCoreV1OptionsNodeProxyRequest): Promise<string> {
+    const path = `/api/v1/nodes/${params.name}/proxy`;
+    return await this.options<string>(path);
+  }
+  async connectCoreV1HeadNodeProxy(params: ConnectCoreV1HeadNodeProxyRequest): Promise<string> {
+    const path = `/api/v1/nodes/${params.name}/proxy`;
+    return await this.head<string>(path);
+  }
+  async connectCoreV1PatchNodeProxy(params: ConnectCoreV1PatchNodeProxyRequest): Promise<string> {
+    const path = `/api/v1/nodes/${params.name}/proxy`;
+    return await this.patch<string>(path, params.body);
+  }
+  async connectCoreV1GetNodeProxyWithPath(params: ConnectCoreV1GetNodeProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/nodes/${params.name}/proxy/${params.path}`;
+    return await this.get<string>(path);
+  }
+  async connectCoreV1PostNodeProxyWithPath(params: ConnectCoreV1PostNodeProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/nodes/${params.name}/proxy/${params.path}`;
+    return await this.post<string>(path, params.body);
+  }
+  async connectCoreV1PutNodeProxyWithPath(params: ConnectCoreV1PutNodeProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/nodes/${params.name}/proxy/${params.path}`;
+    return await this.put<string>(path, params.body);
+  }
+  async connectCoreV1DeleteNodeProxyWithPath(params: ConnectCoreV1DeleteNodeProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/nodes/${params.name}/proxy/${params.path}`;
+    return await this.delete<string>(path);
+  }
+  async connectCoreV1OptionsNodeProxyWithPath(params: ConnectCoreV1OptionsNodeProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/nodes/${params.name}/proxy/${params.path}`;
+    return await this.options<string>(path);
+  }
+  async connectCoreV1HeadNodeProxyWithPath(params: ConnectCoreV1HeadNodeProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/nodes/${params.name}/proxy/${params.path}`;
+    return await this.head<string>(path);
+  }
+  async connectCoreV1PatchNodeProxyWithPath(params: ConnectCoreV1PatchNodeProxyWithPathRequest): Promise<string> {
+    const path = `/api/v1/nodes/${params.name}/proxy/${params.path}`;
+    return await this.patch<string>(path, params.body);
+  }
+  async readCoreV1NodeStatus(params: ReadCoreV1NodeStatusRequest): Promise<Node> {
+    const path = `/api/v1/nodes/${params.name}/status`;
+    return await this.get<Node>(path);
+  }
+  async replaceCoreV1NodeStatus(params: ReplaceCoreV1NodeStatusRequest): Promise<Node> {
+    const path = `/api/v1/nodes/${params.name}/status`;
+    return await this.put<Node>(path, params.body);
+  }
+  async patchCoreV1NodeStatus(params: PatchCoreV1NodeStatusRequest): Promise<Node> {
+    const path = `/api/v1/nodes/${params.name}/status`;
+    return await this.patch<Node>(path, params.body);
+  }
+  async listCoreV1PersistentVolumeClaimForAllNamespaces(params: ListCoreV1PersistentVolumeClaimForAllNamespacesRequest): Promise<PersistentVolumeClaimList> {
+    const path = `/api/v1/persistentvolumeclaims`;
+    return await this.get<PersistentVolumeClaimList>(path);
+  }
+  async listCoreV1PersistentVolume(params: ListCoreV1PersistentVolumeRequest): Promise<PersistentVolumeList> {
+    const path = `/api/v1/persistentvolumes`;
+    return await this.get<PersistentVolumeList>(path);
+  }
+  async createCoreV1PersistentVolume(params: CreateCoreV1PersistentVolumeRequest): Promise<PersistentVolume> {
+    const path = `/api/v1/persistentvolumes`;
+    return await this.post<PersistentVolume>(path, params.body);
+  }
+  async deleteCoreV1CollectionPersistentVolume(params: DeleteCoreV1CollectionPersistentVolumeRequest): Promise<Status> {
+    const path = `/api/v1/persistentvolumes`;
+    return await this.delete<Status>(path);
+  }
+  async readCoreV1PersistentVolume(params: ReadCoreV1PersistentVolumeRequest): Promise<PersistentVolume> {
+    const path = `/api/v1/persistentvolumes/${params.name}`;
+    return await this.get<PersistentVolume>(path);
+  }
+  async replaceCoreV1PersistentVolume(params: ReplaceCoreV1PersistentVolumeRequest): Promise<PersistentVolume> {
+    const path = `/api/v1/persistentvolumes/${params.name}`;
+    return await this.put<PersistentVolume>(path, params.body);
+  }
+  async deleteCoreV1PersistentVolume(params: DeleteCoreV1PersistentVolumeRequest): Promise<PersistentVolume> {
+    const path = `/api/v1/persistentvolumes/${params.name}`;
+    return await this.delete<PersistentVolume>(path);
+  }
+  async patchCoreV1PersistentVolume(params: PatchCoreV1PersistentVolumeRequest): Promise<PersistentVolume> {
+    const path = `/api/v1/persistentvolumes/${params.name}`;
+    return await this.patch<PersistentVolume>(path, params.body);
+  }
+  async readCoreV1PersistentVolumeStatus(params: ReadCoreV1PersistentVolumeStatusRequest): Promise<PersistentVolume> {
+    const path = `/api/v1/persistentvolumes/${params.name}/status`;
+    return await this.get<PersistentVolume>(path);
+  }
+  async replaceCoreV1PersistentVolumeStatus(params: ReplaceCoreV1PersistentVolumeStatusRequest): Promise<PersistentVolume> {
+    const path = `/api/v1/persistentvolumes/${params.name}/status`;
+    return await this.put<PersistentVolume>(path, params.body);
+  }
+  async patchCoreV1PersistentVolumeStatus(params: PatchCoreV1PersistentVolumeStatusRequest): Promise<PersistentVolume> {
+    const path = `/api/v1/persistentvolumes/${params.name}/status`;
+    return await this.patch<PersistentVolume>(path, params.body);
+  }
+  async listCoreV1PodForAllNamespaces(params: ListCoreV1PodForAllNamespacesRequest): Promise<PodList> {
+    const path = `/api/v1/pods`;
+    return await this.get<PodList>(path);
+  }
+  async listCoreV1PodTemplateForAllNamespaces(params: ListCoreV1PodTemplateForAllNamespacesRequest): Promise<PodTemplateList> {
+    const path = `/api/v1/podtemplates`;
+    return await this.get<PodTemplateList>(path);
+  }
+  async listCoreV1ReplicationControllerForAllNamespaces(params: ListCoreV1ReplicationControllerForAllNamespacesRequest): Promise<ReplicationControllerList> {
+    const path = `/api/v1/replicationcontrollers`;
+    return await this.get<ReplicationControllerList>(path);
+  }
+  async listCoreV1ResourceQuotaForAllNamespaces(params: ListCoreV1ResourceQuotaForAllNamespacesRequest): Promise<ResourceQuotaList> {
+    const path = `/api/v1/resourcequotas`;
+    return await this.get<ResourceQuotaList>(path);
+  }
+  async listCoreV1SecretForAllNamespaces(params: ListCoreV1SecretForAllNamespacesRequest): Promise<SecretList> {
+    const path = `/api/v1/secrets`;
+    return await this.get<SecretList>(path);
+  }
+  async listCoreV1ServiceAccountForAllNamespaces(params: ListCoreV1ServiceAccountForAllNamespacesRequest): Promise<ServiceAccountList> {
+    const path = `/api/v1/serviceaccounts`;
+    return await this.get<ServiceAccountList>(path);
+  }
+  async listCoreV1ServiceForAllNamespaces(params: ListCoreV1ServiceForAllNamespacesRequest): Promise<ServiceList> {
+    const path = `/api/v1/services`;
+    return await this.get<ServiceList>(path);
+  }
+  async watchCoreV1ConfigMapListForAllNamespaces(params: WatchCoreV1ConfigMapListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/configmaps`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1EndpointsListForAllNamespaces(params: WatchCoreV1EndpointsListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/endpoints`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1EventListForAllNamespaces(params: WatchCoreV1EventListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/events`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1LimitRangeListForAllNamespaces(params: WatchCoreV1LimitRangeListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/limitranges`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespaceList(params: WatchCoreV1NamespaceListRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedConfigMapList(params: WatchCoreV1NamespacedConfigMapListRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/configmaps`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedConfigMap(params: WatchCoreV1NamespacedConfigMapRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/configmaps/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedEndpointsList(params: WatchCoreV1NamespacedEndpointsListRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/endpoints`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedEndpoints(params: WatchCoreV1NamespacedEndpointsRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/endpoints/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedEventList(params: WatchCoreV1NamespacedEventListRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/events`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedEvent(params: WatchCoreV1NamespacedEventRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/events/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedLimitRangeList(params: WatchCoreV1NamespacedLimitRangeListRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/limitranges`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedLimitRange(params: WatchCoreV1NamespacedLimitRangeRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/limitranges/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedPersistentVolumeClaimList(params: WatchCoreV1NamespacedPersistentVolumeClaimListRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/persistentvolumeclaims`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedPersistentVolumeClaim(params: WatchCoreV1NamespacedPersistentVolumeClaimRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/persistentvolumeclaims/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedPodList(params: WatchCoreV1NamespacedPodListRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/pods`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedPod(params: WatchCoreV1NamespacedPodRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/pods/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedPodTemplateList(params: WatchCoreV1NamespacedPodTemplateListRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/podtemplates`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedPodTemplate(params: WatchCoreV1NamespacedPodTemplateRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/podtemplates/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedReplicationControllerList(params: WatchCoreV1NamespacedReplicationControllerListRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/replicationcontrollers`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedReplicationController(params: WatchCoreV1NamespacedReplicationControllerRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/replicationcontrollers/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedResourceQuotaList(params: WatchCoreV1NamespacedResourceQuotaListRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/resourcequotas`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedResourceQuota(params: WatchCoreV1NamespacedResourceQuotaRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/resourcequotas/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedSecretList(params: WatchCoreV1NamespacedSecretListRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/secrets`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedSecret(params: WatchCoreV1NamespacedSecretRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/secrets/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedServiceAccountList(params: WatchCoreV1NamespacedServiceAccountListRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/serviceaccounts`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedServiceAccount(params: WatchCoreV1NamespacedServiceAccountRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/serviceaccounts/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedServiceList(params: WatchCoreV1NamespacedServiceListRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/services`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NamespacedService(params: WatchCoreV1NamespacedServiceRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.namespace}/services/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1Namespace(params: WatchCoreV1NamespaceRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/namespaces/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1NodeList(params: WatchCoreV1NodeListRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/nodes`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1Node(params: WatchCoreV1NodeRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/nodes/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1PersistentVolumeClaimListForAllNamespaces(params: WatchCoreV1PersistentVolumeClaimListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/persistentvolumeclaims`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1PersistentVolumeList(params: WatchCoreV1PersistentVolumeListRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/persistentvolumes`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1PersistentVolume(params: WatchCoreV1PersistentVolumeRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/persistentvolumes/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1PodListForAllNamespaces(params: WatchCoreV1PodListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/pods`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1PodTemplateListForAllNamespaces(params: WatchCoreV1PodTemplateListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/podtemplates`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1ReplicationControllerListForAllNamespaces(params: WatchCoreV1ReplicationControllerListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/replicationcontrollers`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1ResourceQuotaListForAllNamespaces(params: WatchCoreV1ResourceQuotaListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/resourcequotas`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1SecretListForAllNamespaces(params: WatchCoreV1SecretListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/secrets`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1ServiceAccountListForAllNamespaces(params: WatchCoreV1ServiceAccountListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/serviceaccounts`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoreV1ServiceListForAllNamespaces(params: WatchCoreV1ServiceListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/api/v1/watch/services`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getAPIVersions(params: GetAPIVersionsRequest): Promise<APIGroupList> {
+    const path = `/apis/`;
+    return await this.get<APIGroupList>(path);
+  }
+  async getAdmissionregistrationAPIGroup(params: GetAdmissionregistrationAPIGroupRequest): Promise<APIGroup> {
+    const path = `/apis/admissionregistration.k8s.io/`;
+    return await this.get<APIGroup>(path);
+  }
+  async getAdmissionregistrationV1APIResources(params: GetAdmissionregistrationV1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/admissionregistration.k8s.io/v1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listAdmissionregistrationV1MutatingWebhookConfiguration(params: ListAdmissionregistrationV1MutatingWebhookConfigurationRequest): Promise<MutatingWebhookConfigurationList> {
+    const path = `/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations`;
+    return await this.get<MutatingWebhookConfigurationList>(path);
+  }
+  async createAdmissionregistrationV1MutatingWebhookConfiguration(params: CreateAdmissionregistrationV1MutatingWebhookConfigurationRequest): Promise<MutatingWebhookConfiguration> {
+    const path = `/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations`;
+    return await this.post<MutatingWebhookConfiguration>(path, params.body);
+  }
+  async deleteAdmissionregistrationV1CollectionMutatingWebhookConfiguration(params: DeleteAdmissionregistrationV1CollectionMutatingWebhookConfigurationRequest): Promise<Status> {
+    const path = `/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations`;
+    return await this.delete<Status>(path);
+  }
+  async readAdmissionregistrationV1MutatingWebhookConfiguration(params: ReadAdmissionregistrationV1MutatingWebhookConfigurationRequest): Promise<MutatingWebhookConfiguration> {
+    const path = `/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations/${params.name}`;
+    return await this.get<MutatingWebhookConfiguration>(path);
+  }
+  async replaceAdmissionregistrationV1MutatingWebhookConfiguration(params: ReplaceAdmissionregistrationV1MutatingWebhookConfigurationRequest): Promise<MutatingWebhookConfiguration> {
+    const path = `/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations/${params.name}`;
+    return await this.put<MutatingWebhookConfiguration>(path, params.body);
+  }
+  async deleteAdmissionregistrationV1MutatingWebhookConfiguration(params: DeleteAdmissionregistrationV1MutatingWebhookConfigurationRequest): Promise<Status> {
+    const path = `/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchAdmissionregistrationV1MutatingWebhookConfiguration(params: PatchAdmissionregistrationV1MutatingWebhookConfigurationRequest): Promise<MutatingWebhookConfiguration> {
+    const path = `/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations/${params.name}`;
+    return await this.patch<MutatingWebhookConfiguration>(path, params.body);
+  }
+  async listAdmissionregistrationV1ValidatingWebhookConfiguration(params: ListAdmissionregistrationV1ValidatingWebhookConfigurationRequest): Promise<ValidatingWebhookConfigurationList> {
+    const path = `/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations`;
+    return await this.get<ValidatingWebhookConfigurationList>(path);
+  }
+  async createAdmissionregistrationV1ValidatingWebhookConfiguration(params: CreateAdmissionregistrationV1ValidatingWebhookConfigurationRequest): Promise<ValidatingWebhookConfiguration> {
+    const path = `/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations`;
+    return await this.post<ValidatingWebhookConfiguration>(path, params.body);
+  }
+  async deleteAdmissionregistrationV1CollectionValidatingWebhookConfiguration(params: DeleteAdmissionregistrationV1CollectionValidatingWebhookConfigurationRequest): Promise<Status> {
+    const path = `/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations`;
+    return await this.delete<Status>(path);
+  }
+  async readAdmissionregistrationV1ValidatingWebhookConfiguration(params: ReadAdmissionregistrationV1ValidatingWebhookConfigurationRequest): Promise<ValidatingWebhookConfiguration> {
+    const path = `/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations/${params.name}`;
+    return await this.get<ValidatingWebhookConfiguration>(path);
+  }
+  async replaceAdmissionregistrationV1ValidatingWebhookConfiguration(params: ReplaceAdmissionregistrationV1ValidatingWebhookConfigurationRequest): Promise<ValidatingWebhookConfiguration> {
+    const path = `/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations/${params.name}`;
+    return await this.put<ValidatingWebhookConfiguration>(path, params.body);
+  }
+  async deleteAdmissionregistrationV1ValidatingWebhookConfiguration(params: DeleteAdmissionregistrationV1ValidatingWebhookConfigurationRequest): Promise<Status> {
+    const path = `/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchAdmissionregistrationV1ValidatingWebhookConfiguration(params: PatchAdmissionregistrationV1ValidatingWebhookConfigurationRequest): Promise<ValidatingWebhookConfiguration> {
+    const path = `/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations/${params.name}`;
+    return await this.patch<ValidatingWebhookConfiguration>(path, params.body);
+  }
+  async watchAdmissionregistrationV1MutatingWebhookConfigurationList(params: WatchAdmissionregistrationV1MutatingWebhookConfigurationListRequest): Promise<WatchEvent> {
+    const path = `/apis/admissionregistration.k8s.io/v1/watch/mutatingwebhookconfigurations`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAdmissionregistrationV1MutatingWebhookConfiguration(params: WatchAdmissionregistrationV1MutatingWebhookConfigurationRequest): Promise<WatchEvent> {
+    const path = `/apis/admissionregistration.k8s.io/v1/watch/mutatingwebhookconfigurations/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAdmissionregistrationV1ValidatingWebhookConfigurationList(params: WatchAdmissionregistrationV1ValidatingWebhookConfigurationListRequest): Promise<WatchEvent> {
+    const path = `/apis/admissionregistration.k8s.io/v1/watch/validatingwebhookconfigurations`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAdmissionregistrationV1ValidatingWebhookConfiguration(params: WatchAdmissionregistrationV1ValidatingWebhookConfigurationRequest): Promise<WatchEvent> {
+    const path = `/apis/admissionregistration.k8s.io/v1/watch/validatingwebhookconfigurations/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getApiextensionsAPIGroup(params: GetApiextensionsAPIGroupRequest): Promise<APIGroup> {
+    const path = `/apis/apiextensions.k8s.io/`;
+    return await this.get<APIGroup>(path);
+  }
+  async getApiextensionsV1APIResources(params: GetApiextensionsV1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/apiextensions.k8s.io/v1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listApiextensionsV1CustomResourceDefinition(params: ListApiextensionsV1CustomResourceDefinitionRequest): Promise<CustomResourceDefinitionList> {
+    const path = `/apis/apiextensions.k8s.io/v1/customresourcedefinitions`;
+    return await this.get<CustomResourceDefinitionList>(path);
+  }
+  async createApiextensionsV1CustomResourceDefinition(params: CreateApiextensionsV1CustomResourceDefinitionRequest): Promise<CustomResourceDefinition> {
+    const path = `/apis/apiextensions.k8s.io/v1/customresourcedefinitions`;
+    return await this.post<CustomResourceDefinition>(path, params.body);
+  }
+  async deleteApiextensionsV1CollectionCustomResourceDefinition(params: DeleteApiextensionsV1CollectionCustomResourceDefinitionRequest): Promise<Status> {
+    const path = `/apis/apiextensions.k8s.io/v1/customresourcedefinitions`;
+    return await this.delete<Status>(path);
+  }
+  async readApiextensionsV1CustomResourceDefinition(params: ReadApiextensionsV1CustomResourceDefinitionRequest): Promise<CustomResourceDefinition> {
+    const path = `/apis/apiextensions.k8s.io/v1/customresourcedefinitions/${params.name}`;
+    return await this.get<CustomResourceDefinition>(path);
+  }
+  async replaceApiextensionsV1CustomResourceDefinition(params: ReplaceApiextensionsV1CustomResourceDefinitionRequest): Promise<CustomResourceDefinition> {
+    const path = `/apis/apiextensions.k8s.io/v1/customresourcedefinitions/${params.name}`;
+    return await this.put<CustomResourceDefinition>(path, params.body);
+  }
+  async deleteApiextensionsV1CustomResourceDefinition(params: DeleteApiextensionsV1CustomResourceDefinitionRequest): Promise<Status> {
+    const path = `/apis/apiextensions.k8s.io/v1/customresourcedefinitions/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchApiextensionsV1CustomResourceDefinition(params: PatchApiextensionsV1CustomResourceDefinitionRequest): Promise<CustomResourceDefinition> {
+    const path = `/apis/apiextensions.k8s.io/v1/customresourcedefinitions/${params.name}`;
+    return await this.patch<CustomResourceDefinition>(path, params.body);
+  }
+  async readApiextensionsV1CustomResourceDefinitionStatus(params: ReadApiextensionsV1CustomResourceDefinitionStatusRequest): Promise<CustomResourceDefinition> {
+    const path = `/apis/apiextensions.k8s.io/v1/customresourcedefinitions/${params.name}/status`;
+    return await this.get<CustomResourceDefinition>(path);
+  }
+  async replaceApiextensionsV1CustomResourceDefinitionStatus(params: ReplaceApiextensionsV1CustomResourceDefinitionStatusRequest): Promise<CustomResourceDefinition> {
+    const path = `/apis/apiextensions.k8s.io/v1/customresourcedefinitions/${params.name}/status`;
+    return await this.put<CustomResourceDefinition>(path, params.body);
+  }
+  async patchApiextensionsV1CustomResourceDefinitionStatus(params: PatchApiextensionsV1CustomResourceDefinitionStatusRequest): Promise<CustomResourceDefinition> {
+    const path = `/apis/apiextensions.k8s.io/v1/customresourcedefinitions/${params.name}/status`;
+    return await this.patch<CustomResourceDefinition>(path, params.body);
+  }
+  async watchApiextensionsV1CustomResourceDefinitionList(params: WatchApiextensionsV1CustomResourceDefinitionListRequest): Promise<WatchEvent> {
+    const path = `/apis/apiextensions.k8s.io/v1/watch/customresourcedefinitions`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchApiextensionsV1CustomResourceDefinition(params: WatchApiextensionsV1CustomResourceDefinitionRequest): Promise<WatchEvent> {
+    const path = `/apis/apiextensions.k8s.io/v1/watch/customresourcedefinitions/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getApiregistrationAPIGroup(params: GetApiregistrationAPIGroupRequest): Promise<APIGroup> {
+    const path = `/apis/apiregistration.k8s.io/`;
+    return await this.get<APIGroup>(path);
+  }
+  async getApiregistrationV1APIResources(params: GetApiregistrationV1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/apiregistration.k8s.io/v1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listApiregistrationV1APIService(params: ListApiregistrationV1APIServiceRequest): Promise<APIServiceList> {
+    const path = `/apis/apiregistration.k8s.io/v1/apiservices`;
+    return await this.get<APIServiceList>(path);
+  }
+  async createApiregistrationV1APIService(params: CreateApiregistrationV1APIServiceRequest): Promise<APIService> {
+    const path = `/apis/apiregistration.k8s.io/v1/apiservices`;
+    return await this.post<APIService>(path, params.body);
+  }
+  async deleteApiregistrationV1CollectionAPIService(params: DeleteApiregistrationV1CollectionAPIServiceRequest): Promise<Status> {
+    const path = `/apis/apiregistration.k8s.io/v1/apiservices`;
+    return await this.delete<Status>(path);
+  }
+  async readApiregistrationV1APIService(params: ReadApiregistrationV1APIServiceRequest): Promise<APIService> {
+    const path = `/apis/apiregistration.k8s.io/v1/apiservices/${params.name}`;
+    return await this.get<APIService>(path);
+  }
+  async replaceApiregistrationV1APIService(params: ReplaceApiregistrationV1APIServiceRequest): Promise<APIService> {
+    const path = `/apis/apiregistration.k8s.io/v1/apiservices/${params.name}`;
+    return await this.put<APIService>(path, params.body);
+  }
+  async deleteApiregistrationV1APIService(params: DeleteApiregistrationV1APIServiceRequest): Promise<Status> {
+    const path = `/apis/apiregistration.k8s.io/v1/apiservices/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchApiregistrationV1APIService(params: PatchApiregistrationV1APIServiceRequest): Promise<APIService> {
+    const path = `/apis/apiregistration.k8s.io/v1/apiservices/${params.name}`;
+    return await this.patch<APIService>(path, params.body);
+  }
+  async readApiregistrationV1APIServiceStatus(params: ReadApiregistrationV1APIServiceStatusRequest): Promise<APIService> {
+    const path = `/apis/apiregistration.k8s.io/v1/apiservices/${params.name}/status`;
+    return await this.get<APIService>(path);
+  }
+  async replaceApiregistrationV1APIServiceStatus(params: ReplaceApiregistrationV1APIServiceStatusRequest): Promise<APIService> {
+    const path = `/apis/apiregistration.k8s.io/v1/apiservices/${params.name}/status`;
+    return await this.put<APIService>(path, params.body);
+  }
+  async patchApiregistrationV1APIServiceStatus(params: PatchApiregistrationV1APIServiceStatusRequest): Promise<APIService> {
+    const path = `/apis/apiregistration.k8s.io/v1/apiservices/${params.name}/status`;
+    return await this.patch<APIService>(path, params.body);
+  }
+  async watchApiregistrationV1APIServiceList(params: WatchApiregistrationV1APIServiceListRequest): Promise<WatchEvent> {
+    const path = `/apis/apiregistration.k8s.io/v1/watch/apiservices`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchApiregistrationV1APIService(params: WatchApiregistrationV1APIServiceRequest): Promise<WatchEvent> {
+    const path = `/apis/apiregistration.k8s.io/v1/watch/apiservices/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getAppsAPIGroup(params: GetAppsAPIGroupRequest): Promise<APIGroup> {
+    const path = `/apis/apps/`;
+    return await this.get<APIGroup>(path);
+  }
+  async getAppsV1APIResources(params: GetAppsV1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/apps/v1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listAppsV1ControllerRevisionForAllNamespaces(params: ListAppsV1ControllerRevisionForAllNamespacesRequest): Promise<ControllerRevisionList> {
+    const path = `/apis/apps/v1/controllerrevisions`;
+    return await this.get<ControllerRevisionList>(path);
+  }
+  async listAppsV1DaemonSetForAllNamespaces(params: ListAppsV1DaemonSetForAllNamespacesRequest): Promise<DaemonSetList> {
+    const path = `/apis/apps/v1/daemonsets`;
+    return await this.get<DaemonSetList>(path);
+  }
+  async listAppsV1DeploymentForAllNamespaces(params: ListAppsV1DeploymentForAllNamespacesRequest): Promise<DeploymentList> {
+    const path = `/apis/apps/v1/deployments`;
+    return await this.get<DeploymentList>(path);
+  }
+  async listAppsV1NamespacedControllerRevision(params: ListAppsV1NamespacedControllerRevisionRequest): Promise<ControllerRevisionList> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/controllerrevisions`;
+    return await this.get<ControllerRevisionList>(path);
+  }
+  async createAppsV1NamespacedControllerRevision(params: CreateAppsV1NamespacedControllerRevisionRequest): Promise<ControllerRevision> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/controllerrevisions`;
+    return await this.post<ControllerRevision>(path, params.body);
+  }
+  async deleteAppsV1CollectionNamespacedControllerRevision(params: DeleteAppsV1CollectionNamespacedControllerRevisionRequest): Promise<Status> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/controllerrevisions`;
+    return await this.delete<Status>(path);
+  }
+  async readAppsV1NamespacedControllerRevision(params: ReadAppsV1NamespacedControllerRevisionRequest): Promise<ControllerRevision> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/controllerrevisions/${params.name}`;
+    return await this.get<ControllerRevision>(path);
+  }
+  async replaceAppsV1NamespacedControllerRevision(params: ReplaceAppsV1NamespacedControllerRevisionRequest): Promise<ControllerRevision> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/controllerrevisions/${params.name}`;
+    return await this.put<ControllerRevision>(path, params.body);
+  }
+  async deleteAppsV1NamespacedControllerRevision(params: DeleteAppsV1NamespacedControllerRevisionRequest): Promise<Status> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/controllerrevisions/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchAppsV1NamespacedControllerRevision(params: PatchAppsV1NamespacedControllerRevisionRequest): Promise<ControllerRevision> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/controllerrevisions/${params.name}`;
+    return await this.patch<ControllerRevision>(path, params.body);
+  }
+  async listAppsV1NamespacedDaemonSet(params: ListAppsV1NamespacedDaemonSetRequest): Promise<DaemonSetList> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/daemonsets`;
+    return await this.get<DaemonSetList>(path);
+  }
+  async createAppsV1NamespacedDaemonSet(params: CreateAppsV1NamespacedDaemonSetRequest): Promise<DaemonSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/daemonsets`;
+    return await this.post<DaemonSet>(path, params.body);
+  }
+  async deleteAppsV1CollectionNamespacedDaemonSet(params: DeleteAppsV1CollectionNamespacedDaemonSetRequest): Promise<Status> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/daemonsets`;
+    return await this.delete<Status>(path);
+  }
+  async readAppsV1NamespacedDaemonSet(params: ReadAppsV1NamespacedDaemonSetRequest): Promise<DaemonSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/daemonsets/${params.name}`;
+    return await this.get<DaemonSet>(path);
+  }
+  async replaceAppsV1NamespacedDaemonSet(params: ReplaceAppsV1NamespacedDaemonSetRequest): Promise<DaemonSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/daemonsets/${params.name}`;
+    return await this.put<DaemonSet>(path, params.body);
+  }
+  async deleteAppsV1NamespacedDaemonSet(params: DeleteAppsV1NamespacedDaemonSetRequest): Promise<Status> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/daemonsets/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchAppsV1NamespacedDaemonSet(params: PatchAppsV1NamespacedDaemonSetRequest): Promise<DaemonSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/daemonsets/${params.name}`;
+    return await this.patch<DaemonSet>(path, params.body);
+  }
+  async readAppsV1NamespacedDaemonSetStatus(params: ReadAppsV1NamespacedDaemonSetStatusRequest): Promise<DaemonSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/daemonsets/${params.name}/status`;
+    return await this.get<DaemonSet>(path);
+  }
+  async replaceAppsV1NamespacedDaemonSetStatus(params: ReplaceAppsV1NamespacedDaemonSetStatusRequest): Promise<DaemonSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/daemonsets/${params.name}/status`;
+    return await this.put<DaemonSet>(path, params.body);
+  }
+  async patchAppsV1NamespacedDaemonSetStatus(params: PatchAppsV1NamespacedDaemonSetStatusRequest): Promise<DaemonSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/daemonsets/${params.name}/status`;
+    return await this.patch<DaemonSet>(path, params.body);
+  }
+  async listAppsV1NamespacedDeployment(params: ListAppsV1NamespacedDeploymentRequest): Promise<DeploymentList> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/deployments`;
+    return await this.get<DeploymentList>(path);
+  }
+  async createAppsV1NamespacedDeployment(params: CreateAppsV1NamespacedDeploymentRequest): Promise<Deployment> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/deployments`;
+    return await this.post<Deployment>(path, params.body);
+  }
+  async deleteAppsV1CollectionNamespacedDeployment(params: DeleteAppsV1CollectionNamespacedDeploymentRequest): Promise<Status> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/deployments`;
+    return await this.delete<Status>(path);
+  }
+  async readAppsV1NamespacedDeployment(params: ReadAppsV1NamespacedDeploymentRequest): Promise<Deployment> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/deployments/${params.name}`;
+    return await this.get<Deployment>(path);
+  }
+  async replaceAppsV1NamespacedDeployment(params: ReplaceAppsV1NamespacedDeploymentRequest): Promise<Deployment> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/deployments/${params.name}`;
+    return await this.put<Deployment>(path, params.body);
+  }
+  async deleteAppsV1NamespacedDeployment(params: DeleteAppsV1NamespacedDeploymentRequest): Promise<Status> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/deployments/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchAppsV1NamespacedDeployment(params: PatchAppsV1NamespacedDeploymentRequest): Promise<Deployment> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/deployments/${params.name}`;
+    return await this.patch<Deployment>(path, params.body);
+  }
+  async readAppsV1NamespacedDeploymentScale(params: ReadAppsV1NamespacedDeploymentScaleRequest): Promise<Scale> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/deployments/${params.name}/scale`;
+    return await this.get<Scale>(path);
+  }
+  async replaceAppsV1NamespacedDeploymentScale(params: ReplaceAppsV1NamespacedDeploymentScaleRequest): Promise<Scale> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/deployments/${params.name}/scale`;
+    return await this.put<Scale>(path, params.body);
+  }
+  async patchAppsV1NamespacedDeploymentScale(params: PatchAppsV1NamespacedDeploymentScaleRequest): Promise<Scale> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/deployments/${params.name}/scale`;
+    return await this.patch<Scale>(path, params.body);
+  }
+  async readAppsV1NamespacedDeploymentStatus(params: ReadAppsV1NamespacedDeploymentStatusRequest): Promise<Deployment> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/deployments/${params.name}/status`;
+    return await this.get<Deployment>(path);
+  }
+  async replaceAppsV1NamespacedDeploymentStatus(params: ReplaceAppsV1NamespacedDeploymentStatusRequest): Promise<Deployment> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/deployments/${params.name}/status`;
+    return await this.put<Deployment>(path, params.body);
+  }
+  async patchAppsV1NamespacedDeploymentStatus(params: PatchAppsV1NamespacedDeploymentStatusRequest): Promise<Deployment> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/deployments/${params.name}/status`;
+    return await this.patch<Deployment>(path, params.body);
+  }
+  async listAppsV1NamespacedReplicaSet(params: ListAppsV1NamespacedReplicaSetRequest): Promise<ReplicaSetList> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/replicasets`;
+    return await this.get<ReplicaSetList>(path);
+  }
+  async createAppsV1NamespacedReplicaSet(params: CreateAppsV1NamespacedReplicaSetRequest): Promise<ReplicaSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/replicasets`;
+    return await this.post<ReplicaSet>(path, params.body);
+  }
+  async deleteAppsV1CollectionNamespacedReplicaSet(params: DeleteAppsV1CollectionNamespacedReplicaSetRequest): Promise<Status> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/replicasets`;
+    return await this.delete<Status>(path);
+  }
+  async readAppsV1NamespacedReplicaSet(params: ReadAppsV1NamespacedReplicaSetRequest): Promise<ReplicaSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/replicasets/${params.name}`;
+    return await this.get<ReplicaSet>(path);
+  }
+  async replaceAppsV1NamespacedReplicaSet(params: ReplaceAppsV1NamespacedReplicaSetRequest): Promise<ReplicaSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/replicasets/${params.name}`;
+    return await this.put<ReplicaSet>(path, params.body);
+  }
+  async deleteAppsV1NamespacedReplicaSet(params: DeleteAppsV1NamespacedReplicaSetRequest): Promise<Status> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/replicasets/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchAppsV1NamespacedReplicaSet(params: PatchAppsV1NamespacedReplicaSetRequest): Promise<ReplicaSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/replicasets/${params.name}`;
+    return await this.patch<ReplicaSet>(path, params.body);
+  }
+  async readAppsV1NamespacedReplicaSetScale(params: ReadAppsV1NamespacedReplicaSetScaleRequest): Promise<Scale> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/replicasets/${params.name}/scale`;
+    return await this.get<Scale>(path);
+  }
+  async replaceAppsV1NamespacedReplicaSetScale(params: ReplaceAppsV1NamespacedReplicaSetScaleRequest): Promise<Scale> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/replicasets/${params.name}/scale`;
+    return await this.put<Scale>(path, params.body);
+  }
+  async patchAppsV1NamespacedReplicaSetScale(params: PatchAppsV1NamespacedReplicaSetScaleRequest): Promise<Scale> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/replicasets/${params.name}/scale`;
+    return await this.patch<Scale>(path, params.body);
+  }
+  async readAppsV1NamespacedReplicaSetStatus(params: ReadAppsV1NamespacedReplicaSetStatusRequest): Promise<ReplicaSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/replicasets/${params.name}/status`;
+    return await this.get<ReplicaSet>(path);
+  }
+  async replaceAppsV1NamespacedReplicaSetStatus(params: ReplaceAppsV1NamespacedReplicaSetStatusRequest): Promise<ReplicaSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/replicasets/${params.name}/status`;
+    return await this.put<ReplicaSet>(path, params.body);
+  }
+  async patchAppsV1NamespacedReplicaSetStatus(params: PatchAppsV1NamespacedReplicaSetStatusRequest): Promise<ReplicaSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/replicasets/${params.name}/status`;
+    return await this.patch<ReplicaSet>(path, params.body);
+  }
+  async listAppsV1NamespacedStatefulSet(params: ListAppsV1NamespacedStatefulSetRequest): Promise<StatefulSetList> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/statefulsets`;
+    return await this.get<StatefulSetList>(path);
+  }
+  async createAppsV1NamespacedStatefulSet(params: CreateAppsV1NamespacedStatefulSetRequest): Promise<StatefulSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/statefulsets`;
+    return await this.post<StatefulSet>(path, params.body);
+  }
+  async deleteAppsV1CollectionNamespacedStatefulSet(params: DeleteAppsV1CollectionNamespacedStatefulSetRequest): Promise<Status> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/statefulsets`;
+    return await this.delete<Status>(path);
+  }
+  async readAppsV1NamespacedStatefulSet(params: ReadAppsV1NamespacedStatefulSetRequest): Promise<StatefulSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/statefulsets/${params.name}`;
+    return await this.get<StatefulSet>(path);
+  }
+  async replaceAppsV1NamespacedStatefulSet(params: ReplaceAppsV1NamespacedStatefulSetRequest): Promise<StatefulSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/statefulsets/${params.name}`;
+    return await this.put<StatefulSet>(path, params.body);
+  }
+  async deleteAppsV1NamespacedStatefulSet(params: DeleteAppsV1NamespacedStatefulSetRequest): Promise<Status> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/statefulsets/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchAppsV1NamespacedStatefulSet(params: PatchAppsV1NamespacedStatefulSetRequest): Promise<StatefulSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/statefulsets/${params.name}`;
+    return await this.patch<StatefulSet>(path, params.body);
+  }
+  async readAppsV1NamespacedStatefulSetScale(params: ReadAppsV1NamespacedStatefulSetScaleRequest): Promise<Scale> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/statefulsets/${params.name}/scale`;
+    return await this.get<Scale>(path);
+  }
+  async replaceAppsV1NamespacedStatefulSetScale(params: ReplaceAppsV1NamespacedStatefulSetScaleRequest): Promise<Scale> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/statefulsets/${params.name}/scale`;
+    return await this.put<Scale>(path, params.body);
+  }
+  async patchAppsV1NamespacedStatefulSetScale(params: PatchAppsV1NamespacedStatefulSetScaleRequest): Promise<Scale> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/statefulsets/${params.name}/scale`;
+    return await this.patch<Scale>(path, params.body);
+  }
+  async readAppsV1NamespacedStatefulSetStatus(params: ReadAppsV1NamespacedStatefulSetStatusRequest): Promise<StatefulSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/statefulsets/${params.name}/status`;
+    return await this.get<StatefulSet>(path);
+  }
+  async replaceAppsV1NamespacedStatefulSetStatus(params: ReplaceAppsV1NamespacedStatefulSetStatusRequest): Promise<StatefulSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/statefulsets/${params.name}/status`;
+    return await this.put<StatefulSet>(path, params.body);
+  }
+  async patchAppsV1NamespacedStatefulSetStatus(params: PatchAppsV1NamespacedStatefulSetStatusRequest): Promise<StatefulSet> {
+    const path = `/apis/apps/v1/namespaces/${params.namespace}/statefulsets/${params.name}/status`;
+    return await this.patch<StatefulSet>(path, params.body);
+  }
+  async listAppsV1ReplicaSetForAllNamespaces(params: ListAppsV1ReplicaSetForAllNamespacesRequest): Promise<ReplicaSetList> {
+    const path = `/apis/apps/v1/replicasets`;
+    return await this.get<ReplicaSetList>(path);
+  }
+  async listAppsV1StatefulSetForAllNamespaces(params: ListAppsV1StatefulSetForAllNamespacesRequest): Promise<StatefulSetList> {
+    const path = `/apis/apps/v1/statefulsets`;
+    return await this.get<StatefulSetList>(path);
+  }
+  async watchAppsV1ControllerRevisionListForAllNamespaces(params: WatchAppsV1ControllerRevisionListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/apps/v1/watch/controllerrevisions`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAppsV1DaemonSetListForAllNamespaces(params: WatchAppsV1DaemonSetListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/apps/v1/watch/daemonsets`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAppsV1DeploymentListForAllNamespaces(params: WatchAppsV1DeploymentListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/apps/v1/watch/deployments`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAppsV1NamespacedControllerRevisionList(params: WatchAppsV1NamespacedControllerRevisionListRequest): Promise<WatchEvent> {
+    const path = `/apis/apps/v1/watch/namespaces/${params.namespace}/controllerrevisions`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAppsV1NamespacedControllerRevision(params: WatchAppsV1NamespacedControllerRevisionRequest): Promise<WatchEvent> {
+    const path = `/apis/apps/v1/watch/namespaces/${params.namespace}/controllerrevisions/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAppsV1NamespacedDaemonSetList(params: WatchAppsV1NamespacedDaemonSetListRequest): Promise<WatchEvent> {
+    const path = `/apis/apps/v1/watch/namespaces/${params.namespace}/daemonsets`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAppsV1NamespacedDaemonSet(params: WatchAppsV1NamespacedDaemonSetRequest): Promise<WatchEvent> {
+    const path = `/apis/apps/v1/watch/namespaces/${params.namespace}/daemonsets/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAppsV1NamespacedDeploymentList(params: WatchAppsV1NamespacedDeploymentListRequest): Promise<WatchEvent> {
+    const path = `/apis/apps/v1/watch/namespaces/${params.namespace}/deployments`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAppsV1NamespacedDeployment(params: WatchAppsV1NamespacedDeploymentRequest): Promise<WatchEvent> {
+    const path = `/apis/apps/v1/watch/namespaces/${params.namespace}/deployments/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAppsV1NamespacedReplicaSetList(params: WatchAppsV1NamespacedReplicaSetListRequest): Promise<WatchEvent> {
+    const path = `/apis/apps/v1/watch/namespaces/${params.namespace}/replicasets`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAppsV1NamespacedReplicaSet(params: WatchAppsV1NamespacedReplicaSetRequest): Promise<WatchEvent> {
+    const path = `/apis/apps/v1/watch/namespaces/${params.namespace}/replicasets/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAppsV1NamespacedStatefulSetList(params: WatchAppsV1NamespacedStatefulSetListRequest): Promise<WatchEvent> {
+    const path = `/apis/apps/v1/watch/namespaces/${params.namespace}/statefulsets`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAppsV1NamespacedStatefulSet(params: WatchAppsV1NamespacedStatefulSetRequest): Promise<WatchEvent> {
+    const path = `/apis/apps/v1/watch/namespaces/${params.namespace}/statefulsets/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAppsV1ReplicaSetListForAllNamespaces(params: WatchAppsV1ReplicaSetListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/apps/v1/watch/replicasets`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAppsV1StatefulSetListForAllNamespaces(params: WatchAppsV1StatefulSetListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/apps/v1/watch/statefulsets`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getAuthenticationAPIGroup(params: GetAuthenticationAPIGroupRequest): Promise<APIGroup> {
+    const path = `/apis/authentication.k8s.io/`;
+    return await this.get<APIGroup>(path);
+  }
+  async getAuthenticationV1APIResources(params: GetAuthenticationV1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/authentication.k8s.io/v1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async createAuthenticationV1TokenReview(params: CreateAuthenticationV1TokenReviewRequest): Promise<TokenReview> {
+    const path = `/apis/authentication.k8s.io/v1/tokenreviews`;
+    return await this.post<TokenReview>(path, params.body);
+  }
+  async getAuthorizationAPIGroup(params: GetAuthorizationAPIGroupRequest): Promise<APIGroup> {
+    const path = `/apis/authorization.k8s.io/`;
+    return await this.get<APIGroup>(path);
+  }
+  async getAuthorizationV1APIResources(params: GetAuthorizationV1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/authorization.k8s.io/v1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async createAuthorizationV1NamespacedLocalSubjectAccessReview(params: CreateAuthorizationV1NamespacedLocalSubjectAccessReviewRequest): Promise<LocalSubjectAccessReview> {
+    const path = `/apis/authorization.k8s.io/v1/namespaces/${params.namespace}/localsubjectaccessreviews`;
+    return await this.post<LocalSubjectAccessReview>(path, params.body);
+  }
+  async createAuthorizationV1SelfSubjectAccessReview(params: CreateAuthorizationV1SelfSubjectAccessReviewRequest): Promise<SelfSubjectAccessReview> {
+    const path = `/apis/authorization.k8s.io/v1/selfsubjectaccessreviews`;
+    return await this.post<SelfSubjectAccessReview>(path, params.body);
+  }
+  async createAuthorizationV1SelfSubjectRulesReview(params: CreateAuthorizationV1SelfSubjectRulesReviewRequest): Promise<SelfSubjectRulesReview> {
+    const path = `/apis/authorization.k8s.io/v1/selfsubjectrulesreviews`;
+    return await this.post<SelfSubjectRulesReview>(path, params.body);
+  }
+  async createAuthorizationV1SubjectAccessReview(params: CreateAuthorizationV1SubjectAccessReviewRequest): Promise<SubjectAccessReview> {
+    const path = `/apis/authorization.k8s.io/v1/subjectaccessreviews`;
+    return await this.post<SubjectAccessReview>(path, params.body);
+  }
+  async getAutoscalingAPIGroup(params: GetAutoscalingAPIGroupRequest): Promise<APIGroup> {
+    const path = `/apis/autoscaling/`;
+    return await this.get<APIGroup>(path);
+  }
+  async getAutoscalingV1APIResources(params: GetAutoscalingV1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/autoscaling/v1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listAutoscalingV1HorizontalPodAutoscalerForAllNamespaces(params: ListAutoscalingV1HorizontalPodAutoscalerForAllNamespacesRequest): Promise<HorizontalPodAutoscalerList> {
+    const path = `/apis/autoscaling/v1/horizontalpodautoscalers`;
+    return await this.get<HorizontalPodAutoscalerList>(path);
+  }
+  async listAutoscalingV1NamespacedHorizontalPodAutoscaler(params: ListAutoscalingV1NamespacedHorizontalPodAutoscalerRequest): Promise<HorizontalPodAutoscalerList> {
+    const path = `/apis/autoscaling/v1/namespaces/${params.namespace}/horizontalpodautoscalers`;
+    return await this.get<HorizontalPodAutoscalerList>(path);
+  }
+  async createAutoscalingV1NamespacedHorizontalPodAutoscaler(params: CreateAutoscalingV1NamespacedHorizontalPodAutoscalerRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v1/namespaces/${params.namespace}/horizontalpodautoscalers`;
+    return await this.post<HorizontalPodAutoscaler>(path, params.body);
+  }
+  async deleteAutoscalingV1CollectionNamespacedHorizontalPodAutoscaler(params: DeleteAutoscalingV1CollectionNamespacedHorizontalPodAutoscalerRequest): Promise<Status> {
+    const path = `/apis/autoscaling/v1/namespaces/${params.namespace}/horizontalpodautoscalers`;
+    return await this.delete<Status>(path);
+  }
+  async readAutoscalingV1NamespacedHorizontalPodAutoscaler(params: ReadAutoscalingV1NamespacedHorizontalPodAutoscalerRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
+    return await this.get<HorizontalPodAutoscaler>(path);
+  }
+  async replaceAutoscalingV1NamespacedHorizontalPodAutoscaler(params: ReplaceAutoscalingV1NamespacedHorizontalPodAutoscalerRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
+    return await this.put<HorizontalPodAutoscaler>(path, params.body);
+  }
+  async deleteAutoscalingV1NamespacedHorizontalPodAutoscaler(params: DeleteAutoscalingV1NamespacedHorizontalPodAutoscalerRequest): Promise<Status> {
+    const path = `/apis/autoscaling/v1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchAutoscalingV1NamespacedHorizontalPodAutoscaler(params: PatchAutoscalingV1NamespacedHorizontalPodAutoscalerRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
+    return await this.patch<HorizontalPodAutoscaler>(path, params.body);
+  }
+  async readAutoscalingV1NamespacedHorizontalPodAutoscalerStatus(params: ReadAutoscalingV1NamespacedHorizontalPodAutoscalerStatusRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}/status`;
+    return await this.get<HorizontalPodAutoscaler>(path);
+  }
+  async replaceAutoscalingV1NamespacedHorizontalPodAutoscalerStatus(params: ReplaceAutoscalingV1NamespacedHorizontalPodAutoscalerStatusRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}/status`;
+    return await this.put<HorizontalPodAutoscaler>(path, params.body);
+  }
+  async patchAutoscalingV1NamespacedHorizontalPodAutoscalerStatus(params: PatchAutoscalingV1NamespacedHorizontalPodAutoscalerStatusRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}/status`;
+    return await this.patch<HorizontalPodAutoscaler>(path, params.body);
+  }
+  async watchAutoscalingV1HorizontalPodAutoscalerListForAllNamespaces(params: WatchAutoscalingV1HorizontalPodAutoscalerListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/autoscaling/v1/watch/horizontalpodautoscalers`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAutoscalingV1NamespacedHorizontalPodAutoscalerList(params: WatchAutoscalingV1NamespacedHorizontalPodAutoscalerListRequest): Promise<WatchEvent> {
+    const path = `/apis/autoscaling/v1/watch/namespaces/${params.namespace}/horizontalpodautoscalers`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAutoscalingV1NamespacedHorizontalPodAutoscaler(params: WatchAutoscalingV1NamespacedHorizontalPodAutoscalerRequest): Promise<WatchEvent> {
+    const path = `/apis/autoscaling/v1/watch/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getAutoscalingV2beta1APIResources(params: GetAutoscalingV2beta1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/autoscaling/v2beta1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listAutoscalingV2beta1HorizontalPodAutoscalerForAllNamespaces(params: ListAutoscalingV2beta1HorizontalPodAutoscalerForAllNamespacesRequest): Promise<HorizontalPodAutoscalerList> {
+    const path = `/apis/autoscaling/v2beta1/horizontalpodautoscalers`;
+    return await this.get<HorizontalPodAutoscalerList>(path);
+  }
+  async listAutoscalingV2beta1NamespacedHorizontalPodAutoscaler(params: ListAutoscalingV2beta1NamespacedHorizontalPodAutoscalerRequest): Promise<HorizontalPodAutoscalerList> {
+    const path = `/apis/autoscaling/v2beta1/namespaces/${params.namespace}/horizontalpodautoscalers`;
+    return await this.get<HorizontalPodAutoscalerList>(path);
+  }
+  async createAutoscalingV2beta1NamespacedHorizontalPodAutoscaler(params: CreateAutoscalingV2beta1NamespacedHorizontalPodAutoscalerRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v2beta1/namespaces/${params.namespace}/horizontalpodautoscalers`;
+    return await this.post<HorizontalPodAutoscaler>(path, params.body);
+  }
+  async deleteAutoscalingV2beta1CollectionNamespacedHorizontalPodAutoscaler(params: DeleteAutoscalingV2beta1CollectionNamespacedHorizontalPodAutoscalerRequest): Promise<Status> {
+    const path = `/apis/autoscaling/v2beta1/namespaces/${params.namespace}/horizontalpodautoscalers`;
+    return await this.delete<Status>(path);
+  }
+  async readAutoscalingV2beta1NamespacedHorizontalPodAutoscaler(params: ReadAutoscalingV2beta1NamespacedHorizontalPodAutoscalerRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v2beta1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
+    return await this.get<HorizontalPodAutoscaler>(path);
+  }
+  async replaceAutoscalingV2beta1NamespacedHorizontalPodAutoscaler(params: ReplaceAutoscalingV2beta1NamespacedHorizontalPodAutoscalerRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v2beta1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
+    return await this.put<HorizontalPodAutoscaler>(path, params.body);
+  }
+  async deleteAutoscalingV2beta1NamespacedHorizontalPodAutoscaler(params: DeleteAutoscalingV2beta1NamespacedHorizontalPodAutoscalerRequest): Promise<Status> {
+    const path = `/apis/autoscaling/v2beta1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchAutoscalingV2beta1NamespacedHorizontalPodAutoscaler(params: PatchAutoscalingV2beta1NamespacedHorizontalPodAutoscalerRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v2beta1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
+    return await this.patch<HorizontalPodAutoscaler>(path, params.body);
+  }
+  async readAutoscalingV2beta1NamespacedHorizontalPodAutoscalerStatus(params: ReadAutoscalingV2beta1NamespacedHorizontalPodAutoscalerStatusRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v2beta1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}/status`;
+    return await this.get<HorizontalPodAutoscaler>(path);
+  }
+  async replaceAutoscalingV2beta1NamespacedHorizontalPodAutoscalerStatus(params: ReplaceAutoscalingV2beta1NamespacedHorizontalPodAutoscalerStatusRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v2beta1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}/status`;
+    return await this.put<HorizontalPodAutoscaler>(path, params.body);
+  }
+  async patchAutoscalingV2beta1NamespacedHorizontalPodAutoscalerStatus(params: PatchAutoscalingV2beta1NamespacedHorizontalPodAutoscalerStatusRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v2beta1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}/status`;
+    return await this.patch<HorizontalPodAutoscaler>(path, params.body);
+  }
+  async watchAutoscalingV2beta1HorizontalPodAutoscalerListForAllNamespaces(params: WatchAutoscalingV2beta1HorizontalPodAutoscalerListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/autoscaling/v2beta1/watch/horizontalpodautoscalers`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAutoscalingV2beta1NamespacedHorizontalPodAutoscalerList(params: WatchAutoscalingV2beta1NamespacedHorizontalPodAutoscalerListRequest): Promise<WatchEvent> {
+    const path = `/apis/autoscaling/v2beta1/watch/namespaces/${params.namespace}/horizontalpodautoscalers`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAutoscalingV2beta1NamespacedHorizontalPodAutoscaler(params: WatchAutoscalingV2beta1NamespacedHorizontalPodAutoscalerRequest): Promise<WatchEvent> {
+    const path = `/apis/autoscaling/v2beta1/watch/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getAutoscalingV2beta2APIResources(params: GetAutoscalingV2beta2APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/autoscaling/v2beta2/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listAutoscalingV2beta2HorizontalPodAutoscalerForAllNamespaces(params: ListAutoscalingV2beta2HorizontalPodAutoscalerForAllNamespacesRequest): Promise<HorizontalPodAutoscalerList> {
+    const path = `/apis/autoscaling/v2beta2/horizontalpodautoscalers`;
+    return await this.get<HorizontalPodAutoscalerList>(path);
+  }
+  async listAutoscalingV2beta2NamespacedHorizontalPodAutoscaler(params: ListAutoscalingV2beta2NamespacedHorizontalPodAutoscalerRequest): Promise<HorizontalPodAutoscalerList> {
+    const path = `/apis/autoscaling/v2beta2/namespaces/${params.namespace}/horizontalpodautoscalers`;
+    return await this.get<HorizontalPodAutoscalerList>(path);
+  }
+  async createAutoscalingV2beta2NamespacedHorizontalPodAutoscaler(params: CreateAutoscalingV2beta2NamespacedHorizontalPodAutoscalerRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v2beta2/namespaces/${params.namespace}/horizontalpodautoscalers`;
+    return await this.post<HorizontalPodAutoscaler>(path, params.body);
+  }
+  async deleteAutoscalingV2beta2CollectionNamespacedHorizontalPodAutoscaler(params: DeleteAutoscalingV2beta2CollectionNamespacedHorizontalPodAutoscalerRequest): Promise<Status> {
+    const path = `/apis/autoscaling/v2beta2/namespaces/${params.namespace}/horizontalpodautoscalers`;
+    return await this.delete<Status>(path);
+  }
+  async readAutoscalingV2beta2NamespacedHorizontalPodAutoscaler(params: ReadAutoscalingV2beta2NamespacedHorizontalPodAutoscalerRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v2beta2/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
+    return await this.get<HorizontalPodAutoscaler>(path);
+  }
+  async replaceAutoscalingV2beta2NamespacedHorizontalPodAutoscaler(params: ReplaceAutoscalingV2beta2NamespacedHorizontalPodAutoscalerRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v2beta2/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
+    return await this.put<HorizontalPodAutoscaler>(path, params.body);
+  }
+  async deleteAutoscalingV2beta2NamespacedHorizontalPodAutoscaler(params: DeleteAutoscalingV2beta2NamespacedHorizontalPodAutoscalerRequest): Promise<Status> {
+    const path = `/apis/autoscaling/v2beta2/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchAutoscalingV2beta2NamespacedHorizontalPodAutoscaler(params: PatchAutoscalingV2beta2NamespacedHorizontalPodAutoscalerRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v2beta2/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
+    return await this.patch<HorizontalPodAutoscaler>(path, params.body);
+  }
+  async readAutoscalingV2beta2NamespacedHorizontalPodAutoscalerStatus(params: ReadAutoscalingV2beta2NamespacedHorizontalPodAutoscalerStatusRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v2beta2/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}/status`;
+    return await this.get<HorizontalPodAutoscaler>(path);
+  }
+  async replaceAutoscalingV2beta2NamespacedHorizontalPodAutoscalerStatus(params: ReplaceAutoscalingV2beta2NamespacedHorizontalPodAutoscalerStatusRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v2beta2/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}/status`;
+    return await this.put<HorizontalPodAutoscaler>(path, params.body);
+  }
+  async patchAutoscalingV2beta2NamespacedHorizontalPodAutoscalerStatus(params: PatchAutoscalingV2beta2NamespacedHorizontalPodAutoscalerStatusRequest): Promise<HorizontalPodAutoscaler> {
+    const path = `/apis/autoscaling/v2beta2/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}/status`;
+    return await this.patch<HorizontalPodAutoscaler>(path, params.body);
+  }
+  async watchAutoscalingV2beta2HorizontalPodAutoscalerListForAllNamespaces(params: WatchAutoscalingV2beta2HorizontalPodAutoscalerListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/autoscaling/v2beta2/watch/horizontalpodautoscalers`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAutoscalingV2beta2NamespacedHorizontalPodAutoscalerList(params: WatchAutoscalingV2beta2NamespacedHorizontalPodAutoscalerListRequest): Promise<WatchEvent> {
+    const path = `/apis/autoscaling/v2beta2/watch/namespaces/${params.namespace}/horizontalpodautoscalers`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchAutoscalingV2beta2NamespacedHorizontalPodAutoscaler(params: WatchAutoscalingV2beta2NamespacedHorizontalPodAutoscalerRequest): Promise<WatchEvent> {
+    const path = `/apis/autoscaling/v2beta2/watch/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getBatchAPIGroup(params: GetBatchAPIGroupRequest): Promise<APIGroup> {
+    const path = `/apis/batch/`;
+    return await this.get<APIGroup>(path);
+  }
+  async getBatchV1APIResources(params: GetBatchV1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/batch/v1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listBatchV1CronJobForAllNamespaces(params: ListBatchV1CronJobForAllNamespacesRequest): Promise<CronJobList> {
+    const path = `/apis/batch/v1/cronjobs`;
+    return await this.get<CronJobList>(path);
+  }
+  async listBatchV1JobForAllNamespaces(params: ListBatchV1JobForAllNamespacesRequest): Promise<JobList> {
+    const path = `/apis/batch/v1/jobs`;
+    return await this.get<JobList>(path);
+  }
+  async listBatchV1NamespacedCronJob(params: ListBatchV1NamespacedCronJobRequest): Promise<CronJobList> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/cronjobs`;
+    return await this.get<CronJobList>(path);
+  }
+  async createBatchV1NamespacedCronJob(params: CreateBatchV1NamespacedCronJobRequest): Promise<CronJob> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/cronjobs`;
+    return await this.post<CronJob>(path, params.body);
+  }
+  async deleteBatchV1CollectionNamespacedCronJob(params: DeleteBatchV1CollectionNamespacedCronJobRequest): Promise<Status> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/cronjobs`;
+    return await this.delete<Status>(path);
+  }
+  async readBatchV1NamespacedCronJob(params: ReadBatchV1NamespacedCronJobRequest): Promise<CronJob> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/cronjobs/${params.name}`;
+    return await this.get<CronJob>(path);
+  }
+  async replaceBatchV1NamespacedCronJob(params: ReplaceBatchV1NamespacedCronJobRequest): Promise<CronJob> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/cronjobs/${params.name}`;
+    return await this.put<CronJob>(path, params.body);
+  }
+  async deleteBatchV1NamespacedCronJob(params: DeleteBatchV1NamespacedCronJobRequest): Promise<Status> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/cronjobs/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchBatchV1NamespacedCronJob(params: PatchBatchV1NamespacedCronJobRequest): Promise<CronJob> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/cronjobs/${params.name}`;
+    return await this.patch<CronJob>(path, params.body);
+  }
+  async readBatchV1NamespacedCronJobStatus(params: ReadBatchV1NamespacedCronJobStatusRequest): Promise<CronJob> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/cronjobs/${params.name}/status`;
+    return await this.get<CronJob>(path);
+  }
+  async replaceBatchV1NamespacedCronJobStatus(params: ReplaceBatchV1NamespacedCronJobStatusRequest): Promise<CronJob> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/cronjobs/${params.name}/status`;
+    return await this.put<CronJob>(path, params.body);
+  }
+  async patchBatchV1NamespacedCronJobStatus(params: PatchBatchV1NamespacedCronJobStatusRequest): Promise<CronJob> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/cronjobs/${params.name}/status`;
+    return await this.patch<CronJob>(path, params.body);
+  }
+  async listBatchV1NamespacedJob(params: ListBatchV1NamespacedJobRequest): Promise<JobList> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/jobs`;
+    return await this.get<JobList>(path);
+  }
+  async createBatchV1NamespacedJob(params: CreateBatchV1NamespacedJobRequest): Promise<Job> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/jobs`;
+    return await this.post<Job>(path, params.body);
+  }
+  async deleteBatchV1CollectionNamespacedJob(params: DeleteBatchV1CollectionNamespacedJobRequest): Promise<Status> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/jobs`;
+    return await this.delete<Status>(path);
+  }
+  async readBatchV1NamespacedJob(params: ReadBatchV1NamespacedJobRequest): Promise<Job> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/jobs/${params.name}`;
+    return await this.get<Job>(path);
+  }
+  async replaceBatchV1NamespacedJob(params: ReplaceBatchV1NamespacedJobRequest): Promise<Job> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/jobs/${params.name}`;
+    return await this.put<Job>(path, params.body);
+  }
+  async deleteBatchV1NamespacedJob(params: DeleteBatchV1NamespacedJobRequest): Promise<Status> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/jobs/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchBatchV1NamespacedJob(params: PatchBatchV1NamespacedJobRequest): Promise<Job> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/jobs/${params.name}`;
+    return await this.patch<Job>(path, params.body);
+  }
+  async readBatchV1NamespacedJobStatus(params: ReadBatchV1NamespacedJobStatusRequest): Promise<Job> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/jobs/${params.name}/status`;
+    return await this.get<Job>(path);
+  }
+  async replaceBatchV1NamespacedJobStatus(params: ReplaceBatchV1NamespacedJobStatusRequest): Promise<Job> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/jobs/${params.name}/status`;
+    return await this.put<Job>(path, params.body);
+  }
+  async patchBatchV1NamespacedJobStatus(params: PatchBatchV1NamespacedJobStatusRequest): Promise<Job> {
+    const path = `/apis/batch/v1/namespaces/${params.namespace}/jobs/${params.name}/status`;
+    return await this.patch<Job>(path, params.body);
+  }
+  async watchBatchV1CronJobListForAllNamespaces(params: WatchBatchV1CronJobListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/batch/v1/watch/cronjobs`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchBatchV1JobListForAllNamespaces(params: WatchBatchV1JobListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/batch/v1/watch/jobs`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchBatchV1NamespacedCronJobList(params: WatchBatchV1NamespacedCronJobListRequest): Promise<WatchEvent> {
+    const path = `/apis/batch/v1/watch/namespaces/${params.namespace}/cronjobs`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchBatchV1NamespacedCronJob(params: WatchBatchV1NamespacedCronJobRequest): Promise<WatchEvent> {
+    const path = `/apis/batch/v1/watch/namespaces/${params.namespace}/cronjobs/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchBatchV1NamespacedJobList(params: WatchBatchV1NamespacedJobListRequest): Promise<WatchEvent> {
+    const path = `/apis/batch/v1/watch/namespaces/${params.namespace}/jobs`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchBatchV1NamespacedJob(params: WatchBatchV1NamespacedJobRequest): Promise<WatchEvent> {
+    const path = `/apis/batch/v1/watch/namespaces/${params.namespace}/jobs/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getBatchV1beta1APIResources(params: GetBatchV1beta1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/batch/v1beta1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listBatchV1beta1CronJobForAllNamespaces(params: ListBatchV1beta1CronJobForAllNamespacesRequest): Promise<CronJobList> {
+    const path = `/apis/batch/v1beta1/cronjobs`;
+    return await this.get<CronJobList>(path);
+  }
+  async listBatchV1beta1NamespacedCronJob(params: ListBatchV1beta1NamespacedCronJobRequest): Promise<CronJobList> {
+    const path = `/apis/batch/v1beta1/namespaces/${params.namespace}/cronjobs`;
+    return await this.get<CronJobList>(path);
+  }
+  async createBatchV1beta1NamespacedCronJob(params: CreateBatchV1beta1NamespacedCronJobRequest): Promise<CronJob> {
+    const path = `/apis/batch/v1beta1/namespaces/${params.namespace}/cronjobs`;
+    return await this.post<CronJob>(path, params.body);
+  }
+  async deleteBatchV1beta1CollectionNamespacedCronJob(params: DeleteBatchV1beta1CollectionNamespacedCronJobRequest): Promise<Status> {
+    const path = `/apis/batch/v1beta1/namespaces/${params.namespace}/cronjobs`;
+    return await this.delete<Status>(path);
+  }
+  async readBatchV1beta1NamespacedCronJob(params: ReadBatchV1beta1NamespacedCronJobRequest): Promise<CronJob> {
+    const path = `/apis/batch/v1beta1/namespaces/${params.namespace}/cronjobs/${params.name}`;
+    return await this.get<CronJob>(path);
+  }
+  async replaceBatchV1beta1NamespacedCronJob(params: ReplaceBatchV1beta1NamespacedCronJobRequest): Promise<CronJob> {
+    const path = `/apis/batch/v1beta1/namespaces/${params.namespace}/cronjobs/${params.name}`;
+    return await this.put<CronJob>(path, params.body);
+  }
+  async deleteBatchV1beta1NamespacedCronJob(params: DeleteBatchV1beta1NamespacedCronJobRequest): Promise<Status> {
+    const path = `/apis/batch/v1beta1/namespaces/${params.namespace}/cronjobs/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchBatchV1beta1NamespacedCronJob(params: PatchBatchV1beta1NamespacedCronJobRequest): Promise<CronJob> {
+    const path = `/apis/batch/v1beta1/namespaces/${params.namespace}/cronjobs/${params.name}`;
+    return await this.patch<CronJob>(path, params.body);
+  }
+  async readBatchV1beta1NamespacedCronJobStatus(params: ReadBatchV1beta1NamespacedCronJobStatusRequest): Promise<CronJob> {
+    const path = `/apis/batch/v1beta1/namespaces/${params.namespace}/cronjobs/${params.name}/status`;
+    return await this.get<CronJob>(path);
+  }
+  async replaceBatchV1beta1NamespacedCronJobStatus(params: ReplaceBatchV1beta1NamespacedCronJobStatusRequest): Promise<CronJob> {
+    const path = `/apis/batch/v1beta1/namespaces/${params.namespace}/cronjobs/${params.name}/status`;
+    return await this.put<CronJob>(path, params.body);
+  }
+  async patchBatchV1beta1NamespacedCronJobStatus(params: PatchBatchV1beta1NamespacedCronJobStatusRequest): Promise<CronJob> {
+    const path = `/apis/batch/v1beta1/namespaces/${params.namespace}/cronjobs/${params.name}/status`;
+    return await this.patch<CronJob>(path, params.body);
+  }
+  async watchBatchV1beta1CronJobListForAllNamespaces(params: WatchBatchV1beta1CronJobListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/batch/v1beta1/watch/cronjobs`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchBatchV1beta1NamespacedCronJobList(params: WatchBatchV1beta1NamespacedCronJobListRequest): Promise<WatchEvent> {
+    const path = `/apis/batch/v1beta1/watch/namespaces/${params.namespace}/cronjobs`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchBatchV1beta1NamespacedCronJob(params: WatchBatchV1beta1NamespacedCronJobRequest): Promise<WatchEvent> {
+    const path = `/apis/batch/v1beta1/watch/namespaces/${params.namespace}/cronjobs/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getCertificatesAPIGroup(params: GetCertificatesAPIGroupRequest): Promise<APIGroup> {
+    const path = `/apis/certificates.k8s.io/`;
+    return await this.get<APIGroup>(path);
+  }
+  async getCertificatesV1APIResources(params: GetCertificatesV1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/certificates.k8s.io/v1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listCertificatesV1CertificateSigningRequest(params: ListCertificatesV1CertificateSigningRequestRequest): Promise<CertificateSigningRequestList> {
+    const path = `/apis/certificates.k8s.io/v1/certificatesigningrequests`;
+    return await this.get<CertificateSigningRequestList>(path);
+  }
+  async createCertificatesV1CertificateSigningRequest(params: CreateCertificatesV1CertificateSigningRequestRequest): Promise<CertificateSigningRequest> {
+    const path = `/apis/certificates.k8s.io/v1/certificatesigningrequests`;
+    return await this.post<CertificateSigningRequest>(path, params.body);
+  }
+  async deleteCertificatesV1CollectionCertificateSigningRequest(params: DeleteCertificatesV1CollectionCertificateSigningRequestRequest): Promise<Status> {
+    const path = `/apis/certificates.k8s.io/v1/certificatesigningrequests`;
+    return await this.delete<Status>(path);
+  }
+  async readCertificatesV1CertificateSigningRequest(params: ReadCertificatesV1CertificateSigningRequestRequest): Promise<CertificateSigningRequest> {
+    const path = `/apis/certificates.k8s.io/v1/certificatesigningrequests/${params.name}`;
+    return await this.get<CertificateSigningRequest>(path);
+  }
+  async replaceCertificatesV1CertificateSigningRequest(params: ReplaceCertificatesV1CertificateSigningRequestRequest): Promise<CertificateSigningRequest> {
+    const path = `/apis/certificates.k8s.io/v1/certificatesigningrequests/${params.name}`;
+    return await this.put<CertificateSigningRequest>(path, params.body);
+  }
+  async deleteCertificatesV1CertificateSigningRequest(params: DeleteCertificatesV1CertificateSigningRequestRequest): Promise<Status> {
+    const path = `/apis/certificates.k8s.io/v1/certificatesigningrequests/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchCertificatesV1CertificateSigningRequest(params: PatchCertificatesV1CertificateSigningRequestRequest): Promise<CertificateSigningRequest> {
+    const path = `/apis/certificates.k8s.io/v1/certificatesigningrequests/${params.name}`;
+    return await this.patch<CertificateSigningRequest>(path, params.body);
+  }
+  async readCertificatesV1CertificateSigningRequestApproval(params: ReadCertificatesV1CertificateSigningRequestApprovalRequest): Promise<CertificateSigningRequest> {
+    const path = `/apis/certificates.k8s.io/v1/certificatesigningrequests/${params.name}/approval`;
+    return await this.get<CertificateSigningRequest>(path);
+  }
+  async replaceCertificatesV1CertificateSigningRequestApproval(params: ReplaceCertificatesV1CertificateSigningRequestApprovalRequest): Promise<CertificateSigningRequest> {
+    const path = `/apis/certificates.k8s.io/v1/certificatesigningrequests/${params.name}/approval`;
+    return await this.put<CertificateSigningRequest>(path, params.body);
+  }
+  async patchCertificatesV1CertificateSigningRequestApproval(params: PatchCertificatesV1CertificateSigningRequestApprovalRequest): Promise<CertificateSigningRequest> {
+    const path = `/apis/certificates.k8s.io/v1/certificatesigningrequests/${params.name}/approval`;
+    return await this.patch<CertificateSigningRequest>(path, params.body);
+  }
+  async readCertificatesV1CertificateSigningRequestStatus(params: ReadCertificatesV1CertificateSigningRequestStatusRequest): Promise<CertificateSigningRequest> {
+    const path = `/apis/certificates.k8s.io/v1/certificatesigningrequests/${params.name}/status`;
+    return await this.get<CertificateSigningRequest>(path);
+  }
+  async replaceCertificatesV1CertificateSigningRequestStatus(params: ReplaceCertificatesV1CertificateSigningRequestStatusRequest): Promise<CertificateSigningRequest> {
+    const path = `/apis/certificates.k8s.io/v1/certificatesigningrequests/${params.name}/status`;
+    return await this.put<CertificateSigningRequest>(path, params.body);
+  }
+  async patchCertificatesV1CertificateSigningRequestStatus(params: PatchCertificatesV1CertificateSigningRequestStatusRequest): Promise<CertificateSigningRequest> {
+    const path = `/apis/certificates.k8s.io/v1/certificatesigningrequests/${params.name}/status`;
+    return await this.patch<CertificateSigningRequest>(path, params.body);
+  }
+  async watchCertificatesV1CertificateSigningRequestList(params: WatchCertificatesV1CertificateSigningRequestListRequest): Promise<WatchEvent> {
+    const path = `/apis/certificates.k8s.io/v1/watch/certificatesigningrequests`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCertificatesV1CertificateSigningRequest(params: WatchCertificatesV1CertificateSigningRequestRequest): Promise<WatchEvent> {
+    const path = `/apis/certificates.k8s.io/v1/watch/certificatesigningrequests/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getCoordinationAPIGroup(params: GetCoordinationAPIGroupRequest): Promise<APIGroup> {
+    const path = `/apis/coordination.k8s.io/`;
+    return await this.get<APIGroup>(path);
+  }
+  async getCoordinationV1APIResources(params: GetCoordinationV1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/coordination.k8s.io/v1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listCoordinationV1LeaseForAllNamespaces(params: ListCoordinationV1LeaseForAllNamespacesRequest): Promise<LeaseList> {
+    const path = `/apis/coordination.k8s.io/v1/leases`;
+    return await this.get<LeaseList>(path);
+  }
+  async listCoordinationV1NamespacedLease(params: ListCoordinationV1NamespacedLeaseRequest): Promise<LeaseList> {
+    const path = `/apis/coordination.k8s.io/v1/namespaces/${params.namespace}/leases`;
+    return await this.get<LeaseList>(path);
+  }
+  async createCoordinationV1NamespacedLease(params: CreateCoordinationV1NamespacedLeaseRequest): Promise<Lease> {
+    const path = `/apis/coordination.k8s.io/v1/namespaces/${params.namespace}/leases`;
+    return await this.post<Lease>(path, params.body);
+  }
+  async deleteCoordinationV1CollectionNamespacedLease(params: DeleteCoordinationV1CollectionNamespacedLeaseRequest): Promise<Status> {
+    const path = `/apis/coordination.k8s.io/v1/namespaces/${params.namespace}/leases`;
+    return await this.delete<Status>(path);
+  }
+  async readCoordinationV1NamespacedLease(params: ReadCoordinationV1NamespacedLeaseRequest): Promise<Lease> {
+    const path = `/apis/coordination.k8s.io/v1/namespaces/${params.namespace}/leases/${params.name}`;
+    return await this.get<Lease>(path);
+  }
+  async replaceCoordinationV1NamespacedLease(params: ReplaceCoordinationV1NamespacedLeaseRequest): Promise<Lease> {
+    const path = `/apis/coordination.k8s.io/v1/namespaces/${params.namespace}/leases/${params.name}`;
+    return await this.put<Lease>(path, params.body);
+  }
+  async deleteCoordinationV1NamespacedLease(params: DeleteCoordinationV1NamespacedLeaseRequest): Promise<Status> {
+    const path = `/apis/coordination.k8s.io/v1/namespaces/${params.namespace}/leases/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchCoordinationV1NamespacedLease(params: PatchCoordinationV1NamespacedLeaseRequest): Promise<Lease> {
+    const path = `/apis/coordination.k8s.io/v1/namespaces/${params.namespace}/leases/${params.name}`;
+    return await this.patch<Lease>(path, params.body);
+  }
+  async watchCoordinationV1LeaseListForAllNamespaces(params: WatchCoordinationV1LeaseListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/coordination.k8s.io/v1/watch/leases`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoordinationV1NamespacedLeaseList(params: WatchCoordinationV1NamespacedLeaseListRequest): Promise<WatchEvent> {
+    const path = `/apis/coordination.k8s.io/v1/watch/namespaces/${params.namespace}/leases`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchCoordinationV1NamespacedLease(params: WatchCoordinationV1NamespacedLeaseRequest): Promise<WatchEvent> {
+    const path = `/apis/coordination.k8s.io/v1/watch/namespaces/${params.namespace}/leases/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getDiscoveryAPIGroup(params: GetDiscoveryAPIGroupRequest): Promise<APIGroup> {
+    const path = `/apis/discovery.k8s.io/`;
+    return await this.get<APIGroup>(path);
+  }
+  async getDiscoveryV1APIResources(params: GetDiscoveryV1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/discovery.k8s.io/v1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listDiscoveryV1EndpointSliceForAllNamespaces(params: ListDiscoveryV1EndpointSliceForAllNamespacesRequest): Promise<EndpointSliceList> {
+    const path = `/apis/discovery.k8s.io/v1/endpointslices`;
+    return await this.get<EndpointSliceList>(path);
+  }
+  async listDiscoveryV1NamespacedEndpointSlice(params: ListDiscoveryV1NamespacedEndpointSliceRequest): Promise<EndpointSliceList> {
+    const path = `/apis/discovery.k8s.io/v1/namespaces/${params.namespace}/endpointslices`;
+    return await this.get<EndpointSliceList>(path);
+  }
+  async createDiscoveryV1NamespacedEndpointSlice(params: CreateDiscoveryV1NamespacedEndpointSliceRequest): Promise<EndpointSlice> {
+    const path = `/apis/discovery.k8s.io/v1/namespaces/${params.namespace}/endpointslices`;
+    return await this.post<EndpointSlice>(path, params.body);
+  }
+  async deleteDiscoveryV1CollectionNamespacedEndpointSlice(params: DeleteDiscoveryV1CollectionNamespacedEndpointSliceRequest): Promise<Status> {
+    const path = `/apis/discovery.k8s.io/v1/namespaces/${params.namespace}/endpointslices`;
+    return await this.delete<Status>(path);
+  }
+  async readDiscoveryV1NamespacedEndpointSlice(params: ReadDiscoveryV1NamespacedEndpointSliceRequest): Promise<EndpointSlice> {
+    const path = `/apis/discovery.k8s.io/v1/namespaces/${params.namespace}/endpointslices/${params.name}`;
+    return await this.get<EndpointSlice>(path);
+  }
+  async replaceDiscoveryV1NamespacedEndpointSlice(params: ReplaceDiscoveryV1NamespacedEndpointSliceRequest): Promise<EndpointSlice> {
+    const path = `/apis/discovery.k8s.io/v1/namespaces/${params.namespace}/endpointslices/${params.name}`;
+    return await this.put<EndpointSlice>(path, params.body);
+  }
+  async deleteDiscoveryV1NamespacedEndpointSlice(params: DeleteDiscoveryV1NamespacedEndpointSliceRequest): Promise<Status> {
+    const path = `/apis/discovery.k8s.io/v1/namespaces/${params.namespace}/endpointslices/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchDiscoveryV1NamespacedEndpointSlice(params: PatchDiscoveryV1NamespacedEndpointSliceRequest): Promise<EndpointSlice> {
+    const path = `/apis/discovery.k8s.io/v1/namespaces/${params.namespace}/endpointslices/${params.name}`;
+    return await this.patch<EndpointSlice>(path, params.body);
+  }
+  async watchDiscoveryV1EndpointSliceListForAllNamespaces(params: WatchDiscoveryV1EndpointSliceListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/discovery.k8s.io/v1/watch/endpointslices`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchDiscoveryV1NamespacedEndpointSliceList(params: WatchDiscoveryV1NamespacedEndpointSliceListRequest): Promise<WatchEvent> {
+    const path = `/apis/discovery.k8s.io/v1/watch/namespaces/${params.namespace}/endpointslices`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchDiscoveryV1NamespacedEndpointSlice(params: WatchDiscoveryV1NamespacedEndpointSliceRequest): Promise<WatchEvent> {
+    const path = `/apis/discovery.k8s.io/v1/watch/namespaces/${params.namespace}/endpointslices/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getDiscoveryV1beta1APIResources(params: GetDiscoveryV1beta1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/discovery.k8s.io/v1beta1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listDiscoveryV1beta1EndpointSliceForAllNamespaces(params: ListDiscoveryV1beta1EndpointSliceForAllNamespacesRequest): Promise<EndpointSliceList> {
+    const path = `/apis/discovery.k8s.io/v1beta1/endpointslices`;
+    return await this.get<EndpointSliceList>(path);
+  }
+  async listDiscoveryV1beta1NamespacedEndpointSlice(params: ListDiscoveryV1beta1NamespacedEndpointSliceRequest): Promise<EndpointSliceList> {
+    const path = `/apis/discovery.k8s.io/v1beta1/namespaces/${params.namespace}/endpointslices`;
+    return await this.get<EndpointSliceList>(path);
+  }
+  async createDiscoveryV1beta1NamespacedEndpointSlice(params: CreateDiscoveryV1beta1NamespacedEndpointSliceRequest): Promise<EndpointSlice> {
+    const path = `/apis/discovery.k8s.io/v1beta1/namespaces/${params.namespace}/endpointslices`;
+    return await this.post<EndpointSlice>(path, params.body);
+  }
+  async deleteDiscoveryV1beta1CollectionNamespacedEndpointSlice(params: DeleteDiscoveryV1beta1CollectionNamespacedEndpointSliceRequest): Promise<Status> {
+    const path = `/apis/discovery.k8s.io/v1beta1/namespaces/${params.namespace}/endpointslices`;
+    return await this.delete<Status>(path);
+  }
+  async readDiscoveryV1beta1NamespacedEndpointSlice(params: ReadDiscoveryV1beta1NamespacedEndpointSliceRequest): Promise<EndpointSlice> {
+    const path = `/apis/discovery.k8s.io/v1beta1/namespaces/${params.namespace}/endpointslices/${params.name}`;
+    return await this.get<EndpointSlice>(path);
+  }
+  async replaceDiscoveryV1beta1NamespacedEndpointSlice(params: ReplaceDiscoveryV1beta1NamespacedEndpointSliceRequest): Promise<EndpointSlice> {
+    const path = `/apis/discovery.k8s.io/v1beta1/namespaces/${params.namespace}/endpointslices/${params.name}`;
+    return await this.put<EndpointSlice>(path, params.body);
+  }
+  async deleteDiscoveryV1beta1NamespacedEndpointSlice(params: DeleteDiscoveryV1beta1NamespacedEndpointSliceRequest): Promise<Status> {
+    const path = `/apis/discovery.k8s.io/v1beta1/namespaces/${params.namespace}/endpointslices/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchDiscoveryV1beta1NamespacedEndpointSlice(params: PatchDiscoveryV1beta1NamespacedEndpointSliceRequest): Promise<EndpointSlice> {
+    const path = `/apis/discovery.k8s.io/v1beta1/namespaces/${params.namespace}/endpointslices/${params.name}`;
+    return await this.patch<EndpointSlice>(path, params.body);
+  }
+  async watchDiscoveryV1beta1EndpointSliceListForAllNamespaces(params: WatchDiscoveryV1beta1EndpointSliceListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/discovery.k8s.io/v1beta1/watch/endpointslices`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchDiscoveryV1beta1NamespacedEndpointSliceList(params: WatchDiscoveryV1beta1NamespacedEndpointSliceListRequest): Promise<WatchEvent> {
+    const path = `/apis/discovery.k8s.io/v1beta1/watch/namespaces/${params.namespace}/endpointslices`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchDiscoveryV1beta1NamespacedEndpointSlice(params: WatchDiscoveryV1beta1NamespacedEndpointSliceRequest): Promise<WatchEvent> {
+    const path = `/apis/discovery.k8s.io/v1beta1/watch/namespaces/${params.namespace}/endpointslices/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getEventsAPIGroup(params: GetEventsAPIGroupRequest): Promise<APIGroup> {
+    const path = `/apis/events.k8s.io/`;
+    return await this.get<APIGroup>(path);
+  }
+  async getEventsV1APIResources(params: GetEventsV1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/events.k8s.io/v1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listEventsV1EventForAllNamespaces(params: ListEventsV1EventForAllNamespacesRequest): Promise<EventList> {
+    const path = `/apis/events.k8s.io/v1/events`;
+    return await this.get<EventList>(path);
+  }
+  async listEventsV1NamespacedEvent(params: ListEventsV1NamespacedEventRequest): Promise<EventList> {
+    const path = `/apis/events.k8s.io/v1/namespaces/${params.namespace}/events`;
+    return await this.get<EventList>(path);
+  }
+  async createEventsV1NamespacedEvent(params: CreateEventsV1NamespacedEventRequest): Promise<Event> {
+    const path = `/apis/events.k8s.io/v1/namespaces/${params.namespace}/events`;
+    return await this.post<Event>(path, params.body);
+  }
+  async deleteEventsV1CollectionNamespacedEvent(params: DeleteEventsV1CollectionNamespacedEventRequest): Promise<Status> {
+    const path = `/apis/events.k8s.io/v1/namespaces/${params.namespace}/events`;
+    return await this.delete<Status>(path);
+  }
+  async readEventsV1NamespacedEvent(params: ReadEventsV1NamespacedEventRequest): Promise<Event> {
+    const path = `/apis/events.k8s.io/v1/namespaces/${params.namespace}/events/${params.name}`;
+    return await this.get<Event>(path);
+  }
+  async replaceEventsV1NamespacedEvent(params: ReplaceEventsV1NamespacedEventRequest): Promise<Event> {
+    const path = `/apis/events.k8s.io/v1/namespaces/${params.namespace}/events/${params.name}`;
+    return await this.put<Event>(path, params.body);
+  }
+  async deleteEventsV1NamespacedEvent(params: DeleteEventsV1NamespacedEventRequest): Promise<Status> {
+    const path = `/apis/events.k8s.io/v1/namespaces/${params.namespace}/events/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchEventsV1NamespacedEvent(params: PatchEventsV1NamespacedEventRequest): Promise<Event> {
+    const path = `/apis/events.k8s.io/v1/namespaces/${params.namespace}/events/${params.name}`;
+    return await this.patch<Event>(path, params.body);
+  }
+  async watchEventsV1EventListForAllNamespaces(params: WatchEventsV1EventListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/events.k8s.io/v1/watch/events`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchEventsV1NamespacedEventList(params: WatchEventsV1NamespacedEventListRequest): Promise<WatchEvent> {
+    const path = `/apis/events.k8s.io/v1/watch/namespaces/${params.namespace}/events`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchEventsV1NamespacedEvent(params: WatchEventsV1NamespacedEventRequest): Promise<WatchEvent> {
+    const path = `/apis/events.k8s.io/v1/watch/namespaces/${params.namespace}/events/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getEventsV1beta1APIResources(params: GetEventsV1beta1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/events.k8s.io/v1beta1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listEventsV1beta1EventForAllNamespaces(params: ListEventsV1beta1EventForAllNamespacesRequest): Promise<EventList> {
+    const path = `/apis/events.k8s.io/v1beta1/events`;
+    return await this.get<EventList>(path);
+  }
+  async listEventsV1beta1NamespacedEvent(params: ListEventsV1beta1NamespacedEventRequest): Promise<EventList> {
+    const path = `/apis/events.k8s.io/v1beta1/namespaces/${params.namespace}/events`;
+    return await this.get<EventList>(path);
+  }
+  async createEventsV1beta1NamespacedEvent(params: CreateEventsV1beta1NamespacedEventRequest): Promise<Event> {
+    const path = `/apis/events.k8s.io/v1beta1/namespaces/${params.namespace}/events`;
+    return await this.post<Event>(path, params.body);
+  }
+  async deleteEventsV1beta1CollectionNamespacedEvent(params: DeleteEventsV1beta1CollectionNamespacedEventRequest): Promise<Status> {
+    const path = `/apis/events.k8s.io/v1beta1/namespaces/${params.namespace}/events`;
+    return await this.delete<Status>(path);
+  }
+  async readEventsV1beta1NamespacedEvent(params: ReadEventsV1beta1NamespacedEventRequest): Promise<Event> {
+    const path = `/apis/events.k8s.io/v1beta1/namespaces/${params.namespace}/events/${params.name}`;
+    return await this.get<Event>(path);
+  }
+  async replaceEventsV1beta1NamespacedEvent(params: ReplaceEventsV1beta1NamespacedEventRequest): Promise<Event> {
+    const path = `/apis/events.k8s.io/v1beta1/namespaces/${params.namespace}/events/${params.name}`;
+    return await this.put<Event>(path, params.body);
+  }
+  async deleteEventsV1beta1NamespacedEvent(params: DeleteEventsV1beta1NamespacedEventRequest): Promise<Status> {
+    const path = `/apis/events.k8s.io/v1beta1/namespaces/${params.namespace}/events/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchEventsV1beta1NamespacedEvent(params: PatchEventsV1beta1NamespacedEventRequest): Promise<Event> {
+    const path = `/apis/events.k8s.io/v1beta1/namespaces/${params.namespace}/events/${params.name}`;
+    return await this.patch<Event>(path, params.body);
+  }
+  async watchEventsV1beta1EventListForAllNamespaces(params: WatchEventsV1beta1EventListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/events.k8s.io/v1beta1/watch/events`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchEventsV1beta1NamespacedEventList(params: WatchEventsV1beta1NamespacedEventListRequest): Promise<WatchEvent> {
+    const path = `/apis/events.k8s.io/v1beta1/watch/namespaces/${params.namespace}/events`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchEventsV1beta1NamespacedEvent(params: WatchEventsV1beta1NamespacedEventRequest): Promise<WatchEvent> {
+    const path = `/apis/events.k8s.io/v1beta1/watch/namespaces/${params.namespace}/events/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getFlowcontrolApiserverAPIGroup(params: GetFlowcontrolApiserverAPIGroupRequest): Promise<APIGroup> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/`;
+    return await this.get<APIGroup>(path);
+  }
+  async getFlowcontrolApiserverV1beta1APIResources(params: GetFlowcontrolApiserverV1beta1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listFlowcontrolApiserverV1beta1FlowSchema(params: ListFlowcontrolApiserverV1beta1FlowSchemaRequest): Promise<FlowSchemaList> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas`;
+    return await this.get<FlowSchemaList>(path);
+  }
+  async createFlowcontrolApiserverV1beta1FlowSchema(params: CreateFlowcontrolApiserverV1beta1FlowSchemaRequest): Promise<FlowSchema> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas`;
+    return await this.post<FlowSchema>(path, params.body);
+  }
+  async deleteFlowcontrolApiserverV1beta1CollectionFlowSchema(params: DeleteFlowcontrolApiserverV1beta1CollectionFlowSchemaRequest): Promise<Status> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas`;
+    return await this.delete<Status>(path);
+  }
+  async readFlowcontrolApiserverV1beta1FlowSchema(params: ReadFlowcontrolApiserverV1beta1FlowSchemaRequest): Promise<FlowSchema> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/${params.name}`;
+    return await this.get<FlowSchema>(path);
+  }
+  async replaceFlowcontrolApiserverV1beta1FlowSchema(params: ReplaceFlowcontrolApiserverV1beta1FlowSchemaRequest): Promise<FlowSchema> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/${params.name}`;
+    return await this.put<FlowSchema>(path, params.body);
+  }
+  async deleteFlowcontrolApiserverV1beta1FlowSchema(params: DeleteFlowcontrolApiserverV1beta1FlowSchemaRequest): Promise<Status> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchFlowcontrolApiserverV1beta1FlowSchema(params: PatchFlowcontrolApiserverV1beta1FlowSchemaRequest): Promise<FlowSchema> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/${params.name}`;
+    return await this.patch<FlowSchema>(path, params.body);
+  }
+  async readFlowcontrolApiserverV1beta1FlowSchemaStatus(params: ReadFlowcontrolApiserverV1beta1FlowSchemaStatusRequest): Promise<FlowSchema> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/${params.name}/status`;
+    return await this.get<FlowSchema>(path);
+  }
+  async replaceFlowcontrolApiserverV1beta1FlowSchemaStatus(params: ReplaceFlowcontrolApiserverV1beta1FlowSchemaStatusRequest): Promise<FlowSchema> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/${params.name}/status`;
+    return await this.put<FlowSchema>(path, params.body);
+  }
+  async patchFlowcontrolApiserverV1beta1FlowSchemaStatus(params: PatchFlowcontrolApiserverV1beta1FlowSchemaStatusRequest): Promise<FlowSchema> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/${params.name}/status`;
+    return await this.patch<FlowSchema>(path, params.body);
+  }
+  async listFlowcontrolApiserverV1beta1PriorityLevelConfiguration(params: ListFlowcontrolApiserverV1beta1PriorityLevelConfigurationRequest): Promise<PriorityLevelConfigurationList> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations`;
+    return await this.get<PriorityLevelConfigurationList>(path);
+  }
+  async createFlowcontrolApiserverV1beta1PriorityLevelConfiguration(params: CreateFlowcontrolApiserverV1beta1PriorityLevelConfigurationRequest): Promise<PriorityLevelConfiguration> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations`;
+    return await this.post<PriorityLevelConfiguration>(path, params.body);
+  }
+  async deleteFlowcontrolApiserverV1beta1CollectionPriorityLevelConfiguration(params: DeleteFlowcontrolApiserverV1beta1CollectionPriorityLevelConfigurationRequest): Promise<Status> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations`;
+    return await this.delete<Status>(path);
+  }
+  async readFlowcontrolApiserverV1beta1PriorityLevelConfiguration(params: ReadFlowcontrolApiserverV1beta1PriorityLevelConfigurationRequest): Promise<PriorityLevelConfiguration> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations/${params.name}`;
+    return await this.get<PriorityLevelConfiguration>(path);
+  }
+  async replaceFlowcontrolApiserverV1beta1PriorityLevelConfiguration(params: ReplaceFlowcontrolApiserverV1beta1PriorityLevelConfigurationRequest): Promise<PriorityLevelConfiguration> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations/${params.name}`;
+    return await this.put<PriorityLevelConfiguration>(path, params.body);
+  }
+  async deleteFlowcontrolApiserverV1beta1PriorityLevelConfiguration(params: DeleteFlowcontrolApiserverV1beta1PriorityLevelConfigurationRequest): Promise<Status> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchFlowcontrolApiserverV1beta1PriorityLevelConfiguration(params: PatchFlowcontrolApiserverV1beta1PriorityLevelConfigurationRequest): Promise<PriorityLevelConfiguration> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations/${params.name}`;
+    return await this.patch<PriorityLevelConfiguration>(path, params.body);
+  }
+  async readFlowcontrolApiserverV1beta1PriorityLevelConfigurationStatus(params: ReadFlowcontrolApiserverV1beta1PriorityLevelConfigurationStatusRequest): Promise<PriorityLevelConfiguration> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations/${params.name}/status`;
+    return await this.get<PriorityLevelConfiguration>(path);
+  }
+  async replaceFlowcontrolApiserverV1beta1PriorityLevelConfigurationStatus(params: ReplaceFlowcontrolApiserverV1beta1PriorityLevelConfigurationStatusRequest): Promise<PriorityLevelConfiguration> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations/${params.name}/status`;
+    return await this.put<PriorityLevelConfiguration>(path, params.body);
+  }
+  async patchFlowcontrolApiserverV1beta1PriorityLevelConfigurationStatus(params: PatchFlowcontrolApiserverV1beta1PriorityLevelConfigurationStatusRequest): Promise<PriorityLevelConfiguration> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations/${params.name}/status`;
+    return await this.patch<PriorityLevelConfiguration>(path, params.body);
+  }
+  async watchFlowcontrolApiserverV1beta1FlowSchemaList(params: WatchFlowcontrolApiserverV1beta1FlowSchemaListRequest): Promise<WatchEvent> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/watch/flowschemas`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchFlowcontrolApiserverV1beta1FlowSchema(params: WatchFlowcontrolApiserverV1beta1FlowSchemaRequest): Promise<WatchEvent> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/watch/flowschemas/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchFlowcontrolApiserverV1beta1PriorityLevelConfigurationList(params: WatchFlowcontrolApiserverV1beta1PriorityLevelConfigurationListRequest): Promise<WatchEvent> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/watch/prioritylevelconfigurations`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchFlowcontrolApiserverV1beta1PriorityLevelConfiguration(params: WatchFlowcontrolApiserverV1beta1PriorityLevelConfigurationRequest): Promise<WatchEvent> {
+    const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/watch/prioritylevelconfigurations/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getNetworkingAPIGroup(params: GetNetworkingAPIGroupRequest): Promise<APIGroup> {
+    const path = `/apis/networking.k8s.io/`;
+    return await this.get<APIGroup>(path);
+  }
+  async getNetworkingV1APIResources(params: GetNetworkingV1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/networking.k8s.io/v1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listNetworkingV1IngressClass(params: ListNetworkingV1IngressClassRequest): Promise<IngressClassList> {
+    const path = `/apis/networking.k8s.io/v1/ingressclasses`;
+    return await this.get<IngressClassList>(path);
+  }
+  async createNetworkingV1IngressClass(params: CreateNetworkingV1IngressClassRequest): Promise<IngressClass> {
+    const path = `/apis/networking.k8s.io/v1/ingressclasses`;
+    return await this.post<IngressClass>(path, params.body);
+  }
+  async deleteNetworkingV1CollectionIngressClass(params: DeleteNetworkingV1CollectionIngressClassRequest): Promise<Status> {
+    const path = `/apis/networking.k8s.io/v1/ingressclasses`;
+    return await this.delete<Status>(path);
+  }
+  async readNetworkingV1IngressClass(params: ReadNetworkingV1IngressClassRequest): Promise<IngressClass> {
+    const path = `/apis/networking.k8s.io/v1/ingressclasses/${params.name}`;
+    return await this.get<IngressClass>(path);
+  }
+  async replaceNetworkingV1IngressClass(params: ReplaceNetworkingV1IngressClassRequest): Promise<IngressClass> {
+    const path = `/apis/networking.k8s.io/v1/ingressclasses/${params.name}`;
+    return await this.put<IngressClass>(path, params.body);
+  }
+  async deleteNetworkingV1IngressClass(params: DeleteNetworkingV1IngressClassRequest): Promise<Status> {
+    const path = `/apis/networking.k8s.io/v1/ingressclasses/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchNetworkingV1IngressClass(params: PatchNetworkingV1IngressClassRequest): Promise<IngressClass> {
+    const path = `/apis/networking.k8s.io/v1/ingressclasses/${params.name}`;
+    return await this.patch<IngressClass>(path, params.body);
+  }
+  async listNetworkingV1IngressForAllNamespaces(params: ListNetworkingV1IngressForAllNamespacesRequest): Promise<IngressList> {
+    const path = `/apis/networking.k8s.io/v1/ingresses`;
+    return await this.get<IngressList>(path);
+  }
+  async listNetworkingV1NamespacedIngress(params: ListNetworkingV1NamespacedIngressRequest): Promise<IngressList> {
+    const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/ingresses`;
+    return await this.get<IngressList>(path);
+  }
+  async createNetworkingV1NamespacedIngress(params: CreateNetworkingV1NamespacedIngressRequest): Promise<Ingress> {
+    const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/ingresses`;
+    return await this.post<Ingress>(path, params.body);
+  }
+  async deleteNetworkingV1CollectionNamespacedIngress(params: DeleteNetworkingV1CollectionNamespacedIngressRequest): Promise<Status> {
+    const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/ingresses`;
+    return await this.delete<Status>(path);
+  }
+  async readNetworkingV1NamespacedIngress(params: ReadNetworkingV1NamespacedIngressRequest): Promise<Ingress> {
+    const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/ingresses/${params.name}`;
+    return await this.get<Ingress>(path);
+  }
+  async replaceNetworkingV1NamespacedIngress(params: ReplaceNetworkingV1NamespacedIngressRequest): Promise<Ingress> {
+    const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/ingresses/${params.name}`;
+    return await this.put<Ingress>(path, params.body);
+  }
+  async deleteNetworkingV1NamespacedIngress(params: DeleteNetworkingV1NamespacedIngressRequest): Promise<Status> {
+    const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/ingresses/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchNetworkingV1NamespacedIngress(params: PatchNetworkingV1NamespacedIngressRequest): Promise<Ingress> {
+    const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/ingresses/${params.name}`;
+    return await this.patch<Ingress>(path, params.body);
+  }
+  async readNetworkingV1NamespacedIngressStatus(params: ReadNetworkingV1NamespacedIngressStatusRequest): Promise<Ingress> {
+    const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/ingresses/${params.name}/status`;
+    return await this.get<Ingress>(path);
+  }
+  async replaceNetworkingV1NamespacedIngressStatus(params: ReplaceNetworkingV1NamespacedIngressStatusRequest): Promise<Ingress> {
+    const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/ingresses/${params.name}/status`;
+    return await this.put<Ingress>(path, params.body);
+  }
+  async patchNetworkingV1NamespacedIngressStatus(params: PatchNetworkingV1NamespacedIngressStatusRequest): Promise<Ingress> {
+    const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/ingresses/${params.name}/status`;
+    return await this.patch<Ingress>(path, params.body);
+  }
+  async listNetworkingV1NamespacedNetworkPolicy(params: ListNetworkingV1NamespacedNetworkPolicyRequest): Promise<NetworkPolicyList> {
+    const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/networkpolicies`;
+    return await this.get<NetworkPolicyList>(path);
+  }
+  async createNetworkingV1NamespacedNetworkPolicy(params: CreateNetworkingV1NamespacedNetworkPolicyRequest): Promise<NetworkPolicy> {
+    const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/networkpolicies`;
+    return await this.post<NetworkPolicy>(path, params.body);
+  }
+  async deleteNetworkingV1CollectionNamespacedNetworkPolicy(params: DeleteNetworkingV1CollectionNamespacedNetworkPolicyRequest): Promise<Status> {
+    const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/networkpolicies`;
+    return await this.delete<Status>(path);
+  }
+  async readNetworkingV1NamespacedNetworkPolicy(params: ReadNetworkingV1NamespacedNetworkPolicyRequest): Promise<NetworkPolicy> {
+    const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/networkpolicies/${params.name}`;
+    return await this.get<NetworkPolicy>(path);
+  }
+  async replaceNetworkingV1NamespacedNetworkPolicy(params: ReplaceNetworkingV1NamespacedNetworkPolicyRequest): Promise<NetworkPolicy> {
+    const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/networkpolicies/${params.name}`;
+    return await this.put<NetworkPolicy>(path, params.body);
+  }
+  async deleteNetworkingV1NamespacedNetworkPolicy(params: DeleteNetworkingV1NamespacedNetworkPolicyRequest): Promise<Status> {
+    const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/networkpolicies/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchNetworkingV1NamespacedNetworkPolicy(params: PatchNetworkingV1NamespacedNetworkPolicyRequest): Promise<NetworkPolicy> {
+    const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/networkpolicies/${params.name}`;
+    return await this.patch<NetworkPolicy>(path, params.body);
+  }
+  async listNetworkingV1NetworkPolicyForAllNamespaces(params: ListNetworkingV1NetworkPolicyForAllNamespacesRequest): Promise<NetworkPolicyList> {
+    const path = `/apis/networking.k8s.io/v1/networkpolicies`;
+    return await this.get<NetworkPolicyList>(path);
+  }
+  async watchNetworkingV1IngressClassList(params: WatchNetworkingV1IngressClassListRequest): Promise<WatchEvent> {
+    const path = `/apis/networking.k8s.io/v1/watch/ingressclasses`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchNetworkingV1IngressClass(params: WatchNetworkingV1IngressClassRequest): Promise<WatchEvent> {
+    const path = `/apis/networking.k8s.io/v1/watch/ingressclasses/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchNetworkingV1IngressListForAllNamespaces(params: WatchNetworkingV1IngressListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/networking.k8s.io/v1/watch/ingresses`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchNetworkingV1NamespacedIngressList(params: WatchNetworkingV1NamespacedIngressListRequest): Promise<WatchEvent> {
+    const path = `/apis/networking.k8s.io/v1/watch/namespaces/${params.namespace}/ingresses`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchNetworkingV1NamespacedIngress(params: WatchNetworkingV1NamespacedIngressRequest): Promise<WatchEvent> {
+    const path = `/apis/networking.k8s.io/v1/watch/namespaces/${params.namespace}/ingresses/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchNetworkingV1NamespacedNetworkPolicyList(params: WatchNetworkingV1NamespacedNetworkPolicyListRequest): Promise<WatchEvent> {
+    const path = `/apis/networking.k8s.io/v1/watch/namespaces/${params.namespace}/networkpolicies`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchNetworkingV1NamespacedNetworkPolicy(params: WatchNetworkingV1NamespacedNetworkPolicyRequest): Promise<WatchEvent> {
+    const path = `/apis/networking.k8s.io/v1/watch/namespaces/${params.namespace}/networkpolicies/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchNetworkingV1NetworkPolicyListForAllNamespaces(params: WatchNetworkingV1NetworkPolicyListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/networking.k8s.io/v1/watch/networkpolicies`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getNodeAPIGroup(params: GetNodeAPIGroupRequest): Promise<APIGroup> {
+    const path = `/apis/node.k8s.io/`;
+    return await this.get<APIGroup>(path);
+  }
+  async getNodeV1APIResources(params: GetNodeV1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/node.k8s.io/v1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listNodeV1RuntimeClass(params: ListNodeV1RuntimeClassRequest): Promise<RuntimeClassList> {
+    const path = `/apis/node.k8s.io/v1/runtimeclasses`;
+    return await this.get<RuntimeClassList>(path);
+  }
+  async createNodeV1RuntimeClass(params: CreateNodeV1RuntimeClassRequest): Promise<RuntimeClass> {
+    const path = `/apis/node.k8s.io/v1/runtimeclasses`;
+    return await this.post<RuntimeClass>(path, params.body);
+  }
+  async deleteNodeV1CollectionRuntimeClass(params: DeleteNodeV1CollectionRuntimeClassRequest): Promise<Status> {
+    const path = `/apis/node.k8s.io/v1/runtimeclasses`;
+    return await this.delete<Status>(path);
+  }
+  async readNodeV1RuntimeClass(params: ReadNodeV1RuntimeClassRequest): Promise<RuntimeClass> {
+    const path = `/apis/node.k8s.io/v1/runtimeclasses/${params.name}`;
+    return await this.get<RuntimeClass>(path);
+  }
+  async replaceNodeV1RuntimeClass(params: ReplaceNodeV1RuntimeClassRequest): Promise<RuntimeClass> {
+    const path = `/apis/node.k8s.io/v1/runtimeclasses/${params.name}`;
+    return await this.put<RuntimeClass>(path, params.body);
+  }
+  async deleteNodeV1RuntimeClass(params: DeleteNodeV1RuntimeClassRequest): Promise<Status> {
+    const path = `/apis/node.k8s.io/v1/runtimeclasses/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchNodeV1RuntimeClass(params: PatchNodeV1RuntimeClassRequest): Promise<RuntimeClass> {
+    const path = `/apis/node.k8s.io/v1/runtimeclasses/${params.name}`;
+    return await this.patch<RuntimeClass>(path, params.body);
+  }
+  async watchNodeV1RuntimeClassList(params: WatchNodeV1RuntimeClassListRequest): Promise<WatchEvent> {
+    const path = `/apis/node.k8s.io/v1/watch/runtimeclasses`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchNodeV1RuntimeClass(params: WatchNodeV1RuntimeClassRequest): Promise<WatchEvent> {
+    const path = `/apis/node.k8s.io/v1/watch/runtimeclasses/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getNodeV1beta1APIResources(params: GetNodeV1beta1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/node.k8s.io/v1beta1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listNodeV1beta1RuntimeClass(params: ListNodeV1beta1RuntimeClassRequest): Promise<RuntimeClassList> {
+    const path = `/apis/node.k8s.io/v1beta1/runtimeclasses`;
+    return await this.get<RuntimeClassList>(path);
+  }
+  async createNodeV1beta1RuntimeClass(params: CreateNodeV1beta1RuntimeClassRequest): Promise<RuntimeClass> {
+    const path = `/apis/node.k8s.io/v1beta1/runtimeclasses`;
+    return await this.post<RuntimeClass>(path, params.body);
+  }
+  async deleteNodeV1beta1CollectionRuntimeClass(params: DeleteNodeV1beta1CollectionRuntimeClassRequest): Promise<Status> {
+    const path = `/apis/node.k8s.io/v1beta1/runtimeclasses`;
+    return await this.delete<Status>(path);
+  }
+  async readNodeV1beta1RuntimeClass(params: ReadNodeV1beta1RuntimeClassRequest): Promise<RuntimeClass> {
+    const path = `/apis/node.k8s.io/v1beta1/runtimeclasses/${params.name}`;
+    return await this.get<RuntimeClass>(path);
+  }
+  async replaceNodeV1beta1RuntimeClass(params: ReplaceNodeV1beta1RuntimeClassRequest): Promise<RuntimeClass> {
+    const path = `/apis/node.k8s.io/v1beta1/runtimeclasses/${params.name}`;
+    return await this.put<RuntimeClass>(path, params.body);
+  }
+  async deleteNodeV1beta1RuntimeClass(params: DeleteNodeV1beta1RuntimeClassRequest): Promise<Status> {
+    const path = `/apis/node.k8s.io/v1beta1/runtimeclasses/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchNodeV1beta1RuntimeClass(params: PatchNodeV1beta1RuntimeClassRequest): Promise<RuntimeClass> {
+    const path = `/apis/node.k8s.io/v1beta1/runtimeclasses/${params.name}`;
+    return await this.patch<RuntimeClass>(path, params.body);
+  }
+  async watchNodeV1beta1RuntimeClassList(params: WatchNodeV1beta1RuntimeClassListRequest): Promise<WatchEvent> {
+    const path = `/apis/node.k8s.io/v1beta1/watch/runtimeclasses`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchNodeV1beta1RuntimeClass(params: WatchNodeV1beta1RuntimeClassRequest): Promise<WatchEvent> {
+    const path = `/apis/node.k8s.io/v1beta1/watch/runtimeclasses/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getPolicyAPIGroup(params: GetPolicyAPIGroupRequest): Promise<APIGroup> {
+    const path = `/apis/policy/`;
+    return await this.get<APIGroup>(path);
+  }
+  async getPolicyV1APIResources(params: GetPolicyV1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/policy/v1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listPolicyV1NamespacedPodDisruptionBudget(params: ListPolicyV1NamespacedPodDisruptionBudgetRequest): Promise<PodDisruptionBudgetList> {
+    const path = `/apis/policy/v1/namespaces/${params.namespace}/poddisruptionbudgets`;
+    return await this.get<PodDisruptionBudgetList>(path);
+  }
+  async createPolicyV1NamespacedPodDisruptionBudget(params: CreatePolicyV1NamespacedPodDisruptionBudgetRequest): Promise<PodDisruptionBudget> {
+    const path = `/apis/policy/v1/namespaces/${params.namespace}/poddisruptionbudgets`;
+    return await this.post<PodDisruptionBudget>(path, params.body);
+  }
+  async deletePolicyV1CollectionNamespacedPodDisruptionBudget(params: DeletePolicyV1CollectionNamespacedPodDisruptionBudgetRequest): Promise<Status> {
+    const path = `/apis/policy/v1/namespaces/${params.namespace}/poddisruptionbudgets`;
+    return await this.delete<Status>(path);
+  }
+  async readPolicyV1NamespacedPodDisruptionBudget(params: ReadPolicyV1NamespacedPodDisruptionBudgetRequest): Promise<PodDisruptionBudget> {
+    const path = `/apis/policy/v1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}`;
+    return await this.get<PodDisruptionBudget>(path);
+  }
+  async replacePolicyV1NamespacedPodDisruptionBudget(params: ReplacePolicyV1NamespacedPodDisruptionBudgetRequest): Promise<PodDisruptionBudget> {
+    const path = `/apis/policy/v1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}`;
+    return await this.put<PodDisruptionBudget>(path, params.body);
+  }
+  async deletePolicyV1NamespacedPodDisruptionBudget(params: DeletePolicyV1NamespacedPodDisruptionBudgetRequest): Promise<Status> {
+    const path = `/apis/policy/v1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchPolicyV1NamespacedPodDisruptionBudget(params: PatchPolicyV1NamespacedPodDisruptionBudgetRequest): Promise<PodDisruptionBudget> {
+    const path = `/apis/policy/v1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}`;
+    return await this.patch<PodDisruptionBudget>(path, params.body);
+  }
+  async readPolicyV1NamespacedPodDisruptionBudgetStatus(params: ReadPolicyV1NamespacedPodDisruptionBudgetStatusRequest): Promise<PodDisruptionBudget> {
+    const path = `/apis/policy/v1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}/status`;
+    return await this.get<PodDisruptionBudget>(path);
+  }
+  async replacePolicyV1NamespacedPodDisruptionBudgetStatus(params: ReplacePolicyV1NamespacedPodDisruptionBudgetStatusRequest): Promise<PodDisruptionBudget> {
+    const path = `/apis/policy/v1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}/status`;
+    return await this.put<PodDisruptionBudget>(path, params.body);
+  }
+  async patchPolicyV1NamespacedPodDisruptionBudgetStatus(params: PatchPolicyV1NamespacedPodDisruptionBudgetStatusRequest): Promise<PodDisruptionBudget> {
+    const path = `/apis/policy/v1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}/status`;
+    return await this.patch<PodDisruptionBudget>(path, params.body);
+  }
+  async listPolicyV1PodDisruptionBudgetForAllNamespaces(params: ListPolicyV1PodDisruptionBudgetForAllNamespacesRequest): Promise<PodDisruptionBudgetList> {
+    const path = `/apis/policy/v1/poddisruptionbudgets`;
+    return await this.get<PodDisruptionBudgetList>(path);
+  }
+  async watchPolicyV1NamespacedPodDisruptionBudgetList(params: WatchPolicyV1NamespacedPodDisruptionBudgetListRequest): Promise<WatchEvent> {
+    const path = `/apis/policy/v1/watch/namespaces/${params.namespace}/poddisruptionbudgets`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchPolicyV1NamespacedPodDisruptionBudget(params: WatchPolicyV1NamespacedPodDisruptionBudgetRequest): Promise<WatchEvent> {
+    const path = `/apis/policy/v1/watch/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchPolicyV1PodDisruptionBudgetListForAllNamespaces(params: WatchPolicyV1PodDisruptionBudgetListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/policy/v1/watch/poddisruptionbudgets`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getPolicyV1beta1APIResources(params: GetPolicyV1beta1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/policy/v1beta1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listPolicyV1beta1NamespacedPodDisruptionBudget(params: ListPolicyV1beta1NamespacedPodDisruptionBudgetRequest): Promise<PodDisruptionBudgetList> {
+    const path = `/apis/policy/v1beta1/namespaces/${params.namespace}/poddisruptionbudgets`;
+    return await this.get<PodDisruptionBudgetList>(path);
+  }
+  async createPolicyV1beta1NamespacedPodDisruptionBudget(params: CreatePolicyV1beta1NamespacedPodDisruptionBudgetRequest): Promise<PodDisruptionBudget> {
+    const path = `/apis/policy/v1beta1/namespaces/${params.namespace}/poddisruptionbudgets`;
+    return await this.post<PodDisruptionBudget>(path, params.body);
+  }
+  async deletePolicyV1beta1CollectionNamespacedPodDisruptionBudget(params: DeletePolicyV1beta1CollectionNamespacedPodDisruptionBudgetRequest): Promise<Status> {
+    const path = `/apis/policy/v1beta1/namespaces/${params.namespace}/poddisruptionbudgets`;
+    return await this.delete<Status>(path);
+  }
+  async readPolicyV1beta1NamespacedPodDisruptionBudget(params: ReadPolicyV1beta1NamespacedPodDisruptionBudgetRequest): Promise<PodDisruptionBudget> {
+    const path = `/apis/policy/v1beta1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}`;
+    return await this.get<PodDisruptionBudget>(path);
+  }
+  async replacePolicyV1beta1NamespacedPodDisruptionBudget(params: ReplacePolicyV1beta1NamespacedPodDisruptionBudgetRequest): Promise<PodDisruptionBudget> {
+    const path = `/apis/policy/v1beta1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}`;
+    return await this.put<PodDisruptionBudget>(path, params.body);
+  }
+  async deletePolicyV1beta1NamespacedPodDisruptionBudget(params: DeletePolicyV1beta1NamespacedPodDisruptionBudgetRequest): Promise<Status> {
+    const path = `/apis/policy/v1beta1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchPolicyV1beta1NamespacedPodDisruptionBudget(params: PatchPolicyV1beta1NamespacedPodDisruptionBudgetRequest): Promise<PodDisruptionBudget> {
+    const path = `/apis/policy/v1beta1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}`;
+    return await this.patch<PodDisruptionBudget>(path, params.body);
+  }
+  async readPolicyV1beta1NamespacedPodDisruptionBudgetStatus(params: ReadPolicyV1beta1NamespacedPodDisruptionBudgetStatusRequest): Promise<PodDisruptionBudget> {
+    const path = `/apis/policy/v1beta1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}/status`;
+    return await this.get<PodDisruptionBudget>(path);
+  }
+  async replacePolicyV1beta1NamespacedPodDisruptionBudgetStatus(params: ReplacePolicyV1beta1NamespacedPodDisruptionBudgetStatusRequest): Promise<PodDisruptionBudget> {
+    const path = `/apis/policy/v1beta1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}/status`;
+    return await this.put<PodDisruptionBudget>(path, params.body);
+  }
+  async patchPolicyV1beta1NamespacedPodDisruptionBudgetStatus(params: PatchPolicyV1beta1NamespacedPodDisruptionBudgetStatusRequest): Promise<PodDisruptionBudget> {
+    const path = `/apis/policy/v1beta1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}/status`;
+    return await this.patch<PodDisruptionBudget>(path, params.body);
+  }
+  async listPolicyV1beta1PodDisruptionBudgetForAllNamespaces(params: ListPolicyV1beta1PodDisruptionBudgetForAllNamespacesRequest): Promise<PodDisruptionBudgetList> {
+    const path = `/apis/policy/v1beta1/poddisruptionbudgets`;
+    return await this.get<PodDisruptionBudgetList>(path);
+  }
+  async listPolicyV1beta1PodSecurityPolicy(params: ListPolicyV1beta1PodSecurityPolicyRequest): Promise<PodSecurityPolicyList> {
+    const path = `/apis/policy/v1beta1/podsecuritypolicies`;
+    return await this.get<PodSecurityPolicyList>(path);
+  }
+  async createPolicyV1beta1PodSecurityPolicy(params: CreatePolicyV1beta1PodSecurityPolicyRequest): Promise<PodSecurityPolicy> {
+    const path = `/apis/policy/v1beta1/podsecuritypolicies`;
+    return await this.post<PodSecurityPolicy>(path, params.body);
+  }
+  async deletePolicyV1beta1CollectionPodSecurityPolicy(params: DeletePolicyV1beta1CollectionPodSecurityPolicyRequest): Promise<Status> {
+    const path = `/apis/policy/v1beta1/podsecuritypolicies`;
+    return await this.delete<Status>(path);
+  }
+  async readPolicyV1beta1PodSecurityPolicy(params: ReadPolicyV1beta1PodSecurityPolicyRequest): Promise<PodSecurityPolicy> {
+    const path = `/apis/policy/v1beta1/podsecuritypolicies/${params.name}`;
+    return await this.get<PodSecurityPolicy>(path);
+  }
+  async replacePolicyV1beta1PodSecurityPolicy(params: ReplacePolicyV1beta1PodSecurityPolicyRequest): Promise<PodSecurityPolicy> {
+    const path = `/apis/policy/v1beta1/podsecuritypolicies/${params.name}`;
+    return await this.put<PodSecurityPolicy>(path, params.body);
+  }
+  async deletePolicyV1beta1PodSecurityPolicy(params: DeletePolicyV1beta1PodSecurityPolicyRequest): Promise<PodSecurityPolicy> {
+    const path = `/apis/policy/v1beta1/podsecuritypolicies/${params.name}`;
+    return await this.delete<PodSecurityPolicy>(path);
+  }
+  async patchPolicyV1beta1PodSecurityPolicy(params: PatchPolicyV1beta1PodSecurityPolicyRequest): Promise<PodSecurityPolicy> {
+    const path = `/apis/policy/v1beta1/podsecuritypolicies/${params.name}`;
+    return await this.patch<PodSecurityPolicy>(path, params.body);
+  }
+  async watchPolicyV1beta1NamespacedPodDisruptionBudgetList(params: WatchPolicyV1beta1NamespacedPodDisruptionBudgetListRequest): Promise<WatchEvent> {
+    const path = `/apis/policy/v1beta1/watch/namespaces/${params.namespace}/poddisruptionbudgets`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchPolicyV1beta1NamespacedPodDisruptionBudget(params: WatchPolicyV1beta1NamespacedPodDisruptionBudgetRequest): Promise<WatchEvent> {
+    const path = `/apis/policy/v1beta1/watch/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchPolicyV1beta1PodDisruptionBudgetListForAllNamespaces(params: WatchPolicyV1beta1PodDisruptionBudgetListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/policy/v1beta1/watch/poddisruptionbudgets`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchPolicyV1beta1PodSecurityPolicyList(params: WatchPolicyV1beta1PodSecurityPolicyListRequest): Promise<WatchEvent> {
+    const path = `/apis/policy/v1beta1/watch/podsecuritypolicies`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchPolicyV1beta1PodSecurityPolicy(params: WatchPolicyV1beta1PodSecurityPolicyRequest): Promise<WatchEvent> {
+    const path = `/apis/policy/v1beta1/watch/podsecuritypolicies/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getRbacAuthorizationAPIGroup(params: GetRbacAuthorizationAPIGroupRequest): Promise<APIGroup> {
+    const path = `/apis/rbac.authorization.k8s.io/`;
+    return await this.get<APIGroup>(path);
+  }
+  async getRbacAuthorizationV1APIResources(params: GetRbacAuthorizationV1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listRbacAuthorizationV1ClusterRoleBinding(params: ListRbacAuthorizationV1ClusterRoleBindingRequest): Promise<ClusterRoleBindingList> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/clusterrolebindings`;
+    return await this.get<ClusterRoleBindingList>(path);
+  }
+  async createRbacAuthorizationV1ClusterRoleBinding(params: CreateRbacAuthorizationV1ClusterRoleBindingRequest): Promise<ClusterRoleBinding> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/clusterrolebindings`;
+    return await this.post<ClusterRoleBinding>(path, params.body);
+  }
+  async deleteRbacAuthorizationV1CollectionClusterRoleBinding(params: DeleteRbacAuthorizationV1CollectionClusterRoleBindingRequest): Promise<Status> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/clusterrolebindings`;
+    return await this.delete<Status>(path);
+  }
+  async readRbacAuthorizationV1ClusterRoleBinding(params: ReadRbacAuthorizationV1ClusterRoleBindingRequest): Promise<ClusterRoleBinding> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/clusterrolebindings/${params.name}`;
+    return await this.get<ClusterRoleBinding>(path);
+  }
+  async replaceRbacAuthorizationV1ClusterRoleBinding(params: ReplaceRbacAuthorizationV1ClusterRoleBindingRequest): Promise<ClusterRoleBinding> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/clusterrolebindings/${params.name}`;
+    return await this.put<ClusterRoleBinding>(path, params.body);
+  }
+  async deleteRbacAuthorizationV1ClusterRoleBinding(params: DeleteRbacAuthorizationV1ClusterRoleBindingRequest): Promise<Status> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/clusterrolebindings/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchRbacAuthorizationV1ClusterRoleBinding(params: PatchRbacAuthorizationV1ClusterRoleBindingRequest): Promise<ClusterRoleBinding> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/clusterrolebindings/${params.name}`;
+    return await this.patch<ClusterRoleBinding>(path, params.body);
+  }
+  async listRbacAuthorizationV1ClusterRole(params: ListRbacAuthorizationV1ClusterRoleRequest): Promise<ClusterRoleList> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/clusterroles`;
+    return await this.get<ClusterRoleList>(path);
+  }
+  async createRbacAuthorizationV1ClusterRole(params: CreateRbacAuthorizationV1ClusterRoleRequest): Promise<ClusterRole> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/clusterroles`;
+    return await this.post<ClusterRole>(path, params.body);
+  }
+  async deleteRbacAuthorizationV1CollectionClusterRole(params: DeleteRbacAuthorizationV1CollectionClusterRoleRequest): Promise<Status> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/clusterroles`;
+    return await this.delete<Status>(path);
+  }
+  async readRbacAuthorizationV1ClusterRole(params: ReadRbacAuthorizationV1ClusterRoleRequest): Promise<ClusterRole> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/clusterroles/${params.name}`;
+    return await this.get<ClusterRole>(path);
+  }
+  async replaceRbacAuthorizationV1ClusterRole(params: ReplaceRbacAuthorizationV1ClusterRoleRequest): Promise<ClusterRole> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/clusterroles/${params.name}`;
+    return await this.put<ClusterRole>(path, params.body);
+  }
+  async deleteRbacAuthorizationV1ClusterRole(params: DeleteRbacAuthorizationV1ClusterRoleRequest): Promise<Status> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/clusterroles/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchRbacAuthorizationV1ClusterRole(params: PatchRbacAuthorizationV1ClusterRoleRequest): Promise<ClusterRole> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/clusterroles/${params.name}`;
+    return await this.patch<ClusterRole>(path, params.body);
+  }
+  async listRbacAuthorizationV1NamespacedRoleBinding(params: ListRbacAuthorizationV1NamespacedRoleBindingRequest): Promise<RoleBindingList> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/rolebindings`;
+    return await this.get<RoleBindingList>(path);
+  }
+  async createRbacAuthorizationV1NamespacedRoleBinding(params: CreateRbacAuthorizationV1NamespacedRoleBindingRequest): Promise<RoleBinding> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/rolebindings`;
+    return await this.post<RoleBinding>(path, params.body);
+  }
+  async deleteRbacAuthorizationV1CollectionNamespacedRoleBinding(params: DeleteRbacAuthorizationV1CollectionNamespacedRoleBindingRequest): Promise<Status> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/rolebindings`;
+    return await this.delete<Status>(path);
+  }
+  async readRbacAuthorizationV1NamespacedRoleBinding(params: ReadRbacAuthorizationV1NamespacedRoleBindingRequest): Promise<RoleBinding> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/rolebindings/${params.name}`;
+    return await this.get<RoleBinding>(path);
+  }
+  async replaceRbacAuthorizationV1NamespacedRoleBinding(params: ReplaceRbacAuthorizationV1NamespacedRoleBindingRequest): Promise<RoleBinding> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/rolebindings/${params.name}`;
+    return await this.put<RoleBinding>(path, params.body);
+  }
+  async deleteRbacAuthorizationV1NamespacedRoleBinding(params: DeleteRbacAuthorizationV1NamespacedRoleBindingRequest): Promise<Status> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/rolebindings/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchRbacAuthorizationV1NamespacedRoleBinding(params: PatchRbacAuthorizationV1NamespacedRoleBindingRequest): Promise<RoleBinding> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/rolebindings/${params.name}`;
+    return await this.patch<RoleBinding>(path, params.body);
+  }
+  async listRbacAuthorizationV1NamespacedRole(params: ListRbacAuthorizationV1NamespacedRoleRequest): Promise<RoleList> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/roles`;
+    return await this.get<RoleList>(path);
+  }
+  async createRbacAuthorizationV1NamespacedRole(params: CreateRbacAuthorizationV1NamespacedRoleRequest): Promise<Role> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/roles`;
+    return await this.post<Role>(path, params.body);
+  }
+  async deleteRbacAuthorizationV1CollectionNamespacedRole(params: DeleteRbacAuthorizationV1CollectionNamespacedRoleRequest): Promise<Status> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/roles`;
+    return await this.delete<Status>(path);
+  }
+  async readRbacAuthorizationV1NamespacedRole(params: ReadRbacAuthorizationV1NamespacedRoleRequest): Promise<Role> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/roles/${params.name}`;
+    return await this.get<Role>(path);
+  }
+  async replaceRbacAuthorizationV1NamespacedRole(params: ReplaceRbacAuthorizationV1NamespacedRoleRequest): Promise<Role> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/roles/${params.name}`;
+    return await this.put<Role>(path, params.body);
+  }
+  async deleteRbacAuthorizationV1NamespacedRole(params: DeleteRbacAuthorizationV1NamespacedRoleRequest): Promise<Status> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/roles/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchRbacAuthorizationV1NamespacedRole(params: PatchRbacAuthorizationV1NamespacedRoleRequest): Promise<Role> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/roles/${params.name}`;
+    return await this.patch<Role>(path, params.body);
+  }
+  async listRbacAuthorizationV1RoleBindingForAllNamespaces(params: ListRbacAuthorizationV1RoleBindingForAllNamespacesRequest): Promise<RoleBindingList> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/rolebindings`;
+    return await this.get<RoleBindingList>(path);
+  }
+  async listRbacAuthorizationV1RoleForAllNamespaces(params: ListRbacAuthorizationV1RoleForAllNamespacesRequest): Promise<RoleList> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/roles`;
+    return await this.get<RoleList>(path);
+  }
+  async watchRbacAuthorizationV1ClusterRoleBindingList(params: WatchRbacAuthorizationV1ClusterRoleBindingListRequest): Promise<WatchEvent> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/watch/clusterrolebindings`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchRbacAuthorizationV1ClusterRoleBinding(params: WatchRbacAuthorizationV1ClusterRoleBindingRequest): Promise<WatchEvent> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/watch/clusterrolebindings/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchRbacAuthorizationV1ClusterRoleList(params: WatchRbacAuthorizationV1ClusterRoleListRequest): Promise<WatchEvent> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/watch/clusterroles`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchRbacAuthorizationV1ClusterRole(params: WatchRbacAuthorizationV1ClusterRoleRequest): Promise<WatchEvent> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/watch/clusterroles/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchRbacAuthorizationV1NamespacedRoleBindingList(params: WatchRbacAuthorizationV1NamespacedRoleBindingListRequest): Promise<WatchEvent> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/watch/namespaces/${params.namespace}/rolebindings`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchRbacAuthorizationV1NamespacedRoleBinding(params: WatchRbacAuthorizationV1NamespacedRoleBindingRequest): Promise<WatchEvent> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/watch/namespaces/${params.namespace}/rolebindings/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchRbacAuthorizationV1NamespacedRoleList(params: WatchRbacAuthorizationV1NamespacedRoleListRequest): Promise<WatchEvent> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/watch/namespaces/${params.namespace}/roles`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchRbacAuthorizationV1NamespacedRole(params: WatchRbacAuthorizationV1NamespacedRoleRequest): Promise<WatchEvent> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/watch/namespaces/${params.namespace}/roles/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchRbacAuthorizationV1RoleBindingListForAllNamespaces(params: WatchRbacAuthorizationV1RoleBindingListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/watch/rolebindings`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchRbacAuthorizationV1RoleListForAllNamespaces(params: WatchRbacAuthorizationV1RoleListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/rbac.authorization.k8s.io/v1/watch/roles`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getSchedulingAPIGroup(params: GetSchedulingAPIGroupRequest): Promise<APIGroup> {
+    const path = `/apis/scheduling.k8s.io/`;
+    return await this.get<APIGroup>(path);
+  }
+  async getSchedulingV1APIResources(params: GetSchedulingV1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/scheduling.k8s.io/v1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listSchedulingV1PriorityClass(params: ListSchedulingV1PriorityClassRequest): Promise<PriorityClassList> {
+    const path = `/apis/scheduling.k8s.io/v1/priorityclasses`;
+    return await this.get<PriorityClassList>(path);
+  }
+  async createSchedulingV1PriorityClass(params: CreateSchedulingV1PriorityClassRequest): Promise<PriorityClass> {
+    const path = `/apis/scheduling.k8s.io/v1/priorityclasses`;
+    return await this.post<PriorityClass>(path, params.body);
+  }
+  async deleteSchedulingV1CollectionPriorityClass(params: DeleteSchedulingV1CollectionPriorityClassRequest): Promise<Status> {
+    const path = `/apis/scheduling.k8s.io/v1/priorityclasses`;
+    return await this.delete<Status>(path);
+  }
+  async readSchedulingV1PriorityClass(params: ReadSchedulingV1PriorityClassRequest): Promise<PriorityClass> {
+    const path = `/apis/scheduling.k8s.io/v1/priorityclasses/${params.name}`;
+    return await this.get<PriorityClass>(path);
+  }
+  async replaceSchedulingV1PriorityClass(params: ReplaceSchedulingV1PriorityClassRequest): Promise<PriorityClass> {
+    const path = `/apis/scheduling.k8s.io/v1/priorityclasses/${params.name}`;
+    return await this.put<PriorityClass>(path, params.body);
+  }
+  async deleteSchedulingV1PriorityClass(params: DeleteSchedulingV1PriorityClassRequest): Promise<Status> {
+    const path = `/apis/scheduling.k8s.io/v1/priorityclasses/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchSchedulingV1PriorityClass(params: PatchSchedulingV1PriorityClassRequest): Promise<PriorityClass> {
+    const path = `/apis/scheduling.k8s.io/v1/priorityclasses/${params.name}`;
+    return await this.patch<PriorityClass>(path, params.body);
+  }
+  async watchSchedulingV1PriorityClassList(params: WatchSchedulingV1PriorityClassListRequest): Promise<WatchEvent> {
+    const path = `/apis/scheduling.k8s.io/v1/watch/priorityclasses`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchSchedulingV1PriorityClass(params: WatchSchedulingV1PriorityClassRequest): Promise<WatchEvent> {
+    const path = `/apis/scheduling.k8s.io/v1/watch/priorityclasses/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getStorageAPIGroup(params: GetStorageAPIGroupRequest): Promise<APIGroup> {
+    const path = `/apis/storage.k8s.io/`;
+    return await this.get<APIGroup>(path);
+  }
+  async getStorageV1APIResources(params: GetStorageV1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/storage.k8s.io/v1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listStorageV1CSIDriver(params: ListStorageV1CSIDriverRequest): Promise<CSIDriverList> {
+    const path = `/apis/storage.k8s.io/v1/csidrivers`;
+    return await this.get<CSIDriverList>(path);
+  }
+  async createStorageV1CSIDriver(params: CreateStorageV1CSIDriverRequest): Promise<CSIDriver> {
+    const path = `/apis/storage.k8s.io/v1/csidrivers`;
+    return await this.post<CSIDriver>(path, params.body);
+  }
+  async deleteStorageV1CollectionCSIDriver(params: DeleteStorageV1CollectionCSIDriverRequest): Promise<Status> {
+    const path = `/apis/storage.k8s.io/v1/csidrivers`;
+    return await this.delete<Status>(path);
+  }
+  async readStorageV1CSIDriver(params: ReadStorageV1CSIDriverRequest): Promise<CSIDriver> {
+    const path = `/apis/storage.k8s.io/v1/csidrivers/${params.name}`;
+    return await this.get<CSIDriver>(path);
+  }
+  async replaceStorageV1CSIDriver(params: ReplaceStorageV1CSIDriverRequest): Promise<CSIDriver> {
+    const path = `/apis/storage.k8s.io/v1/csidrivers/${params.name}`;
+    return await this.put<CSIDriver>(path, params.body);
+  }
+  async deleteStorageV1CSIDriver(params: DeleteStorageV1CSIDriverRequest): Promise<CSIDriver> {
+    const path = `/apis/storage.k8s.io/v1/csidrivers/${params.name}`;
+    return await this.delete<CSIDriver>(path);
+  }
+  async patchStorageV1CSIDriver(params: PatchStorageV1CSIDriverRequest): Promise<CSIDriver> {
+    const path = `/apis/storage.k8s.io/v1/csidrivers/${params.name}`;
+    return await this.patch<CSIDriver>(path, params.body);
+  }
+  async listStorageV1CSINode(params: ListStorageV1CSINodeRequest): Promise<CSINodeList> {
+    const path = `/apis/storage.k8s.io/v1/csinodes`;
+    return await this.get<CSINodeList>(path);
+  }
+  async createStorageV1CSINode(params: CreateStorageV1CSINodeRequest): Promise<CSINode> {
+    const path = `/apis/storage.k8s.io/v1/csinodes`;
+    return await this.post<CSINode>(path, params.body);
+  }
+  async deleteStorageV1CollectionCSINode(params: DeleteStorageV1CollectionCSINodeRequest): Promise<Status> {
+    const path = `/apis/storage.k8s.io/v1/csinodes`;
+    return await this.delete<Status>(path);
+  }
+  async readStorageV1CSINode(params: ReadStorageV1CSINodeRequest): Promise<CSINode> {
+    const path = `/apis/storage.k8s.io/v1/csinodes/${params.name}`;
+    return await this.get<CSINode>(path);
+  }
+  async replaceStorageV1CSINode(params: ReplaceStorageV1CSINodeRequest): Promise<CSINode> {
+    const path = `/apis/storage.k8s.io/v1/csinodes/${params.name}`;
+    return await this.put<CSINode>(path, params.body);
+  }
+  async deleteStorageV1CSINode(params: DeleteStorageV1CSINodeRequest): Promise<CSINode> {
+    const path = `/apis/storage.k8s.io/v1/csinodes/${params.name}`;
+    return await this.delete<CSINode>(path);
+  }
+  async patchStorageV1CSINode(params: PatchStorageV1CSINodeRequest): Promise<CSINode> {
+    const path = `/apis/storage.k8s.io/v1/csinodes/${params.name}`;
+    return await this.patch<CSINode>(path, params.body);
+  }
+  async listStorageV1StorageClass(params: ListStorageV1StorageClassRequest): Promise<StorageClassList> {
+    const path = `/apis/storage.k8s.io/v1/storageclasses`;
+    return await this.get<StorageClassList>(path);
+  }
+  async createStorageV1StorageClass(params: CreateStorageV1StorageClassRequest): Promise<StorageClass> {
+    const path = `/apis/storage.k8s.io/v1/storageclasses`;
+    return await this.post<StorageClass>(path, params.body);
+  }
+  async deleteStorageV1CollectionStorageClass(params: DeleteStorageV1CollectionStorageClassRequest): Promise<Status> {
+    const path = `/apis/storage.k8s.io/v1/storageclasses`;
+    return await this.delete<Status>(path);
+  }
+  async readStorageV1StorageClass(params: ReadStorageV1StorageClassRequest): Promise<StorageClass> {
+    const path = `/apis/storage.k8s.io/v1/storageclasses/${params.name}`;
+    return await this.get<StorageClass>(path);
+  }
+  async replaceStorageV1StorageClass(params: ReplaceStorageV1StorageClassRequest): Promise<StorageClass> {
+    const path = `/apis/storage.k8s.io/v1/storageclasses/${params.name}`;
+    return await this.put<StorageClass>(path, params.body);
+  }
+  async deleteStorageV1StorageClass(params: DeleteStorageV1StorageClassRequest): Promise<StorageClass> {
+    const path = `/apis/storage.k8s.io/v1/storageclasses/${params.name}`;
+    return await this.delete<StorageClass>(path);
+  }
+  async patchStorageV1StorageClass(params: PatchStorageV1StorageClassRequest): Promise<StorageClass> {
+    const path = `/apis/storage.k8s.io/v1/storageclasses/${params.name}`;
+    return await this.patch<StorageClass>(path, params.body);
+  }
+  async listStorageV1VolumeAttachment(params: ListStorageV1VolumeAttachmentRequest): Promise<VolumeAttachmentList> {
+    const path = `/apis/storage.k8s.io/v1/volumeattachments`;
+    return await this.get<VolumeAttachmentList>(path);
+  }
+  async createStorageV1VolumeAttachment(params: CreateStorageV1VolumeAttachmentRequest): Promise<VolumeAttachment> {
+    const path = `/apis/storage.k8s.io/v1/volumeattachments`;
+    return await this.post<VolumeAttachment>(path, params.body);
+  }
+  async deleteStorageV1CollectionVolumeAttachment(params: DeleteStorageV1CollectionVolumeAttachmentRequest): Promise<Status> {
+    const path = `/apis/storage.k8s.io/v1/volumeattachments`;
+    return await this.delete<Status>(path);
+  }
+  async readStorageV1VolumeAttachment(params: ReadStorageV1VolumeAttachmentRequest): Promise<VolumeAttachment> {
+    const path = `/apis/storage.k8s.io/v1/volumeattachments/${params.name}`;
+    return await this.get<VolumeAttachment>(path);
+  }
+  async replaceStorageV1VolumeAttachment(params: ReplaceStorageV1VolumeAttachmentRequest): Promise<VolumeAttachment> {
+    const path = `/apis/storage.k8s.io/v1/volumeattachments/${params.name}`;
+    return await this.put<VolumeAttachment>(path, params.body);
+  }
+  async deleteStorageV1VolumeAttachment(params: DeleteStorageV1VolumeAttachmentRequest): Promise<VolumeAttachment> {
+    const path = `/apis/storage.k8s.io/v1/volumeattachments/${params.name}`;
+    return await this.delete<VolumeAttachment>(path);
+  }
+  async patchStorageV1VolumeAttachment(params: PatchStorageV1VolumeAttachmentRequest): Promise<VolumeAttachment> {
+    const path = `/apis/storage.k8s.io/v1/volumeattachments/${params.name}`;
+    return await this.patch<VolumeAttachment>(path, params.body);
+  }
+  async readStorageV1VolumeAttachmentStatus(params: ReadStorageV1VolumeAttachmentStatusRequest): Promise<VolumeAttachment> {
+    const path = `/apis/storage.k8s.io/v1/volumeattachments/${params.name}/status`;
+    return await this.get<VolumeAttachment>(path);
+  }
+  async replaceStorageV1VolumeAttachmentStatus(params: ReplaceStorageV1VolumeAttachmentStatusRequest): Promise<VolumeAttachment> {
+    const path = `/apis/storage.k8s.io/v1/volumeattachments/${params.name}/status`;
+    return await this.put<VolumeAttachment>(path, params.body);
+  }
+  async patchStorageV1VolumeAttachmentStatus(params: PatchStorageV1VolumeAttachmentStatusRequest): Promise<VolumeAttachment> {
+    const path = `/apis/storage.k8s.io/v1/volumeattachments/${params.name}/status`;
+    return await this.patch<VolumeAttachment>(path, params.body);
+  }
+  async watchStorageV1CSIDriverList(params: WatchStorageV1CSIDriverListRequest): Promise<WatchEvent> {
+    const path = `/apis/storage.k8s.io/v1/watch/csidrivers`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchStorageV1CSIDriver(params: WatchStorageV1CSIDriverRequest): Promise<WatchEvent> {
+    const path = `/apis/storage.k8s.io/v1/watch/csidrivers/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchStorageV1CSINodeList(params: WatchStorageV1CSINodeListRequest): Promise<WatchEvent> {
+    const path = `/apis/storage.k8s.io/v1/watch/csinodes`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchStorageV1CSINode(params: WatchStorageV1CSINodeRequest): Promise<WatchEvent> {
+    const path = `/apis/storage.k8s.io/v1/watch/csinodes/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchStorageV1StorageClassList(params: WatchStorageV1StorageClassListRequest): Promise<WatchEvent> {
+    const path = `/apis/storage.k8s.io/v1/watch/storageclasses`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchStorageV1StorageClass(params: WatchStorageV1StorageClassRequest): Promise<WatchEvent> {
+    const path = `/apis/storage.k8s.io/v1/watch/storageclasses/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchStorageV1VolumeAttachmentList(params: WatchStorageV1VolumeAttachmentListRequest): Promise<WatchEvent> {
+    const path = `/apis/storage.k8s.io/v1/watch/volumeattachments`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchStorageV1VolumeAttachment(params: WatchStorageV1VolumeAttachmentRequest): Promise<WatchEvent> {
+    const path = `/apis/storage.k8s.io/v1/watch/volumeattachments/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async getStorageV1beta1APIResources(params: GetStorageV1beta1APIResourcesRequest): Promise<APIResourceList> {
+    const path = `/apis/storage.k8s.io/v1beta1/`;
+    return await this.get<APIResourceList>(path);
+  }
+  async listStorageV1beta1CSIStorageCapacityForAllNamespaces(params: ListStorageV1beta1CSIStorageCapacityForAllNamespacesRequest): Promise<CSIStorageCapacityList> {
+    const path = `/apis/storage.k8s.io/v1beta1/csistoragecapacities`;
+    return await this.get<CSIStorageCapacityList>(path);
+  }
+  async listStorageV1beta1NamespacedCSIStorageCapacity(params: ListStorageV1beta1NamespacedCSIStorageCapacityRequest): Promise<CSIStorageCapacityList> {
+    const path = `/apis/storage.k8s.io/v1beta1/namespaces/${params.namespace}/csistoragecapacities`;
+    return await this.get<CSIStorageCapacityList>(path);
+  }
+  async createStorageV1beta1NamespacedCSIStorageCapacity(params: CreateStorageV1beta1NamespacedCSIStorageCapacityRequest): Promise<CSIStorageCapacity> {
+    const path = `/apis/storage.k8s.io/v1beta1/namespaces/${params.namespace}/csistoragecapacities`;
+    return await this.post<CSIStorageCapacity>(path, params.body);
+  }
+  async deleteStorageV1beta1CollectionNamespacedCSIStorageCapacity(params: DeleteStorageV1beta1CollectionNamespacedCSIStorageCapacityRequest): Promise<Status> {
+    const path = `/apis/storage.k8s.io/v1beta1/namespaces/${params.namespace}/csistoragecapacities`;
+    return await this.delete<Status>(path);
+  }
+  async readStorageV1beta1NamespacedCSIStorageCapacity(params: ReadStorageV1beta1NamespacedCSIStorageCapacityRequest): Promise<CSIStorageCapacity> {
+    const path = `/apis/storage.k8s.io/v1beta1/namespaces/${params.namespace}/csistoragecapacities/${params.name}`;
+    return await this.get<CSIStorageCapacity>(path);
+  }
+  async replaceStorageV1beta1NamespacedCSIStorageCapacity(params: ReplaceStorageV1beta1NamespacedCSIStorageCapacityRequest): Promise<CSIStorageCapacity> {
+    const path = `/apis/storage.k8s.io/v1beta1/namespaces/${params.namespace}/csistoragecapacities/${params.name}`;
+    return await this.put<CSIStorageCapacity>(path, params.body);
+  }
+  async deleteStorageV1beta1NamespacedCSIStorageCapacity(params: DeleteStorageV1beta1NamespacedCSIStorageCapacityRequest): Promise<Status> {
+    const path = `/apis/storage.k8s.io/v1beta1/namespaces/${params.namespace}/csistoragecapacities/${params.name}`;
+    return await this.delete<Status>(path);
+  }
+  async patchStorageV1beta1NamespacedCSIStorageCapacity(params: PatchStorageV1beta1NamespacedCSIStorageCapacityRequest): Promise<CSIStorageCapacity> {
+    const path = `/apis/storage.k8s.io/v1beta1/namespaces/${params.namespace}/csistoragecapacities/${params.name}`;
+    return await this.patch<CSIStorageCapacity>(path, params.body);
+  }
+  async watchStorageV1beta1CSIStorageCapacityListForAllNamespaces(params: WatchStorageV1beta1CSIStorageCapacityListForAllNamespacesRequest): Promise<WatchEvent> {
+    const path = `/apis/storage.k8s.io/v1beta1/watch/csistoragecapacities`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchStorageV1beta1NamespacedCSIStorageCapacityList(params: WatchStorageV1beta1NamespacedCSIStorageCapacityListRequest): Promise<WatchEvent> {
+    const path = `/apis/storage.k8s.io/v1beta1/watch/namespaces/${params.namespace}/csistoragecapacities`;
+    return await this.get<WatchEvent>(path);
+  }
+  async watchStorageV1beta1NamespacedCSIStorageCapacity(params: WatchStorageV1beta1NamespacedCSIStorageCapacityRequest): Promise<WatchEvent> {
+    const path = `/apis/storage.k8s.io/v1beta1/watch/namespaces/${params.namespace}/csistoragecapacities/${params.name}`;
+    return await this.get<WatchEvent>(path);
+  }
+  async logFileListHandler(params: LogFileListHandlerRequest): Promise<any> {
+    const path = `/logs/`;
+    return await this.get<any>(path);
+  }
+  async logFileHandler(params: LogFileHandlerRequest): Promise<any> {
+    const path = `/logs/${params.logpath}`;
+    return await this.get<any>(path);
+  }
+  async getServiceAccountIssuerOpenIDKeyset(params: GetServiceAccountIssuerOpenIDKeysetRequest): Promise<string> {
+    const path = `/openid/v1/jwks/`;
+    return await this.get<string>(path);
+  }
+  async getCodeVersion(params: GetCodeVersionRequest): Promise<Info> {
+    const path = `/version/`;
+    return await this.get<Info>(path);
   }
 }

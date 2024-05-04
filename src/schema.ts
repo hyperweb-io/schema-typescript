@@ -3,7 +3,7 @@ import * as t from "@babel/types";
 
 import { SchemaTSContext, type SchemaTSOptions } from "./context";
 import type { JSONSchema } from "./types";
-import { getTypeNameSafe, isValidIdentifier, isValidIdentifierCamelized, makeCommentLine, shouldIncludeType, toCamelCase } from "./utils";
+import { getTypeNameSafe, isValidIdentifier, isValidIdentifierCamelized, makeCommentLine, shouldInclude, toCamelCase } from "./utils";
 
 const getSchemaTypeNameSafe = (ctx: SchemaTSContext, str: string): string => {
   return getTypeNameSafe(ctx.options.namingStrategy, str);
@@ -28,19 +28,25 @@ const anyOrObjectWithUnknownProps = (ctx: SchemaTSContext) => {
   ]) : t.tsAnyKeyword();
 }
 
-export function generateTypeScript(schema: JSONSchema, options?: Partial<SchemaTSOptions>): string {
+export function generateTypeScriptTypes(schema: JSONSchema, options?: Partial<SchemaTSOptions>): t.ExportNamedDeclaration[] {
   const ctx = new SchemaTSContext(options, schema, schema, []);
   return generateInterfaces(ctx, schema);
 }
 
-export function generateInterfaces(ctx: SchemaTSContext, schema: JSONSchema): string {
+export function generateTypeScript(schema: JSONSchema, options?: Partial<SchemaTSOptions>): string {
+  const ctx = new SchemaTSContext(options, schema, schema, []);
+  const interfaces = generateInterfaces(ctx, schema);
+  return generate(t.file(t.program(interfaces))).code;
+}
+
+export function generateInterfaces(ctx: SchemaTSContext, schema: JSONSchema): t.ExportNamedDeclaration[] {
   const interfaces = [];
 
   try {
     // Process both $defs and definitions
     const definitions = schema.$defs || schema.definitions || {};
     for (const key in definitions) {
-      if (shouldIncludeType(key, {
+      if (shouldInclude(key, {
         include: ctx.options.include,
         exclude: ctx.options.exclude,
       })) {
@@ -55,16 +61,15 @@ export function generateInterfaces(ctx: SchemaTSContext, schema: JSONSchema): st
   // Process the main schema
   const title = schema.title;
   if (!title) {
-    console.error('schema or options require a title');
-    return ''; // Ensure there's a return on error condition
+    throw new Error('schema or options require a title');
   }
-  if (shouldIncludeType(title, {
+  if (shouldInclude(title, {
     include: ctx.options.include,
     exclude: ctx.options.exclude,
   })) {
     interfaces.push(createInterfaceDeclaration(ctx, title, schema));
   }
-  return generate(t.file(t.program(interfaces))).code;
+  return interfaces;
 }
 
 const createExportDeclarationForType = (

@@ -2,9 +2,35 @@ import generate from "@babel/generator";
 import * as t from '@babel/types';
 
 import { SchemaTSOptions } from "./context";
-import { OpenAPIPathItem, OpenAPISpec, Operation, Parameter } from "./openapi.types";
-import { getTypeNameSafe, makeComment, toCamelCase, toPascalCase } from "./utils";
-import { JSONSchema } from "./types";
+import { OpenAPIPathItem, OpenAPISpec, Operation, Parameter, Response } from "./openapi.types";
+import { generateTypeScriptTypes } from "./schema";
+import { createPathTemplateLiteral, getTypeNameSafe, shouldInclude, toCamelCase, toPascalCase } from "./utils";
+
+export interface OpenAPIOptions extends SchemaTSOptions {
+  version?: 'v1' | 'v1beta1' | 'v2beta1' | 'v2beta2';
+  mergedParams?: boolean;
+  paths?: {
+    // Include/Exclude types
+    include?: string[];
+    exclude?: string[];
+
+    includeTags?: string[];
+    excludeTags?: string[];
+
+    includeRequests?: string[];
+    excludeRequests?: string[];
+  }
+}
+
+/**
+includes: {
+  requests: ['patch', 'head', 'options', 'get', 'delete'],
+  tags: ['patch', 'head', 'options', 'get', 'delete']
+} 
+*/
+const METHOD_TYPES = ['get', 'post', 'put', 'delete', 'options', 'head', 'patch'];
+type MethodType = 'get' | 'post' | 'put' | 'delete' | 'options' | 'head' | 'patch';
+
 
 interface ParsedRoute {
   path: string;
@@ -28,14 +54,94 @@ function parseRoute(route: string): ParsedRoute {
   };
 }
 
-export interface OpenAPIOptions extends SchemaTSOptions {
-  version?: 'v1' | 'v1beta1' | 'v2beta1' | 'v2beta2';
-  mergedParams?: boolean;
+const shouldIncludeOperation = (
+  options: OpenAPIOptions,
+  pathItem: OpenAPIPathItem,
+  path: string,
+  method: MethodType
+) => {
+
+  // @ts-ignore
+  const operation: Operation = pathItem[method];
+
+  if (!operation) return false;
+
+  const shouldIncludeByPath = shouldInclude(path, {
+    include: options.paths?.include ?? [],
+    exclude: options.paths?.exclude ?? [],
+  });
+
+  if (!shouldIncludeByPath) return false;
+
+  const shouldIncludeByTag = operation.tags.some(tag =>
+    shouldInclude(tag, {
+      include: options.paths?.includeTags ?? [],
+      exclude: options.paths?.excludeTags ?? []
+    })
+  );
+
+  if (!shouldIncludeByTag) return false;
+
+  const shouldIncludeByRequest = shouldInclude(method, {
+    include: options.paths?.includeRequests ?? [],
+    exclude: options.paths?.excludeRequests ?? []
+  })
+
+  if (!shouldIncludeByRequest) return false;
+  return true;
 }
 
 export const getApiTypeNameSafe = (options: OpenAPIOptions, str: string): string => {
   return getTypeNameSafe(options.namingStrategy, str);
 };
+
+export const getOperationReturnType = (
+  options: OpenAPIOptions,
+  operation: Operation,
+  method: string
+) => {
+  if (operation.responses) {
+    if (operation.responses['200']) {
+      const prop = operation.responses['200'];
+      return getResponseType(options, prop);
+    }
+  }
+  if (method === 'get') return t.tsAnyKeyword();
+  return t.tsVoidKeyword();
+};
+
+export const getResponseType = (options: OpenAPIOptions, prop: Response) => {
+  if (prop.schema.type) {
+    switch (prop.schema.type) {
+      case 'string':
+        return t.tsStringKeyword();
+      case 'number':
+      case 'integer':
+        return t.tsNumberKeyword();
+      case 'boolean':
+        return t.tsBooleanKeyword();
+      case 'null':
+        return t.tsNullKeyword();
+      case 'array':
+        throw new Error('Array items specification is missing');
+      case 'object':
+        throw new Error('Array items specification is missing');
+      default:
+        return t.tsAnyKeyword();
+    }
+  }
+
+  // resolve $ref
+  if (prop.schema) {
+    if (!prop.schema.$ref) {
+      throw new Error('no property set on open api parameter schema!')
+    }
+    const ref = prop.schema.$ref.split('/');
+    const definitionName = ref.pop();
+    return t.tsTypeReference(t.identifier(getApiTypeNameSafe(options, definitionName)));
+  }
+  return t.tsAnyKeyword();
+}
 
 export const getParameterType = (options: OpenAPIOptions, prop: Parameter) => {
   if (prop.type) {
@@ -101,45 +207,8 @@ const initParams = (): ParameterInterfaces => {
 
 
 export function generateOpenApiParams(options: OpenAPIOptions, path: string, pathItem: OpenAPIPathItem): t.TSInterfaceDeclaration[] {
-  const opParams: OpParameterInterfaces = {
-    pathLevel: initParams(),
-    get: initParams(),
-    post: initParams(),
-    put: initParams(),
-    delete: initParams(),
-    options: initParams(),
-    head: initParams(),
-    patch: initParams(),
-  };
-
+  const opParams: OpParameterInterfaces = getOpenApiParams(options, path, pathItem);
   const interfaces: t.TSInterfaceDeclaration[] = [];
-
-  const pathInfo = parseRoute(path);
-
-  // do we need to simulate params?
-  // BEGIN SANITIZE PARAMS
-  pathItem.parameters = pathItem.parameters ?? [];
-  const pathParms = pathItem.parameters?.filter(param => param.in === 'path') ?? [];
-  if (pathParms.length !== pathInfo.params.length) {
-    const parameters = pathItem.parameters?.filter(param => param.in !== 'path') ?? []
-    pathInfo.params.forEach(name => {
-      const found = pathParms.find(param => param.name === name);
-      parameters.push(found ? found : {
-        name,
-        type: 'string',
-        required: true,
-        in: 'path'
-      })
-    });
-    pathItem.parameters = parameters;
-  }
-  // END SANITIZE PARAMS
-
-  // load Path-Level params
-  pathItem.parameters.forEach(param => {
-    opParams.pathLevel[param.in].push(param);
-  });
-
   [
     'get',
     'post',
@@ -153,27 +222,13 @@ export function generateOpenApiParams(options: OpenAPIOptions, path: string, pat
       if (Object.prototype.hasOwnProperty.call(pathItem, method)) {
         // @ts-ignore
         const operation: Operation = pathItem[method];
-        if (!operation) return;
+        if (!shouldIncludeOperation(options, pathItem, path, method as any)) return;
 
         // @ts-ignore
         const methodType: 'get' | 'post' | 'put' | 'delete' | 'options' | 'head' | 'patch' = method;
 
         // @ts-ignore
         const opParamMethod: ParameterInterfaces = opParams[method];
-
-        // push Path-Level params into op
-        opParamMethod.path.push(...opParams.pathLevel.path);
-        opParamMethod.query.push(...opParams.pathLevel.query);
-        opParamMethod.header.push(...opParams.pathLevel.header);
-
-
-        // get the params
-        if (operation.parameters) {
-          // Categorize parameters by 'in' field
-          operation.parameters.forEach(param => {
-            opParamMethod[param.in].push(param)
-          });
-        }
 
         const props: t.TSPropertySignature[] = [];
 
@@ -196,9 +251,7 @@ export function generateOpenApiParams(options: OpenAPIOptions, path: string, pat
             if (!param.required) {
               p.optional = true;
             }
-            
             inner.push(p);
-
           })
 
           if (!options.mergedParams) {
@@ -239,6 +292,80 @@ export function generateOpenApiParams(options: OpenAPIOptions, path: string, pat
 
   return interfaces;
 };
+
+export function getOpenApiParams(options: OpenAPIOptions, path: string, pathItem: OpenAPIPathItem): OpParameterInterfaces {
+  const opParams: OpParameterInterfaces = {
+    pathLevel: initParams(),
+    get: initParams(),
+    post: initParams(),
+    put: initParams(),
+    delete: initParams(),
+    options: initParams(),
+    head: initParams(),
+    patch: initParams(),
+  };
+
+  const pathInfo = parseRoute(path);
+
+  // BEGIN SANITIZE PARAMS
+  pathItem.parameters = pathItem.parameters ?? [];
+  const pathParms = pathItem.parameters?.filter(param => param.in === 'path') ?? [];
+  if (pathParms.length !== pathInfo.params.length) {
+    const parameters = pathItem.parameters?.filter(param => param.in !== 'path') ?? []
+    pathInfo.params.forEach(name => {
+      const found = pathParms.find(param => param.name === name);
+      parameters.push(found ? found : {
+        name,
+        type: 'string',
+        required: true,
+        in: 'path'
+      })
+    });
+    pathItem.parameters = parameters;
+  }
+  // END SANITIZE PARAMS
+
+  // load Path-Level params
+  pathItem.parameters.forEach(param => {
+    opParams.pathLevel[param.in].push(param);
+  });
+
+  [
+    'get',
+    'post',
+    'put',
+    'delete',
+    'options',
+    'head',
+    'patch'
+  ]
+    .forEach(method => {
+      if (Object.prototype.hasOwnProperty.call(pathItem, method)) {
+        // @ts-ignore
+        const operation: Operation = pathItem[method];
+        if (!shouldIncludeOperation(options, pathItem, path, method as any)) return;
+
+        // @ts-ignore
+        const opParamMethod: ParameterInterfaces = opParams[method];
+
+        // push Path-Level params into op
+        opParamMethod.path.push(...opParams.pathLevel.path);
+        opParamMethod.query.push(...opParams.pathLevel.query);
+        opParamMethod.header.push(...opParams.pathLevel.header);
+
+        // get the params
+        if (operation.parameters) {
+          // Categorize parameters by 'in' field
+          operation.parameters.forEach(param => {
+            opParamMethod[param.in].push(param)
+          });
+        }
+
+      }
+    });
+
+  return opParams;
+};
 export function generateOpenApiTypes(options: OpenAPIOptions, schema: OpenAPISpec): t.ExportNamedDeclaration[] {
   const interfaces: t.TSInterfaceDeclaration[] = [];
   // Iterate through each path and each method to generate interfaces
@@ -247,16 +374,6 @@ export function generateOpenApiTypes(options: OpenAPIOptions, schema: OpenAPISpe
   });
   return interfaces.map(i => t.exportNamedDeclaration(i))
 }
-
-/**
-
-includes: {
-  requests: ['patch', 'head', 'options', 'get', 'delete'],
-  tags: ['patch', 'head', 'options', 'get', 'delete']
-} 
-
-
-*/
 
 const getOperationMethodName = (operation: Operation, method: string, path: string) => {
   const methodName = operation.operationId || toCamelCase(method + path.replace(/\W/g, '_'));
@@ -268,15 +385,45 @@ export function generateMethods(options: OpenAPIOptions, schema: OpenAPISpec): t
 
   // Iterate through each path and each method in the path
   Object.entries(schema.paths).forEach(([path, pathItem]) => {
-    ['get', 'post', 'put', 'delete', 'options', 'head', 'patch'].forEach(method => {
+
+    // const opParams: OpParameterInterfaces = getOpenApiParams(options, path, pathItem);
+
+    METHOD_TYPES.forEach(method => {
       if (Object.prototype.hasOwnProperty.call(pathItem, method)) {
         // @ts-ignore
         const operation: Operation = pathItem[method];
-        const methodName = getOperationMethodName(operation, method, path);
-        const params = operation.parameters ? operation.parameters.map(param =>
-          t.identifier(param.name)
-        ) : [];
+        if (!shouldIncludeOperation(options, pathItem, path, method as any)) return;
 
+
+        const typeName = toPascalCase(getOperationMethodName(operation, method, path)) + 'Request';
+        const id = t.identifier('params');
+        id.typeAnnotation = t.tsTypeAnnotation(t.tsTypeReference(t.identifier(typeName)))
+        const params = [id];
+
+        const returnType = getOperationReturnType(options, operation, method);
+        const methodName = getOperationMethodName(operation, method, path);
+
+
+
+        const callMethod = t.callExpression(
+          t.memberExpression(
+            t.thisExpression(),
+            t.identifier(method)
+          ),
+          ['post', 'put', 'patch', 'formData'].includes(method) ?
+            [
+              t.identifier('path'),
+              t.memberExpression(
+                t.identifier('params'),
+                t.identifier('body')
+              )
+            ] : [
+              t.identifier('path')
+            ]
+        );
+        callMethod.typeParameters = t.tsTypeParameterInstantiation([
+          returnType
+        ]);
         const methodFunction = t.classMethod(
           'method',
           t.identifier(methodName),
@@ -285,25 +432,28 @@ export function generateMethods(options: OpenAPIOptions, schema: OpenAPISpec): t
             t.variableDeclaration('const', [
               t.variableDeclarator(
                 t.identifier('path'),
-                t.stringLiteral(path)
+                createPathTemplateLiteral(options, path)
               )
             ]),
             t.returnStatement(
-              t.callExpression(
-                t.memberExpression(t.thisExpression(), t.identifier(method)),
-                [t.identifier('path')]
+              t.awaitExpression(
+                callMethod
               )
             )
           ]),
-          false, // Static
-          false, // Generator
-          false, // Async (set to true if the operation should be asynchronous)
-          true   // Is a method
+          false,
+          false,
+          false,
+          true
         );
-        if (options.includeMethodComments && operation.description) {
-          // @ts-ignore
-          methodFunction.leadingComments = makeComment(operation.description);
-        }
+        methodFunction.returnType = t.tsTypeAnnotation(
+          t.tsTypeReference(
+            t.identifier("Promise"),
+            t.tsTypeParameterInstantiation([
+              returnType
+            ])
+          )
+        );
         methods.push(methodFunction);
       }
 
@@ -356,20 +506,32 @@ export function generateOpenApiClient(options: OpenAPIOptions, schema: OpenAPISp
     ...methods
   ]);
 
-  const clientClass = t.classDeclaration(
+  const clientClass = t.exportNamedDeclaration(t.classDeclaration(
     t.identifier('KubernetesClient'),
     t.identifier('APIClient'),
     classBody,
     []
-  );
+  ));
 
   //// INTERFACES
+  const kubeSchema = {
+    title: 'Kubernetes',
+    definitions: schema.definitions
+  };
 
-  const types = generateOpenApiTypes(options, schema);
-
+  const types = generateTypeScriptTypes(kubeSchema, {
+    ...(options as any),
+    exclude: ['Kubernetes', ...(options.exclude ?? [])]
+  });
+  const openApiTypes = generateOpenApiTypes(options, schema);
 
   return generate(t.file(t.program([
+    t.importDeclaration(
+      [t.importSpecifier(t.identifier('APIClient'), t.identifier('APIClient'))],
+      t.stringLiteral('./api-client')
+    ),
     ...types,
+    ...openApiTypes,
     clientClass
   ]))).code;
 };
