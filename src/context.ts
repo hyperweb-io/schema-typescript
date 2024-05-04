@@ -1,11 +1,16 @@
-import type { JSONSchema } from "./types";
 import deepmerge from 'deepmerge';
 
+import type { JSONSchema } from "./types";
+
+export interface SchemaDefinitionOverrides {
+  [key: string]: JSONSchema
+}
 export interface SchemaTSOptions {
   useSingleQuotes: boolean;
   camelCase?: boolean; // defaults to false
   camelCaseFn?: (str: string) => string; // optional function to convert keys to camelCase
   strictTypeSafety: boolean;  // true uses { [k: string]: unknown; }, false uses any
+  overrides?: SchemaDefinitionOverrides;
 }
 
 export interface SchemaTSContextI {
