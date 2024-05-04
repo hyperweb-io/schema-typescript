@@ -2,9524 +2,6922 @@ export interface GetServiceAccountIssuerOpenIDConfigurationRequest {}
 export interface GetCoreAPIVersionsRequest {}
 export interface GetCoreV1APIResourcesRequest {}
 export interface ListCoreV1ComponentStatusRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ReadCoreV1ComponentStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ListCoreV1ConfigMapForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListCoreV1EndpointsForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListCoreV1EventForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListCoreV1LimitRangeForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListCoreV1NamespaceRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateCoreV1NamespaceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: Namespace;
 }
 export interface CreateCoreV1NamespacedBindingRequest {
-  query: {
-    dryRun?: string;
-    fieldManager?: string;
-    pretty?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  dryRun?: string;
+  fieldManager?: string;
+  pretty?: string;
+  namespace: string;
   body: Binding;
 }
 export interface ListCoreV1NamespacedConfigMapRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateCoreV1NamespacedConfigMapRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: ConfigMap;
 }
 export interface DeleteCoreV1CollectionNamespacedConfigMapRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadCoreV1NamespacedConfigMapRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceCoreV1NamespacedConfigMapRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: ConfigMap;
 }
 export interface DeleteCoreV1NamespacedConfigMapRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchCoreV1NamespacedConfigMapRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListCoreV1NamespacedEndpointsRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateCoreV1NamespacedEndpointsRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: Endpoints;
 }
 export interface DeleteCoreV1CollectionNamespacedEndpointsRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadCoreV1NamespacedEndpointsRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceCoreV1NamespacedEndpointsRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Endpoints;
 }
 export interface DeleteCoreV1NamespacedEndpointsRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchCoreV1NamespacedEndpointsRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListCoreV1NamespacedEventRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateCoreV1NamespacedEventRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: Event;
 }
 export interface DeleteCoreV1CollectionNamespacedEventRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadCoreV1NamespacedEventRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceCoreV1NamespacedEventRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Event;
 }
 export interface DeleteCoreV1NamespacedEventRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchCoreV1NamespacedEventRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListCoreV1NamespacedLimitRangeRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateCoreV1NamespacedLimitRangeRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: LimitRange;
 }
 export interface DeleteCoreV1CollectionNamespacedLimitRangeRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadCoreV1NamespacedLimitRangeRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceCoreV1NamespacedLimitRangeRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: LimitRange;
 }
 export interface DeleteCoreV1NamespacedLimitRangeRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchCoreV1NamespacedLimitRangeRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListCoreV1NamespacedPersistentVolumeClaimRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateCoreV1NamespacedPersistentVolumeClaimRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: PersistentVolumeClaim;
 }
 export interface DeleteCoreV1CollectionNamespacedPersistentVolumeClaimRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadCoreV1NamespacedPersistentVolumeClaimRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceCoreV1NamespacedPersistentVolumeClaimRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: PersistentVolumeClaim;
 }
 export interface DeleteCoreV1NamespacedPersistentVolumeClaimRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchCoreV1NamespacedPersistentVolumeClaimRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadCoreV1NamespacedPersistentVolumeClaimStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceCoreV1NamespacedPersistentVolumeClaimStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: PersistentVolumeClaim;
 }
 export interface PatchCoreV1NamespacedPersistentVolumeClaimStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListCoreV1NamespacedPodRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateCoreV1NamespacedPodRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: Pod;
 }
 export interface DeleteCoreV1CollectionNamespacedPodRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadCoreV1NamespacedPodRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceCoreV1NamespacedPodRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Pod;
 }
 export interface DeleteCoreV1NamespacedPodRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchCoreV1NamespacedPodRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ConnectCoreV1GetNamespacedPodAttachRequest {
-  query: {
-    container?: string;
-    stderr?: boolean;
-    stdin?: boolean;
-    stdout?: boolean;
-    tty?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  container?: string;
+  stderr?: boolean;
+  stdin?: boolean;
+  stdout?: boolean;
+  tty?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface ConnectCoreV1PostNamespacedPodAttachRequest {
-  query: {
-    container?: string;
-    stderr?: boolean;
-    stdin?: boolean;
-    stdout?: boolean;
-    tty?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  container?: string;
+  stderr?: boolean;
+  stdin?: boolean;
+  stdout?: boolean;
+  tty?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface CreateCoreV1NamespacedPodBindingRequest {
-  query: {
-    dryRun?: string;
-    fieldManager?: string;
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  dryRun?: string;
+  fieldManager?: string;
+  pretty?: string;
+  name: string;
+  namespace: string;
   body: Binding;
 }
 export interface CreateCoreV1NamespacedPodEvictionRequest {
-  query: {
-    dryRun?: string;
-    fieldManager?: string;
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  dryRun?: string;
+  fieldManager?: string;
+  pretty?: string;
+  name: string;
+  namespace: string;
   body: Eviction;
 }
 export interface ConnectCoreV1GetNamespacedPodExecRequest {
-  query: {
-    command?: string;
-    container?: string;
-    stderr?: boolean;
-    stdin?: boolean;
-    stdout?: boolean;
-    tty?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  command?: string;
+  container?: string;
+  stderr?: boolean;
+  stdin?: boolean;
+  stdout?: boolean;
+  tty?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface ConnectCoreV1PostNamespacedPodExecRequest {
-  query: {
-    command?: string;
-    container?: string;
-    stderr?: boolean;
-    stdin?: boolean;
-    stdout?: boolean;
-    tty?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  command?: string;
+  container?: string;
+  stderr?: boolean;
+  stdin?: boolean;
+  stdout?: boolean;
+  tty?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface ReadCoreV1NamespacedPodLogRequest {
-  query: {
-    container?: string;
-    follow?: boolean;
-    insecureSkipTLSVerifyBackend?: boolean;
-    limitBytes?: number;
-    pretty?: string;
-    previous?: boolean;
-    sinceSeconds?: number;
-    tailLines?: number;
-    timestamps?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  container?: string;
+  follow?: boolean;
+  insecureSkipTLSVerifyBackend?: boolean;
+  limitBytes?: number;
+  pretty?: string;
+  previous?: boolean;
+  sinceSeconds?: number;
+  tailLines?: number;
+  timestamps?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface ConnectCoreV1GetNamespacedPodPortforwardRequest {
-  query: {
-    ports?: number;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  ports?: number;
+  name: string;
+  namespace: string;
 }
 export interface ConnectCoreV1PostNamespacedPodPortforwardRequest {
-  query: {
-    ports?: number;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  ports?: number;
+  name: string;
+  namespace: string;
 }
 export interface ConnectCoreV1GetNamespacedPodProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
 }
 export interface ConnectCoreV1PostNamespacedPodProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
 }
 export interface ConnectCoreV1PutNamespacedPodProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
 }
 export interface ConnectCoreV1DeleteNamespacedPodProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
 }
 export interface ConnectCoreV1OptionsNamespacedPodProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
 }
 export interface ConnectCoreV1HeadNamespacedPodProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
 }
 export interface ConnectCoreV1PatchNamespacedPodProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
 }
 export interface ConnectCoreV1GetNamespacedPodProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
+  path: string;
 }
 export interface ConnectCoreV1PostNamespacedPodProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
+  path: string;
 }
 export interface ConnectCoreV1PutNamespacedPodProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
+  path: string;
 }
 export interface ConnectCoreV1DeleteNamespacedPodProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
+  path: string;
 }
 export interface ConnectCoreV1OptionsNamespacedPodProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
+  path: string;
 }
 export interface ConnectCoreV1HeadNamespacedPodProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
+  path: string;
 }
 export interface ConnectCoreV1PatchNamespacedPodProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
+  path: string;
 }
 export interface ReadCoreV1NamespacedPodStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceCoreV1NamespacedPodStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Pod;
 }
 export interface PatchCoreV1NamespacedPodStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListCoreV1NamespacedPodTemplateRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateCoreV1NamespacedPodTemplateRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: PodTemplate;
 }
 export interface DeleteCoreV1CollectionNamespacedPodTemplateRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadCoreV1NamespacedPodTemplateRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceCoreV1NamespacedPodTemplateRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: PodTemplate;
 }
 export interface DeleteCoreV1NamespacedPodTemplateRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchCoreV1NamespacedPodTemplateRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListCoreV1NamespacedReplicationControllerRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateCoreV1NamespacedReplicationControllerRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: ReplicationController;
 }
 export interface DeleteCoreV1CollectionNamespacedReplicationControllerRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadCoreV1NamespacedReplicationControllerRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceCoreV1NamespacedReplicationControllerRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: ReplicationController;
 }
 export interface DeleteCoreV1NamespacedReplicationControllerRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchCoreV1NamespacedReplicationControllerRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadCoreV1NamespacedReplicationControllerScaleRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceCoreV1NamespacedReplicationControllerScaleRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Scale;
 }
 export interface PatchCoreV1NamespacedReplicationControllerScaleRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadCoreV1NamespacedReplicationControllerStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceCoreV1NamespacedReplicationControllerStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: ReplicationController;
 }
 export interface PatchCoreV1NamespacedReplicationControllerStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListCoreV1NamespacedResourceQuotaRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateCoreV1NamespacedResourceQuotaRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: ResourceQuota;
 }
 export interface DeleteCoreV1CollectionNamespacedResourceQuotaRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadCoreV1NamespacedResourceQuotaRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceCoreV1NamespacedResourceQuotaRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: ResourceQuota;
 }
 export interface DeleteCoreV1NamespacedResourceQuotaRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchCoreV1NamespacedResourceQuotaRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadCoreV1NamespacedResourceQuotaStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceCoreV1NamespacedResourceQuotaStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: ResourceQuota;
 }
 export interface PatchCoreV1NamespacedResourceQuotaStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListCoreV1NamespacedSecretRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateCoreV1NamespacedSecretRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: Secret;
 }
 export interface DeleteCoreV1CollectionNamespacedSecretRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadCoreV1NamespacedSecretRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceCoreV1NamespacedSecretRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Secret;
 }
 export interface DeleteCoreV1NamespacedSecretRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchCoreV1NamespacedSecretRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListCoreV1NamespacedServiceAccountRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateCoreV1NamespacedServiceAccountRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: ServiceAccount;
 }
 export interface DeleteCoreV1CollectionNamespacedServiceAccountRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadCoreV1NamespacedServiceAccountRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceCoreV1NamespacedServiceAccountRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: ServiceAccount;
 }
 export interface DeleteCoreV1NamespacedServiceAccountRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchCoreV1NamespacedServiceAccountRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface CreateCoreV1NamespacedServiceAccountTokenRequest {
-  query: {
-    dryRun?: string;
-    fieldManager?: string;
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  dryRun?: string;
+  fieldManager?: string;
+  pretty?: string;
+  name: string;
+  namespace: string;
   body: TokenRequest;
 }
 export interface ListCoreV1NamespacedServiceRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateCoreV1NamespacedServiceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: Service;
 }
 export interface ReadCoreV1NamespacedServiceRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceCoreV1NamespacedServiceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Service;
 }
 export interface DeleteCoreV1NamespacedServiceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchCoreV1NamespacedServiceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ConnectCoreV1GetNamespacedServiceProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
 }
 export interface ConnectCoreV1PostNamespacedServiceProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
 }
 export interface ConnectCoreV1PutNamespacedServiceProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
 }
 export interface ConnectCoreV1DeleteNamespacedServiceProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
 }
 export interface ConnectCoreV1OptionsNamespacedServiceProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
 }
 export interface ConnectCoreV1HeadNamespacedServiceProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
 }
 export interface ConnectCoreV1PatchNamespacedServiceProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
 }
 export interface ConnectCoreV1GetNamespacedServiceProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
+  path: string;
 }
 export interface ConnectCoreV1PostNamespacedServiceProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
+  path: string;
 }
 export interface ConnectCoreV1PutNamespacedServiceProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
+  path: string;
 }
 export interface ConnectCoreV1DeleteNamespacedServiceProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
+  path: string;
 }
 export interface ConnectCoreV1OptionsNamespacedServiceProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
+  path: string;
 }
 export interface ConnectCoreV1HeadNamespacedServiceProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
+  path: string;
 }
 export interface ConnectCoreV1PatchNamespacedServiceProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  namespace: string;
+  path: string;
 }
 export interface ReadCoreV1NamespacedServiceStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceCoreV1NamespacedServiceStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Service;
 }
 export interface PatchCoreV1NamespacedServiceStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadCoreV1NamespaceRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceCoreV1NamespaceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: Namespace;
 }
 export interface DeleteCoreV1NamespaceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchCoreV1NamespaceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ReplaceCoreV1NamespaceFinalizeRequest {
-  query: {
-    dryRun?: string;
-    fieldManager?: string;
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  dryRun?: string;
+  fieldManager?: string;
+  pretty?: string;
+  name: string;
   body: Namespace;
 }
 export interface ReadCoreV1NamespaceStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceCoreV1NamespaceStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: Namespace;
 }
 export interface PatchCoreV1NamespaceStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ListCoreV1NodeRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateCoreV1NodeRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: Node;
 }
 export interface DeleteCoreV1CollectionNodeRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadCoreV1NodeRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceCoreV1NodeRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: Node;
 }
 export interface DeleteCoreV1NodeRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchCoreV1NodeRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ConnectCoreV1GetNodeProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-  };
+  path?: string;
+  name: string;
 }
 export interface ConnectCoreV1PostNodeProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-  };
+  path?: string;
+  name: string;
 }
 export interface ConnectCoreV1PutNodeProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-  };
+  path?: string;
+  name: string;
 }
 export interface ConnectCoreV1DeleteNodeProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-  };
+  path?: string;
+  name: string;
 }
 export interface ConnectCoreV1OptionsNodeProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-  };
+  path?: string;
+  name: string;
 }
 export interface ConnectCoreV1HeadNodeProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-  };
+  path?: string;
+  name: string;
 }
 export interface ConnectCoreV1PatchNodeProxyRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-  };
+  path?: string;
+  name: string;
 }
 export interface ConnectCoreV1GetNodeProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  path: string;
 }
 export interface ConnectCoreV1PostNodeProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  path: string;
 }
 export interface ConnectCoreV1PutNodeProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  path: string;
 }
 export interface ConnectCoreV1DeleteNodeProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  path: string;
 }
 export interface ConnectCoreV1OptionsNodeProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  path: string;
 }
 export interface ConnectCoreV1HeadNodeProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  path: string;
 }
 export interface ConnectCoreV1PatchNodeProxyWithPathRequest {
-  query: {
-    path?: string;
-  };
-  path: {
-    name: string;
-    path: string;
-  };
+  path?: string;
+  name: string;
+  path: string;
 }
 export interface ReadCoreV1NodeStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceCoreV1NodeStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: Node;
 }
 export interface PatchCoreV1NodeStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ListCoreV1PersistentVolumeClaimForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListCoreV1PersistentVolumeRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateCoreV1PersistentVolumeRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: PersistentVolume;
 }
 export interface DeleteCoreV1CollectionPersistentVolumeRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadCoreV1PersistentVolumeRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceCoreV1PersistentVolumeRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: PersistentVolume;
 }
 export interface DeleteCoreV1PersistentVolumeRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchCoreV1PersistentVolumeRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ReadCoreV1PersistentVolumeStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceCoreV1PersistentVolumeStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: PersistentVolume;
 }
 export interface PatchCoreV1PersistentVolumeStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ListCoreV1PodForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListCoreV1PodTemplateForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListCoreV1ReplicationControllerForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListCoreV1ResourceQuotaForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListCoreV1SecretForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListCoreV1ServiceAccountForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListCoreV1ServiceForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchCoreV1ConfigMapListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchCoreV1EndpointsListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchCoreV1EventListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchCoreV1LimitRangeListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchCoreV1NamespaceListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchCoreV1NamespacedConfigMapListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedConfigMapRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedEndpointsListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedEndpointsRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedEventListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedEventRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedLimitRangeListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedLimitRangeRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedPersistentVolumeClaimListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedPersistentVolumeClaimRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedPodListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedPodRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedPodTemplateListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedPodTemplateRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedReplicationControllerListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedReplicationControllerRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedResourceQuotaListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedResourceQuotaRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedSecretListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedSecretRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedServiceAccountListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedServiceAccountRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedServiceListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchCoreV1NamespacedServiceRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchCoreV1NamespaceRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface WatchCoreV1NodeListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchCoreV1NodeRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface WatchCoreV1PersistentVolumeClaimListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchCoreV1PersistentVolumeListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchCoreV1PersistentVolumeRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface WatchCoreV1PodListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchCoreV1PodTemplateListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchCoreV1ReplicationControllerListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchCoreV1ResourceQuotaListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchCoreV1SecretListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchCoreV1ServiceAccountListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchCoreV1ServiceListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface GetAPIVersionsRequest {}
 export interface GetAdmissionregistrationAPIGroupRequest {}
 export interface GetAdmissionregistrationV1APIResourcesRequest {}
 export interface ListAdmissionregistrationV1MutatingWebhookConfigurationRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateAdmissionregistrationV1MutatingWebhookConfigurationRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: MutatingWebhookConfiguration;
 }
 export interface DeleteAdmissionregistrationV1CollectionMutatingWebhookConfigurationRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadAdmissionregistrationV1MutatingWebhookConfigurationRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceAdmissionregistrationV1MutatingWebhookConfigurationRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: MutatingWebhookConfiguration;
 }
 export interface DeleteAdmissionregistrationV1MutatingWebhookConfigurationRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchAdmissionregistrationV1MutatingWebhookConfigurationRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ListAdmissionregistrationV1ValidatingWebhookConfigurationRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateAdmissionregistrationV1ValidatingWebhookConfigurationRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: ValidatingWebhookConfiguration;
 }
 export interface DeleteAdmissionregistrationV1CollectionValidatingWebhookConfigurationRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadAdmissionregistrationV1ValidatingWebhookConfigurationRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceAdmissionregistrationV1ValidatingWebhookConfigurationRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: ValidatingWebhookConfiguration;
 }
 export interface DeleteAdmissionregistrationV1ValidatingWebhookConfigurationRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchAdmissionregistrationV1ValidatingWebhookConfigurationRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface WatchAdmissionregistrationV1MutatingWebhookConfigurationListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchAdmissionregistrationV1MutatingWebhookConfigurationRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface WatchAdmissionregistrationV1ValidatingWebhookConfigurationListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchAdmissionregistrationV1ValidatingWebhookConfigurationRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface GetApiextensionsAPIGroupRequest {}
 export interface GetApiextensionsV1APIResourcesRequest {}
 export interface ListApiextensionsV1CustomResourceDefinitionRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateApiextensionsV1CustomResourceDefinitionRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: CustomResourceDefinition;
 }
 export interface DeleteApiextensionsV1CollectionCustomResourceDefinitionRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadApiextensionsV1CustomResourceDefinitionRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceApiextensionsV1CustomResourceDefinitionRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: CustomResourceDefinition;
 }
 export interface DeleteApiextensionsV1CustomResourceDefinitionRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchApiextensionsV1CustomResourceDefinitionRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ReadApiextensionsV1CustomResourceDefinitionStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceApiextensionsV1CustomResourceDefinitionStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: CustomResourceDefinition;
 }
 export interface PatchApiextensionsV1CustomResourceDefinitionStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface WatchApiextensionsV1CustomResourceDefinitionListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchApiextensionsV1CustomResourceDefinitionRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface GetApiregistrationAPIGroupRequest {}
 export interface GetApiregistrationV1APIResourcesRequest {}
 export interface ListApiregistrationV1APIServiceRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateApiregistrationV1APIServiceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: APIService;
 }
 export interface DeleteApiregistrationV1CollectionAPIServiceRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadApiregistrationV1APIServiceRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceApiregistrationV1APIServiceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: APIService;
 }
 export interface DeleteApiregistrationV1APIServiceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchApiregistrationV1APIServiceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ReadApiregistrationV1APIServiceStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceApiregistrationV1APIServiceStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: APIService;
 }
 export interface PatchApiregistrationV1APIServiceStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface WatchApiregistrationV1APIServiceListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchApiregistrationV1APIServiceRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface GetAppsAPIGroupRequest {}
 export interface GetAppsV1APIResourcesRequest {}
 export interface ListAppsV1ControllerRevisionForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListAppsV1DaemonSetForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListAppsV1DeploymentForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListAppsV1NamespacedControllerRevisionRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateAppsV1NamespacedControllerRevisionRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: ControllerRevision;
 }
 export interface DeleteAppsV1CollectionNamespacedControllerRevisionRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadAppsV1NamespacedControllerRevisionRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceAppsV1NamespacedControllerRevisionRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: ControllerRevision;
 }
 export interface DeleteAppsV1NamespacedControllerRevisionRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchAppsV1NamespacedControllerRevisionRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListAppsV1NamespacedDaemonSetRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateAppsV1NamespacedDaemonSetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: DaemonSet;
 }
 export interface DeleteAppsV1CollectionNamespacedDaemonSetRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadAppsV1NamespacedDaemonSetRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceAppsV1NamespacedDaemonSetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: DaemonSet;
 }
 export interface DeleteAppsV1NamespacedDaemonSetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchAppsV1NamespacedDaemonSetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadAppsV1NamespacedDaemonSetStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceAppsV1NamespacedDaemonSetStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: DaemonSet;
 }
 export interface PatchAppsV1NamespacedDaemonSetStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListAppsV1NamespacedDeploymentRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateAppsV1NamespacedDeploymentRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: Deployment;
 }
 export interface DeleteAppsV1CollectionNamespacedDeploymentRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadAppsV1NamespacedDeploymentRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceAppsV1NamespacedDeploymentRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Deployment;
 }
 export interface DeleteAppsV1NamespacedDeploymentRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchAppsV1NamespacedDeploymentRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadAppsV1NamespacedDeploymentScaleRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceAppsV1NamespacedDeploymentScaleRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Scale;
 }
 export interface PatchAppsV1NamespacedDeploymentScaleRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadAppsV1NamespacedDeploymentStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceAppsV1NamespacedDeploymentStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Deployment;
 }
 export interface PatchAppsV1NamespacedDeploymentStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListAppsV1NamespacedReplicaSetRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateAppsV1NamespacedReplicaSetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: ReplicaSet;
 }
 export interface DeleteAppsV1CollectionNamespacedReplicaSetRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadAppsV1NamespacedReplicaSetRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceAppsV1NamespacedReplicaSetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: ReplicaSet;
 }
 export interface DeleteAppsV1NamespacedReplicaSetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchAppsV1NamespacedReplicaSetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadAppsV1NamespacedReplicaSetScaleRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceAppsV1NamespacedReplicaSetScaleRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Scale;
 }
 export interface PatchAppsV1NamespacedReplicaSetScaleRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadAppsV1NamespacedReplicaSetStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceAppsV1NamespacedReplicaSetStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: ReplicaSet;
 }
 export interface PatchAppsV1NamespacedReplicaSetStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListAppsV1NamespacedStatefulSetRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateAppsV1NamespacedStatefulSetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: StatefulSet;
 }
 export interface DeleteAppsV1CollectionNamespacedStatefulSetRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadAppsV1NamespacedStatefulSetRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceAppsV1NamespacedStatefulSetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: StatefulSet;
 }
 export interface DeleteAppsV1NamespacedStatefulSetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchAppsV1NamespacedStatefulSetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadAppsV1NamespacedStatefulSetScaleRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceAppsV1NamespacedStatefulSetScaleRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Scale;
 }
 export interface PatchAppsV1NamespacedStatefulSetScaleRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadAppsV1NamespacedStatefulSetStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceAppsV1NamespacedStatefulSetStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: StatefulSet;
 }
 export interface PatchAppsV1NamespacedStatefulSetStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListAppsV1ReplicaSetForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListAppsV1StatefulSetForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchAppsV1ControllerRevisionListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchAppsV1DaemonSetListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchAppsV1DeploymentListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchAppsV1NamespacedControllerRevisionListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchAppsV1NamespacedControllerRevisionRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchAppsV1NamespacedDaemonSetListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchAppsV1NamespacedDaemonSetRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchAppsV1NamespacedDeploymentListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchAppsV1NamespacedDeploymentRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchAppsV1NamespacedReplicaSetListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchAppsV1NamespacedReplicaSetRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchAppsV1NamespacedStatefulSetListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchAppsV1NamespacedStatefulSetRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchAppsV1ReplicaSetListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchAppsV1StatefulSetListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface GetAuthenticationAPIGroupRequest {}
 export interface GetAuthenticationV1APIResourcesRequest {}
 export interface CreateAuthenticationV1TokenReviewRequest {
-  query: {
-    dryRun?: string;
-    fieldManager?: string;
-    pretty?: string;
-  };
+  dryRun?: string;
+  fieldManager?: string;
+  pretty?: string;
   body: TokenReview;
 }
 export interface GetAuthorizationAPIGroupRequest {}
 export interface GetAuthorizationV1APIResourcesRequest {}
 export interface CreateAuthorizationV1NamespacedLocalSubjectAccessReviewRequest {
-  query: {
-    dryRun?: string;
-    fieldManager?: string;
-    pretty?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  dryRun?: string;
+  fieldManager?: string;
+  pretty?: string;
+  namespace: string;
   body: LocalSubjectAccessReview;
 }
 export interface CreateAuthorizationV1SelfSubjectAccessReviewRequest {
-  query: {
-    dryRun?: string;
-    fieldManager?: string;
-    pretty?: string;
-  };
+  dryRun?: string;
+  fieldManager?: string;
+  pretty?: string;
   body: SelfSubjectAccessReview;
 }
 export interface CreateAuthorizationV1SelfSubjectRulesReviewRequest {
-  query: {
-    dryRun?: string;
-    fieldManager?: string;
-    pretty?: string;
-  };
+  dryRun?: string;
+  fieldManager?: string;
+  pretty?: string;
   body: SelfSubjectRulesReview;
 }
 export interface CreateAuthorizationV1SubjectAccessReviewRequest {
-  query: {
-    dryRun?: string;
-    fieldManager?: string;
-    pretty?: string;
-  };
+  dryRun?: string;
+  fieldManager?: string;
+  pretty?: string;
   body: SubjectAccessReview;
 }
 export interface GetAutoscalingAPIGroupRequest {}
 export interface GetAutoscalingV1APIResourcesRequest {}
 export interface ListAutoscalingV1HorizontalPodAutoscalerForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListAutoscalingV1NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateAutoscalingV1NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: HorizontalPodAutoscaler;
 }
 export interface DeleteAutoscalingV1CollectionNamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadAutoscalingV1NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceAutoscalingV1NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: HorizontalPodAutoscaler;
 }
 export interface DeleteAutoscalingV1NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchAutoscalingV1NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadAutoscalingV1NamespacedHorizontalPodAutoscalerStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceAutoscalingV1NamespacedHorizontalPodAutoscalerStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: HorizontalPodAutoscaler;
 }
 export interface PatchAutoscalingV1NamespacedHorizontalPodAutoscalerStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface WatchAutoscalingV1HorizontalPodAutoscalerListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchAutoscalingV1NamespacedHorizontalPodAutoscalerListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchAutoscalingV1NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface GetAutoscalingV2beta1APIResourcesRequest {}
 export interface ListAutoscalingV2beta1HorizontalPodAutoscalerForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListAutoscalingV2beta1NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateAutoscalingV2beta1NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: HorizontalPodAutoscaler;
 }
 export interface DeleteAutoscalingV2beta1CollectionNamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadAutoscalingV2beta1NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceAutoscalingV2beta1NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: HorizontalPodAutoscaler;
 }
 export interface DeleteAutoscalingV2beta1NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchAutoscalingV2beta1NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadAutoscalingV2beta1NamespacedHorizontalPodAutoscalerStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceAutoscalingV2beta1NamespacedHorizontalPodAutoscalerStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: HorizontalPodAutoscaler;
 }
 export interface PatchAutoscalingV2beta1NamespacedHorizontalPodAutoscalerStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface WatchAutoscalingV2beta1HorizontalPodAutoscalerListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchAutoscalingV2beta1NamespacedHorizontalPodAutoscalerListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchAutoscalingV2beta1NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface GetAutoscalingV2beta2APIResourcesRequest {}
 export interface ListAutoscalingV2beta2HorizontalPodAutoscalerForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListAutoscalingV2beta2NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateAutoscalingV2beta2NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: HorizontalPodAutoscaler;
 }
 export interface DeleteAutoscalingV2beta2CollectionNamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadAutoscalingV2beta2NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceAutoscalingV2beta2NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: HorizontalPodAutoscaler;
 }
 export interface DeleteAutoscalingV2beta2NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchAutoscalingV2beta2NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadAutoscalingV2beta2NamespacedHorizontalPodAutoscalerStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceAutoscalingV2beta2NamespacedHorizontalPodAutoscalerStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: HorizontalPodAutoscaler;
 }
 export interface PatchAutoscalingV2beta2NamespacedHorizontalPodAutoscalerStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface WatchAutoscalingV2beta2HorizontalPodAutoscalerListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchAutoscalingV2beta2NamespacedHorizontalPodAutoscalerListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchAutoscalingV2beta2NamespacedHorizontalPodAutoscalerRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface GetBatchAPIGroupRequest {}
 export interface GetBatchV1APIResourcesRequest {}
 export interface ListBatchV1CronJobForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListBatchV1JobForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListBatchV1NamespacedCronJobRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateBatchV1NamespacedCronJobRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: CronJob;
 }
 export interface DeleteBatchV1CollectionNamespacedCronJobRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadBatchV1NamespacedCronJobRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceBatchV1NamespacedCronJobRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: CronJob;
 }
 export interface DeleteBatchV1NamespacedCronJobRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchBatchV1NamespacedCronJobRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadBatchV1NamespacedCronJobStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceBatchV1NamespacedCronJobStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: CronJob;
 }
 export interface PatchBatchV1NamespacedCronJobStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListBatchV1NamespacedJobRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateBatchV1NamespacedJobRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: Job;
 }
 export interface DeleteBatchV1CollectionNamespacedJobRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadBatchV1NamespacedJobRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceBatchV1NamespacedJobRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Job;
 }
 export interface DeleteBatchV1NamespacedJobRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchBatchV1NamespacedJobRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadBatchV1NamespacedJobStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceBatchV1NamespacedJobStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Job;
 }
 export interface PatchBatchV1NamespacedJobStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface WatchBatchV1CronJobListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchBatchV1JobListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchBatchV1NamespacedCronJobListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchBatchV1NamespacedCronJobRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchBatchV1NamespacedJobListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchBatchV1NamespacedJobRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface GetBatchV1beta1APIResourcesRequest {}
 export interface ListBatchV1beta1CronJobForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListBatchV1beta1NamespacedCronJobRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateBatchV1beta1NamespacedCronJobRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: CronJob;
 }
 export interface DeleteBatchV1beta1CollectionNamespacedCronJobRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadBatchV1beta1NamespacedCronJobRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceBatchV1beta1NamespacedCronJobRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: CronJob;
 }
 export interface DeleteBatchV1beta1NamespacedCronJobRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchBatchV1beta1NamespacedCronJobRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadBatchV1beta1NamespacedCronJobStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceBatchV1beta1NamespacedCronJobStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: CronJob;
 }
 export interface PatchBatchV1beta1NamespacedCronJobStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface WatchBatchV1beta1CronJobListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchBatchV1beta1NamespacedCronJobListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchBatchV1beta1NamespacedCronJobRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface GetCertificatesAPIGroupRequest {}
 export interface GetCertificatesV1APIResourcesRequest {}
 export interface ListCertificatesV1CertificateSigningRequestRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateCertificatesV1CertificateSigningRequestRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: CertificateSigningRequest;
 }
 export interface DeleteCertificatesV1CollectionCertificateSigningRequestRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadCertificatesV1CertificateSigningRequestRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceCertificatesV1CertificateSigningRequestRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: CertificateSigningRequest;
 }
 export interface DeleteCertificatesV1CertificateSigningRequestRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchCertificatesV1CertificateSigningRequestRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ReadCertificatesV1CertificateSigningRequestApprovalRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceCertificatesV1CertificateSigningRequestApprovalRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: CertificateSigningRequest;
 }
 export interface PatchCertificatesV1CertificateSigningRequestApprovalRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ReadCertificatesV1CertificateSigningRequestStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceCertificatesV1CertificateSigningRequestStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: CertificateSigningRequest;
 }
 export interface PatchCertificatesV1CertificateSigningRequestStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface WatchCertificatesV1CertificateSigningRequestListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchCertificatesV1CertificateSigningRequestRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface GetCoordinationAPIGroupRequest {}
 export interface GetCoordinationV1APIResourcesRequest {}
 export interface ListCoordinationV1LeaseForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListCoordinationV1NamespacedLeaseRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateCoordinationV1NamespacedLeaseRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: Lease;
 }
 export interface DeleteCoordinationV1CollectionNamespacedLeaseRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadCoordinationV1NamespacedLeaseRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceCoordinationV1NamespacedLeaseRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Lease;
 }
 export interface DeleteCoordinationV1NamespacedLeaseRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchCoordinationV1NamespacedLeaseRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface WatchCoordinationV1LeaseListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchCoordinationV1NamespacedLeaseListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchCoordinationV1NamespacedLeaseRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface GetDiscoveryAPIGroupRequest {}
 export interface GetDiscoveryV1APIResourcesRequest {}
 export interface ListDiscoveryV1EndpointSliceForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListDiscoveryV1NamespacedEndpointSliceRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateDiscoveryV1NamespacedEndpointSliceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: EndpointSlice;
 }
 export interface DeleteDiscoveryV1CollectionNamespacedEndpointSliceRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadDiscoveryV1NamespacedEndpointSliceRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceDiscoveryV1NamespacedEndpointSliceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: EndpointSlice;
 }
 export interface DeleteDiscoveryV1NamespacedEndpointSliceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchDiscoveryV1NamespacedEndpointSliceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface WatchDiscoveryV1EndpointSliceListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchDiscoveryV1NamespacedEndpointSliceListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchDiscoveryV1NamespacedEndpointSliceRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface GetDiscoveryV1beta1APIResourcesRequest {}
 export interface ListDiscoveryV1beta1EndpointSliceForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListDiscoveryV1beta1NamespacedEndpointSliceRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateDiscoveryV1beta1NamespacedEndpointSliceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: EndpointSlice;
 }
 export interface DeleteDiscoveryV1beta1CollectionNamespacedEndpointSliceRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadDiscoveryV1beta1NamespacedEndpointSliceRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceDiscoveryV1beta1NamespacedEndpointSliceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: EndpointSlice;
 }
 export interface DeleteDiscoveryV1beta1NamespacedEndpointSliceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchDiscoveryV1beta1NamespacedEndpointSliceRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface WatchDiscoveryV1beta1EndpointSliceListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchDiscoveryV1beta1NamespacedEndpointSliceListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchDiscoveryV1beta1NamespacedEndpointSliceRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface GetEventsAPIGroupRequest {}
 export interface GetEventsV1APIResourcesRequest {}
 export interface ListEventsV1EventForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListEventsV1NamespacedEventRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateEventsV1NamespacedEventRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: Event;
 }
 export interface DeleteEventsV1CollectionNamespacedEventRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadEventsV1NamespacedEventRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceEventsV1NamespacedEventRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Event;
 }
 export interface DeleteEventsV1NamespacedEventRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchEventsV1NamespacedEventRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface WatchEventsV1EventListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchEventsV1NamespacedEventListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchEventsV1NamespacedEventRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface GetEventsV1beta1APIResourcesRequest {}
 export interface ListEventsV1beta1EventForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListEventsV1beta1NamespacedEventRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateEventsV1beta1NamespacedEventRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: Event;
 }
 export interface DeleteEventsV1beta1CollectionNamespacedEventRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadEventsV1beta1NamespacedEventRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceEventsV1beta1NamespacedEventRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Event;
 }
 export interface DeleteEventsV1beta1NamespacedEventRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchEventsV1beta1NamespacedEventRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface WatchEventsV1beta1EventListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchEventsV1beta1NamespacedEventListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchEventsV1beta1NamespacedEventRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface GetFlowcontrolApiserverAPIGroupRequest {}
 export interface GetFlowcontrolApiserverV1beta1APIResourcesRequest {}
 export interface ListFlowcontrolApiserverV1beta1FlowSchemaRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateFlowcontrolApiserverV1beta1FlowSchemaRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: FlowSchema;
 }
 export interface DeleteFlowcontrolApiserverV1beta1CollectionFlowSchemaRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadFlowcontrolApiserverV1beta1FlowSchemaRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceFlowcontrolApiserverV1beta1FlowSchemaRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: FlowSchema;
 }
 export interface DeleteFlowcontrolApiserverV1beta1FlowSchemaRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchFlowcontrolApiserverV1beta1FlowSchemaRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ReadFlowcontrolApiserverV1beta1FlowSchemaStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceFlowcontrolApiserverV1beta1FlowSchemaStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: FlowSchema;
 }
 export interface PatchFlowcontrolApiserverV1beta1FlowSchemaStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ListFlowcontrolApiserverV1beta1PriorityLevelConfigurationRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateFlowcontrolApiserverV1beta1PriorityLevelConfigurationRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: PriorityLevelConfiguration;
 }
 export interface DeleteFlowcontrolApiserverV1beta1CollectionPriorityLevelConfigurationRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadFlowcontrolApiserverV1beta1PriorityLevelConfigurationRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceFlowcontrolApiserverV1beta1PriorityLevelConfigurationRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: PriorityLevelConfiguration;
 }
 export interface DeleteFlowcontrolApiserverV1beta1PriorityLevelConfigurationRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchFlowcontrolApiserverV1beta1PriorityLevelConfigurationRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ReadFlowcontrolApiserverV1beta1PriorityLevelConfigurationStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceFlowcontrolApiserverV1beta1PriorityLevelConfigurationStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: PriorityLevelConfiguration;
 }
 export interface PatchFlowcontrolApiserverV1beta1PriorityLevelConfigurationStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface WatchFlowcontrolApiserverV1beta1FlowSchemaListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchFlowcontrolApiserverV1beta1FlowSchemaRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface WatchFlowcontrolApiserverV1beta1PriorityLevelConfigurationListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchFlowcontrolApiserverV1beta1PriorityLevelConfigurationRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface GetNetworkingAPIGroupRequest {}
 export interface GetNetworkingV1APIResourcesRequest {}
 export interface ListNetworkingV1IngressClassRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateNetworkingV1IngressClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: IngressClass;
 }
 export interface DeleteNetworkingV1CollectionIngressClassRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadNetworkingV1IngressClassRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceNetworkingV1IngressClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: IngressClass;
 }
 export interface DeleteNetworkingV1IngressClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchNetworkingV1IngressClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ListNetworkingV1IngressForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListNetworkingV1NamespacedIngressRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateNetworkingV1NamespacedIngressRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: Ingress;
 }
 export interface DeleteNetworkingV1CollectionNamespacedIngressRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadNetworkingV1NamespacedIngressRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceNetworkingV1NamespacedIngressRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Ingress;
 }
 export interface DeleteNetworkingV1NamespacedIngressRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchNetworkingV1NamespacedIngressRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadNetworkingV1NamespacedIngressStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceNetworkingV1NamespacedIngressStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Ingress;
 }
 export interface PatchNetworkingV1NamespacedIngressStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListNetworkingV1NamespacedNetworkPolicyRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateNetworkingV1NamespacedNetworkPolicyRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: NetworkPolicy;
 }
 export interface DeleteNetworkingV1CollectionNamespacedNetworkPolicyRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadNetworkingV1NamespacedNetworkPolicyRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceNetworkingV1NamespacedNetworkPolicyRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: NetworkPolicy;
 }
 export interface DeleteNetworkingV1NamespacedNetworkPolicyRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchNetworkingV1NamespacedNetworkPolicyRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListNetworkingV1NetworkPolicyForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchNetworkingV1IngressClassListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchNetworkingV1IngressClassRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface WatchNetworkingV1IngressListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchNetworkingV1NamespacedIngressListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchNetworkingV1NamespacedIngressRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchNetworkingV1NamespacedNetworkPolicyListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchNetworkingV1NamespacedNetworkPolicyRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchNetworkingV1NetworkPolicyListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface GetNodeAPIGroupRequest {}
 export interface GetNodeV1APIResourcesRequest {}
 export interface ListNodeV1RuntimeClassRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateNodeV1RuntimeClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: RuntimeClass;
 }
 export interface DeleteNodeV1CollectionRuntimeClassRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadNodeV1RuntimeClassRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceNodeV1RuntimeClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: RuntimeClass;
 }
 export interface DeleteNodeV1RuntimeClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchNodeV1RuntimeClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface WatchNodeV1RuntimeClassListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchNodeV1RuntimeClassRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface GetNodeV1beta1APIResourcesRequest {}
 export interface ListNodeV1beta1RuntimeClassRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateNodeV1beta1RuntimeClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: RuntimeClass;
 }
 export interface DeleteNodeV1beta1CollectionRuntimeClassRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadNodeV1beta1RuntimeClassRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceNodeV1beta1RuntimeClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: RuntimeClass;
 }
 export interface DeleteNodeV1beta1RuntimeClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchNodeV1beta1RuntimeClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface WatchNodeV1beta1RuntimeClassListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchNodeV1beta1RuntimeClassRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface GetPolicyAPIGroupRequest {}
 export interface GetPolicyV1APIResourcesRequest {}
 export interface ListPolicyV1NamespacedPodDisruptionBudgetRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreatePolicyV1NamespacedPodDisruptionBudgetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: PodDisruptionBudget;
 }
 export interface DeletePolicyV1CollectionNamespacedPodDisruptionBudgetRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadPolicyV1NamespacedPodDisruptionBudgetRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplacePolicyV1NamespacedPodDisruptionBudgetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: PodDisruptionBudget;
 }
 export interface DeletePolicyV1NamespacedPodDisruptionBudgetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchPolicyV1NamespacedPodDisruptionBudgetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadPolicyV1NamespacedPodDisruptionBudgetStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplacePolicyV1NamespacedPodDisruptionBudgetStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: PodDisruptionBudget;
 }
 export interface PatchPolicyV1NamespacedPodDisruptionBudgetStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListPolicyV1PodDisruptionBudgetForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchPolicyV1NamespacedPodDisruptionBudgetListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchPolicyV1NamespacedPodDisruptionBudgetRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchPolicyV1PodDisruptionBudgetListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface GetPolicyV1beta1APIResourcesRequest {}
 export interface ListPolicyV1beta1NamespacedPodDisruptionBudgetRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreatePolicyV1beta1NamespacedPodDisruptionBudgetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: PodDisruptionBudget;
 }
 export interface DeletePolicyV1beta1CollectionNamespacedPodDisruptionBudgetRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadPolicyV1beta1NamespacedPodDisruptionBudgetRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplacePolicyV1beta1NamespacedPodDisruptionBudgetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: PodDisruptionBudget;
 }
 export interface DeletePolicyV1beta1NamespacedPodDisruptionBudgetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchPolicyV1beta1NamespacedPodDisruptionBudgetRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ReadPolicyV1beta1NamespacedPodDisruptionBudgetStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplacePolicyV1beta1NamespacedPodDisruptionBudgetStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: PodDisruptionBudget;
 }
 export interface PatchPolicyV1beta1NamespacedPodDisruptionBudgetStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListPolicyV1beta1PodDisruptionBudgetForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListPolicyV1beta1PodSecurityPolicyRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreatePolicyV1beta1PodSecurityPolicyRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: PodSecurityPolicy;
 }
 export interface DeletePolicyV1beta1CollectionPodSecurityPolicyRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadPolicyV1beta1PodSecurityPolicyRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplacePolicyV1beta1PodSecurityPolicyRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: PodSecurityPolicy;
 }
 export interface DeletePolicyV1beta1PodSecurityPolicyRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchPolicyV1beta1PodSecurityPolicyRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface WatchPolicyV1beta1NamespacedPodDisruptionBudgetListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchPolicyV1beta1NamespacedPodDisruptionBudgetRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchPolicyV1beta1PodDisruptionBudgetListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchPolicyV1beta1PodSecurityPolicyListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchPolicyV1beta1PodSecurityPolicyRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface GetRbacAuthorizationAPIGroupRequest {}
 export interface GetRbacAuthorizationV1APIResourcesRequest {}
 export interface ListRbacAuthorizationV1ClusterRoleBindingRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateRbacAuthorizationV1ClusterRoleBindingRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: ClusterRoleBinding;
 }
 export interface DeleteRbacAuthorizationV1CollectionClusterRoleBindingRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadRbacAuthorizationV1ClusterRoleBindingRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceRbacAuthorizationV1ClusterRoleBindingRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: ClusterRoleBinding;
 }
 export interface DeleteRbacAuthorizationV1ClusterRoleBindingRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchRbacAuthorizationV1ClusterRoleBindingRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ListRbacAuthorizationV1ClusterRoleRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateRbacAuthorizationV1ClusterRoleRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: ClusterRole;
 }
 export interface DeleteRbacAuthorizationV1CollectionClusterRoleRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadRbacAuthorizationV1ClusterRoleRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceRbacAuthorizationV1ClusterRoleRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: ClusterRole;
 }
 export interface DeleteRbacAuthorizationV1ClusterRoleRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchRbacAuthorizationV1ClusterRoleRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ListRbacAuthorizationV1NamespacedRoleBindingRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateRbacAuthorizationV1NamespacedRoleBindingRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: RoleBinding;
 }
 export interface DeleteRbacAuthorizationV1CollectionNamespacedRoleBindingRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadRbacAuthorizationV1NamespacedRoleBindingRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceRbacAuthorizationV1NamespacedRoleBindingRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: RoleBinding;
 }
 export interface DeleteRbacAuthorizationV1NamespacedRoleBindingRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchRbacAuthorizationV1NamespacedRoleBindingRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListRbacAuthorizationV1NamespacedRoleRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateRbacAuthorizationV1NamespacedRoleRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: Role;
 }
 export interface DeleteRbacAuthorizationV1CollectionNamespacedRoleRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadRbacAuthorizationV1NamespacedRoleRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceRbacAuthorizationV1NamespacedRoleRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: Role;
 }
 export interface DeleteRbacAuthorizationV1NamespacedRoleRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchRbacAuthorizationV1NamespacedRoleRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface ListRbacAuthorizationV1RoleBindingForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListRbacAuthorizationV1RoleForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchRbacAuthorizationV1ClusterRoleBindingListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchRbacAuthorizationV1ClusterRoleBindingRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface WatchRbacAuthorizationV1ClusterRoleListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchRbacAuthorizationV1ClusterRoleRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface WatchRbacAuthorizationV1NamespacedRoleBindingListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchRbacAuthorizationV1NamespacedRoleBindingRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchRbacAuthorizationV1NamespacedRoleListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchRbacAuthorizationV1NamespacedRoleRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface WatchRbacAuthorizationV1RoleBindingListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchRbacAuthorizationV1RoleListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface GetSchedulingAPIGroupRequest {}
 export interface GetSchedulingV1APIResourcesRequest {}
 export interface ListSchedulingV1PriorityClassRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateSchedulingV1PriorityClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: PriorityClass;
 }
 export interface DeleteSchedulingV1CollectionPriorityClassRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadSchedulingV1PriorityClassRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceSchedulingV1PriorityClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: PriorityClass;
 }
 export interface DeleteSchedulingV1PriorityClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchSchedulingV1PriorityClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface WatchSchedulingV1PriorityClassListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchSchedulingV1PriorityClassRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface GetStorageAPIGroupRequest {}
 export interface GetStorageV1APIResourcesRequest {}
 export interface ListStorageV1CSIDriverRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateStorageV1CSIDriverRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: CSIDriver;
 }
 export interface DeleteStorageV1CollectionCSIDriverRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadStorageV1CSIDriverRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceStorageV1CSIDriverRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: CSIDriver;
 }
 export interface DeleteStorageV1CSIDriverRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchStorageV1CSIDriverRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ListStorageV1CSINodeRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateStorageV1CSINodeRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: CSINode;
 }
 export interface DeleteStorageV1CollectionCSINodeRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadStorageV1CSINodeRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceStorageV1CSINodeRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: CSINode;
 }
 export interface DeleteStorageV1CSINodeRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchStorageV1CSINodeRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ListStorageV1StorageClassRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateStorageV1StorageClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: StorageClass;
 }
 export interface DeleteStorageV1CollectionStorageClassRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadStorageV1StorageClassRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceStorageV1StorageClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: StorageClass;
 }
 export interface DeleteStorageV1StorageClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchStorageV1StorageClassRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ListStorageV1VolumeAttachmentRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface CreateStorageV1VolumeAttachmentRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
   body: VolumeAttachment;
 }
 export interface DeleteStorageV1CollectionVolumeAttachmentRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
 }
 export interface ReadStorageV1VolumeAttachmentRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceStorageV1VolumeAttachmentRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: VolumeAttachment;
 }
 export interface DeleteStorageV1VolumeAttachmentRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
 }
 export interface PatchStorageV1VolumeAttachmentRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface ReadStorageV1VolumeAttachmentStatusRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  name: string;
 }
 export interface ReplaceStorageV1VolumeAttachmentStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
   body: VolumeAttachment;
 }
 export interface PatchStorageV1VolumeAttachmentStatusRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
   body: Patch;
 }
 export interface WatchStorageV1CSIDriverListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchStorageV1CSIDriverRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface WatchStorageV1CSINodeListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchStorageV1CSINodeRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface WatchStorageV1StorageClassListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchStorageV1StorageClassRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface WatchStorageV1VolumeAttachmentListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchStorageV1VolumeAttachmentRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
 }
 export interface GetStorageV1beta1APIResourcesRequest {}
 export interface ListStorageV1beta1CSIStorageCapacityForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface ListStorageV1beta1NamespacedCSIStorageCapacityRequest {
-  query: {
-    pretty?: string;
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface CreateStorageV1beta1NamespacedCSIStorageCapacityRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  namespace: string;
   body: CSIStorageCapacity;
 }
 export interface DeleteStorageV1beta1CollectionNamespacedCSIStorageCapacityRequest {
-  query: {
-    pretty?: string;
-    continue?: string;
-    dryRun?: string;
-    fieldSelector?: string;
-    gracePeriodSeconds?: number;
-    labelSelector?: string;
-    limit?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-  };
-  path: {
-    namespace: string;
-  };
+  pretty?: string;
+  continue?: string;
+  dryRun?: string;
+  fieldSelector?: string;
+  gracePeriodSeconds?: number;
+  labelSelector?: string;
+  limit?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  namespace: string;
 }
 export interface ReadStorageV1beta1NamespacedCSIStorageCapacityRequest {
-  query: {
-    pretty?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  name: string;
+  namespace: string;
 }
 export interface ReplaceStorageV1beta1NamespacedCSIStorageCapacityRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  name: string;
+  namespace: string;
   body: CSIStorageCapacity;
 }
 export interface DeleteStorageV1beta1NamespacedCSIStorageCapacityRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    gracePeriodSeconds?: number;
-    orphanDependents?: boolean;
-    propagationPolicy?: string;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  gracePeriodSeconds?: number;
+  orphanDependents?: boolean;
+  propagationPolicy?: string;
+  name: string;
+  namespace: string;
 }
 export interface PatchStorageV1beta1NamespacedCSIStorageCapacityRequest {
-  query: {
-    pretty?: string;
-    dryRun?: string;
-    fieldManager?: string;
-    force?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  pretty?: string;
+  dryRun?: string;
+  fieldManager?: string;
+  force?: boolean;
+  name: string;
+  namespace: string;
   body: Patch;
 }
 export interface WatchStorageV1beta1CSIStorageCapacityListForAllNamespacesRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
 }
 export interface WatchStorageV1beta1NamespacedCSIStorageCapacityListRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  namespace: string;
 }
 export interface WatchStorageV1beta1NamespacedCSIStorageCapacityRequest {
-  query: {
-    allowWatchBookmarks?: boolean;
-    continue?: string;
-    fieldSelector?: string;
-    labelSelector?: string;
-    limit?: number;
-    pretty?: string;
-    resourceVersion?: string;
-    resourceVersionMatch?: string;
-    timeoutSeconds?: number;
-    watch?: boolean;
-  };
-  path: {
-    name: string;
-    namespace: string;
-  };
+  allowWatchBookmarks?: boolean;
+  continue?: string;
+  fieldSelector?: string;
+  labelSelector?: string;
+  limit?: number;
+  pretty?: string;
+  resourceVersion?: string;
+  resourceVersionMatch?: string;
+  timeoutSeconds?: number;
+  watch?: boolean;
+  name: string;
+  namespace: string;
 }
 export interface LogFileListHandlerRequest {}
 export interface LogFileHandlerRequest {
-  path: {
-    logpath: string;
-  };
+  logpath: string;
 }
 export interface GetServiceAccountIssuerOpenIDKeysetRequest {}
 export interface GetCodeVersionRequest {}

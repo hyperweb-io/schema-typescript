@@ -18,3 +18,13 @@ export interface JSONSchema {
   default?: any;
   format?: string;
 }
+
+export type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends Array<infer U>
+      ? Array<DeepPartial<U>> // If it's an array, make each element a DeepPartial
+      : T[P] extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>> // Handle readonly arrays
+      : T[P] extends object
+      ? DeepPartial<T[P]> // Apply DeepPartial recursively if it's an object
+      : T[P]; // Otherwise, just make it optional
+};

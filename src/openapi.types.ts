@@ -136,7 +136,6 @@ export interface Parameter {
     enum?: string[];
     multipleOf?: number;
 }
-
 export interface Response {
     description: string;
     schema?: Schema;

@@ -48,6 +48,7 @@
     "@babel/core": "^7.24.4",
     "@babel/generator": "^7.24.4",
     "@babel/types": "^7.24.0",
-    "deepmerge": "^4.3.1"
+    "deepmerge": "^4.3.1",
+    "minimatch": "^9.0.4"
   }
 }

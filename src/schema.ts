@@ -3,11 +3,10 @@ import * as t from "@babel/types";
 
 import { SchemaTSContext, type SchemaTSOptions } from "./context";
 import type { JSONSchema } from "./types";
-import { isValidIdentifier, isValidIdentifierCamelized, toCamelCase, toPascalCase } from "./utils";
+import { getTypeNameSafe, isValidIdentifier, isValidIdentifierCamelized, makeCommentLine, shouldIncludeType, toCamelCase } from "./utils";
 
-const safeProperty = (str: string): string => {
-  if (str.match(/\./)) return str.replace(/\./g, '_');
-  return str;
+const getSchemaTypeNameSafe = (ctx: SchemaTSContext, str: string): string => {
+  return getTypeNameSafe(ctx.options.namingStrategy, str);
 };
 
 const identifier = (name: string, typeAnnotation: t.TSTypeAnnotation) => {
@@ -30,14 +29,23 @@ const anyOrObjectWithUnknownProps = (ctx: SchemaTSContext) => {
 }
 
 export function generateTypeScript(schema: JSONSchema, options?: Partial<SchemaTSOptions>): string {
-  const interfaces = [];
   const ctx = new SchemaTSContext(options, schema, schema, []);
+  return generateInterfaces(ctx, schema);
+}
+
+export function generateInterfaces(ctx: SchemaTSContext, schema: JSONSchema): string {
+  const interfaces = [];
 
   try {
     // Process both $defs and definitions
     const definitions = schema.$defs || schema.definitions || {};
     for (const key in definitions) {
-      interfaces.push(createInterfaceDeclaration(ctx, key, definitions[key]));
+      if (shouldIncludeType(key, {
+        include: ctx.options.include,
+        exclude: ctx.options.exclude,
+      })) {
+        interfaces.push(createInterfaceDeclaration(ctx, key, definitions[key]));
+      }
     }
   } catch (e) {
     console.error('Error processing interfaces');
@@ -50,8 +58,34 @@ export function generateTypeScript(schema: JSONSchema, options?: Partial<SchemaT
     console.error('schema or options require a title');
     return ''; // Ensure there's a return on error condition
   }
-  interfaces.push(createInterfaceDeclaration(ctx, title, schema));
+  if (shouldIncludeType(title, {
+    include: ctx.options.include,
+    exclude: ctx.options.exclude,
+  })) {
+    interfaces.push(createInterfaceDeclaration(ctx, title, schema));
+  }
   return generate(t.file(t.program(interfaces))).code;
+}
+
+const createExportDeclarationForType = (
+  ctx: SchemaTSContext,
+  name: string,
+  schema: JSONSchema,
+  node: t.Declaration,
+) => {
+  const result =  t.exportNamedDeclaration(node);
+
+  if (ctx.options.includeTypeComments && schema.description) {
+
+    if (name.includes('.')) {
+      // for complex names, let's add them for clarity/mapping
+      result.leadingComments = [makeCommentLine(name)[0], makeCommentLine(schema.description)[0]]
+    } else {
+      result.leadingComments = makeCommentLine(schema.description)
+    }
+
+  }
+  return result;
 }
 
 function createInterfaceDeclaration(
@@ -99,39 +133,36 @@ function createInterfaceDeclaration(
     const combinedType = types.length > 1 ? t.tsUnionType(types) : types[0];
 
     // Create a type alias instead of an interface if we're only handling these constructs
-    const typeAlias = t.tsTypeAliasDeclaration(t.identifier(toPascalCase(safeProperty(name))), null, combinedType);
-    return t.exportNamedDeclaration(typeAlias);
+    const typeAlias = t.tsTypeAliasDeclaration(t.identifier(getSchemaTypeNameSafe(ctx, name)), null, combinedType);
+    return createExportDeclarationForType(ctx, name, schema, typeAlias);
   }
 
   // Finally, create the interface declaration if there are any body elements
   if (bodyElements.length > 0) {
     const interfaceDeclaration = t.tsInterfaceDeclaration(
-      t.identifier(toPascalCase(safeProperty(name))),
+      t.identifier(getSchemaTypeNameSafe(ctx, name)),
       null,
       [],
       t.tsInterfaceBody(bodyElements)
     );
-    return t.exportNamedDeclaration(interfaceDeclaration);
+    return createExportDeclarationForType(ctx, name, schema, interfaceDeclaration);
   }
 
   if (schema.type) {
-    return t.exportNamedDeclaration(t.tsTypeAliasDeclaration(t.identifier(toPascalCase(safeProperty(name))), null, getTypeForProp(ctx, schema, [], schema)));
+    return createExportDeclarationForType(ctx, name, schema, t.tsTypeAliasDeclaration(t.identifier(getSchemaTypeNameSafe(ctx, name)), null, getTypeForProp(ctx, schema, [], schema)))    
   }
 
-  console.log(name);
   if (ctx.options.overrides && Object.prototype.hasOwnProperty.call(ctx.options.overrides, name)) {
-    return t.exportNamedDeclaration(t.tsTypeAliasDeclaration(t.identifier(toPascalCase(safeProperty(name))), null,
+    return createExportDeclarationForType(ctx, name, schema,
+      t.tsTypeAliasDeclaration(t.identifier(getSchemaTypeNameSafe(ctx, name)), null,
       getTypeForProp(ctx, ctx.options.overrides[name], [], schema)
     ));
   }
 
-
-
   // Fallback to exporting a basic type if nothing else is possible
-  console.warn(`No properties or type definitions found for ${name}, defaulting to 'any'.`);
-  return t.exportNamedDeclaration(t.tsTypeAliasDeclaration(t.identifier(toPascalCase(safeProperty(name))), null, t.tsAnyKeyword()));
+  // console.warn(`No properties or type definitions found for ${name}, defaulting to 'any'.`);
+  return createExportDeclarationForType(ctx, name, schema, t.tsTypeAliasDeclaration(t.identifier(getSchemaTypeNameSafe(ctx, name)), null, t.tsAnyKeyword()))
 }
-
 
 function createPropertySignature(
   ctx: SchemaTSContext,
@@ -157,6 +188,10 @@ function createPropertySignature(
     t.tsTypeAnnotation(propType)
   );
   propSig.optional = !required.includes(key);
+  if (ctx.options.includePropertyComments && prop.description) {
+    propSig.leadingComments = makeCommentLine(prop.description);
+  }
+
   return propSig;
 }
 
@@ -241,9 +276,9 @@ function getTypeReferenceFromSchema(ctx: SchemaTSContext, schema: JSONSchema, de
     // }
 
     if (schema.$defs && schema.$defs[definitionName]) {
-      return t.tsTypeReference(t.identifier(toPascalCase(safeProperty(definitionName))));
+      return t.tsTypeReference(t.identifier(getSchemaTypeNameSafe(ctx, definitionName)));
     } else if (schema.definitions && schema.definitions[definitionName]) {
-      return t.tsTypeReference(t.identifier(toPascalCase(safeProperty(definitionName))));
+      return t.tsTypeReference(t.identifier(getSchemaTypeNameSafe(ctx, definitionName)));
     }
   }
   return null;  // Return null if no type reference is found

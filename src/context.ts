@@ -1,9 +1,15 @@
 import deepmerge from 'deepmerge';
 
-import type { JSONSchema } from "./types";
+import type { DeepPartial, JSONSchema } from "./types";
 
 export interface SchemaDefinitionOverrides {
   [key: string]: JSONSchema
+}
+
+export interface SchemaNamingStrategy {
+  useLastSegment?: boolean;
+  prefixStrip?: string | RegExp;
+  renameMap?: { [originalName: string]: string };
 }
 export interface SchemaTSOptions {
   useSingleQuotes: boolean;
@@ -11,6 +17,16 @@ export interface SchemaTSOptions {
   camelCaseFn?: (str: string) => string; // optional function to convert keys to camelCase
   strictTypeSafety: boolean;  // true uses { [k: string]: unknown; }, false uses any
   overrides?: SchemaDefinitionOverrides;
+  
+  includeTypeComments?: boolean;
+  includePropertyComments?: boolean;
+  includeMethodComments?: boolean;
+
+  namingStrategy?: SchemaNamingStrategy;
+
+  // Include/Exclude types
+  include?: string[];
+  exclude?: string[];
 }
 
 export interface SchemaTSContextI {
@@ -33,7 +49,7 @@ export class SchemaTSContext implements SchemaTSContextI {
     schema: JSONSchema,
     parents: JSONSchema[] = []
   ) {
-    this.options = deepmerge(defaultOptions, options ?? {});
+    this.options = getDefaultSchemaTSOptions(options);
     this.schema = schema;
     this.root = root;
     this.parents = parents;
@@ -48,9 +64,21 @@ export class SchemaTSContext implements SchemaTSContextI {
   }
 }
 
-export const defaultOptions: SchemaTSOptions = { 
+export const defaultSchemaTSOptions: SchemaTSOptions = { 
   useSingleQuotes: true, 
   camelCase: false,
   camelCaseFn: null,
-  strictTypeSafety: true
+  strictTypeSafety: true,
+  exclude: [],
+  include: [],
+  includePropertyComments: false,
+  includeMethodComments: false,
+  includeTypeComments: false,
+  namingStrategy: {
+    useLastSegment: true
+  }
+};
+
+export const getDefaultSchemaTSOptions = (options?: DeepPartial<SchemaTSOptions>): SchemaTSOptions => {
+  return deepmerge(defaultSchemaTSOptions, options ?? {}) as SchemaTSOptions;
 };

@@ -102,10 +102,26 @@ const overrides = {
     }
 };
 
-it('swagger', () => {
+it('useLastSegment false', () => {
     const code = generateTypeScript(myschema as any, {
-        overrides    
+        overrides,
+        includeTypeComments: true,
+        namingStrategy: {
+          useLastSegment: false
+        }
     });
     expect(code).toMatchSnapshot();
-    writeFileSync(__dirname + '/../__fixtures__/output/swagger.overrides.ts', code);
+    writeFileSync(__dirname + '/../__fixtures__/output/swagger.overrides.all.ts', code);
+});
+
+it('useLastSegment true', () => {
+    const code = generateTypeScript(myschema as any, {
+        overrides,
+        includeTypeComments: true,
+        namingStrategy: {
+          useLastSegment: true
+        }
+    });
+    expect(code).toMatchSnapshot();
+    writeFileSync(__dirname + '/../__fixtures__/output/swagger.overrides.last.ts', code);
 });

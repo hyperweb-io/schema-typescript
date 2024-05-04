@@ -1,113 +1,113 @@
-export interface IoK8sApiAdmissionregistrationV1MutatingWebhook {
+export interface MutatingWebhook {
   admissionReviewVersions: string[];
-  clientConfig: IoK8sApiAdmissionregistrationV1WebhookClientConfig;
+  clientConfig: WebhookClientConfig;
   failurePolicy?: string;
   matchPolicy?: string;
   name: string;
-  namespaceSelector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
-  objectSelector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
+  namespaceSelector?: LabelSelector;
+  objectSelector?: LabelSelector;
   reinvocationPolicy?: string;
-  rules?: IoK8sApiAdmissionregistrationV1RuleWithOperations[];
+  rules?: RuleWithOperations[];
   sideEffects: string;
   timeoutSeconds?: number;
 }
-export interface IoK8sApiAdmissionregistrationV1MutatingWebhookConfiguration {
+export interface MutatingWebhookConfiguration {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  webhooks?: IoK8sApiAdmissionregistrationV1MutatingWebhook[];
+  metadata?: ObjectMeta;
+  webhooks?: MutatingWebhook[];
 }
-export interface IoK8sApiAdmissionregistrationV1MutatingWebhookConfigurationList {
+export interface MutatingWebhookConfigurationList {
   apiVersion?: string;
-  items: IoK8sApiAdmissionregistrationV1MutatingWebhookConfiguration[];
+  items: MutatingWebhookConfiguration[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiAdmissionregistrationV1RuleWithOperations {
+export interface RuleWithOperations {
   apiGroups?: string[];
   apiVersions?: string[];
   operations?: string[];
   resources?: string[];
   scope?: string;
 }
-export interface IoK8sApiAdmissionregistrationV1ServiceReference {
+export interface ServiceReference {
   name: string;
   namespace: string;
   path?: string;
   port?: number;
 }
-export interface IoK8sApiAdmissionregistrationV1ValidatingWebhook {
+export interface ValidatingWebhook {
   admissionReviewVersions: string[];
-  clientConfig: IoK8sApiAdmissionregistrationV1WebhookClientConfig;
+  clientConfig: WebhookClientConfig;
   failurePolicy?: string;
   matchPolicy?: string;
   name: string;
-  namespaceSelector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
-  objectSelector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
-  rules?: IoK8sApiAdmissionregistrationV1RuleWithOperations[];
+  namespaceSelector?: LabelSelector;
+  objectSelector?: LabelSelector;
+  rules?: RuleWithOperations[];
   sideEffects: string;
   timeoutSeconds?: number;
 }
-export interface IoK8sApiAdmissionregistrationV1ValidatingWebhookConfiguration {
+export interface ValidatingWebhookConfiguration {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  webhooks?: IoK8sApiAdmissionregistrationV1ValidatingWebhook[];
+  metadata?: ObjectMeta;
+  webhooks?: ValidatingWebhook[];
 }
-export interface IoK8sApiAdmissionregistrationV1ValidatingWebhookConfigurationList {
+export interface ValidatingWebhookConfigurationList {
   apiVersion?: string;
-  items: IoK8sApiAdmissionregistrationV1ValidatingWebhookConfiguration[];
+  items: ValidatingWebhookConfiguration[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiAdmissionregistrationV1WebhookClientConfig {
+export interface WebhookClientConfig {
   caBundle?: string;
-  service?: IoK8sApiAdmissionregistrationV1ServiceReference;
+  service?: ServiceReference;
   url?: string;
 }
-export interface IoK8sApiAppsV1ControllerRevision {
+export interface ControllerRevision {
   apiVersion?: string;
-  data?: IoK8sApimachineryPkgRuntimeRawExtension;
+  data?: RawExtension;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
+  metadata?: ObjectMeta;
   revision: number;
 }
-export interface IoK8sApiAppsV1ControllerRevisionList {
+export interface ControllerRevisionList {
   apiVersion?: string;
-  items: IoK8sApiAppsV1ControllerRevision[];
+  items: ControllerRevision[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiAppsV1DaemonSet {
+export interface DaemonSet {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiAppsV1DaemonSetSpec;
-  status?: IoK8sApiAppsV1DaemonSetStatus;
+  metadata?: ObjectMeta;
+  spec?: DaemonSetSpec;
+  status?: DaemonSetStatus;
 }
-export interface IoK8sApiAppsV1DaemonSetCondition {
-  lastTransitionTime?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface DaemonSetCondition {
+  lastTransitionTime?: Time;
   message?: string;
   reason?: string;
   status: string;
   type: string;
 }
-export interface IoK8sApiAppsV1DaemonSetList {
+export interface DaemonSetList {
   apiVersion?: string;
-  items: IoK8sApiAppsV1DaemonSet[];
+  items: DaemonSet[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiAppsV1DaemonSetSpec {
+export interface DaemonSetSpec {
   minReadySeconds?: number;
   revisionHistoryLimit?: number;
-  selector: IoK8sApimachineryPkgApisMetaV1LabelSelector;
-  template: IoK8sApiCoreV1PodTemplateSpec;
-  updateStrategy?: IoK8sApiAppsV1DaemonSetUpdateStrategy;
+  selector: LabelSelector;
+  template: PodTemplateSpec;
+  updateStrategy?: DaemonSetUpdateStrategy;
 }
-export interface IoK8sApiAppsV1DaemonSetStatus {
+export interface DaemonSetStatus {
   collisionCount?: number;
-  conditions?: IoK8sApiAppsV1DaemonSetCondition[];
+  conditions?: DaemonSetCondition[];
   currentNumberScheduled: number;
   desiredNumberScheduled: number;
   numberAvailable?: number;
@@ -117,135 +117,135 @@ export interface IoK8sApiAppsV1DaemonSetStatus {
   observedGeneration?: number;
   updatedNumberScheduled?: number;
 }
-export interface IoK8sApiAppsV1DaemonSetUpdateStrategy {
-  rollingUpdate?: IoK8sApiAppsV1RollingUpdateDaemonSet;
+export interface DaemonSetUpdateStrategy {
+  rollingUpdate?: RollingUpdateDaemonSet;
   type?: string;
 }
-export interface IoK8sApiAppsV1Deployment {
+export interface Deployment {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiAppsV1DeploymentSpec;
-  status?: IoK8sApiAppsV1DeploymentStatus;
+  metadata?: ObjectMeta;
+  spec?: DeploymentSpec;
+  status?: DeploymentStatus;
 }
-export interface IoK8sApiAppsV1DeploymentCondition {
-  lastTransitionTime?: IoK8sApimachineryPkgApisMetaV1Time;
-  lastUpdateTime?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface DeploymentCondition {
+  lastTransitionTime?: Time;
+  lastUpdateTime?: Time;
   message?: string;
   reason?: string;
   status: string;
   type: string;
 }
-export interface IoK8sApiAppsV1DeploymentList {
+export interface DeploymentList {
   apiVersion?: string;
-  items: IoK8sApiAppsV1Deployment[];
+  items: Deployment[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiAppsV1DeploymentSpec {
+export interface DeploymentSpec {
   minReadySeconds?: number;
   paused?: boolean;
   progressDeadlineSeconds?: number;
   replicas?: number;
   revisionHistoryLimit?: number;
-  selector: IoK8sApimachineryPkgApisMetaV1LabelSelector;
-  strategy?: IoK8sApiAppsV1DeploymentStrategy;
-  template: IoK8sApiCoreV1PodTemplateSpec;
+  selector: LabelSelector;
+  strategy?: DeploymentStrategy;
+  template: PodTemplateSpec;
 }
-export interface IoK8sApiAppsV1DeploymentStatus {
+export interface DeploymentStatus {
   availableReplicas?: number;
   collisionCount?: number;
-  conditions?: IoK8sApiAppsV1DeploymentCondition[];
+  conditions?: DeploymentCondition[];
   observedGeneration?: number;
   readyReplicas?: number;
   replicas?: number;
   unavailableReplicas?: number;
   updatedReplicas?: number;
 }
-export interface IoK8sApiAppsV1DeploymentStrategy {
-  rollingUpdate?: IoK8sApiAppsV1RollingUpdateDeployment;
+export interface DeploymentStrategy {
+  rollingUpdate?: RollingUpdateDeployment;
   type?: string;
 }
-export interface IoK8sApiAppsV1ReplicaSet {
+export interface ReplicaSet {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiAppsV1ReplicaSetSpec;
-  status?: IoK8sApiAppsV1ReplicaSetStatus;
+  metadata?: ObjectMeta;
+  spec?: ReplicaSetSpec;
+  status?: ReplicaSetStatus;
 }
-export interface IoK8sApiAppsV1ReplicaSetCondition {
-  lastTransitionTime?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface ReplicaSetCondition {
+  lastTransitionTime?: Time;
   message?: string;
   reason?: string;
   status: string;
   type: string;
 }
-export interface IoK8sApiAppsV1ReplicaSetList {
+export interface ReplicaSetList {
   apiVersion?: string;
-  items: IoK8sApiAppsV1ReplicaSet[];
+  items: ReplicaSet[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiAppsV1ReplicaSetSpec {
+export interface ReplicaSetSpec {
   minReadySeconds?: number;
   replicas?: number;
-  selector: IoK8sApimachineryPkgApisMetaV1LabelSelector;
-  template?: IoK8sApiCoreV1PodTemplateSpec;
+  selector: LabelSelector;
+  template?: PodTemplateSpec;
 }
-export interface IoK8sApiAppsV1ReplicaSetStatus {
+export interface ReplicaSetStatus {
   availableReplicas?: number;
-  conditions?: IoK8sApiAppsV1ReplicaSetCondition[];
+  conditions?: ReplicaSetCondition[];
   fullyLabeledReplicas?: number;
   observedGeneration?: number;
   readyReplicas?: number;
   replicas: number;
 }
-export interface IoK8sApiAppsV1RollingUpdateDaemonSet {
-  maxSurge?: IoK8sApimachineryPkgUtilIntstrIntOrString;
-  maxUnavailable?: IoK8sApimachineryPkgUtilIntstrIntOrString;
+export interface RollingUpdateDaemonSet {
+  maxSurge?: IntOrString;
+  maxUnavailable?: IntOrString;
 }
-export interface IoK8sApiAppsV1RollingUpdateDeployment {
-  maxSurge?: IoK8sApimachineryPkgUtilIntstrIntOrString;
-  maxUnavailable?: IoK8sApimachineryPkgUtilIntstrIntOrString;
+export interface RollingUpdateDeployment {
+  maxSurge?: IntOrString;
+  maxUnavailable?: IntOrString;
 }
-export interface IoK8sApiAppsV1RollingUpdateStatefulSetStrategy {
+export interface RollingUpdateStatefulSetStrategy {
   partition?: number;
 }
-export interface IoK8sApiAppsV1StatefulSet {
+export interface StatefulSet {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiAppsV1StatefulSetSpec;
-  status?: IoK8sApiAppsV1StatefulSetStatus;
+  metadata?: ObjectMeta;
+  spec?: StatefulSetSpec;
+  status?: StatefulSetStatus;
 }
-export interface IoK8sApiAppsV1StatefulSetCondition {
-  lastTransitionTime?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface StatefulSetCondition {
+  lastTransitionTime?: Time;
   message?: string;
   reason?: string;
   status: string;
   type: string;
 }
-export interface IoK8sApiAppsV1StatefulSetList {
+export interface StatefulSetList {
   apiVersion?: string;
-  items: IoK8sApiAppsV1StatefulSet[];
+  items: StatefulSet[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiAppsV1StatefulSetSpec {
+export interface StatefulSetSpec {
   minReadySeconds?: number;
   podManagementPolicy?: string;
   replicas?: number;
   revisionHistoryLimit?: number;
-  selector: IoK8sApimachineryPkgApisMetaV1LabelSelector;
+  selector: LabelSelector;
   serviceName: string;
-  template: IoK8sApiCoreV1PodTemplateSpec;
-  updateStrategy?: IoK8sApiAppsV1StatefulSetUpdateStrategy;
-  volumeClaimTemplates?: IoK8sApiCoreV1PersistentVolumeClaim[];
+  template: PodTemplateSpec;
+  updateStrategy?: StatefulSetUpdateStrategy;
+  volumeClaimTemplates?: PersistentVolumeClaim[];
 }
-export interface IoK8sApiAppsV1StatefulSetStatus {
+export interface StatefulSetStatus {
   availableReplicas?: number;
   collisionCount?: number;
-  conditions?: IoK8sApiAppsV1StatefulSetCondition[];
+  conditions?: StatefulSetCondition[];
   currentReplicas?: number;
   currentRevision?: string;
   observedGeneration?: number;
@@ -254,50 +254,50 @@ export interface IoK8sApiAppsV1StatefulSetStatus {
   updateRevision?: string;
   updatedReplicas?: number;
 }
-export interface IoK8sApiAppsV1StatefulSetUpdateStrategy {
-  rollingUpdate?: IoK8sApiAppsV1RollingUpdateStatefulSetStrategy;
+export interface StatefulSetUpdateStrategy {
+  rollingUpdate?: RollingUpdateStatefulSetStrategy;
   type?: string;
 }
-export interface IoK8sApiAuthenticationV1BoundObjectReference {
+export interface BoundObjectReference {
   apiVersion?: string;
   kind?: string;
   name?: string;
   uid?: string;
 }
-export interface IoK8sApiAuthenticationV1TokenRequest {
+export interface TokenRequest {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec: IoK8sApiAuthenticationV1TokenRequestSpec;
-  status?: IoK8sApiAuthenticationV1TokenRequestStatus;
+  metadata?: ObjectMeta;
+  spec: TokenRequestSpec;
+  status?: TokenRequestStatus;
 }
-export interface IoK8sApiAuthenticationV1TokenRequestSpec {
+export interface TokenRequestSpec {
   audiences: string[];
-  boundObjectRef?: IoK8sApiAuthenticationV1BoundObjectReference;
+  boundObjectRef?: BoundObjectReference;
   expirationSeconds?: number;
 }
-export interface IoK8sApiAuthenticationV1TokenRequestStatus {
-  expirationTimestamp: IoK8sApimachineryPkgApisMetaV1Time;
+export interface TokenRequestStatus {
+  expirationTimestamp: Time;
   token: string;
 }
-export interface IoK8sApiAuthenticationV1TokenReview {
+export interface TokenReview {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec: IoK8sApiAuthenticationV1TokenReviewSpec;
-  status?: IoK8sApiAuthenticationV1TokenReviewStatus;
+  metadata?: ObjectMeta;
+  spec: TokenReviewSpec;
+  status?: TokenReviewStatus;
 }
-export interface IoK8sApiAuthenticationV1TokenReviewSpec {
+export interface TokenReviewSpec {
   audiences?: string[];
   token?: string;
 }
-export interface IoK8sApiAuthenticationV1TokenReviewStatus {
+export interface TokenReviewStatus {
   audiences?: string[];
   authenticated?: boolean;
   error?: string;
-  user?: IoK8sApiAuthenticationV1UserInfo;
+  user?: UserInfo;
 }
-export interface IoK8sApiAuthenticationV1UserInfo {
+export interface UserInfo {
   extra?: {
     [key: string]: unknown;
   };
@@ -305,22 +305,22 @@ export interface IoK8sApiAuthenticationV1UserInfo {
   uid?: string;
   username?: string;
 }
-export interface IoK8sApiAuthorizationV1LocalSubjectAccessReview {
+export interface LocalSubjectAccessReview {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec: IoK8sApiAuthorizationV1SubjectAccessReviewSpec;
-  status?: IoK8sApiAuthorizationV1SubjectAccessReviewStatus;
+  metadata?: ObjectMeta;
+  spec: SubjectAccessReviewSpec;
+  status?: SubjectAccessReviewStatus;
 }
-export interface IoK8sApiAuthorizationV1NonResourceAttributes {
+export interface NonResourceAttributes {
   path?: string;
   verb?: string;
 }
-export interface IoK8sApiAuthorizationV1NonResourceRule {
+export interface NonResourceRule {
   nonResourceURLs?: string[];
   verbs: string[];
 }
-export interface IoK8sApiAuthorizationV1ResourceAttributes {
+export interface ResourceAttributes {
   group?: string;
   name?: string;
   namespace?: string;
@@ -329,480 +329,480 @@ export interface IoK8sApiAuthorizationV1ResourceAttributes {
   verb?: string;
   version?: string;
 }
-export interface IoK8sApiAuthorizationV1ResourceRule {
+export interface ResourceRule {
   apiGroups?: string[];
   resourceNames?: string[];
   resources?: string[];
   verbs: string[];
 }
-export interface IoK8sApiAuthorizationV1SelfSubjectAccessReview {
+export interface SelfSubjectAccessReview {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec: IoK8sApiAuthorizationV1SelfSubjectAccessReviewSpec;
-  status?: IoK8sApiAuthorizationV1SubjectAccessReviewStatus;
+  metadata?: ObjectMeta;
+  spec: SelfSubjectAccessReviewSpec;
+  status?: SubjectAccessReviewStatus;
 }
-export interface IoK8sApiAuthorizationV1SelfSubjectAccessReviewSpec {
-  nonResourceAttributes?: IoK8sApiAuthorizationV1NonResourceAttributes;
-  resourceAttributes?: IoK8sApiAuthorizationV1ResourceAttributes;
+export interface SelfSubjectAccessReviewSpec {
+  nonResourceAttributes?: NonResourceAttributes;
+  resourceAttributes?: ResourceAttributes;
 }
-export interface IoK8sApiAuthorizationV1SelfSubjectRulesReview {
+export interface SelfSubjectRulesReview {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec: IoK8sApiAuthorizationV1SelfSubjectRulesReviewSpec;
-  status?: IoK8sApiAuthorizationV1SubjectRulesReviewStatus;
+  metadata?: ObjectMeta;
+  spec: SelfSubjectRulesReviewSpec;
+  status?: SubjectRulesReviewStatus;
 }
-export interface IoK8sApiAuthorizationV1SelfSubjectRulesReviewSpec {
+export interface SelfSubjectRulesReviewSpec {
   namespace?: string;
 }
-export interface IoK8sApiAuthorizationV1SubjectAccessReview {
+export interface SubjectAccessReview {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec: IoK8sApiAuthorizationV1SubjectAccessReviewSpec;
-  status?: IoK8sApiAuthorizationV1SubjectAccessReviewStatus;
+  metadata?: ObjectMeta;
+  spec: SubjectAccessReviewSpec;
+  status?: SubjectAccessReviewStatus;
 }
-export interface IoK8sApiAuthorizationV1SubjectAccessReviewSpec {
+export interface SubjectAccessReviewSpec {
   extra?: {
     [key: string]: unknown;
   };
   groups?: string[];
-  nonResourceAttributes?: IoK8sApiAuthorizationV1NonResourceAttributes;
-  resourceAttributes?: IoK8sApiAuthorizationV1ResourceAttributes;
+  nonResourceAttributes?: NonResourceAttributes;
+  resourceAttributes?: ResourceAttributes;
   uid?: string;
   user?: string;
 }
-export interface IoK8sApiAuthorizationV1SubjectAccessReviewStatus {
+export interface SubjectAccessReviewStatus {
   allowed: boolean;
   denied?: boolean;
   evaluationError?: string;
   reason?: string;
 }
-export interface IoK8sApiAuthorizationV1SubjectRulesReviewStatus {
+export interface SubjectRulesReviewStatus {
   evaluationError?: string;
   incomplete: boolean;
-  nonResourceRules: IoK8sApiAuthorizationV1NonResourceRule[];
-  resourceRules: IoK8sApiAuthorizationV1ResourceRule[];
+  nonResourceRules: NonResourceRule[];
+  resourceRules: ResourceRule[];
 }
-export interface IoK8sApiAutoscalingV1CrossVersionObjectReference {
+export interface CrossVersionObjectReference {
   apiVersion?: string;
   kind: string;
   name: string;
 }
-export interface IoK8sApiAutoscalingV1HorizontalPodAutoscaler {
+export interface HorizontalPodAutoscaler {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiAutoscalingV1HorizontalPodAutoscalerSpec;
-  status?: IoK8sApiAutoscalingV1HorizontalPodAutoscalerStatus;
+  metadata?: ObjectMeta;
+  spec?: HorizontalPodAutoscalerSpec;
+  status?: HorizontalPodAutoscalerStatus;
 }
-export interface IoK8sApiAutoscalingV1HorizontalPodAutoscalerList {
+export interface HorizontalPodAutoscalerList {
   apiVersion?: string;
-  items: IoK8sApiAutoscalingV1HorizontalPodAutoscaler[];
+  items: HorizontalPodAutoscaler[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiAutoscalingV1HorizontalPodAutoscalerSpec {
+export interface HorizontalPodAutoscalerSpec {
   maxReplicas: number;
   minReplicas?: number;
-  scaleTargetRef: IoK8sApiAutoscalingV1CrossVersionObjectReference;
+  scaleTargetRef: CrossVersionObjectReference;
   targetCPUUtilizationPercentage?: number;
 }
-export interface IoK8sApiAutoscalingV1HorizontalPodAutoscalerStatus {
+export interface HorizontalPodAutoscalerStatus {
   currentCPUUtilizationPercentage?: number;
   currentReplicas: number;
   desiredReplicas: number;
-  lastScaleTime?: IoK8sApimachineryPkgApisMetaV1Time;
+  lastScaleTime?: Time;
   observedGeneration?: number;
 }
-export interface IoK8sApiAutoscalingV1Scale {
+export interface Scale {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiAutoscalingV1ScaleSpec;
-  status?: IoK8sApiAutoscalingV1ScaleStatus;
+  metadata?: ObjectMeta;
+  spec?: ScaleSpec;
+  status?: ScaleStatus;
 }
-export interface IoK8sApiAutoscalingV1ScaleSpec {
+export interface ScaleSpec {
   replicas?: number;
 }
-export interface IoK8sApiAutoscalingV1ScaleStatus {
+export interface ScaleStatus {
   replicas: number;
   selector?: string;
 }
-export interface IoK8sApiAutoscalingV2beta1ContainerResourceMetricSource {
+export interface ContainerResourceMetricSource {
   container: string;
   name: string;
   targetAverageUtilization?: number;
-  targetAverageValue?: IoK8sApimachineryPkgApiResourceQuantity;
+  targetAverageValue?: Quantity;
 }
-export interface IoK8sApiAutoscalingV2beta1ContainerResourceMetricStatus {
+export interface ContainerResourceMetricStatus {
   container: string;
   currentAverageUtilization?: number;
-  currentAverageValue: IoK8sApimachineryPkgApiResourceQuantity;
+  currentAverageValue: Quantity;
   name: string;
 }
-export interface IoK8sApiAutoscalingV2beta1CrossVersionObjectReference {
+export interface CrossVersionObjectReference {
   apiVersion?: string;
   kind: string;
   name: string;
 }
-export interface IoK8sApiAutoscalingV2beta1ExternalMetricSource {
+export interface ExternalMetricSource {
   metricName: string;
-  metricSelector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
-  targetAverageValue?: IoK8sApimachineryPkgApiResourceQuantity;
-  targetValue?: IoK8sApimachineryPkgApiResourceQuantity;
+  metricSelector?: LabelSelector;
+  targetAverageValue?: Quantity;
+  targetValue?: Quantity;
 }
-export interface IoK8sApiAutoscalingV2beta1ExternalMetricStatus {
-  currentAverageValue?: IoK8sApimachineryPkgApiResourceQuantity;
-  currentValue: IoK8sApimachineryPkgApiResourceQuantity;
+export interface ExternalMetricStatus {
+  currentAverageValue?: Quantity;
+  currentValue: Quantity;
   metricName: string;
-  metricSelector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
+  metricSelector?: LabelSelector;
 }
-export interface IoK8sApiAutoscalingV2beta1HorizontalPodAutoscaler {
+export interface HorizontalPodAutoscaler {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiAutoscalingV2beta1HorizontalPodAutoscalerSpec;
-  status?: IoK8sApiAutoscalingV2beta1HorizontalPodAutoscalerStatus;
+  metadata?: ObjectMeta;
+  spec?: HorizontalPodAutoscalerSpec;
+  status?: HorizontalPodAutoscalerStatus;
 }
-export interface IoK8sApiAutoscalingV2beta1HorizontalPodAutoscalerCondition {
-  lastTransitionTime?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface HorizontalPodAutoscalerCondition {
+  lastTransitionTime?: Time;
   message?: string;
   reason?: string;
   status: string;
   type: string;
 }
-export interface IoK8sApiAutoscalingV2beta1HorizontalPodAutoscalerList {
+export interface HorizontalPodAutoscalerList {
   apiVersion?: string;
-  items: IoK8sApiAutoscalingV2beta1HorizontalPodAutoscaler[];
+  items: HorizontalPodAutoscaler[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiAutoscalingV2beta1HorizontalPodAutoscalerSpec {
+export interface HorizontalPodAutoscalerSpec {
   maxReplicas: number;
-  metrics?: IoK8sApiAutoscalingV2beta1MetricSpec[];
+  metrics?: MetricSpec[];
   minReplicas?: number;
-  scaleTargetRef: IoK8sApiAutoscalingV2beta1CrossVersionObjectReference;
+  scaleTargetRef: CrossVersionObjectReference;
 }
-export interface IoK8sApiAutoscalingV2beta1HorizontalPodAutoscalerStatus {
-  conditions: IoK8sApiAutoscalingV2beta1HorizontalPodAutoscalerCondition[];
-  currentMetrics?: IoK8sApiAutoscalingV2beta1MetricStatus[];
+export interface HorizontalPodAutoscalerStatus {
+  conditions: HorizontalPodAutoscalerCondition[];
+  currentMetrics?: MetricStatus[];
   currentReplicas: number;
   desiredReplicas: number;
-  lastScaleTime?: IoK8sApimachineryPkgApisMetaV1Time;
+  lastScaleTime?: Time;
   observedGeneration?: number;
 }
-export interface IoK8sApiAutoscalingV2beta1MetricSpec {
-  containerResource?: IoK8sApiAutoscalingV2beta1ContainerResourceMetricSource;
-  external?: IoK8sApiAutoscalingV2beta1ExternalMetricSource;
-  object?: IoK8sApiAutoscalingV2beta1ObjectMetricSource;
-  pods?: IoK8sApiAutoscalingV2beta1PodsMetricSource;
-  resource?: IoK8sApiAutoscalingV2beta1ResourceMetricSource;
+export interface MetricSpec {
+  containerResource?: ContainerResourceMetricSource;
+  external?: ExternalMetricSource;
+  object?: ObjectMetricSource;
+  pods?: PodsMetricSource;
+  resource?: ResourceMetricSource;
   type: string;
 }
-export interface IoK8sApiAutoscalingV2beta1MetricStatus {
-  containerResource?: IoK8sApiAutoscalingV2beta1ContainerResourceMetricStatus;
-  external?: IoK8sApiAutoscalingV2beta1ExternalMetricStatus;
-  object?: IoK8sApiAutoscalingV2beta1ObjectMetricStatus;
-  pods?: IoK8sApiAutoscalingV2beta1PodsMetricStatus;
-  resource?: IoK8sApiAutoscalingV2beta1ResourceMetricStatus;
+export interface MetricStatus {
+  containerResource?: ContainerResourceMetricStatus;
+  external?: ExternalMetricStatus;
+  object?: ObjectMetricStatus;
+  pods?: PodsMetricStatus;
+  resource?: ResourceMetricStatus;
   type: string;
 }
-export interface IoK8sApiAutoscalingV2beta1ObjectMetricSource {
-  averageValue?: IoK8sApimachineryPkgApiResourceQuantity;
+export interface ObjectMetricSource {
+  averageValue?: Quantity;
   metricName: string;
-  selector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
-  target: IoK8sApiAutoscalingV2beta1CrossVersionObjectReference;
-  targetValue: IoK8sApimachineryPkgApiResourceQuantity;
+  selector?: LabelSelector;
+  target: CrossVersionObjectReference;
+  targetValue: Quantity;
 }
-export interface IoK8sApiAutoscalingV2beta1ObjectMetricStatus {
-  averageValue?: IoK8sApimachineryPkgApiResourceQuantity;
-  currentValue: IoK8sApimachineryPkgApiResourceQuantity;
+export interface ObjectMetricStatus {
+  averageValue?: Quantity;
+  currentValue: Quantity;
   metricName: string;
-  selector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
-  target: IoK8sApiAutoscalingV2beta1CrossVersionObjectReference;
+  selector?: LabelSelector;
+  target: CrossVersionObjectReference;
 }
-export interface IoK8sApiAutoscalingV2beta1PodsMetricSource {
+export interface PodsMetricSource {
   metricName: string;
-  selector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
-  targetAverageValue: IoK8sApimachineryPkgApiResourceQuantity;
+  selector?: LabelSelector;
+  targetAverageValue: Quantity;
 }
-export interface IoK8sApiAutoscalingV2beta1PodsMetricStatus {
-  currentAverageValue: IoK8sApimachineryPkgApiResourceQuantity;
+export interface PodsMetricStatus {
+  currentAverageValue: Quantity;
   metricName: string;
-  selector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
+  selector?: LabelSelector;
 }
-export interface IoK8sApiAutoscalingV2beta1ResourceMetricSource {
+export interface ResourceMetricSource {
   name: string;
   targetAverageUtilization?: number;
-  targetAverageValue?: IoK8sApimachineryPkgApiResourceQuantity;
+  targetAverageValue?: Quantity;
 }
-export interface IoK8sApiAutoscalingV2beta1ResourceMetricStatus {
+export interface ResourceMetricStatus {
   currentAverageUtilization?: number;
-  currentAverageValue: IoK8sApimachineryPkgApiResourceQuantity;
+  currentAverageValue: Quantity;
   name: string;
 }
-export interface IoK8sApiAutoscalingV2beta2ContainerResourceMetricSource {
+export interface ContainerResourceMetricSource {
   container: string;
   name: string;
-  target: IoK8sApiAutoscalingV2beta2MetricTarget;
+  target: MetricTarget;
 }
-export interface IoK8sApiAutoscalingV2beta2ContainerResourceMetricStatus {
+export interface ContainerResourceMetricStatus {
   container: string;
-  current: IoK8sApiAutoscalingV2beta2MetricValueStatus;
+  current: MetricValueStatus;
   name: string;
 }
-export interface IoK8sApiAutoscalingV2beta2CrossVersionObjectReference {
+export interface CrossVersionObjectReference {
   apiVersion?: string;
   kind: string;
   name: string;
 }
-export interface IoK8sApiAutoscalingV2beta2ExternalMetricSource {
-  metric: IoK8sApiAutoscalingV2beta2MetricIdentifier;
-  target: IoK8sApiAutoscalingV2beta2MetricTarget;
+export interface ExternalMetricSource {
+  metric: MetricIdentifier;
+  target: MetricTarget;
 }
-export interface IoK8sApiAutoscalingV2beta2ExternalMetricStatus {
-  current: IoK8sApiAutoscalingV2beta2MetricValueStatus;
-  metric: IoK8sApiAutoscalingV2beta2MetricIdentifier;
+export interface ExternalMetricStatus {
+  current: MetricValueStatus;
+  metric: MetricIdentifier;
 }
-export interface IoK8sApiAutoscalingV2beta2HPAScalingPolicy {
+export interface HPAScalingPolicy {
   periodSeconds: number;
   type: string;
   value: number;
 }
-export interface IoK8sApiAutoscalingV2beta2HPAScalingRules {
-  policies?: IoK8sApiAutoscalingV2beta2HPAScalingPolicy[];
+export interface HPAScalingRules {
+  policies?: HPAScalingPolicy[];
   selectPolicy?: string;
   stabilizationWindowSeconds?: number;
 }
-export interface IoK8sApiAutoscalingV2beta2HorizontalPodAutoscaler {
+export interface HorizontalPodAutoscaler {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiAutoscalingV2beta2HorizontalPodAutoscalerSpec;
-  status?: IoK8sApiAutoscalingV2beta2HorizontalPodAutoscalerStatus;
+  metadata?: ObjectMeta;
+  spec?: HorizontalPodAutoscalerSpec;
+  status?: HorizontalPodAutoscalerStatus;
 }
-export interface IoK8sApiAutoscalingV2beta2HorizontalPodAutoscalerBehavior {
-  scaleDown?: IoK8sApiAutoscalingV2beta2HPAScalingRules;
-  scaleUp?: IoK8sApiAutoscalingV2beta2HPAScalingRules;
+export interface HorizontalPodAutoscalerBehavior {
+  scaleDown?: HPAScalingRules;
+  scaleUp?: HPAScalingRules;
 }
-export interface IoK8sApiAutoscalingV2beta2HorizontalPodAutoscalerCondition {
-  lastTransitionTime?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface HorizontalPodAutoscalerCondition {
+  lastTransitionTime?: Time;
   message?: string;
   reason?: string;
   status: string;
   type: string;
 }
-export interface IoK8sApiAutoscalingV2beta2HorizontalPodAutoscalerList {
+export interface HorizontalPodAutoscalerList {
   apiVersion?: string;
-  items: IoK8sApiAutoscalingV2beta2HorizontalPodAutoscaler[];
+  items: HorizontalPodAutoscaler[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiAutoscalingV2beta2HorizontalPodAutoscalerSpec {
-  behavior?: IoK8sApiAutoscalingV2beta2HorizontalPodAutoscalerBehavior;
+export interface HorizontalPodAutoscalerSpec {
+  behavior?: HorizontalPodAutoscalerBehavior;
   maxReplicas: number;
-  metrics?: IoK8sApiAutoscalingV2beta2MetricSpec[];
+  metrics?: MetricSpec[];
   minReplicas?: number;
-  scaleTargetRef: IoK8sApiAutoscalingV2beta2CrossVersionObjectReference;
+  scaleTargetRef: CrossVersionObjectReference;
 }
-export interface IoK8sApiAutoscalingV2beta2HorizontalPodAutoscalerStatus {
-  conditions: IoK8sApiAutoscalingV2beta2HorizontalPodAutoscalerCondition[];
-  currentMetrics?: IoK8sApiAutoscalingV2beta2MetricStatus[];
+export interface HorizontalPodAutoscalerStatus {
+  conditions: HorizontalPodAutoscalerCondition[];
+  currentMetrics?: MetricStatus[];
   currentReplicas: number;
   desiredReplicas: number;
-  lastScaleTime?: IoK8sApimachineryPkgApisMetaV1Time;
+  lastScaleTime?: Time;
   observedGeneration?: number;
 }
-export interface IoK8sApiAutoscalingV2beta2MetricIdentifier {
+export interface MetricIdentifier {
   name: string;
-  selector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
+  selector?: LabelSelector;
 }
-export interface IoK8sApiAutoscalingV2beta2MetricSpec {
-  containerResource?: IoK8sApiAutoscalingV2beta2ContainerResourceMetricSource;
-  external?: IoK8sApiAutoscalingV2beta2ExternalMetricSource;
-  object?: IoK8sApiAutoscalingV2beta2ObjectMetricSource;
-  pods?: IoK8sApiAutoscalingV2beta2PodsMetricSource;
-  resource?: IoK8sApiAutoscalingV2beta2ResourceMetricSource;
+export interface MetricSpec {
+  containerResource?: ContainerResourceMetricSource;
+  external?: ExternalMetricSource;
+  object?: ObjectMetricSource;
+  pods?: PodsMetricSource;
+  resource?: ResourceMetricSource;
   type: string;
 }
-export interface IoK8sApiAutoscalingV2beta2MetricStatus {
-  containerResource?: IoK8sApiAutoscalingV2beta2ContainerResourceMetricStatus;
-  external?: IoK8sApiAutoscalingV2beta2ExternalMetricStatus;
-  object?: IoK8sApiAutoscalingV2beta2ObjectMetricStatus;
-  pods?: IoK8sApiAutoscalingV2beta2PodsMetricStatus;
-  resource?: IoK8sApiAutoscalingV2beta2ResourceMetricStatus;
+export interface MetricStatus {
+  containerResource?: ContainerResourceMetricStatus;
+  external?: ExternalMetricStatus;
+  object?: ObjectMetricStatus;
+  pods?: PodsMetricStatus;
+  resource?: ResourceMetricStatus;
   type: string;
 }
-export interface IoK8sApiAutoscalingV2beta2MetricTarget {
+export interface MetricTarget {
   averageUtilization?: number;
-  averageValue?: IoK8sApimachineryPkgApiResourceQuantity;
+  averageValue?: Quantity;
   type: string;
-  value?: IoK8sApimachineryPkgApiResourceQuantity;
+  value?: Quantity;
 }
-export interface IoK8sApiAutoscalingV2beta2MetricValueStatus {
+export interface MetricValueStatus {
   averageUtilization?: number;
-  averageValue?: IoK8sApimachineryPkgApiResourceQuantity;
-  value?: IoK8sApimachineryPkgApiResourceQuantity;
+  averageValue?: Quantity;
+  value?: Quantity;
 }
-export interface IoK8sApiAutoscalingV2beta2ObjectMetricSource {
-  describedObject: IoK8sApiAutoscalingV2beta2CrossVersionObjectReference;
-  metric: IoK8sApiAutoscalingV2beta2MetricIdentifier;
-  target: IoK8sApiAutoscalingV2beta2MetricTarget;
+export interface ObjectMetricSource {
+  describedObject: CrossVersionObjectReference;
+  metric: MetricIdentifier;
+  target: MetricTarget;
 }
-export interface IoK8sApiAutoscalingV2beta2ObjectMetricStatus {
-  current: IoK8sApiAutoscalingV2beta2MetricValueStatus;
-  describedObject: IoK8sApiAutoscalingV2beta2CrossVersionObjectReference;
-  metric: IoK8sApiAutoscalingV2beta2MetricIdentifier;
+export interface ObjectMetricStatus {
+  current: MetricValueStatus;
+  describedObject: CrossVersionObjectReference;
+  metric: MetricIdentifier;
 }
-export interface IoK8sApiAutoscalingV2beta2PodsMetricSource {
-  metric: IoK8sApiAutoscalingV2beta2MetricIdentifier;
-  target: IoK8sApiAutoscalingV2beta2MetricTarget;
+export interface PodsMetricSource {
+  metric: MetricIdentifier;
+  target: MetricTarget;
 }
-export interface IoK8sApiAutoscalingV2beta2PodsMetricStatus {
-  current: IoK8sApiAutoscalingV2beta2MetricValueStatus;
-  metric: IoK8sApiAutoscalingV2beta2MetricIdentifier;
+export interface PodsMetricStatus {
+  current: MetricValueStatus;
+  metric: MetricIdentifier;
 }
-export interface IoK8sApiAutoscalingV2beta2ResourceMetricSource {
+export interface ResourceMetricSource {
   name: string;
-  target: IoK8sApiAutoscalingV2beta2MetricTarget;
+  target: MetricTarget;
 }
-export interface IoK8sApiAutoscalingV2beta2ResourceMetricStatus {
-  current: IoK8sApiAutoscalingV2beta2MetricValueStatus;
+export interface ResourceMetricStatus {
+  current: MetricValueStatus;
   name: string;
 }
-export interface IoK8sApiBatchV1CronJob {
+export interface CronJob {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiBatchV1CronJobSpec;
-  status?: IoK8sApiBatchV1CronJobStatus;
+  metadata?: ObjectMeta;
+  spec?: CronJobSpec;
+  status?: CronJobStatus;
 }
-export interface IoK8sApiBatchV1CronJobList {
+export interface CronJobList {
   apiVersion?: string;
-  items: IoK8sApiBatchV1CronJob[];
+  items: CronJob[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiBatchV1CronJobSpec {
+export interface CronJobSpec {
   concurrencyPolicy?: string;
   failedJobsHistoryLimit?: number;
-  jobTemplate: IoK8sApiBatchV1JobTemplateSpec;
+  jobTemplate: JobTemplateSpec;
   schedule: string;
   startingDeadlineSeconds?: number;
   successfulJobsHistoryLimit?: number;
   suspend?: boolean;
 }
-export interface IoK8sApiBatchV1CronJobStatus {
-  active?: IoK8sApiCoreV1ObjectReference[];
-  lastScheduleTime?: IoK8sApimachineryPkgApisMetaV1Time;
-  lastSuccessfulTime?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface CronJobStatus {
+  active?: ObjectReference[];
+  lastScheduleTime?: Time;
+  lastSuccessfulTime?: Time;
 }
-export interface IoK8sApiBatchV1Job {
+export interface Job {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiBatchV1JobSpec;
-  status?: IoK8sApiBatchV1JobStatus;
+  metadata?: ObjectMeta;
+  spec?: JobSpec;
+  status?: JobStatus;
 }
-export interface IoK8sApiBatchV1JobCondition {
-  lastProbeTime?: IoK8sApimachineryPkgApisMetaV1Time;
-  lastTransitionTime?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface JobCondition {
+  lastProbeTime?: Time;
+  lastTransitionTime?: Time;
   message?: string;
   reason?: string;
   status: string;
   type: string;
 }
-export interface IoK8sApiBatchV1JobList {
+export interface JobList {
   apiVersion?: string;
-  items: IoK8sApiBatchV1Job[];
+  items: Job[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiBatchV1JobSpec {
+export interface JobSpec {
   activeDeadlineSeconds?: number;
   backoffLimit?: number;
   completionMode?: string;
   completions?: number;
   manualSelector?: boolean;
   parallelism?: number;
-  selector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
+  selector?: LabelSelector;
   suspend?: boolean;
-  template: IoK8sApiCoreV1PodTemplateSpec;
+  template: PodTemplateSpec;
   ttlSecondsAfterFinished?: number;
 }
-export interface IoK8sApiBatchV1JobStatus {
+export interface JobStatus {
   active?: number;
   completedIndexes?: string;
-  completionTime?: IoK8sApimachineryPkgApisMetaV1Time;
-  conditions?: IoK8sApiBatchV1JobCondition[];
+  completionTime?: Time;
+  conditions?: JobCondition[];
   failed?: number;
-  startTime?: IoK8sApimachineryPkgApisMetaV1Time;
+  startTime?: Time;
   succeeded?: number;
-  uncountedTerminatedPods?: IoK8sApiBatchV1UncountedTerminatedPods;
+  uncountedTerminatedPods?: UncountedTerminatedPods;
 }
-export interface IoK8sApiBatchV1JobTemplateSpec {
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiBatchV1JobSpec;
+export interface JobTemplateSpec {
+  metadata?: ObjectMeta;
+  spec?: JobSpec;
 }
-export interface IoK8sApiBatchV1UncountedTerminatedPods {
+export interface UncountedTerminatedPods {
   failed?: string[];
   succeeded?: string[];
 }
-export interface IoK8sApiBatchV1beta1CronJob {
+export interface CronJob {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiBatchV1beta1CronJobSpec;
-  status?: IoK8sApiBatchV1beta1CronJobStatus;
+  metadata?: ObjectMeta;
+  spec?: CronJobSpec;
+  status?: CronJobStatus;
 }
-export interface IoK8sApiBatchV1beta1CronJobList {
+export interface CronJobList {
   apiVersion?: string;
-  items: IoK8sApiBatchV1beta1CronJob[];
+  items: CronJob[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiBatchV1beta1CronJobSpec {
+export interface CronJobSpec {
   concurrencyPolicy?: string;
   failedJobsHistoryLimit?: number;
-  jobTemplate: IoK8sApiBatchV1beta1JobTemplateSpec;
+  jobTemplate: JobTemplateSpec;
   schedule: string;
   startingDeadlineSeconds?: number;
   successfulJobsHistoryLimit?: number;
   suspend?: boolean;
 }
-export interface IoK8sApiBatchV1beta1CronJobStatus {
-  active?: IoK8sApiCoreV1ObjectReference[];
-  lastScheduleTime?: IoK8sApimachineryPkgApisMetaV1Time;
-  lastSuccessfulTime?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface CronJobStatus {
+  active?: ObjectReference[];
+  lastScheduleTime?: Time;
+  lastSuccessfulTime?: Time;
 }
-export interface IoK8sApiBatchV1beta1JobTemplateSpec {
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiBatchV1JobSpec;
+export interface JobTemplateSpec {
+  metadata?: ObjectMeta;
+  spec?: JobSpec;
 }
-export interface IoK8sApiCertificatesV1CertificateSigningRequest {
+export interface CertificateSigningRequest {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec: IoK8sApiCertificatesV1CertificateSigningRequestSpec;
-  status?: IoK8sApiCertificatesV1CertificateSigningRequestStatus;
+  metadata?: ObjectMeta;
+  spec: CertificateSigningRequestSpec;
+  status?: CertificateSigningRequestStatus;
 }
-export interface IoK8sApiCertificatesV1CertificateSigningRequestCondition {
-  lastTransitionTime?: IoK8sApimachineryPkgApisMetaV1Time;
-  lastUpdateTime?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface CertificateSigningRequestCondition {
+  lastTransitionTime?: Time;
+  lastUpdateTime?: Time;
   message?: string;
   reason?: string;
   status: string;
   type: string;
 }
-export interface IoK8sApiCertificatesV1CertificateSigningRequestList {
+export interface CertificateSigningRequestList {
   apiVersion?: string;
-  items: IoK8sApiCertificatesV1CertificateSigningRequest[];
+  items: CertificateSigningRequest[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiCertificatesV1CertificateSigningRequestSpec {
+export interface CertificateSigningRequestSpec {
   expirationSeconds?: number;
   extra?: {
     [key: string]: unknown;
@@ -814,45 +814,45 @@ export interface IoK8sApiCertificatesV1CertificateSigningRequestSpec {
   usages?: string[];
   username?: string;
 }
-export interface IoK8sApiCertificatesV1CertificateSigningRequestStatus {
+export interface CertificateSigningRequestStatus {
   certificate?: string;
-  conditions?: IoK8sApiCertificatesV1CertificateSigningRequestCondition[];
+  conditions?: CertificateSigningRequestCondition[];
 }
-export interface IoK8sApiCoordinationV1Lease {
+export interface Lease {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiCoordinationV1LeaseSpec;
+  metadata?: ObjectMeta;
+  spec?: LeaseSpec;
 }
-export interface IoK8sApiCoordinationV1LeaseList {
+export interface LeaseList {
   apiVersion?: string;
-  items: IoK8sApiCoordinationV1Lease[];
+  items: Lease[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiCoordinationV1LeaseSpec {
-  acquireTime?: IoK8sApimachineryPkgApisMetaV1MicroTime;
+export interface LeaseSpec {
+  acquireTime?: MicroTime;
   holderIdentity?: string;
   leaseDurationSeconds?: number;
   leaseTransitions?: number;
-  renewTime?: IoK8sApimachineryPkgApisMetaV1MicroTime;
+  renewTime?: MicroTime;
 }
-export interface IoK8sApiCoreV1AWSElasticBlockStoreVolumeSource {
+export interface AWSElasticBlockStoreVolumeSource {
   fsType?: string;
   partition?: number;
   readOnly?: boolean;
   volumeID: string;
 }
-export interface IoK8sApiCoreV1Affinity {
-  nodeAffinity?: IoK8sApiCoreV1NodeAffinity;
-  podAffinity?: IoK8sApiCoreV1PodAffinity;
-  podAntiAffinity?: IoK8sApiCoreV1PodAntiAffinity;
+export interface Affinity {
+  nodeAffinity?: NodeAffinity;
+  podAffinity?: PodAffinity;
+  podAntiAffinity?: PodAntiAffinity;
 }
-export interface IoK8sApiCoreV1AttachedVolume {
+export interface AttachedVolume {
   devicePath: string;
   name: string;
 }
-export interface IoK8sApiCoreV1AzureDiskVolumeSource {
+export interface AzureDiskVolumeSource {
   cachingMode?: string;
   diskName: string;
   diskURI: string;
@@ -860,99 +860,99 @@ export interface IoK8sApiCoreV1AzureDiskVolumeSource {
   kind?: string;
   readOnly?: boolean;
 }
-export interface IoK8sApiCoreV1AzureFilePersistentVolumeSource {
+export interface AzureFilePersistentVolumeSource {
   readOnly?: boolean;
   secretName: string;
   secretNamespace?: string;
   shareName: string;
 }
-export interface IoK8sApiCoreV1AzureFileVolumeSource {
+export interface AzureFileVolumeSource {
   readOnly?: boolean;
   secretName: string;
   shareName: string;
 }
-export interface IoK8sApiCoreV1Binding {
+export interface Binding {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  target: IoK8sApiCoreV1ObjectReference;
+  metadata?: ObjectMeta;
+  target: ObjectReference;
 }
-export interface IoK8sApiCoreV1CSIPersistentVolumeSource {
-  controllerExpandSecretRef?: IoK8sApiCoreV1SecretReference;
-  controllerPublishSecretRef?: IoK8sApiCoreV1SecretReference;
+export interface CSIPersistentVolumeSource {
+  controllerExpandSecretRef?: SecretReference;
+  controllerPublishSecretRef?: SecretReference;
   driver: string;
   fsType?: string;
-  nodePublishSecretRef?: IoK8sApiCoreV1SecretReference;
-  nodeStageSecretRef?: IoK8sApiCoreV1SecretReference;
+  nodePublishSecretRef?: SecretReference;
+  nodeStageSecretRef?: SecretReference;
   readOnly?: boolean;
   volumeAttributes?: {
     [key: string]: unknown;
   };
   volumeHandle: string;
 }
-export interface IoK8sApiCoreV1CSIVolumeSource {
+export interface CSIVolumeSource {
   driver: string;
   fsType?: string;
-  nodePublishSecretRef?: IoK8sApiCoreV1LocalObjectReference;
+  nodePublishSecretRef?: LocalObjectReference;
   readOnly?: boolean;
   volumeAttributes?: {
     [key: string]: unknown;
   };
 }
-export interface IoK8sApiCoreV1Capabilities {
+export interface Capabilities {
   add?: string[];
   drop?: string[];
 }
-export interface IoK8sApiCoreV1CephFSPersistentVolumeSource {
+export interface CephFSPersistentVolumeSource {
   monitors: string[];
   path?: string;
   readOnly?: boolean;
   secretFile?: string;
-  secretRef?: IoK8sApiCoreV1SecretReference;
+  secretRef?: SecretReference;
   user?: string;
 }
-export interface IoK8sApiCoreV1CephFSVolumeSource {
+export interface CephFSVolumeSource {
   monitors: string[];
   path?: string;
   readOnly?: boolean;
   secretFile?: string;
-  secretRef?: IoK8sApiCoreV1LocalObjectReference;
+  secretRef?: LocalObjectReference;
   user?: string;
 }
-export interface IoK8sApiCoreV1CinderPersistentVolumeSource {
+export interface CinderPersistentVolumeSource {
   fsType?: string;
   readOnly?: boolean;
-  secretRef?: IoK8sApiCoreV1SecretReference;
+  secretRef?: SecretReference;
   volumeID: string;
 }
-export interface IoK8sApiCoreV1CinderVolumeSource {
+export interface CinderVolumeSource {
   fsType?: string;
   readOnly?: boolean;
-  secretRef?: IoK8sApiCoreV1LocalObjectReference;
+  secretRef?: LocalObjectReference;
   volumeID: string;
 }
-export interface IoK8sApiCoreV1ClientIPConfig {
+export interface ClientIPConfig {
   timeoutSeconds?: number;
 }
-export interface IoK8sApiCoreV1ComponentCondition {
+export interface ComponentCondition {
   error?: string;
   message?: string;
   status: string;
   type: string;
 }
-export interface IoK8sApiCoreV1ComponentStatus {
+export interface ComponentStatus {
   apiVersion?: string;
-  conditions?: IoK8sApiCoreV1ComponentCondition[];
+  conditions?: ComponentCondition[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
+  metadata?: ObjectMeta;
 }
-export interface IoK8sApiCoreV1ComponentStatusList {
+export interface ComponentStatusList {
   apiVersion?: string;
-  items: IoK8sApiCoreV1ComponentStatus[];
+  items: ComponentStatus[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiCoreV1ConfigMap {
+export interface ConfigMap {
   apiVersion?: string;
   binaryData?: {
     [key: string]: unknown;
@@ -962,313 +962,313 @@ export interface IoK8sApiCoreV1ConfigMap {
   };
   immutable?: boolean;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
+  metadata?: ObjectMeta;
 }
-export interface IoK8sApiCoreV1ConfigMapEnvSource {
+export interface ConfigMapEnvSource {
   name?: string;
   optional?: boolean;
 }
-export interface IoK8sApiCoreV1ConfigMapKeySelector {
+export interface ConfigMapKeySelector {
   key: string;
   name?: string;
   optional?: boolean;
 }
-export interface IoK8sApiCoreV1ConfigMapList {
+export interface ConfigMapList {
   apiVersion?: string;
-  items: IoK8sApiCoreV1ConfigMap[];
+  items: ConfigMap[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiCoreV1ConfigMapNodeConfigSource {
+export interface ConfigMapNodeConfigSource {
   kubeletConfigKey: string;
   name: string;
   namespace: string;
   resourceVersion?: string;
   uid?: string;
 }
-export interface IoK8sApiCoreV1ConfigMapProjection {
-  items?: IoK8sApiCoreV1KeyToPath[];
+export interface ConfigMapProjection {
+  items?: KeyToPath[];
   name?: string;
   optional?: boolean;
 }
-export interface IoK8sApiCoreV1ConfigMapVolumeSource {
+export interface ConfigMapVolumeSource {
   defaultMode?: number;
-  items?: IoK8sApiCoreV1KeyToPath[];
+  items?: KeyToPath[];
   name?: string;
   optional?: boolean;
 }
-export interface IoK8sApiCoreV1Container {
+export interface Container {
   args?: string[];
   command?: string[];
-  env?: IoK8sApiCoreV1EnvVar[];
-  envFrom?: IoK8sApiCoreV1EnvFromSource[];
+  env?: EnvVar[];
+  envFrom?: EnvFromSource[];
   image?: string;
   imagePullPolicy?: string;
-  lifecycle?: IoK8sApiCoreV1Lifecycle;
-  livenessProbe?: IoK8sApiCoreV1Probe;
+  lifecycle?: Lifecycle;
+  livenessProbe?: Probe;
   name: string;
-  ports?: IoK8sApiCoreV1ContainerPort[];
-  readinessProbe?: IoK8sApiCoreV1Probe;
-  resources?: IoK8sApiCoreV1ResourceRequirements;
-  securityContext?: IoK8sApiCoreV1SecurityContext;
-  startupProbe?: IoK8sApiCoreV1Probe;
+  ports?: ContainerPort[];
+  readinessProbe?: Probe;
+  resources?: ResourceRequirements;
+  securityContext?: SecurityContext;
+  startupProbe?: Probe;
   stdin?: boolean;
   stdinOnce?: boolean;
   terminationMessagePath?: string;
   terminationMessagePolicy?: string;
   tty?: boolean;
-  volumeDevices?: IoK8sApiCoreV1VolumeDevice[];
-  volumeMounts?: IoK8sApiCoreV1VolumeMount[];
+  volumeDevices?: VolumeDevice[];
+  volumeMounts?: VolumeMount[];
   workingDir?: string;
 }
-export interface IoK8sApiCoreV1ContainerImage {
+export interface ContainerImage {
   names?: string[];
   sizeBytes?: number;
 }
-export interface IoK8sApiCoreV1ContainerPort {
+export interface ContainerPort {
   containerPort: number;
   hostIP?: string;
   hostPort?: number;
   name?: string;
   protocol?: string;
 }
-export interface IoK8sApiCoreV1ContainerState {
-  running?: IoK8sApiCoreV1ContainerStateRunning;
-  terminated?: IoK8sApiCoreV1ContainerStateTerminated;
-  waiting?: IoK8sApiCoreV1ContainerStateWaiting;
+export interface ContainerState {
+  running?: ContainerStateRunning;
+  terminated?: ContainerStateTerminated;
+  waiting?: ContainerStateWaiting;
 }
-export interface IoK8sApiCoreV1ContainerStateRunning {
-  startedAt?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface ContainerStateRunning {
+  startedAt?: Time;
 }
-export interface IoK8sApiCoreV1ContainerStateTerminated {
+export interface ContainerStateTerminated {
   containerID?: string;
   exitCode: number;
-  finishedAt?: IoK8sApimachineryPkgApisMetaV1Time;
+  finishedAt?: Time;
   message?: string;
   reason?: string;
   signal?: number;
-  startedAt?: IoK8sApimachineryPkgApisMetaV1Time;
+  startedAt?: Time;
 }
-export interface IoK8sApiCoreV1ContainerStateWaiting {
+export interface ContainerStateWaiting {
   message?: string;
   reason?: string;
 }
-export interface IoK8sApiCoreV1ContainerStatus {
+export interface ContainerStatus {
   containerID?: string;
   image: string;
   imageID: string;
-  lastState?: IoK8sApiCoreV1ContainerState;
+  lastState?: ContainerState;
   name: string;
   ready: boolean;
   restartCount: number;
   started?: boolean;
-  state?: IoK8sApiCoreV1ContainerState;
+  state?: ContainerState;
 }
-export interface IoK8sApiCoreV1DaemonEndpoint {
+export interface DaemonEndpoint {
   Port: number;
 }
-export interface IoK8sApiCoreV1DownwardAPIProjection {
-  items?: IoK8sApiCoreV1DownwardAPIVolumeFile[];
+export interface DownwardAPIProjection {
+  items?: DownwardAPIVolumeFile[];
 }
-export interface IoK8sApiCoreV1DownwardAPIVolumeFile {
-  fieldRef?: IoK8sApiCoreV1ObjectFieldSelector;
+export interface DownwardAPIVolumeFile {
+  fieldRef?: ObjectFieldSelector;
   mode?: number;
   path: string;
-  resourceFieldRef?: IoK8sApiCoreV1ResourceFieldSelector;
+  resourceFieldRef?: ResourceFieldSelector;
 }
-export interface IoK8sApiCoreV1DownwardAPIVolumeSource {
+export interface DownwardAPIVolumeSource {
   defaultMode?: number;
-  items?: IoK8sApiCoreV1DownwardAPIVolumeFile[];
+  items?: DownwardAPIVolumeFile[];
 }
-export interface IoK8sApiCoreV1EmptyDirVolumeSource {
+export interface EmptyDirVolumeSource {
   medium?: string;
-  sizeLimit?: IoK8sApimachineryPkgApiResourceQuantity;
+  sizeLimit?: Quantity;
 }
-export interface IoK8sApiCoreV1EndpointAddress {
+export interface EndpointAddress {
   hostname?: string;
   ip: string;
   nodeName?: string;
-  targetRef?: IoK8sApiCoreV1ObjectReference;
+  targetRef?: ObjectReference;
 }
-export interface IoK8sApiCoreV1EndpointPort {
+export interface EndpointPort {
   appProtocol?: string;
   name?: string;
   port: number;
   protocol?: string;
 }
-export interface IoK8sApiCoreV1EndpointSubset {
-  addresses?: IoK8sApiCoreV1EndpointAddress[];
-  notReadyAddresses?: IoK8sApiCoreV1EndpointAddress[];
-  ports?: IoK8sApiCoreV1EndpointPort[];
+export interface EndpointSubset {
+  addresses?: EndpointAddress[];
+  notReadyAddresses?: EndpointAddress[];
+  ports?: EndpointPort[];
 }
-export interface IoK8sApiCoreV1Endpoints {
+export interface Endpoints {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  subsets?: IoK8sApiCoreV1EndpointSubset[];
+  metadata?: ObjectMeta;
+  subsets?: EndpointSubset[];
 }
-export interface IoK8sApiCoreV1EndpointsList {
+export interface EndpointsList {
   apiVersion?: string;
-  items: IoK8sApiCoreV1Endpoints[];
+  items: Endpoints[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiCoreV1EnvFromSource {
-  configMapRef?: IoK8sApiCoreV1ConfigMapEnvSource;
+export interface EnvFromSource {
+  configMapRef?: ConfigMapEnvSource;
   prefix?: string;
-  secretRef?: IoK8sApiCoreV1SecretEnvSource;
+  secretRef?: SecretEnvSource;
 }
-export interface IoK8sApiCoreV1EnvVar {
+export interface EnvVar {
   name: string;
   value?: string;
-  valueFrom?: IoK8sApiCoreV1EnvVarSource;
+  valueFrom?: EnvVarSource;
 }
-export interface IoK8sApiCoreV1EnvVarSource {
-  configMapKeyRef?: IoK8sApiCoreV1ConfigMapKeySelector;
-  fieldRef?: IoK8sApiCoreV1ObjectFieldSelector;
-  resourceFieldRef?: IoK8sApiCoreV1ResourceFieldSelector;
-  secretKeyRef?: IoK8sApiCoreV1SecretKeySelector;
+export interface EnvVarSource {
+  configMapKeyRef?: ConfigMapKeySelector;
+  fieldRef?: ObjectFieldSelector;
+  resourceFieldRef?: ResourceFieldSelector;
+  secretKeyRef?: SecretKeySelector;
 }
-export interface IoK8sApiCoreV1EphemeralContainer {
+export interface EphemeralContainer {
   args?: string[];
   command?: string[];
-  env?: IoK8sApiCoreV1EnvVar[];
-  envFrom?: IoK8sApiCoreV1EnvFromSource[];
+  env?: EnvVar[];
+  envFrom?: EnvFromSource[];
   image?: string;
   imagePullPolicy?: string;
-  lifecycle?: IoK8sApiCoreV1Lifecycle;
-  livenessProbe?: IoK8sApiCoreV1Probe;
+  lifecycle?: Lifecycle;
+  livenessProbe?: Probe;
   name: string;
-  ports?: IoK8sApiCoreV1ContainerPort[];
-  readinessProbe?: IoK8sApiCoreV1Probe;
-  resources?: IoK8sApiCoreV1ResourceRequirements;
-  securityContext?: IoK8sApiCoreV1SecurityContext;
-  startupProbe?: IoK8sApiCoreV1Probe;
+  ports?: ContainerPort[];
+  readinessProbe?: Probe;
+  resources?: ResourceRequirements;
+  securityContext?: SecurityContext;
+  startupProbe?: Probe;
   stdin?: boolean;
   stdinOnce?: boolean;
   targetContainerName?: string;
   terminationMessagePath?: string;
   terminationMessagePolicy?: string;
   tty?: boolean;
-  volumeDevices?: IoK8sApiCoreV1VolumeDevice[];
-  volumeMounts?: IoK8sApiCoreV1VolumeMount[];
+  volumeDevices?: VolumeDevice[];
+  volumeMounts?: VolumeMount[];
   workingDir?: string;
 }
-export interface IoK8sApiCoreV1EphemeralVolumeSource {
-  volumeClaimTemplate?: IoK8sApiCoreV1PersistentVolumeClaimTemplate;
+export interface EphemeralVolumeSource {
+  volumeClaimTemplate?: PersistentVolumeClaimTemplate;
 }
-export interface IoK8sApiCoreV1Event {
+export interface Event {
   action?: string;
   apiVersion?: string;
   count?: number;
-  eventTime?: IoK8sApimachineryPkgApisMetaV1MicroTime;
-  firstTimestamp?: IoK8sApimachineryPkgApisMetaV1Time;
-  involvedObject: IoK8sApiCoreV1ObjectReference;
+  eventTime?: MicroTime;
+  firstTimestamp?: Time;
+  involvedObject: ObjectReference;
   kind?: string;
-  lastTimestamp?: IoK8sApimachineryPkgApisMetaV1Time;
+  lastTimestamp?: Time;
   message?: string;
-  metadata: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
+  metadata: ObjectMeta;
   reason?: string;
-  related?: IoK8sApiCoreV1ObjectReference;
+  related?: ObjectReference;
   reportingComponent?: string;
   reportingInstance?: string;
-  series?: IoK8sApiCoreV1EventSeries;
-  source?: IoK8sApiCoreV1EventSource;
+  series?: EventSeries;
+  source?: EventSource;
   type?: string;
 }
-export interface IoK8sApiCoreV1EventList {
+export interface EventList {
   apiVersion?: string;
-  items: IoK8sApiCoreV1Event[];
+  items: Event[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiCoreV1EventSeries {
+export interface EventSeries {
   count?: number;
-  lastObservedTime?: IoK8sApimachineryPkgApisMetaV1MicroTime;
+  lastObservedTime?: MicroTime;
 }
-export interface IoK8sApiCoreV1EventSource {
+export interface EventSource {
   component?: string;
   host?: string;
 }
-export interface IoK8sApiCoreV1ExecAction {
+export interface ExecAction {
   command?: string[];
 }
-export interface IoK8sApiCoreV1FCVolumeSource {
+export interface FCVolumeSource {
   fsType?: string;
   lun?: number;
   readOnly?: boolean;
   targetWWNs?: string[];
   wwids?: string[];
 }
-export interface IoK8sApiCoreV1FlexPersistentVolumeSource {
+export interface FlexPersistentVolumeSource {
   driver: string;
   fsType?: string;
   options?: {
     [key: string]: unknown;
   };
   readOnly?: boolean;
-  secretRef?: IoK8sApiCoreV1SecretReference;
+  secretRef?: SecretReference;
 }
-export interface IoK8sApiCoreV1FlexVolumeSource {
+export interface FlexVolumeSource {
   driver: string;
   fsType?: string;
   options?: {
     [key: string]: unknown;
   };
   readOnly?: boolean;
-  secretRef?: IoK8sApiCoreV1LocalObjectReference;
+  secretRef?: LocalObjectReference;
 }
-export interface IoK8sApiCoreV1FlockerVolumeSource {
+export interface FlockerVolumeSource {
   datasetName?: string;
   datasetUUID?: string;
 }
-export interface IoK8sApiCoreV1GCEPersistentDiskVolumeSource {
+export interface GCEPersistentDiskVolumeSource {
   fsType?: string;
   partition?: number;
   pdName: string;
   readOnly?: boolean;
 }
-export interface IoK8sApiCoreV1GitRepoVolumeSource {
+export interface GitRepoVolumeSource {
   directory?: string;
   repository: string;
   revision?: string;
 }
-export interface IoK8sApiCoreV1GlusterfsPersistentVolumeSource {
+export interface GlusterfsPersistentVolumeSource {
   endpoints: string;
   endpointsNamespace?: string;
   path: string;
   readOnly?: boolean;
 }
-export interface IoK8sApiCoreV1GlusterfsVolumeSource {
+export interface GlusterfsVolumeSource {
   endpoints: string;
   path: string;
   readOnly?: boolean;
 }
-export interface IoK8sApiCoreV1HTTPGetAction {
+export interface HTTPGetAction {
   host?: string;
-  httpHeaders?: IoK8sApiCoreV1HTTPHeader[];
+  httpHeaders?: HTTPHeader[];
   path?: string;
-  port: IoK8sApimachineryPkgUtilIntstrIntOrString;
+  port: IntOrString;
   scheme?: string;
 }
-export interface IoK8sApiCoreV1HTTPHeader {
+export interface HTTPHeader {
   name: string;
   value: string;
 }
-export interface IoK8sApiCoreV1Handler {
-  exec?: IoK8sApiCoreV1ExecAction;
-  httpGet?: IoK8sApiCoreV1HTTPGetAction;
-  tcpSocket?: IoK8sApiCoreV1TCPSocketAction;
+export interface Handler {
+  exec?: ExecAction;
+  httpGet?: HTTPGetAction;
+  tcpSocket?: TCPSocketAction;
 }
-export interface IoK8sApiCoreV1HostAlias {
+export interface HostAlias {
   hostnames?: string[];
   ip?: string;
 }
-export interface IoK8sApiCoreV1HostPathVolumeSource {
+export interface HostPathVolumeSource {
   path: string;
   type?: string;
 }
-export interface IoK8sApiCoreV1ISCSIPersistentVolumeSource {
+export interface ISCSIPersistentVolumeSource {
   chapAuthDiscovery?: boolean;
   chapAuthSession?: boolean;
   fsType?: string;
@@ -1278,10 +1278,10 @@ export interface IoK8sApiCoreV1ISCSIPersistentVolumeSource {
   lun: number;
   portals?: string[];
   readOnly?: boolean;
-  secretRef?: IoK8sApiCoreV1SecretReference;
+  secretRef?: SecretReference;
   targetPortal: string;
 }
-export interface IoK8sApiCoreV1ISCSIVolumeSource {
+export interface ISCSIVolumeSource {
   chapAuthDiscovery?: boolean;
   chapAuthSession?: boolean;
   fsType?: string;
@@ -1291,25 +1291,25 @@ export interface IoK8sApiCoreV1ISCSIVolumeSource {
   lun: number;
   portals?: string[];
   readOnly?: boolean;
-  secretRef?: IoK8sApiCoreV1LocalObjectReference;
+  secretRef?: LocalObjectReference;
   targetPortal: string;
 }
-export interface IoK8sApiCoreV1KeyToPath {
+export interface KeyToPath {
   key: string;
   mode?: number;
   path: string;
 }
-export interface IoK8sApiCoreV1Lifecycle {
-  postStart?: IoK8sApiCoreV1Handler;
-  preStop?: IoK8sApiCoreV1Handler;
+export interface Lifecycle {
+  postStart?: Handler;
+  preStop?: Handler;
 }
-export interface IoK8sApiCoreV1LimitRange {
+export interface LimitRange {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiCoreV1LimitRangeSpec;
+  metadata?: ObjectMeta;
+  spec?: LimitRangeSpec;
 }
-export interface IoK8sApiCoreV1LimitRangeItem {
+export interface LimitRangeItem {
   default?: {
     [key: string]: unknown;
   };
@@ -1327,142 +1327,142 @@ export interface IoK8sApiCoreV1LimitRangeItem {
   };
   type: string;
 }
-export interface IoK8sApiCoreV1LimitRangeList {
+export interface LimitRangeList {
   apiVersion?: string;
-  items: IoK8sApiCoreV1LimitRange[];
+  items: LimitRange[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiCoreV1LimitRangeSpec {
-  limits: IoK8sApiCoreV1LimitRangeItem[];
+export interface LimitRangeSpec {
+  limits: LimitRangeItem[];
 }
-export interface IoK8sApiCoreV1LoadBalancerIngress {
+export interface LoadBalancerIngress {
   hostname?: string;
   ip?: string;
-  ports?: IoK8sApiCoreV1PortStatus[];
+  ports?: PortStatus[];
 }
-export interface IoK8sApiCoreV1LoadBalancerStatus {
-  ingress?: IoK8sApiCoreV1LoadBalancerIngress[];
+export interface LoadBalancerStatus {
+  ingress?: LoadBalancerIngress[];
 }
-export interface IoK8sApiCoreV1LocalObjectReference {
+export interface LocalObjectReference {
   name?: string;
 }
-export interface IoK8sApiCoreV1LocalVolumeSource {
+export interface LocalVolumeSource {
   fsType?: string;
   path: string;
 }
-export interface IoK8sApiCoreV1NFSVolumeSource {
+export interface NFSVolumeSource {
   path: string;
   readOnly?: boolean;
   server: string;
 }
-export interface IoK8sApiCoreV1Namespace {
+export interface Namespace {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiCoreV1NamespaceSpec;
-  status?: IoK8sApiCoreV1NamespaceStatus;
+  metadata?: ObjectMeta;
+  spec?: NamespaceSpec;
+  status?: NamespaceStatus;
 }
-export interface IoK8sApiCoreV1NamespaceCondition {
-  lastTransitionTime?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface NamespaceCondition {
+  lastTransitionTime?: Time;
   message?: string;
   reason?: string;
   status: string;
   type: string;
 }
-export interface IoK8sApiCoreV1NamespaceList {
+export interface NamespaceList {
   apiVersion?: string;
-  items: IoK8sApiCoreV1Namespace[];
+  items: Namespace[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiCoreV1NamespaceSpec {
+export interface NamespaceSpec {
   finalizers?: string[];
 }
-export interface IoK8sApiCoreV1NamespaceStatus {
-  conditions?: IoK8sApiCoreV1NamespaceCondition[];
+export interface NamespaceStatus {
+  conditions?: NamespaceCondition[];
   phase?: string;
 }
-export interface IoK8sApiCoreV1Node {
+export interface Node {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiCoreV1NodeSpec;
-  status?: IoK8sApiCoreV1NodeStatus;
+  metadata?: ObjectMeta;
+  spec?: NodeSpec;
+  status?: NodeStatus;
 }
-export interface IoK8sApiCoreV1NodeAddress {
+export interface NodeAddress {
   address: string;
   type: string;
 }
-export interface IoK8sApiCoreV1NodeAffinity {
-  preferredDuringSchedulingIgnoredDuringExecution?: IoK8sApiCoreV1PreferredSchedulingTerm[];
-  requiredDuringSchedulingIgnoredDuringExecution?: IoK8sApiCoreV1NodeSelector;
+export interface NodeAffinity {
+  preferredDuringSchedulingIgnoredDuringExecution?: PreferredSchedulingTerm[];
+  requiredDuringSchedulingIgnoredDuringExecution?: NodeSelector;
 }
-export interface IoK8sApiCoreV1NodeCondition {
-  lastHeartbeatTime?: IoK8sApimachineryPkgApisMetaV1Time;
-  lastTransitionTime?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface NodeCondition {
+  lastHeartbeatTime?: Time;
+  lastTransitionTime?: Time;
   message?: string;
   reason?: string;
   status: string;
   type: string;
 }
-export interface IoK8sApiCoreV1NodeConfigSource {
-  configMap?: IoK8sApiCoreV1ConfigMapNodeConfigSource;
+export interface NodeConfigSource {
+  configMap?: ConfigMapNodeConfigSource;
 }
-export interface IoK8sApiCoreV1NodeConfigStatus {
-  active?: IoK8sApiCoreV1NodeConfigSource;
-  assigned?: IoK8sApiCoreV1NodeConfigSource;
+export interface NodeConfigStatus {
+  active?: NodeConfigSource;
+  assigned?: NodeConfigSource;
   error?: string;
-  lastKnownGood?: IoK8sApiCoreV1NodeConfigSource;
+  lastKnownGood?: NodeConfigSource;
 }
-export interface IoK8sApiCoreV1NodeDaemonEndpoints {
-  kubeletEndpoint?: IoK8sApiCoreV1DaemonEndpoint;
+export interface NodeDaemonEndpoints {
+  kubeletEndpoint?: DaemonEndpoint;
 }
-export interface IoK8sApiCoreV1NodeList {
+export interface NodeList {
   apiVersion?: string;
-  items: IoK8sApiCoreV1Node[];
+  items: Node[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiCoreV1NodeSelector {
-  nodeSelectorTerms: IoK8sApiCoreV1NodeSelectorTerm[];
+export interface NodeSelector {
+  nodeSelectorTerms: NodeSelectorTerm[];
 }
-export interface IoK8sApiCoreV1NodeSelectorRequirement {
+export interface NodeSelectorRequirement {
   key: string;
   operator: string;
   values?: string[];
 }
-export interface IoK8sApiCoreV1NodeSelectorTerm {
-  matchExpressions?: IoK8sApiCoreV1NodeSelectorRequirement[];
-  matchFields?: IoK8sApiCoreV1NodeSelectorRequirement[];
+export interface NodeSelectorTerm {
+  matchExpressions?: NodeSelectorRequirement[];
+  matchFields?: NodeSelectorRequirement[];
 }
-export interface IoK8sApiCoreV1NodeSpec {
-  configSource?: IoK8sApiCoreV1NodeConfigSource;
+export interface NodeSpec {
+  configSource?: NodeConfigSource;
   externalID?: string;
   podCIDR?: string;
   podCIDRs?: string[];
   providerID?: string;
-  taints?: IoK8sApiCoreV1Taint[];
+  taints?: Taint[];
   unschedulable?: boolean;
 }
-export interface IoK8sApiCoreV1NodeStatus {
-  addresses?: IoK8sApiCoreV1NodeAddress[];
+export interface NodeStatus {
+  addresses?: NodeAddress[];
   allocatable?: {
     [key: string]: unknown;
   };
   capacity?: {
     [key: string]: unknown;
   };
-  conditions?: IoK8sApiCoreV1NodeCondition[];
-  config?: IoK8sApiCoreV1NodeConfigStatus;
-  daemonEndpoints?: IoK8sApiCoreV1NodeDaemonEndpoints;
-  images?: IoK8sApiCoreV1ContainerImage[];
-  nodeInfo?: IoK8sApiCoreV1NodeSystemInfo;
+  conditions?: NodeCondition[];
+  config?: NodeConfigStatus;
+  daemonEndpoints?: NodeDaemonEndpoints;
+  images?: ContainerImage[];
+  nodeInfo?: NodeSystemInfo;
   phase?: string;
-  volumesAttached?: IoK8sApiCoreV1AttachedVolume[];
+  volumesAttached?: AttachedVolume[];
   volumesInUse?: string[];
 }
-export interface IoK8sApiCoreV1NodeSystemInfo {
+export interface NodeSystemInfo {
   architecture: string;
   bootID: string;
   containerRuntimeVersion: string;
@@ -1474,11 +1474,11 @@ export interface IoK8sApiCoreV1NodeSystemInfo {
   osImage: string;
   systemUUID: string;
 }
-export interface IoK8sApiCoreV1ObjectFieldSelector {
+export interface ObjectFieldSelector {
   apiVersion?: string;
   fieldPath: string;
 }
-export interface IoK8sApiCoreV1ObjectReference {
+export interface ObjectReference {
   apiVersion?: string;
   fieldPath?: string;
   kind?: string;
@@ -1487,187 +1487,187 @@ export interface IoK8sApiCoreV1ObjectReference {
   resourceVersion?: string;
   uid?: string;
 }
-export interface IoK8sApiCoreV1PersistentVolume {
+export interface PersistentVolume {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiCoreV1PersistentVolumeSpec;
-  status?: IoK8sApiCoreV1PersistentVolumeStatus;
+  metadata?: ObjectMeta;
+  spec?: PersistentVolumeSpec;
+  status?: PersistentVolumeStatus;
 }
-export interface IoK8sApiCoreV1PersistentVolumeClaim {
+export interface PersistentVolumeClaim {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiCoreV1PersistentVolumeClaimSpec;
-  status?: IoK8sApiCoreV1PersistentVolumeClaimStatus;
+  metadata?: ObjectMeta;
+  spec?: PersistentVolumeClaimSpec;
+  status?: PersistentVolumeClaimStatus;
 }
-export interface IoK8sApiCoreV1PersistentVolumeClaimCondition {
-  lastProbeTime?: IoK8sApimachineryPkgApisMetaV1Time;
-  lastTransitionTime?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface PersistentVolumeClaimCondition {
+  lastProbeTime?: Time;
+  lastTransitionTime?: Time;
   message?: string;
   reason?: string;
   status: string;
   type: string;
 }
-export interface IoK8sApiCoreV1PersistentVolumeClaimList {
+export interface PersistentVolumeClaimList {
   apiVersion?: string;
-  items: IoK8sApiCoreV1PersistentVolumeClaim[];
+  items: PersistentVolumeClaim[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiCoreV1PersistentVolumeClaimSpec {
+export interface PersistentVolumeClaimSpec {
   accessModes?: string[];
-  dataSource?: IoK8sApiCoreV1TypedLocalObjectReference;
-  dataSourceRef?: IoK8sApiCoreV1TypedLocalObjectReference;
-  resources?: IoK8sApiCoreV1ResourceRequirements;
-  selector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
+  dataSource?: TypedLocalObjectReference;
+  dataSourceRef?: TypedLocalObjectReference;
+  resources?: ResourceRequirements;
+  selector?: LabelSelector;
   storageClassName?: string;
   volumeMode?: string;
   volumeName?: string;
 }
-export interface IoK8sApiCoreV1PersistentVolumeClaimStatus {
+export interface PersistentVolumeClaimStatus {
   accessModes?: string[];
   capacity?: {
     [key: string]: unknown;
   };
-  conditions?: IoK8sApiCoreV1PersistentVolumeClaimCondition[];
+  conditions?: PersistentVolumeClaimCondition[];
   phase?: string;
 }
-export interface IoK8sApiCoreV1PersistentVolumeClaimTemplate {
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec: IoK8sApiCoreV1PersistentVolumeClaimSpec;
+export interface PersistentVolumeClaimTemplate {
+  metadata?: ObjectMeta;
+  spec: PersistentVolumeClaimSpec;
 }
-export interface IoK8sApiCoreV1PersistentVolumeClaimVolumeSource {
+export interface PersistentVolumeClaimVolumeSource {
   claimName: string;
   readOnly?: boolean;
 }
-export interface IoK8sApiCoreV1PersistentVolumeList {
+export interface PersistentVolumeList {
   apiVersion?: string;
-  items: IoK8sApiCoreV1PersistentVolume[];
+  items: PersistentVolume[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiCoreV1PersistentVolumeSpec {
+export interface PersistentVolumeSpec {
   accessModes?: string[];
-  awsElasticBlockStore?: IoK8sApiCoreV1AWSElasticBlockStoreVolumeSource;
-  azureDisk?: IoK8sApiCoreV1AzureDiskVolumeSource;
-  azureFile?: IoK8sApiCoreV1AzureFilePersistentVolumeSource;
+  awsElasticBlockStore?: AWSElasticBlockStoreVolumeSource;
+  azureDisk?: AzureDiskVolumeSource;
+  azureFile?: AzureFilePersistentVolumeSource;
   capacity?: {
     [key: string]: unknown;
   };
-  cephfs?: IoK8sApiCoreV1CephFSPersistentVolumeSource;
-  cinder?: IoK8sApiCoreV1CinderPersistentVolumeSource;
-  claimRef?: IoK8sApiCoreV1ObjectReference;
-  csi?: IoK8sApiCoreV1CSIPersistentVolumeSource;
-  fc?: IoK8sApiCoreV1FCVolumeSource;
-  flexVolume?: IoK8sApiCoreV1FlexPersistentVolumeSource;
-  flocker?: IoK8sApiCoreV1FlockerVolumeSource;
-  gcePersistentDisk?: IoK8sApiCoreV1GCEPersistentDiskVolumeSource;
-  glusterfs?: IoK8sApiCoreV1GlusterfsPersistentVolumeSource;
-  hostPath?: IoK8sApiCoreV1HostPathVolumeSource;
-  iscsi?: IoK8sApiCoreV1ISCSIPersistentVolumeSource;
-  local?: IoK8sApiCoreV1LocalVolumeSource;
+  cephfs?: CephFSPersistentVolumeSource;
+  cinder?: CinderPersistentVolumeSource;
+  claimRef?: ObjectReference;
+  csi?: CSIPersistentVolumeSource;
+  fc?: FCVolumeSource;
+  flexVolume?: FlexPersistentVolumeSource;
+  flocker?: FlockerVolumeSource;
+  gcePersistentDisk?: GCEPersistentDiskVolumeSource;
+  glusterfs?: GlusterfsPersistentVolumeSource;
+  hostPath?: HostPathVolumeSource;
+  iscsi?: ISCSIPersistentVolumeSource;
+  local?: LocalVolumeSource;
   mountOptions?: string[];
-  nfs?: IoK8sApiCoreV1NFSVolumeSource;
-  nodeAffinity?: IoK8sApiCoreV1VolumeNodeAffinity;
+  nfs?: NFSVolumeSource;
+  nodeAffinity?: VolumeNodeAffinity;
   persistentVolumeReclaimPolicy?: string;
-  photonPersistentDisk?: IoK8sApiCoreV1PhotonPersistentDiskVolumeSource;
-  portworxVolume?: IoK8sApiCoreV1PortworxVolumeSource;
-  quobyte?: IoK8sApiCoreV1QuobyteVolumeSource;
-  rbd?: IoK8sApiCoreV1RBDPersistentVolumeSource;
-  scaleIO?: IoK8sApiCoreV1ScaleIOPersistentVolumeSource;
+  photonPersistentDisk?: PhotonPersistentDiskVolumeSource;
+  portworxVolume?: PortworxVolumeSource;
+  quobyte?: QuobyteVolumeSource;
+  rbd?: RBDPersistentVolumeSource;
+  scaleIO?: ScaleIOPersistentVolumeSource;
   storageClassName?: string;
-  storageos?: IoK8sApiCoreV1StorageOSPersistentVolumeSource;
+  storageos?: StorageOSPersistentVolumeSource;
   volumeMode?: string;
-  vsphereVolume?: IoK8sApiCoreV1VsphereVirtualDiskVolumeSource;
+  vsphereVolume?: VsphereVirtualDiskVolumeSource;
 }
-export interface IoK8sApiCoreV1PersistentVolumeStatus {
+export interface PersistentVolumeStatus {
   message?: string;
   phase?: string;
   reason?: string;
 }
-export interface IoK8sApiCoreV1PhotonPersistentDiskVolumeSource {
+export interface PhotonPersistentDiskVolumeSource {
   fsType?: string;
   pdID: string;
 }
-export interface IoK8sApiCoreV1Pod {
+export interface Pod {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiCoreV1PodSpec;
-  status?: IoK8sApiCoreV1PodStatus;
+  metadata?: ObjectMeta;
+  spec?: PodSpec;
+  status?: PodStatus;
 }
-export interface IoK8sApiCoreV1PodAffinity {
-  preferredDuringSchedulingIgnoredDuringExecution?: IoK8sApiCoreV1WeightedPodAffinityTerm[];
-  requiredDuringSchedulingIgnoredDuringExecution?: IoK8sApiCoreV1PodAffinityTerm[];
+export interface PodAffinity {
+  preferredDuringSchedulingIgnoredDuringExecution?: WeightedPodAffinityTerm[];
+  requiredDuringSchedulingIgnoredDuringExecution?: PodAffinityTerm[];
 }
-export interface IoK8sApiCoreV1PodAffinityTerm {
-  labelSelector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
-  namespaceSelector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
+export interface PodAffinityTerm {
+  labelSelector?: LabelSelector;
+  namespaceSelector?: LabelSelector;
   namespaces?: string[];
   topologyKey: string;
 }
-export interface IoK8sApiCoreV1PodAntiAffinity {
-  preferredDuringSchedulingIgnoredDuringExecution?: IoK8sApiCoreV1WeightedPodAffinityTerm[];
-  requiredDuringSchedulingIgnoredDuringExecution?: IoK8sApiCoreV1PodAffinityTerm[];
+export interface PodAntiAffinity {
+  preferredDuringSchedulingIgnoredDuringExecution?: WeightedPodAffinityTerm[];
+  requiredDuringSchedulingIgnoredDuringExecution?: PodAffinityTerm[];
 }
-export interface IoK8sApiCoreV1PodCondition {
-  lastProbeTime?: IoK8sApimachineryPkgApisMetaV1Time;
-  lastTransitionTime?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface PodCondition {
+  lastProbeTime?: Time;
+  lastTransitionTime?: Time;
   message?: string;
   reason?: string;
   status: string;
   type: string;
 }
-export interface IoK8sApiCoreV1PodDNSConfig {
+export interface PodDNSConfig {
   nameservers?: string[];
-  options?: IoK8sApiCoreV1PodDNSConfigOption[];
+  options?: PodDNSConfigOption[];
   searches?: string[];
 }
-export interface IoK8sApiCoreV1PodDNSConfigOption {
+export interface PodDNSConfigOption {
   name?: string;
   value?: string;
 }
-export interface IoK8sApiCoreV1PodIP {
+export interface PodIP {
   ip?: string;
 }
-export interface IoK8sApiCoreV1PodList {
+export interface PodList {
   apiVersion?: string;
-  items: IoK8sApiCoreV1Pod[];
+  items: Pod[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiCoreV1PodReadinessGate {
+export interface PodReadinessGate {
   conditionType: string;
 }
-export interface IoK8sApiCoreV1PodSecurityContext {
+export interface PodSecurityContext {
   fsGroup?: number;
   fsGroupChangePolicy?: string;
   runAsGroup?: number;
   runAsNonRoot?: boolean;
   runAsUser?: number;
-  seLinuxOptions?: IoK8sApiCoreV1SELinuxOptions;
-  seccompProfile?: IoK8sApiCoreV1SeccompProfile;
+  seLinuxOptions?: SELinuxOptions;
+  seccompProfile?: SeccompProfile;
   supplementalGroups?: number[];
-  sysctls?: IoK8sApiCoreV1Sysctl[];
-  windowsOptions?: IoK8sApiCoreV1WindowsSecurityContextOptions;
+  sysctls?: Sysctl[];
+  windowsOptions?: WindowsSecurityContextOptions;
 }
-export interface IoK8sApiCoreV1PodSpec {
+export interface PodSpec {
   activeDeadlineSeconds?: number;
-  affinity?: IoK8sApiCoreV1Affinity;
+  affinity?: Affinity;
   automountServiceAccountToken?: boolean;
-  containers: IoK8sApiCoreV1Container[];
-  dnsConfig?: IoK8sApiCoreV1PodDNSConfig;
+  containers: Container[];
+  dnsConfig?: PodDNSConfig;
   dnsPolicy?: string;
   enableServiceLinks?: boolean;
-  ephemeralContainers?: IoK8sApiCoreV1EphemeralContainer[];
-  hostAliases?: IoK8sApiCoreV1HostAlias[];
+  ephemeralContainers?: EphemeralContainer[];
+  hostAliases?: HostAlias[];
   hostIPC?: boolean;
   hostNetwork?: boolean;
   hostPID?: boolean;
   hostname?: string;
-  imagePullSecrets?: IoK8sApiCoreV1LocalObjectReference[];
-  initContainers?: IoK8sApiCoreV1Container[];
+  imagePullSecrets?: LocalObjectReference[];
+  initContainers?: Container[];
   nodeName?: string;
   nodeSelector?: {
     [key: string]: unknown;
@@ -1678,82 +1678,82 @@ export interface IoK8sApiCoreV1PodSpec {
   preemptionPolicy?: string;
   priority?: number;
   priorityClassName?: string;
-  readinessGates?: IoK8sApiCoreV1PodReadinessGate[];
+  readinessGates?: PodReadinessGate[];
   restartPolicy?: string;
   runtimeClassName?: string;
   schedulerName?: string;
-  securityContext?: IoK8sApiCoreV1PodSecurityContext;
+  securityContext?: PodSecurityContext;
   serviceAccount?: string;
   serviceAccountName?: string;
   setHostnameAsFQDN?: boolean;
   shareProcessNamespace?: boolean;
   subdomain?: string;
   terminationGracePeriodSeconds?: number;
-  tolerations?: IoK8sApiCoreV1Toleration[];
-  topologySpreadConstraints?: IoK8sApiCoreV1TopologySpreadConstraint[];
-  volumes?: IoK8sApiCoreV1Volume[];
+  tolerations?: Toleration[];
+  topologySpreadConstraints?: TopologySpreadConstraint[];
+  volumes?: Volume[];
 }
-export interface IoK8sApiCoreV1PodStatus {
-  conditions?: IoK8sApiCoreV1PodCondition[];
-  containerStatuses?: IoK8sApiCoreV1ContainerStatus[];
-  ephemeralContainerStatuses?: IoK8sApiCoreV1ContainerStatus[];
+export interface PodStatus {
+  conditions?: PodCondition[];
+  containerStatuses?: ContainerStatus[];
+  ephemeralContainerStatuses?: ContainerStatus[];
   hostIP?: string;
-  initContainerStatuses?: IoK8sApiCoreV1ContainerStatus[];
+  initContainerStatuses?: ContainerStatus[];
   message?: string;
   nominatedNodeName?: string;
   phase?: string;
   podIP?: string;
-  podIPs?: IoK8sApiCoreV1PodIP[];
+  podIPs?: PodIP[];
   qosClass?: string;
   reason?: string;
-  startTime?: IoK8sApimachineryPkgApisMetaV1Time;
+  startTime?: Time;
 }
-export interface IoK8sApiCoreV1PodTemplate {
+export interface PodTemplate {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  template?: IoK8sApiCoreV1PodTemplateSpec;
+  metadata?: ObjectMeta;
+  template?: PodTemplateSpec;
 }
-export interface IoK8sApiCoreV1PodTemplateList {
+export interface PodTemplateList {
   apiVersion?: string;
-  items: IoK8sApiCoreV1PodTemplate[];
+  items: PodTemplate[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiCoreV1PodTemplateSpec {
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiCoreV1PodSpec;
+export interface PodTemplateSpec {
+  metadata?: ObjectMeta;
+  spec?: PodSpec;
 }
-export interface IoK8sApiCoreV1PortStatus {
+export interface PortStatus {
   error?: string;
   port: number;
   protocol: string;
 }
-export interface IoK8sApiCoreV1PortworxVolumeSource {
+export interface PortworxVolumeSource {
   fsType?: string;
   readOnly?: boolean;
   volumeID: string;
 }
-export interface IoK8sApiCoreV1PreferredSchedulingTerm {
-  preference: IoK8sApiCoreV1NodeSelectorTerm;
+export interface PreferredSchedulingTerm {
+  preference: NodeSelectorTerm;
   weight: number;
 }
-export interface IoK8sApiCoreV1Probe {
-  exec?: IoK8sApiCoreV1ExecAction;
+export interface Probe {
+  exec?: ExecAction;
   failureThreshold?: number;
-  httpGet?: IoK8sApiCoreV1HTTPGetAction;
+  httpGet?: HTTPGetAction;
   initialDelaySeconds?: number;
   periodSeconds?: number;
   successThreshold?: number;
-  tcpSocket?: IoK8sApiCoreV1TCPSocketAction;
+  tcpSocket?: TCPSocketAction;
   terminationGracePeriodSeconds?: number;
   timeoutSeconds?: number;
 }
-export interface IoK8sApiCoreV1ProjectedVolumeSource {
+export interface ProjectedVolumeSource {
   defaultMode?: number;
-  sources?: IoK8sApiCoreV1VolumeProjection[];
+  sources?: VolumeProjection[];
 }
-export interface IoK8sApiCoreV1QuobyteVolumeSource {
+export interface QuobyteVolumeSource {
   group?: string;
   readOnly?: boolean;
   registry: string;
@@ -1761,88 +1761,88 @@ export interface IoK8sApiCoreV1QuobyteVolumeSource {
   user?: string;
   volume: string;
 }
-export interface IoK8sApiCoreV1RBDPersistentVolumeSource {
+export interface RBDPersistentVolumeSource {
   fsType?: string;
   image: string;
   keyring?: string;
   monitors: string[];
   pool?: string;
   readOnly?: boolean;
-  secretRef?: IoK8sApiCoreV1SecretReference;
+  secretRef?: SecretReference;
   user?: string;
 }
-export interface IoK8sApiCoreV1RBDVolumeSource {
+export interface RBDVolumeSource {
   fsType?: string;
   image: string;
   keyring?: string;
   monitors: string[];
   pool?: string;
   readOnly?: boolean;
-  secretRef?: IoK8sApiCoreV1LocalObjectReference;
+  secretRef?: LocalObjectReference;
   user?: string;
 }
-export interface IoK8sApiCoreV1ReplicationController {
+export interface ReplicationController {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiCoreV1ReplicationControllerSpec;
-  status?: IoK8sApiCoreV1ReplicationControllerStatus;
+  metadata?: ObjectMeta;
+  spec?: ReplicationControllerSpec;
+  status?: ReplicationControllerStatus;
 }
-export interface IoK8sApiCoreV1ReplicationControllerCondition {
-  lastTransitionTime?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface ReplicationControllerCondition {
+  lastTransitionTime?: Time;
   message?: string;
   reason?: string;
   status: string;
   type: string;
 }
-export interface IoK8sApiCoreV1ReplicationControllerList {
+export interface ReplicationControllerList {
   apiVersion?: string;
-  items: IoK8sApiCoreV1ReplicationController[];
+  items: ReplicationController[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiCoreV1ReplicationControllerSpec {
+export interface ReplicationControllerSpec {
   minReadySeconds?: number;
   replicas?: number;
   selector?: {
     [key: string]: unknown;
   };
-  template?: IoK8sApiCoreV1PodTemplateSpec;
+  template?: PodTemplateSpec;
 }
-export interface IoK8sApiCoreV1ReplicationControllerStatus {
+export interface ReplicationControllerStatus {
   availableReplicas?: number;
-  conditions?: IoK8sApiCoreV1ReplicationControllerCondition[];
+  conditions?: ReplicationControllerCondition[];
   fullyLabeledReplicas?: number;
   observedGeneration?: number;
   readyReplicas?: number;
   replicas: number;
 }
-export interface IoK8sApiCoreV1ResourceFieldSelector {
+export interface ResourceFieldSelector {
   containerName?: string;
-  divisor?: IoK8sApimachineryPkgApiResourceQuantity;
+  divisor?: Quantity;
   resource: string;
 }
-export interface IoK8sApiCoreV1ResourceQuota {
+export interface ResourceQuota {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiCoreV1ResourceQuotaSpec;
-  status?: IoK8sApiCoreV1ResourceQuotaStatus;
+  metadata?: ObjectMeta;
+  spec?: ResourceQuotaSpec;
+  status?: ResourceQuotaStatus;
 }
-export interface IoK8sApiCoreV1ResourceQuotaList {
+export interface ResourceQuotaList {
   apiVersion?: string;
-  items: IoK8sApiCoreV1ResourceQuota[];
+  items: ResourceQuota[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiCoreV1ResourceQuotaSpec {
+export interface ResourceQuotaSpec {
   hard?: {
     [key: string]: unknown;
   };
-  scopeSelector?: IoK8sApiCoreV1ScopeSelector;
+  scopeSelector?: ScopeSelector;
   scopes?: string[];
 }
-export interface IoK8sApiCoreV1ResourceQuotaStatus {
+export interface ResourceQuotaStatus {
   hard?: {
     [key: string]: unknown;
   };
@@ -1850,7 +1850,7 @@ export interface IoK8sApiCoreV1ResourceQuotaStatus {
     [key: string]: unknown;
   };
 }
-export interface IoK8sApiCoreV1ResourceRequirements {
+export interface ResourceRequirements {
   limits?: {
     [key: string]: unknown;
   };
@@ -1858,145 +1858,145 @@ export interface IoK8sApiCoreV1ResourceRequirements {
     [key: string]: unknown;
   };
 }
-export interface IoK8sApiCoreV1SELinuxOptions {
+export interface SELinuxOptions {
   level?: string;
   role?: string;
   type?: string;
   user?: string;
 }
-export interface IoK8sApiCoreV1ScaleIOPersistentVolumeSource {
+export interface ScaleIOPersistentVolumeSource {
   fsType?: string;
   gateway: string;
   protectionDomain?: string;
   readOnly?: boolean;
-  secretRef: IoK8sApiCoreV1SecretReference;
+  secretRef: SecretReference;
   sslEnabled?: boolean;
   storageMode?: string;
   storagePool?: string;
   system: string;
   volumeName?: string;
 }
-export interface IoK8sApiCoreV1ScaleIOVolumeSource {
+export interface ScaleIOVolumeSource {
   fsType?: string;
   gateway: string;
   protectionDomain?: string;
   readOnly?: boolean;
-  secretRef: IoK8sApiCoreV1LocalObjectReference;
+  secretRef: LocalObjectReference;
   sslEnabled?: boolean;
   storageMode?: string;
   storagePool?: string;
   system: string;
   volumeName?: string;
 }
-export interface IoK8sApiCoreV1ScopeSelector {
-  matchExpressions?: IoK8sApiCoreV1ScopedResourceSelectorRequirement[];
+export interface ScopeSelector {
+  matchExpressions?: ScopedResourceSelectorRequirement[];
 }
-export interface IoK8sApiCoreV1ScopedResourceSelectorRequirement {
+export interface ScopedResourceSelectorRequirement {
   operator: string;
   scopeName: string;
   values?: string[];
 }
-export interface IoK8sApiCoreV1SeccompProfile {
+export interface SeccompProfile {
   localhostProfile?: string;
   type: string;
 }
-export interface IoK8sApiCoreV1Secret {
+export interface Secret {
   apiVersion?: string;
   data?: {
     [key: string]: unknown;
   };
   immutable?: boolean;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
+  metadata?: ObjectMeta;
   stringData?: {
     [key: string]: unknown;
   };
   type?: string;
 }
-export interface IoK8sApiCoreV1SecretEnvSource {
+export interface SecretEnvSource {
   name?: string;
   optional?: boolean;
 }
-export interface IoK8sApiCoreV1SecretKeySelector {
+export interface SecretKeySelector {
   key: string;
   name?: string;
   optional?: boolean;
 }
-export interface IoK8sApiCoreV1SecretList {
+export interface SecretList {
   apiVersion?: string;
-  items: IoK8sApiCoreV1Secret[];
+  items: Secret[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiCoreV1SecretProjection {
-  items?: IoK8sApiCoreV1KeyToPath[];
+export interface SecretProjection {
+  items?: KeyToPath[];
   name?: string;
   optional?: boolean;
 }
-export interface IoK8sApiCoreV1SecretReference {
+export interface SecretReference {
   name?: string;
   namespace?: string;
 }
-export interface IoK8sApiCoreV1SecretVolumeSource {
+export interface SecretVolumeSource {
   defaultMode?: number;
-  items?: IoK8sApiCoreV1KeyToPath[];
+  items?: KeyToPath[];
   optional?: boolean;
   secretName?: string;
 }
-export interface IoK8sApiCoreV1SecurityContext {
+export interface SecurityContext {
   allowPrivilegeEscalation?: boolean;
-  capabilities?: IoK8sApiCoreV1Capabilities;
+  capabilities?: Capabilities;
   privileged?: boolean;
   procMount?: string;
   readOnlyRootFilesystem?: boolean;
   runAsGroup?: number;
   runAsNonRoot?: boolean;
   runAsUser?: number;
-  seLinuxOptions?: IoK8sApiCoreV1SELinuxOptions;
-  seccompProfile?: IoK8sApiCoreV1SeccompProfile;
-  windowsOptions?: IoK8sApiCoreV1WindowsSecurityContextOptions;
+  seLinuxOptions?: SELinuxOptions;
+  seccompProfile?: SeccompProfile;
+  windowsOptions?: WindowsSecurityContextOptions;
 }
-export interface IoK8sApiCoreV1Service {
+export interface Service {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiCoreV1ServiceSpec;
-  status?: IoK8sApiCoreV1ServiceStatus;
+  metadata?: ObjectMeta;
+  spec?: ServiceSpec;
+  status?: ServiceStatus;
 }
-export interface IoK8sApiCoreV1ServiceAccount {
+export interface ServiceAccount {
   apiVersion?: string;
   automountServiceAccountToken?: boolean;
-  imagePullSecrets?: IoK8sApiCoreV1LocalObjectReference[];
+  imagePullSecrets?: LocalObjectReference[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  secrets?: IoK8sApiCoreV1ObjectReference[];
+  metadata?: ObjectMeta;
+  secrets?: ObjectReference[];
 }
-export interface IoK8sApiCoreV1ServiceAccountList {
+export interface ServiceAccountList {
   apiVersion?: string;
-  items: IoK8sApiCoreV1ServiceAccount[];
+  items: ServiceAccount[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiCoreV1ServiceAccountTokenProjection {
+export interface ServiceAccountTokenProjection {
   audience?: string;
   expirationSeconds?: number;
   path: string;
 }
-export interface IoK8sApiCoreV1ServiceList {
+export interface ServiceList {
   apiVersion?: string;
-  items: IoK8sApiCoreV1Service[];
+  items: Service[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiCoreV1ServicePort {
+export interface ServicePort {
   appProtocol?: string;
   name?: string;
   nodePort?: number;
   port: number;
   protocol?: string;
-  targetPort?: IoK8sApimachineryPkgUtilIntstrIntOrString;
+  targetPort?: IntOrString;
 }
-export interface IoK8sApiCoreV1ServiceSpec {
+export interface ServiceSpec {
   allocateLoadBalancerNodePorts?: boolean;
   clusterIP?: string;
   clusterIPs?: string[];
@@ -2010,112 +2010,112 @@ export interface IoK8sApiCoreV1ServiceSpec {
   loadBalancerClass?: string;
   loadBalancerIP?: string;
   loadBalancerSourceRanges?: string[];
-  ports?: IoK8sApiCoreV1ServicePort[];
+  ports?: ServicePort[];
   publishNotReadyAddresses?: boolean;
   selector?: {
     [key: string]: unknown;
   };
   sessionAffinity?: string;
-  sessionAffinityConfig?: IoK8sApiCoreV1SessionAffinityConfig;
+  sessionAffinityConfig?: SessionAffinityConfig;
   type?: string;
 }
-export interface IoK8sApiCoreV1ServiceStatus {
-  conditions?: IoK8sApimachineryPkgApisMetaV1Condition[];
-  loadBalancer?: IoK8sApiCoreV1LoadBalancerStatus;
+export interface ServiceStatus {
+  conditions?: Condition[];
+  loadBalancer?: LoadBalancerStatus;
 }
-export interface IoK8sApiCoreV1SessionAffinityConfig {
-  clientIP?: IoK8sApiCoreV1ClientIPConfig;
+export interface SessionAffinityConfig {
+  clientIP?: ClientIPConfig;
 }
-export interface IoK8sApiCoreV1StorageOSPersistentVolumeSource {
+export interface StorageOSPersistentVolumeSource {
   fsType?: string;
   readOnly?: boolean;
-  secretRef?: IoK8sApiCoreV1ObjectReference;
+  secretRef?: ObjectReference;
   volumeName?: string;
   volumeNamespace?: string;
 }
-export interface IoK8sApiCoreV1StorageOSVolumeSource {
+export interface StorageOSVolumeSource {
   fsType?: string;
   readOnly?: boolean;
-  secretRef?: IoK8sApiCoreV1LocalObjectReference;
+  secretRef?: LocalObjectReference;
   volumeName?: string;
   volumeNamespace?: string;
 }
-export interface IoK8sApiCoreV1Sysctl {
+export interface Sysctl {
   name: string;
   value: string;
 }
-export interface IoK8sApiCoreV1TCPSocketAction {
+export interface TCPSocketAction {
   host?: string;
-  port: IoK8sApimachineryPkgUtilIntstrIntOrString;
+  port: IntOrString;
 }
-export interface IoK8sApiCoreV1Taint {
+export interface Taint {
   effect: string;
   key: string;
-  timeAdded?: IoK8sApimachineryPkgApisMetaV1Time;
+  timeAdded?: Time;
   value?: string;
 }
-export interface IoK8sApiCoreV1Toleration {
+export interface Toleration {
   effect?: string;
   key?: string;
   operator?: string;
   tolerationSeconds?: number;
   value?: string;
 }
-export interface IoK8sApiCoreV1TopologySelectorLabelRequirement {
+export interface TopologySelectorLabelRequirement {
   key: string;
   values: string[];
 }
-export interface IoK8sApiCoreV1TopologySelectorTerm {
-  matchLabelExpressions?: IoK8sApiCoreV1TopologySelectorLabelRequirement[];
+export interface TopologySelectorTerm {
+  matchLabelExpressions?: TopologySelectorLabelRequirement[];
 }
-export interface IoK8sApiCoreV1TopologySpreadConstraint {
-  labelSelector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
+export interface TopologySpreadConstraint {
+  labelSelector?: LabelSelector;
   maxSkew: number;
   topologyKey: string;
   whenUnsatisfiable: string;
 }
-export interface IoK8sApiCoreV1TypedLocalObjectReference {
+export interface TypedLocalObjectReference {
   apiGroup?: string;
   kind: string;
   name: string;
 }
-export interface IoK8sApiCoreV1Volume {
-  awsElasticBlockStore?: IoK8sApiCoreV1AWSElasticBlockStoreVolumeSource;
-  azureDisk?: IoK8sApiCoreV1AzureDiskVolumeSource;
-  azureFile?: IoK8sApiCoreV1AzureFileVolumeSource;
-  cephfs?: IoK8sApiCoreV1CephFSVolumeSource;
-  cinder?: IoK8sApiCoreV1CinderVolumeSource;
-  configMap?: IoK8sApiCoreV1ConfigMapVolumeSource;
-  csi?: IoK8sApiCoreV1CSIVolumeSource;
-  downwardAPI?: IoK8sApiCoreV1DownwardAPIVolumeSource;
-  emptyDir?: IoK8sApiCoreV1EmptyDirVolumeSource;
-  ephemeral?: IoK8sApiCoreV1EphemeralVolumeSource;
-  fc?: IoK8sApiCoreV1FCVolumeSource;
-  flexVolume?: IoK8sApiCoreV1FlexVolumeSource;
-  flocker?: IoK8sApiCoreV1FlockerVolumeSource;
-  gcePersistentDisk?: IoK8sApiCoreV1GCEPersistentDiskVolumeSource;
-  gitRepo?: IoK8sApiCoreV1GitRepoVolumeSource;
-  glusterfs?: IoK8sApiCoreV1GlusterfsVolumeSource;
-  hostPath?: IoK8sApiCoreV1HostPathVolumeSource;
-  iscsi?: IoK8sApiCoreV1ISCSIVolumeSource;
+export interface Volume {
+  awsElasticBlockStore?: AWSElasticBlockStoreVolumeSource;
+  azureDisk?: AzureDiskVolumeSource;
+  azureFile?: AzureFileVolumeSource;
+  cephfs?: CephFSVolumeSource;
+  cinder?: CinderVolumeSource;
+  configMap?: ConfigMapVolumeSource;
+  csi?: CSIVolumeSource;
+  downwardAPI?: DownwardAPIVolumeSource;
+  emptyDir?: EmptyDirVolumeSource;
+  ephemeral?: EphemeralVolumeSource;
+  fc?: FCVolumeSource;
+  flexVolume?: FlexVolumeSource;
+  flocker?: FlockerVolumeSource;
+  gcePersistentDisk?: GCEPersistentDiskVolumeSource;
+  gitRepo?: GitRepoVolumeSource;
+  glusterfs?: GlusterfsVolumeSource;
+  hostPath?: HostPathVolumeSource;
+  iscsi?: ISCSIVolumeSource;
   name: string;
-  nfs?: IoK8sApiCoreV1NFSVolumeSource;
-  persistentVolumeClaim?: IoK8sApiCoreV1PersistentVolumeClaimVolumeSource;
-  photonPersistentDisk?: IoK8sApiCoreV1PhotonPersistentDiskVolumeSource;
-  portworxVolume?: IoK8sApiCoreV1PortworxVolumeSource;
-  projected?: IoK8sApiCoreV1ProjectedVolumeSource;
-  quobyte?: IoK8sApiCoreV1QuobyteVolumeSource;
-  rbd?: IoK8sApiCoreV1RBDVolumeSource;
-  scaleIO?: IoK8sApiCoreV1ScaleIOVolumeSource;
-  secret?: IoK8sApiCoreV1SecretVolumeSource;
-  storageos?: IoK8sApiCoreV1StorageOSVolumeSource;
-  vsphereVolume?: IoK8sApiCoreV1VsphereVirtualDiskVolumeSource;
+  nfs?: NFSVolumeSource;
+  persistentVolumeClaim?: PersistentVolumeClaimVolumeSource;
+  photonPersistentDisk?: PhotonPersistentDiskVolumeSource;
+  portworxVolume?: PortworxVolumeSource;
+  projected?: ProjectedVolumeSource;
+  quobyte?: QuobyteVolumeSource;
+  rbd?: RBDVolumeSource;
+  scaleIO?: ScaleIOVolumeSource;
+  secret?: SecretVolumeSource;
+  storageos?: StorageOSVolumeSource;
+  vsphereVolume?: VsphereVirtualDiskVolumeSource;
 }
-export interface IoK8sApiCoreV1VolumeDevice {
+export interface VolumeDevice {
   devicePath: string;
   name: string;
 }
-export interface IoK8sApiCoreV1VolumeMount {
+export interface VolumeMount {
   mountPath: string;
   mountPropagation?: string;
   name: string;
@@ -2123,470 +2123,470 @@ export interface IoK8sApiCoreV1VolumeMount {
   subPath?: string;
   subPathExpr?: string;
 }
-export interface IoK8sApiCoreV1VolumeNodeAffinity {
-  required?: IoK8sApiCoreV1NodeSelector;
+export interface VolumeNodeAffinity {
+  required?: NodeSelector;
 }
-export interface IoK8sApiCoreV1VolumeProjection {
-  configMap?: IoK8sApiCoreV1ConfigMapProjection;
-  downwardAPI?: IoK8sApiCoreV1DownwardAPIProjection;
-  secret?: IoK8sApiCoreV1SecretProjection;
-  serviceAccountToken?: IoK8sApiCoreV1ServiceAccountTokenProjection;
+export interface VolumeProjection {
+  configMap?: ConfigMapProjection;
+  downwardAPI?: DownwardAPIProjection;
+  secret?: SecretProjection;
+  serviceAccountToken?: ServiceAccountTokenProjection;
 }
-export interface IoK8sApiCoreV1VsphereVirtualDiskVolumeSource {
+export interface VsphereVirtualDiskVolumeSource {
   fsType?: string;
   storagePolicyID?: string;
   storagePolicyName?: string;
   volumePath: string;
 }
-export interface IoK8sApiCoreV1WeightedPodAffinityTerm {
-  podAffinityTerm: IoK8sApiCoreV1PodAffinityTerm;
+export interface WeightedPodAffinityTerm {
+  podAffinityTerm: PodAffinityTerm;
   weight: number;
 }
-export interface IoK8sApiCoreV1WindowsSecurityContextOptions {
+export interface WindowsSecurityContextOptions {
   gmsaCredentialSpec?: string;
   gmsaCredentialSpecName?: string;
   hostProcess?: boolean;
   runAsUserName?: string;
 }
-export interface IoK8sApiDiscoveryV1Endpoint {
+export interface Endpoint {
   addresses: string[];
-  conditions?: IoK8sApiDiscoveryV1EndpointConditions;
+  conditions?: EndpointConditions;
   deprecatedTopology?: {
     [key: string]: unknown;
   };
-  hints?: IoK8sApiDiscoveryV1EndpointHints;
+  hints?: EndpointHints;
   hostname?: string;
   nodeName?: string;
-  targetRef?: IoK8sApiCoreV1ObjectReference;
+  targetRef?: ObjectReference;
   zone?: string;
 }
-export interface IoK8sApiDiscoveryV1EndpointConditions {
+export interface EndpointConditions {
   ready?: boolean;
   serving?: boolean;
   terminating?: boolean;
 }
-export interface IoK8sApiDiscoveryV1EndpointHints {
-  forZones?: IoK8sApiDiscoveryV1ForZone[];
+export interface EndpointHints {
+  forZones?: ForZone[];
 }
-export interface IoK8sApiDiscoveryV1EndpointPort {
+export interface EndpointPort {
   appProtocol?: string;
   name?: string;
   port?: number;
   protocol?: string;
 }
-export interface IoK8sApiDiscoveryV1EndpointSlice {
+export interface EndpointSlice {
   addressType: string;
   apiVersion?: string;
-  endpoints: IoK8sApiDiscoveryV1Endpoint[];
+  endpoints: Endpoint[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  ports?: IoK8sApiDiscoveryV1EndpointPort[];
+  metadata?: ObjectMeta;
+  ports?: EndpointPort[];
 }
-export interface IoK8sApiDiscoveryV1EndpointSliceList {
+export interface EndpointSliceList {
   apiVersion?: string;
-  items: IoK8sApiDiscoveryV1EndpointSlice[];
+  items: EndpointSlice[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiDiscoveryV1ForZone {
+export interface ForZone {
   name: string;
 }
-export interface IoK8sApiDiscoveryV1beta1Endpoint {
+export interface Endpoint {
   addresses: string[];
-  conditions?: IoK8sApiDiscoveryV1beta1EndpointConditions;
-  hints?: IoK8sApiDiscoveryV1beta1EndpointHints;
+  conditions?: EndpointConditions;
+  hints?: EndpointHints;
   hostname?: string;
   nodeName?: string;
-  targetRef?: IoK8sApiCoreV1ObjectReference;
+  targetRef?: ObjectReference;
   topology?: {
     [key: string]: unknown;
   };
 }
-export interface IoK8sApiDiscoveryV1beta1EndpointConditions {
+export interface EndpointConditions {
   ready?: boolean;
   serving?: boolean;
   terminating?: boolean;
 }
-export interface IoK8sApiDiscoveryV1beta1EndpointHints {
-  forZones?: IoK8sApiDiscoveryV1beta1ForZone[];
+export interface EndpointHints {
+  forZones?: ForZone[];
 }
-export interface IoK8sApiDiscoveryV1beta1EndpointPort {
+export interface EndpointPort {
   appProtocol?: string;
   name?: string;
   port?: number;
   protocol?: string;
 }
-export interface IoK8sApiDiscoveryV1beta1EndpointSlice {
+export interface EndpointSlice {
   addressType: string;
   apiVersion?: string;
-  endpoints: IoK8sApiDiscoveryV1beta1Endpoint[];
+  endpoints: Endpoint[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  ports?: IoK8sApiDiscoveryV1beta1EndpointPort[];
+  metadata?: ObjectMeta;
+  ports?: EndpointPort[];
 }
-export interface IoK8sApiDiscoveryV1beta1EndpointSliceList {
+export interface EndpointSliceList {
   apiVersion?: string;
-  items: IoK8sApiDiscoveryV1beta1EndpointSlice[];
+  items: EndpointSlice[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiDiscoveryV1beta1ForZone {
+export interface ForZone {
   name: string;
 }
-export interface IoK8sApiEventsV1Event {
+export interface Event {
   action?: string;
   apiVersion?: string;
   deprecatedCount?: number;
-  deprecatedFirstTimestamp?: IoK8sApimachineryPkgApisMetaV1Time;
-  deprecatedLastTimestamp?: IoK8sApimachineryPkgApisMetaV1Time;
-  deprecatedSource?: IoK8sApiCoreV1EventSource;
-  eventTime: IoK8sApimachineryPkgApisMetaV1MicroTime;
+  deprecatedFirstTimestamp?: Time;
+  deprecatedLastTimestamp?: Time;
+  deprecatedSource?: EventSource;
+  eventTime: MicroTime;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
+  metadata?: ObjectMeta;
   note?: string;
   reason?: string;
-  regarding?: IoK8sApiCoreV1ObjectReference;
-  related?: IoK8sApiCoreV1ObjectReference;
+  regarding?: ObjectReference;
+  related?: ObjectReference;
   reportingController?: string;
   reportingInstance?: string;
-  series?: IoK8sApiEventsV1EventSeries;
+  series?: EventSeries;
   type?: string;
 }
-export interface IoK8sApiEventsV1EventList {
+export interface EventList {
   apiVersion?: string;
-  items: IoK8sApiEventsV1Event[];
+  items: Event[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiEventsV1EventSeries {
+export interface EventSeries {
   count: number;
-  lastObservedTime: IoK8sApimachineryPkgApisMetaV1MicroTime;
+  lastObservedTime: MicroTime;
 }
-export interface IoK8sApiEventsV1beta1Event {
+export interface Event {
   action?: string;
   apiVersion?: string;
   deprecatedCount?: number;
-  deprecatedFirstTimestamp?: IoK8sApimachineryPkgApisMetaV1Time;
-  deprecatedLastTimestamp?: IoK8sApimachineryPkgApisMetaV1Time;
-  deprecatedSource?: IoK8sApiCoreV1EventSource;
-  eventTime: IoK8sApimachineryPkgApisMetaV1MicroTime;
+  deprecatedFirstTimestamp?: Time;
+  deprecatedLastTimestamp?: Time;
+  deprecatedSource?: EventSource;
+  eventTime: MicroTime;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
+  metadata?: ObjectMeta;
   note?: string;
   reason?: string;
-  regarding?: IoK8sApiCoreV1ObjectReference;
-  related?: IoK8sApiCoreV1ObjectReference;
+  regarding?: ObjectReference;
+  related?: ObjectReference;
   reportingController?: string;
   reportingInstance?: string;
-  series?: IoK8sApiEventsV1beta1EventSeries;
+  series?: EventSeries;
   type?: string;
 }
-export interface IoK8sApiEventsV1beta1EventList {
+export interface EventList {
   apiVersion?: string;
-  items: IoK8sApiEventsV1beta1Event[];
+  items: Event[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiEventsV1beta1EventSeries {
+export interface EventSeries {
   count: number;
-  lastObservedTime: IoK8sApimachineryPkgApisMetaV1MicroTime;
+  lastObservedTime: MicroTime;
 }
-export interface IoK8sApiFlowcontrolV1beta1FlowDistinguisherMethod {
+export interface FlowDistinguisherMethod {
   type: string;
 }
-export interface IoK8sApiFlowcontrolV1beta1FlowSchema {
+export interface FlowSchema {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiFlowcontrolV1beta1FlowSchemaSpec;
-  status?: IoK8sApiFlowcontrolV1beta1FlowSchemaStatus;
+  metadata?: ObjectMeta;
+  spec?: FlowSchemaSpec;
+  status?: FlowSchemaStatus;
 }
-export interface IoK8sApiFlowcontrolV1beta1FlowSchemaCondition {
-  lastTransitionTime?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface FlowSchemaCondition {
+  lastTransitionTime?: Time;
   message?: string;
   reason?: string;
   status?: string;
   type?: string;
 }
-export interface IoK8sApiFlowcontrolV1beta1FlowSchemaList {
+export interface FlowSchemaList {
   apiVersion?: string;
-  items: IoK8sApiFlowcontrolV1beta1FlowSchema[];
+  items: FlowSchema[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiFlowcontrolV1beta1FlowSchemaSpec {
-  distinguisherMethod?: IoK8sApiFlowcontrolV1beta1FlowDistinguisherMethod;
+export interface FlowSchemaSpec {
+  distinguisherMethod?: FlowDistinguisherMethod;
   matchingPrecedence?: number;
-  priorityLevelConfiguration: IoK8sApiFlowcontrolV1beta1PriorityLevelConfigurationReference;
-  rules?: IoK8sApiFlowcontrolV1beta1PolicyRulesWithSubjects[];
+  priorityLevelConfiguration: PriorityLevelConfigurationReference;
+  rules?: PolicyRulesWithSubjects[];
 }
-export interface IoK8sApiFlowcontrolV1beta1FlowSchemaStatus {
-  conditions?: IoK8sApiFlowcontrolV1beta1FlowSchemaCondition[];
+export interface FlowSchemaStatus {
+  conditions?: FlowSchemaCondition[];
 }
-export interface IoK8sApiFlowcontrolV1beta1GroupSubject {
+export interface GroupSubject {
   name: string;
 }
-export interface IoK8sApiFlowcontrolV1beta1LimitResponse {
-  queuing?: IoK8sApiFlowcontrolV1beta1QueuingConfiguration;
+export interface LimitResponse {
+  queuing?: QueuingConfiguration;
   type: string;
 }
-export interface IoK8sApiFlowcontrolV1beta1LimitedPriorityLevelConfiguration {
+export interface LimitedPriorityLevelConfiguration {
   assuredConcurrencyShares?: number;
-  limitResponse?: IoK8sApiFlowcontrolV1beta1LimitResponse;
+  limitResponse?: LimitResponse;
 }
-export interface IoK8sApiFlowcontrolV1beta1NonResourcePolicyRule {
+export interface NonResourcePolicyRule {
   nonResourceURLs: string[];
   verbs: string[];
 }
-export interface IoK8sApiFlowcontrolV1beta1PolicyRulesWithSubjects {
-  nonResourceRules?: IoK8sApiFlowcontrolV1beta1NonResourcePolicyRule[];
-  resourceRules?: IoK8sApiFlowcontrolV1beta1ResourcePolicyRule[];
-  subjects: IoK8sApiFlowcontrolV1beta1Subject[];
+export interface PolicyRulesWithSubjects {
+  nonResourceRules?: NonResourcePolicyRule[];
+  resourceRules?: ResourcePolicyRule[];
+  subjects: Subject[];
 }
-export interface IoK8sApiFlowcontrolV1beta1PriorityLevelConfiguration {
+export interface PriorityLevelConfiguration {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiFlowcontrolV1beta1PriorityLevelConfigurationSpec;
-  status?: IoK8sApiFlowcontrolV1beta1PriorityLevelConfigurationStatus;
+  metadata?: ObjectMeta;
+  spec?: PriorityLevelConfigurationSpec;
+  status?: PriorityLevelConfigurationStatus;
 }
-export interface IoK8sApiFlowcontrolV1beta1PriorityLevelConfigurationCondition {
-  lastTransitionTime?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface PriorityLevelConfigurationCondition {
+  lastTransitionTime?: Time;
   message?: string;
   reason?: string;
   status?: string;
   type?: string;
 }
-export interface IoK8sApiFlowcontrolV1beta1PriorityLevelConfigurationList {
+export interface PriorityLevelConfigurationList {
   apiVersion?: string;
-  items: IoK8sApiFlowcontrolV1beta1PriorityLevelConfiguration[];
+  items: PriorityLevelConfiguration[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiFlowcontrolV1beta1PriorityLevelConfigurationReference {
+export interface PriorityLevelConfigurationReference {
   name: string;
 }
-export interface IoK8sApiFlowcontrolV1beta1PriorityLevelConfigurationSpec {
-  limited?: IoK8sApiFlowcontrolV1beta1LimitedPriorityLevelConfiguration;
+export interface PriorityLevelConfigurationSpec {
+  limited?: LimitedPriorityLevelConfiguration;
   type: string;
 }
-export interface IoK8sApiFlowcontrolV1beta1PriorityLevelConfigurationStatus {
-  conditions?: IoK8sApiFlowcontrolV1beta1PriorityLevelConfigurationCondition[];
+export interface PriorityLevelConfigurationStatus {
+  conditions?: PriorityLevelConfigurationCondition[];
 }
-export interface IoK8sApiFlowcontrolV1beta1QueuingConfiguration {
+export interface QueuingConfiguration {
   handSize?: number;
   queueLengthLimit?: number;
   queues?: number;
 }
-export interface IoK8sApiFlowcontrolV1beta1ResourcePolicyRule {
+export interface ResourcePolicyRule {
   apiGroups: string[];
   clusterScope?: boolean;
   namespaces?: string[];
   resources: string[];
   verbs: string[];
 }
-export interface IoK8sApiFlowcontrolV1beta1ServiceAccountSubject {
+export interface ServiceAccountSubject {
   name: string;
   namespace: string;
 }
-export interface IoK8sApiFlowcontrolV1beta1Subject {
-  group?: IoK8sApiFlowcontrolV1beta1GroupSubject;
+export interface Subject {
+  group?: GroupSubject;
   kind: string;
-  serviceAccount?: IoK8sApiFlowcontrolV1beta1ServiceAccountSubject;
-  user?: IoK8sApiFlowcontrolV1beta1UserSubject;
+  serviceAccount?: ServiceAccountSubject;
+  user?: UserSubject;
 }
-export interface IoK8sApiFlowcontrolV1beta1UserSubject {
+export interface UserSubject {
   name: string;
 }
-export interface IoK8sApiNetworkingV1HTTPIngressPath {
-  backend: IoK8sApiNetworkingV1IngressBackend;
+export interface HTTPIngressPath {
+  backend: IngressBackend;
   path?: string;
   pathType: string;
 }
-export interface IoK8sApiNetworkingV1HTTPIngressRuleValue {
-  paths: IoK8sApiNetworkingV1HTTPIngressPath[];
+export interface HTTPIngressRuleValue {
+  paths: HTTPIngressPath[];
 }
-export interface IoK8sApiNetworkingV1IPBlock {
+export interface IPBlock {
   cidr: string;
   except?: string[];
 }
-export interface IoK8sApiNetworkingV1Ingress {
+export interface Ingress {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiNetworkingV1IngressSpec;
-  status?: IoK8sApiNetworkingV1IngressStatus;
+  metadata?: ObjectMeta;
+  spec?: IngressSpec;
+  status?: IngressStatus;
 }
-export interface IoK8sApiNetworkingV1IngressBackend {
-  resource?: IoK8sApiCoreV1TypedLocalObjectReference;
-  service?: IoK8sApiNetworkingV1IngressServiceBackend;
+export interface IngressBackend {
+  resource?: TypedLocalObjectReference;
+  service?: IngressServiceBackend;
 }
-export interface IoK8sApiNetworkingV1IngressClass {
+export interface IngressClass {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiNetworkingV1IngressClassSpec;
+  metadata?: ObjectMeta;
+  spec?: IngressClassSpec;
 }
-export interface IoK8sApiNetworkingV1IngressClassList {
+export interface IngressClassList {
   apiVersion?: string;
-  items: IoK8sApiNetworkingV1IngressClass[];
+  items: IngressClass[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiNetworkingV1IngressClassParametersReference {
+export interface IngressClassParametersReference {
   apiGroup?: string;
   kind: string;
   name: string;
   namespace?: string;
   scope?: string;
 }
-export interface IoK8sApiNetworkingV1IngressClassSpec {
+export interface IngressClassSpec {
   controller?: string;
-  parameters?: IoK8sApiNetworkingV1IngressClassParametersReference;
+  parameters?: IngressClassParametersReference;
 }
-export interface IoK8sApiNetworkingV1IngressList {
+export interface IngressList {
   apiVersion?: string;
-  items: IoK8sApiNetworkingV1Ingress[];
+  items: Ingress[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiNetworkingV1IngressRule {
+export interface IngressRule {
   host?: string;
-  http?: IoK8sApiNetworkingV1HTTPIngressRuleValue;
+  http?: HTTPIngressRuleValue;
 }
-export interface IoK8sApiNetworkingV1IngressServiceBackend {
+export interface IngressServiceBackend {
   name: string;
-  port?: IoK8sApiNetworkingV1ServiceBackendPort;
+  port?: ServiceBackendPort;
 }
-export interface IoK8sApiNetworkingV1IngressSpec {
-  defaultBackend?: IoK8sApiNetworkingV1IngressBackend;
+export interface IngressSpec {
+  defaultBackend?: IngressBackend;
   ingressClassName?: string;
-  rules?: IoK8sApiNetworkingV1IngressRule[];
-  tls?: IoK8sApiNetworkingV1IngressTLS[];
+  rules?: IngressRule[];
+  tls?: IngressTLS[];
 }
-export interface IoK8sApiNetworkingV1IngressStatus {
-  loadBalancer?: IoK8sApiCoreV1LoadBalancerStatus;
+export interface IngressStatus {
+  loadBalancer?: LoadBalancerStatus;
 }
-export interface IoK8sApiNetworkingV1IngressTLS {
+export interface IngressTLS {
   hosts?: string[];
   secretName?: string;
 }
-export interface IoK8sApiNetworkingV1NetworkPolicy {
+export interface NetworkPolicy {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiNetworkingV1NetworkPolicySpec;
+  metadata?: ObjectMeta;
+  spec?: NetworkPolicySpec;
 }
-export interface IoK8sApiNetworkingV1NetworkPolicyEgressRule {
-  ports?: IoK8sApiNetworkingV1NetworkPolicyPort[];
-  to?: IoK8sApiNetworkingV1NetworkPolicyPeer[];
+export interface NetworkPolicyEgressRule {
+  ports?: NetworkPolicyPort[];
+  to?: NetworkPolicyPeer[];
 }
-export interface IoK8sApiNetworkingV1NetworkPolicyIngressRule {
-  from?: IoK8sApiNetworkingV1NetworkPolicyPeer[];
-  ports?: IoK8sApiNetworkingV1NetworkPolicyPort[];
+export interface NetworkPolicyIngressRule {
+  from?: NetworkPolicyPeer[];
+  ports?: NetworkPolicyPort[];
 }
-export interface IoK8sApiNetworkingV1NetworkPolicyList {
+export interface NetworkPolicyList {
   apiVersion?: string;
-  items: IoK8sApiNetworkingV1NetworkPolicy[];
+  items: NetworkPolicy[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiNetworkingV1NetworkPolicyPeer {
-  ipBlock?: IoK8sApiNetworkingV1IPBlock;
-  namespaceSelector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
-  podSelector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
+export interface NetworkPolicyPeer {
+  ipBlock?: IPBlock;
+  namespaceSelector?: LabelSelector;
+  podSelector?: LabelSelector;
 }
-export interface IoK8sApiNetworkingV1NetworkPolicyPort {
+export interface NetworkPolicyPort {
   endPort?: number;
-  port?: IoK8sApimachineryPkgUtilIntstrIntOrString;
+  port?: IntOrString;
   protocol?: string;
 }
-export interface IoK8sApiNetworkingV1NetworkPolicySpec {
-  egress?: IoK8sApiNetworkingV1NetworkPolicyEgressRule[];
-  ingress?: IoK8sApiNetworkingV1NetworkPolicyIngressRule[];
-  podSelector: IoK8sApimachineryPkgApisMetaV1LabelSelector;
+export interface NetworkPolicySpec {
+  egress?: NetworkPolicyEgressRule[];
+  ingress?: NetworkPolicyIngressRule[];
+  podSelector: LabelSelector;
   policyTypes?: string[];
 }
-export interface IoK8sApiNetworkingV1ServiceBackendPort {
+export interface ServiceBackendPort {
   name?: string;
   number?: number;
 }
-export interface IoK8sApiNodeV1Overhead {
+export interface Overhead {
   podFixed?: {
     [key: string]: unknown;
   };
 }
-export interface IoK8sApiNodeV1RuntimeClass {
+export interface RuntimeClass {
   apiVersion?: string;
   handler: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  overhead?: IoK8sApiNodeV1Overhead;
-  scheduling?: IoK8sApiNodeV1Scheduling;
+  metadata?: ObjectMeta;
+  overhead?: Overhead;
+  scheduling?: Scheduling;
 }
-export interface IoK8sApiNodeV1RuntimeClassList {
+export interface RuntimeClassList {
   apiVersion?: string;
-  items: IoK8sApiNodeV1RuntimeClass[];
+  items: RuntimeClass[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiNodeV1Scheduling {
+export interface Scheduling {
   nodeSelector?: {
     [key: string]: unknown;
   };
-  tolerations?: IoK8sApiCoreV1Toleration[];
+  tolerations?: Toleration[];
 }
-export interface IoK8sApiNodeV1beta1Overhead {
+export interface Overhead {
   podFixed?: {
     [key: string]: unknown;
   };
 }
-export interface IoK8sApiNodeV1beta1RuntimeClass {
+export interface RuntimeClass {
   apiVersion?: string;
   handler: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  overhead?: IoK8sApiNodeV1beta1Overhead;
-  scheduling?: IoK8sApiNodeV1beta1Scheduling;
+  metadata?: ObjectMeta;
+  overhead?: Overhead;
+  scheduling?: Scheduling;
 }
-export interface IoK8sApiNodeV1beta1RuntimeClassList {
+export interface RuntimeClassList {
   apiVersion?: string;
-  items: IoK8sApiNodeV1beta1RuntimeClass[];
+  items: RuntimeClass[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiNodeV1beta1Scheduling {
+export interface Scheduling {
   nodeSelector?: {
     [key: string]: unknown;
   };
-  tolerations?: IoK8sApiCoreV1Toleration[];
+  tolerations?: Toleration[];
 }
-export interface IoK8sApiPolicyV1Eviction {
+export interface Eviction {
   apiVersion?: string;
-  deleteOptions?: IoK8sApimachineryPkgApisMetaV1DeleteOptions;
+  deleteOptions?: DeleteOptions;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
+  metadata?: ObjectMeta;
 }
-export interface IoK8sApiPolicyV1PodDisruptionBudget {
+export interface PodDisruptionBudget {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiPolicyV1PodDisruptionBudgetSpec;
-  status?: IoK8sApiPolicyV1PodDisruptionBudgetStatus;
+  metadata?: ObjectMeta;
+  spec?: PodDisruptionBudgetSpec;
+  status?: PodDisruptionBudgetStatus;
 }
-export interface IoK8sApiPolicyV1PodDisruptionBudgetList {
+export interface PodDisruptionBudgetList {
   apiVersion?: string;
-  items: IoK8sApiPolicyV1PodDisruptionBudget[];
+  items: PodDisruptionBudget[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiPolicyV1PodDisruptionBudgetSpec {
-  maxUnavailable?: IoK8sApimachineryPkgUtilIntstrIntOrString;
-  minAvailable?: IoK8sApimachineryPkgUtilIntstrIntOrString;
-  selector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
+export interface PodDisruptionBudgetSpec {
+  maxUnavailable?: IntOrString;
+  minAvailable?: IntOrString;
+  selector?: LabelSelector;
 }
-export interface IoK8sApiPolicyV1PodDisruptionBudgetStatus {
-  conditions?: IoK8sApimachineryPkgApisMetaV1Condition[];
+export interface PodDisruptionBudgetStatus {
+  conditions?: Condition[];
   currentHealthy: number;
   desiredHealthy: number;
   disruptedPods?: {
@@ -2596,48 +2596,48 @@ export interface IoK8sApiPolicyV1PodDisruptionBudgetStatus {
   expectedPods: number;
   observedGeneration?: number;
 }
-export interface IoK8sApiPolicyV1beta1AllowedCSIDriver {
+export interface AllowedCSIDriver {
   name: string;
 }
-export interface IoK8sApiPolicyV1beta1AllowedFlexVolume {
+export interface AllowedFlexVolume {
   driver: string;
 }
-export interface IoK8sApiPolicyV1beta1AllowedHostPath {
+export interface AllowedHostPath {
   pathPrefix?: string;
   readOnly?: boolean;
 }
-export interface IoK8sApiPolicyV1beta1FSGroupStrategyOptions {
-  ranges?: IoK8sApiPolicyV1beta1IDRange[];
+export interface FSGroupStrategyOptions {
+  ranges?: IDRange[];
   rule?: string;
 }
-export interface IoK8sApiPolicyV1beta1HostPortRange {
+export interface HostPortRange {
   max: number;
   min: number;
 }
-export interface IoK8sApiPolicyV1beta1IDRange {
+export interface IDRange {
   max: number;
   min: number;
 }
-export interface IoK8sApiPolicyV1beta1PodDisruptionBudget {
+export interface PodDisruptionBudget {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiPolicyV1beta1PodDisruptionBudgetSpec;
-  status?: IoK8sApiPolicyV1beta1PodDisruptionBudgetStatus;
+  metadata?: ObjectMeta;
+  spec?: PodDisruptionBudgetSpec;
+  status?: PodDisruptionBudgetStatus;
 }
-export interface IoK8sApiPolicyV1beta1PodDisruptionBudgetList {
+export interface PodDisruptionBudgetList {
   apiVersion?: string;
-  items: IoK8sApiPolicyV1beta1PodDisruptionBudget[];
+  items: PodDisruptionBudget[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiPolicyV1beta1PodDisruptionBudgetSpec {
-  maxUnavailable?: IoK8sApimachineryPkgUtilIntstrIntOrString;
-  minAvailable?: IoK8sApimachineryPkgUtilIntstrIntOrString;
-  selector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
+export interface PodDisruptionBudgetSpec {
+  maxUnavailable?: IntOrString;
+  minAvailable?: IntOrString;
+  selector?: LabelSelector;
 }
-export interface IoK8sApiPolicyV1beta1PodDisruptionBudgetStatus {
-  conditions?: IoK8sApimachineryPkgApisMetaV1Condition[];
+export interface PodDisruptionBudgetStatus {
+  conditions?: Condition[];
   currentHealthy: number;
   desiredHealthy: number;
   disruptedPods?: {
@@ -2647,199 +2647,199 @@ export interface IoK8sApiPolicyV1beta1PodDisruptionBudgetStatus {
   expectedPods: number;
   observedGeneration?: number;
 }
-export interface IoK8sApiPolicyV1beta1PodSecurityPolicy {
+export interface PodSecurityPolicy {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sApiPolicyV1beta1PodSecurityPolicySpec;
+  metadata?: ObjectMeta;
+  spec?: PodSecurityPolicySpec;
 }
-export interface IoK8sApiPolicyV1beta1PodSecurityPolicyList {
+export interface PodSecurityPolicyList {
   apiVersion?: string;
-  items: IoK8sApiPolicyV1beta1PodSecurityPolicy[];
+  items: PodSecurityPolicy[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiPolicyV1beta1PodSecurityPolicySpec {
+export interface PodSecurityPolicySpec {
   allowPrivilegeEscalation?: boolean;
-  allowedCSIDrivers?: IoK8sApiPolicyV1beta1AllowedCSIDriver[];
+  allowedCSIDrivers?: AllowedCSIDriver[];
   allowedCapabilities?: string[];
-  allowedFlexVolumes?: IoK8sApiPolicyV1beta1AllowedFlexVolume[];
-  allowedHostPaths?: IoK8sApiPolicyV1beta1AllowedHostPath[];
+  allowedFlexVolumes?: AllowedFlexVolume[];
+  allowedHostPaths?: AllowedHostPath[];
   allowedProcMountTypes?: string[];
   allowedUnsafeSysctls?: string[];
   defaultAddCapabilities?: string[];
   defaultAllowPrivilegeEscalation?: boolean;
   forbiddenSysctls?: string[];
-  fsGroup: IoK8sApiPolicyV1beta1FSGroupStrategyOptions;
+  fsGroup: FSGroupStrategyOptions;
   hostIPC?: boolean;
   hostNetwork?: boolean;
   hostPID?: boolean;
-  hostPorts?: IoK8sApiPolicyV1beta1HostPortRange[];
+  hostPorts?: HostPortRange[];
   privileged?: boolean;
   readOnlyRootFilesystem?: boolean;
   requiredDropCapabilities?: string[];
-  runAsGroup?: IoK8sApiPolicyV1beta1RunAsGroupStrategyOptions;
-  runAsUser: IoK8sApiPolicyV1beta1RunAsUserStrategyOptions;
-  runtimeClass?: IoK8sApiPolicyV1beta1RuntimeClassStrategyOptions;
-  seLinux: IoK8sApiPolicyV1beta1SELinuxStrategyOptions;
-  supplementalGroups: IoK8sApiPolicyV1beta1SupplementalGroupsStrategyOptions;
+  runAsGroup?: RunAsGroupStrategyOptions;
+  runAsUser: RunAsUserStrategyOptions;
+  runtimeClass?: RuntimeClassStrategyOptions;
+  seLinux: SELinuxStrategyOptions;
+  supplementalGroups: SupplementalGroupsStrategyOptions;
   volumes?: string[];
 }
-export interface IoK8sApiPolicyV1beta1RunAsGroupStrategyOptions {
-  ranges?: IoK8sApiPolicyV1beta1IDRange[];
+export interface RunAsGroupStrategyOptions {
+  ranges?: IDRange[];
   rule: string;
 }
-export interface IoK8sApiPolicyV1beta1RunAsUserStrategyOptions {
-  ranges?: IoK8sApiPolicyV1beta1IDRange[];
+export interface RunAsUserStrategyOptions {
+  ranges?: IDRange[];
   rule: string;
 }
-export interface IoK8sApiPolicyV1beta1RuntimeClassStrategyOptions {
+export interface RuntimeClassStrategyOptions {
   allowedRuntimeClassNames: string[];
   defaultRuntimeClassName?: string;
 }
-export interface IoK8sApiPolicyV1beta1SELinuxStrategyOptions {
+export interface SELinuxStrategyOptions {
   rule: string;
-  seLinuxOptions?: IoK8sApiCoreV1SELinuxOptions;
+  seLinuxOptions?: SELinuxOptions;
 }
-export interface IoK8sApiPolicyV1beta1SupplementalGroupsStrategyOptions {
-  ranges?: IoK8sApiPolicyV1beta1IDRange[];
+export interface SupplementalGroupsStrategyOptions {
+  ranges?: IDRange[];
   rule?: string;
 }
-export interface IoK8sApiRbacV1AggregationRule {
-  clusterRoleSelectors?: IoK8sApimachineryPkgApisMetaV1LabelSelector[];
+export interface AggregationRule {
+  clusterRoleSelectors?: LabelSelector[];
 }
-export interface IoK8sApiRbacV1ClusterRole {
-  aggregationRule?: IoK8sApiRbacV1AggregationRule;
+export interface ClusterRole {
+  aggregationRule?: AggregationRule;
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  rules?: IoK8sApiRbacV1PolicyRule[];
+  metadata?: ObjectMeta;
+  rules?: PolicyRule[];
 }
-export interface IoK8sApiRbacV1ClusterRoleBinding {
+export interface ClusterRoleBinding {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  roleRef: IoK8sApiRbacV1RoleRef;
-  subjects?: IoK8sApiRbacV1Subject[];
+  metadata?: ObjectMeta;
+  roleRef: RoleRef;
+  subjects?: Subject[];
 }
-export interface IoK8sApiRbacV1ClusterRoleBindingList {
+export interface ClusterRoleBindingList {
   apiVersion?: string;
-  items: IoK8sApiRbacV1ClusterRoleBinding[];
+  items: ClusterRoleBinding[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiRbacV1ClusterRoleList {
+export interface ClusterRoleList {
   apiVersion?: string;
-  items: IoK8sApiRbacV1ClusterRole[];
+  items: ClusterRole[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiRbacV1PolicyRule {
+export interface PolicyRule {
   apiGroups?: string[];
   nonResourceURLs?: string[];
   resourceNames?: string[];
   resources?: string[];
   verbs: string[];
 }
-export interface IoK8sApiRbacV1Role {
+export interface Role {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  rules?: IoK8sApiRbacV1PolicyRule[];
+  metadata?: ObjectMeta;
+  rules?: PolicyRule[];
 }
-export interface IoK8sApiRbacV1RoleBinding {
+export interface RoleBinding {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  roleRef: IoK8sApiRbacV1RoleRef;
-  subjects?: IoK8sApiRbacV1Subject[];
+  metadata?: ObjectMeta;
+  roleRef: RoleRef;
+  subjects?: Subject[];
 }
-export interface IoK8sApiRbacV1RoleBindingList {
+export interface RoleBindingList {
   apiVersion?: string;
-  items: IoK8sApiRbacV1RoleBinding[];
+  items: RoleBinding[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiRbacV1RoleList {
+export interface RoleList {
   apiVersion?: string;
-  items: IoK8sApiRbacV1Role[];
+  items: Role[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiRbacV1RoleRef {
+export interface RoleRef {
   apiGroup: string;
   kind: string;
   name: string;
 }
-export interface IoK8sApiRbacV1Subject {
+export interface Subject {
   apiGroup?: string;
   kind: string;
   name: string;
   namespace?: string;
 }
-export interface IoK8sApiSchedulingV1PriorityClass {
+export interface PriorityClass {
   apiVersion?: string;
   description?: string;
   globalDefault?: boolean;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
+  metadata?: ObjectMeta;
   preemptionPolicy?: string;
   value: number;
 }
-export interface IoK8sApiSchedulingV1PriorityClassList {
+export interface PriorityClassList {
   apiVersion?: string;
-  items: IoK8sApiSchedulingV1PriorityClass[];
+  items: PriorityClass[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiStorageV1CSIDriver {
+export interface CSIDriver {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec: IoK8sApiStorageV1CSIDriverSpec;
+  metadata?: ObjectMeta;
+  spec: CSIDriverSpec;
 }
-export interface IoK8sApiStorageV1CSIDriverList {
+export interface CSIDriverList {
   apiVersion?: string;
-  items: IoK8sApiStorageV1CSIDriver[];
+  items: CSIDriver[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiStorageV1CSIDriverSpec {
+export interface CSIDriverSpec {
   attachRequired?: boolean;
   fsGroupPolicy?: string;
   podInfoOnMount?: boolean;
   requiresRepublish?: boolean;
   storageCapacity?: boolean;
-  tokenRequests?: IoK8sApiStorageV1TokenRequest[];
+  tokenRequests?: TokenRequest[];
   volumeLifecycleModes?: string[];
 }
-export interface IoK8sApiStorageV1CSINode {
+export interface CSINode {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec: IoK8sApiStorageV1CSINodeSpec;
+  metadata?: ObjectMeta;
+  spec: CSINodeSpec;
 }
-export interface IoK8sApiStorageV1CSINodeDriver {
-  allocatable?: IoK8sApiStorageV1VolumeNodeResources;
+export interface CSINodeDriver {
+  allocatable?: VolumeNodeResources;
   name: string;
   nodeID: string;
   topologyKeys?: string[];
 }
-export interface IoK8sApiStorageV1CSINodeList {
+export interface CSINodeList {
   apiVersion?: string;
-  items: IoK8sApiStorageV1CSINode[];
+  items: CSINode[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiStorageV1CSINodeSpec {
-  drivers: IoK8sApiStorageV1CSINodeDriver[];
+export interface CSINodeSpec {
+  drivers: CSINodeDriver[];
 }
-export interface IoK8sApiStorageV1StorageClass {
+export interface StorageClass {
   allowVolumeExpansion?: boolean;
-  allowedTopologies?: IoK8sApiCoreV1TopologySelectorTerm[];
+  allowedTopologies?: TopologySelectorTerm[];
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
+  metadata?: ObjectMeta;
   mountOptions?: string[];
   parameters?: {
     [key: string]: unknown;
@@ -2848,69 +2848,69 @@ export interface IoK8sApiStorageV1StorageClass {
   reclaimPolicy?: string;
   volumeBindingMode?: string;
 }
-export interface IoK8sApiStorageV1StorageClassList {
+export interface StorageClassList {
   apiVersion?: string;
-  items: IoK8sApiStorageV1StorageClass[];
+  items: StorageClass[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiStorageV1TokenRequest {
+export interface TokenRequest {
   audience: string;
   expirationSeconds?: number;
 }
-export interface IoK8sApiStorageV1VolumeAttachment {
+export interface VolumeAttachment {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec: IoK8sApiStorageV1VolumeAttachmentSpec;
-  status?: IoK8sApiStorageV1VolumeAttachmentStatus;
+  metadata?: ObjectMeta;
+  spec: VolumeAttachmentSpec;
+  status?: VolumeAttachmentStatus;
 }
-export interface IoK8sApiStorageV1VolumeAttachmentList {
+export interface VolumeAttachmentList {
   apiVersion?: string;
-  items: IoK8sApiStorageV1VolumeAttachment[];
+  items: VolumeAttachment[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiStorageV1VolumeAttachmentSource {
-  inlineVolumeSpec?: IoK8sApiCoreV1PersistentVolumeSpec;
+export interface VolumeAttachmentSource {
+  inlineVolumeSpec?: PersistentVolumeSpec;
   persistentVolumeName?: string;
 }
-export interface IoK8sApiStorageV1VolumeAttachmentSpec {
+export interface VolumeAttachmentSpec {
   attacher: string;
   nodeName: string;
-  source: IoK8sApiStorageV1VolumeAttachmentSource;
+  source: VolumeAttachmentSource;
 }
-export interface IoK8sApiStorageV1VolumeAttachmentStatus {
-  attachError?: IoK8sApiStorageV1VolumeError;
+export interface VolumeAttachmentStatus {
+  attachError?: VolumeError;
   attached: boolean;
   attachmentMetadata?: {
     [key: string]: unknown;
   };
-  detachError?: IoK8sApiStorageV1VolumeError;
+  detachError?: VolumeError;
 }
-export interface IoK8sApiStorageV1VolumeError {
+export interface VolumeError {
   message?: string;
-  time?: IoK8sApimachineryPkgApisMetaV1Time;
+  time?: Time;
 }
-export interface IoK8sApiStorageV1VolumeNodeResources {
+export interface VolumeNodeResources {
   count?: number;
 }
-export interface IoK8sApiStorageV1beta1CSIStorageCapacity {
+export interface CSIStorageCapacity {
   apiVersion?: string;
-  capacity?: IoK8sApimachineryPkgApiResourceQuantity;
+  capacity?: Quantity;
   kind?: string;
-  maximumVolumeSize?: IoK8sApimachineryPkgApiResourceQuantity;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  nodeTopology?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
+  maximumVolumeSize?: Quantity;
+  metadata?: ObjectMeta;
+  nodeTopology?: LabelSelector;
   storageClassName: string;
 }
-export interface IoK8sApiStorageV1beta1CSIStorageCapacityList {
+export interface CSIStorageCapacityList {
   apiVersion?: string;
-  items: IoK8sApiStorageV1beta1CSIStorageCapacity[];
+  items: CSIStorageCapacity[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceColumnDefinition {
+export interface CustomResourceColumnDefinition {
   description?: string;
   format?: string;
   jsonPath: string;
@@ -2918,31 +2918,31 @@ export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResource
   priority?: number;
   type: string;
 }
-export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceConversion {
+export interface CustomResourceConversion {
   strategy: string;
-  webhook?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1WebhookConversion;
+  webhook?: WebhookConversion;
 }
-export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceDefinition {
+export interface CustomResourceDefinition {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec: IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceDefinitionSpec;
-  status?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceDefinitionStatus;
+  metadata?: ObjectMeta;
+  spec: CustomResourceDefinitionSpec;
+  status?: CustomResourceDefinitionStatus;
 }
-export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceDefinitionCondition {
-  lastTransitionTime?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface CustomResourceDefinitionCondition {
+  lastTransitionTime?: Time;
   message?: string;
   reason?: string;
   status: string;
   type: string;
 }
-export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceDefinitionList {
+export interface CustomResourceDefinitionList {
   apiVersion?: string;
-  items: IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceDefinition[];
+  items: CustomResourceDefinition[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceDefinitionNames {
+export interface CustomResourceDefinitionNames {
   categories?: string[];
   kind: string;
   listKind?: string;
@@ -2950,57 +2950,57 @@ export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResource
   shortNames?: string[];
   singular?: string;
 }
-export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceDefinitionSpec {
-  conversion?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceConversion;
+export interface CustomResourceDefinitionSpec {
+  conversion?: CustomResourceConversion;
   group: string;
-  names: IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceDefinitionNames;
+  names: CustomResourceDefinitionNames;
   preserveUnknownFields?: boolean;
   scope: string;
-  versions: IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceDefinitionVersion[];
+  versions: CustomResourceDefinitionVersion[];
 }
-export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceDefinitionStatus {
-  acceptedNames?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceDefinitionNames;
-  conditions?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceDefinitionCondition[];
+export interface CustomResourceDefinitionStatus {
+  acceptedNames?: CustomResourceDefinitionNames;
+  conditions?: CustomResourceDefinitionCondition[];
   storedVersions?: string[];
 }
-export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceDefinitionVersion {
-  additionalPrinterColumns?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceColumnDefinition[];
+export interface CustomResourceDefinitionVersion {
+  additionalPrinterColumns?: CustomResourceColumnDefinition[];
   deprecated?: boolean;
   deprecationWarning?: string;
   name: string;
-  schema?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceValidation;
+  schema?: CustomResourceValidation;
   served: boolean;
   storage: boolean;
-  subresources?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceSubresources;
+  subresources?: CustomResourceSubresources;
 }
-export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceSubresourceScale {
+export interface CustomResourceSubresourceScale {
   labelSelectorPath?: string;
   specReplicasPath: string;
   statusReplicasPath: string;
 }
-export type IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceSubresourceStatus = {
+export type CustomResourceSubresourceStatus = {
   [key: string]: unknown;
 };
-export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceSubresources {
-  scale?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceSubresourceScale;
-  status?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceSubresourceStatus;
+export interface CustomResourceSubresources {
+  scale?: CustomResourceSubresourceScale;
+  status?: CustomResourceSubresourceStatus;
 }
-export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1CustomResourceValidation {
-  openAPIV3Schema?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1JSONSchemaProps;
+export interface CustomResourceValidation {
+  openAPIV3Schema?: JSONSchemaProps;
 }
-export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1ExternalDocumentation {
+export interface ExternalDocumentation {
   description?: string;
   url?: string;
 }
-export type IoK8sApiextensionsApiserverPkgApisApiextensionsV1JSON = any;
-export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1JSONSchemaProps {
+export type JSON = any;
+export interface JSONSchemaProps {
   $ref?: string;
   $schema?: string;
-  additionalItems?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1JSONSchemaPropsOrBool;
-  additionalProperties?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1JSONSchemaPropsOrBool;
-  allOf?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1JSONSchemaProps[];
-  anyOf?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1JSONSchemaProps[];
-  default?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1JSON;
+  additionalItems?: JSONSchemaPropsOrBool;
+  additionalProperties?: JSONSchemaPropsOrBool;
+  allOf?: JSONSchemaProps[];
+  anyOf?: JSONSchemaProps[];
+  default?: JSON;
   definitions?: {
     [key: string]: unknown;
   };
@@ -3008,14 +3008,14 @@ export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1JSONSchemaProp
     [key: string]: unknown;
   };
   description?: string;
-  enum?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1JSON[];
-  example?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1JSON;
+  enum?: JSON[];
+  example?: JSON;
   exclusiveMaximum?: boolean;
   exclusiveMinimum?: boolean;
-  externalDocs?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1ExternalDocumentation;
+  externalDocs?: ExternalDocumentation;
   format?: string;
   id?: string;
-  items?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1JSONSchemaPropsOrArray;
+  items?: JSONSchemaPropsOrArray;
   maxItems?: number;
   maxLength?: number;
   maxProperties?: number;
@@ -3025,9 +3025,9 @@ export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1JSONSchemaProp
   minProperties?: number;
   minimum?: number;
   multipleOf?: number;
-  not?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1JSONSchemaProps;
+  not?: JSONSchemaProps;
   nullable?: boolean;
-  oneOf?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1JSONSchemaProps[];
+  oneOf?: JSONSchemaProps[];
   pattern?: string;
   patternProperties?: {
     [key: string]: unknown;
@@ -3046,39 +3046,39 @@ export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1JSONSchemaProp
   "x-kubernetes-map-type"?: string;
   "x-kubernetes-preserve-unknown-fields"?: boolean;
 }
-export type IoK8sApiextensionsApiserverPkgApisApiextensionsV1JSONSchemaPropsOrArray = any;
-export type IoK8sApiextensionsApiserverPkgApisApiextensionsV1JSONSchemaPropsOrBool = any;
-export type IoK8sApiextensionsApiserverPkgApisApiextensionsV1JSONSchemaPropsOrStringArray = any;
-export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1ServiceReference {
+export type JSONSchemaPropsOrArray = any;
+export type JSONSchemaPropsOrBool = any;
+export type JSONSchemaPropsOrStringArray = any;
+export interface ServiceReference {
   name: string;
   namespace: string;
   path?: string;
   port?: number;
 }
-export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1WebhookClientConfig {
+export interface WebhookClientConfig {
   caBundle?: string;
-  service?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1ServiceReference;
+  service?: ServiceReference;
   url?: string;
 }
-export interface IoK8sApiextensionsApiserverPkgApisApiextensionsV1WebhookConversion {
-  clientConfig?: IoK8sApiextensionsApiserverPkgApisApiextensionsV1WebhookClientConfig;
+export interface WebhookConversion {
+  clientConfig?: WebhookClientConfig;
   conversionReviewVersions: string[];
 }
-export type IoK8sApimachineryPkgApiResourceQuantity = string;
-export interface IoK8sApimachineryPkgApisMetaV1APIGroup {
+export type Quantity = string;
+export interface APIGroup {
   apiVersion?: string;
   kind?: string;
   name: string;
-  preferredVersion?: IoK8sApimachineryPkgApisMetaV1GroupVersionForDiscovery;
-  serverAddressByClientCIDRs?: IoK8sApimachineryPkgApisMetaV1ServerAddressByClientCIDR[];
-  versions: IoK8sApimachineryPkgApisMetaV1GroupVersionForDiscovery[];
+  preferredVersion?: GroupVersionForDiscovery;
+  serverAddressByClientCIDRs?: ServerAddressByClientCIDR[];
+  versions: GroupVersionForDiscovery[];
 }
-export interface IoK8sApimachineryPkgApisMetaV1APIGroupList {
+export interface APIGroupList {
   apiVersion?: string;
-  groups: IoK8sApimachineryPkgApisMetaV1APIGroup[];
+  groups: APIGroup[];
   kind?: string;
 }
-export interface IoK8sApimachineryPkgApisMetaV1APIResource {
+export interface APIResource {
   categories?: string[];
   group?: string;
   kind: string;
@@ -3090,92 +3090,92 @@ export interface IoK8sApimachineryPkgApisMetaV1APIResource {
   verbs: string[];
   version?: string;
 }
-export interface IoK8sApimachineryPkgApisMetaV1APIResourceList {
+export interface APIResourceList {
   apiVersion?: string;
   groupVersion: string;
   kind?: string;
-  resources: IoK8sApimachineryPkgApisMetaV1APIResource[];
+  resources: APIResource[];
 }
-export interface IoK8sApimachineryPkgApisMetaV1APIVersions {
+export interface APIVersions {
   apiVersion?: string;
   kind?: string;
-  serverAddressByClientCIDRs: IoK8sApimachineryPkgApisMetaV1ServerAddressByClientCIDR[];
+  serverAddressByClientCIDRs: ServerAddressByClientCIDR[];
   versions: string[];
 }
-export interface IoK8sApimachineryPkgApisMetaV1Condition {
-  lastTransitionTime: IoK8sApimachineryPkgApisMetaV1Time;
+export interface Condition {
+  lastTransitionTime: Time;
   message: string;
   observedGeneration?: number;
   reason: string;
   status: string;
   type: string;
 }
-export interface IoK8sApimachineryPkgApisMetaV1DeleteOptions {
+export interface DeleteOptions {
   apiVersion?: string;
   dryRun?: string[];
   gracePeriodSeconds?: number;
   kind?: string;
   orphanDependents?: boolean;
-  preconditions?: IoK8sApimachineryPkgApisMetaV1Preconditions;
+  preconditions?: Preconditions;
   propagationPolicy?: string;
 }
-export type IoK8sApimachineryPkgApisMetaV1FieldsV1 = {
+export type FieldsV1 = {
   [key: string]: unknown;
 };
-export interface IoK8sApimachineryPkgApisMetaV1GroupVersionForDiscovery {
+export interface GroupVersionForDiscovery {
   groupVersion: string;
   version: string;
 }
-export interface IoK8sApimachineryPkgApisMetaV1LabelSelector {
-  matchExpressions?: IoK8sApimachineryPkgApisMetaV1LabelSelectorRequirement[];
+export interface LabelSelector {
+  matchExpressions?: LabelSelectorRequirement[];
   matchLabels?: {
     [key: string]: unknown;
   };
 }
-export interface IoK8sApimachineryPkgApisMetaV1LabelSelectorRequirement {
+export interface LabelSelectorRequirement {
   key: string;
   operator: string;
   values?: string[];
 }
-export interface IoK8sApimachineryPkgApisMetaV1ListMeta {
+export interface ListMeta {
   continue?: string;
   remainingItemCount?: number;
   resourceVersion?: string;
   selfLink?: string;
 }
-export interface IoK8sApimachineryPkgApisMetaV1ManagedFieldsEntry {
+export interface ManagedFieldsEntry {
   apiVersion?: string;
   fieldsType?: string;
-  fieldsV1?: IoK8sApimachineryPkgApisMetaV1FieldsV1;
+  fieldsV1?: FieldsV1;
   manager?: string;
   operation?: string;
   subresource?: string;
-  time?: IoK8sApimachineryPkgApisMetaV1Time;
+  time?: Time;
 }
-export type IoK8sApimachineryPkgApisMetaV1MicroTime = string;
-export interface IoK8sApimachineryPkgApisMetaV1ObjectMeta {
+export type MicroTime = string;
+export interface ObjectMeta {
   annotations?: {
     [key: string]: unknown;
   };
   clusterName?: string;
-  creationTimestamp?: IoK8sApimachineryPkgApisMetaV1Time;
+  creationTimestamp?: Time;
   deletionGracePeriodSeconds?: number;
-  deletionTimestamp?: IoK8sApimachineryPkgApisMetaV1Time;
+  deletionTimestamp?: Time;
   finalizers?: string[];
   generateName?: string;
   generation?: number;
   labels?: {
     [key: string]: unknown;
   };
-  managedFields?: IoK8sApimachineryPkgApisMetaV1ManagedFieldsEntry[];
+  managedFields?: ManagedFieldsEntry[];
   name?: string;
   namespace?: string;
-  ownerReferences?: IoK8sApimachineryPkgApisMetaV1OwnerReference[];
+  ownerReferences?: OwnerReference[];
   resourceVersion?: string;
   selfLink?: string;
   uid?: string;
 }
-export interface IoK8sApimachineryPkgApisMetaV1OwnerReference {
+export interface OwnerReference {
   apiVersion: string;
   blockOwnerDeletion?: boolean;
   controller?: boolean;
@@ -3183,50 +3183,50 @@ export interface IoK8sApimachineryPkgApisMetaV1OwnerReference {
   name: string;
   uid: string;
 }
-export type IoK8sApimachineryPkgApisMetaV1Patch = {
+export type Patch = {
   [key: string]: unknown;
 };
-export interface IoK8sApimachineryPkgApisMetaV1Preconditions {
+export interface Preconditions {
   resourceVersion?: string;
   uid?: string;
 }
-export interface IoK8sApimachineryPkgApisMetaV1ServerAddressByClientCIDR {
+export interface ServerAddressByClientCIDR {
   clientCIDR: string;
   serverAddress: string;
 }
-export interface IoK8sApimachineryPkgApisMetaV1Status {
+export interface Status {
   apiVersion?: string;
   code?: number;
-  details?: IoK8sApimachineryPkgApisMetaV1StatusDetails;
+  details?: StatusDetails;
   kind?: string;
   message?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
   reason?: string;
   status?: string;
 }
-export interface IoK8sApimachineryPkgApisMetaV1StatusCause {
+export interface StatusCause {
   field?: string;
   message?: string;
   reason?: string;
 }
-export interface IoK8sApimachineryPkgApisMetaV1StatusDetails {
-  causes?: IoK8sApimachineryPkgApisMetaV1StatusCause[];
+export interface StatusDetails {
+  causes?: StatusCause[];
   group?: string;
   kind?: string;
   name?: string;
   retryAfterSeconds?: number;
   uid?: string;
 }
-export type IoK8sApimachineryPkgApisMetaV1Time = string;
-export interface IoK8sApimachineryPkgApisMetaV1WatchEvent {
-  object: IoK8sApimachineryPkgRuntimeRawExtension;
+export type Time = string;
+export interface WatchEvent {
+  object: RawExtension;
   type: string;
 }
-export type IoK8sApimachineryPkgRuntimeRawExtension = {
+export type RawExtension = {
   [key: string]: unknown;
 };
-export type IoK8sApimachineryPkgUtilIntstrIntOrString = string;
-export interface IoK8sApimachineryPkgVersionInfo {
+export type IntOrString = string;
+export interface Info {
   buildDate: string;
   compiler: string;
   gitCommit: string;
@@ -3237,39 +3237,39 @@ export interface IoK8sApimachineryPkgVersionInfo {
   minor: string;
   platform: string;
 }
-export interface IoK8sKubeAggregatorPkgApisApiregistrationV1APIService {
+export interface APIService {
   apiVersion?: string;
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  spec?: IoK8sKubeAggregatorPkgApisApiregistrationV1APIServiceSpec;
-  status?: IoK8sKubeAggregatorPkgApisApiregistrationV1APIServiceStatus;
+  metadata?: ObjectMeta;
+  spec?: APIServiceSpec;
+  status?: APIServiceStatus;
 }
-export interface IoK8sKubeAggregatorPkgApisApiregistrationV1APIServiceCondition {
-  lastTransitionTime?: IoK8sApimachineryPkgApisMetaV1Time;
+export interface APIServiceCondition {
+  lastTransitionTime?: Time;
   message?: string;
   reason?: string;
   status: string;
   type: string;
 }
-export interface IoK8sKubeAggregatorPkgApisApiregistrationV1APIServiceList {
+export interface APIServiceList {
   apiVersion?: string;
-  items: IoK8sKubeAggregatorPkgApisApiregistrationV1APIService[];
+  items: APIService[];
   kind?: string;
-  metadata?: IoK8sApimachineryPkgApisMetaV1ListMeta;
+  metadata?: ListMeta;
 }
-export interface IoK8sKubeAggregatorPkgApisApiregistrationV1APIServiceSpec {
+export interface APIServiceSpec {
   caBundle?: string;
   group?: string;
   groupPriorityMinimum: number;
   insecureSkipTLSVerify?: boolean;
-  service?: IoK8sKubeAggregatorPkgApisApiregistrationV1ServiceReference;
+  service?: ServiceReference;
   version?: string;
   versionPriority: number;
 }
-export interface IoK8sKubeAggregatorPkgApisApiregistrationV1APIServiceStatus {
-  conditions?: IoK8sKubeAggregatorPkgApisApiregistrationV1APIServiceCondition[];
+export interface APIServiceStatus {
+  conditions?: APIServiceCondition[];
 }
-export interface IoK8sKubeAggregatorPkgApisApiregistrationV1ServiceReference {
+export interface ServiceReference {
   name?: string;
   namespace?: string;
   port?: number;
