@@ -1,6 +1,6 @@
 import { writeFileSync } from 'fs';
 
-import schema from '../__fixtures__/openapi/swagger.json';
+import schema from '../../../__fixtures__/openapi/swagger.json';
 import { generateTypeScript } from '../src';
 
 const myschema = {
@@ -13,7 +13,7 @@ it('swagger', () => {
         
     });
     expect(code).toMatchSnapshot();
-    writeFileSync(__dirname + '/../__fixtures__/output/swagger.ts', code);
+    writeFileSync(__dirname + '/../../../__fixtures__/output/swagger.ts', code);
 });
 
 it('naming', () => {
@@ -35,5 +35,5 @@ it('naming', () => {
         }
     });
     expect(code).toMatchSnapshot();
-    writeFileSync(__dirname + '/../__fixtures__/output/swagger.includes.ts', code);
+    writeFileSync(__dirname + '/../../../__fixtures__/output/swagger.includes.ts', code);
 });

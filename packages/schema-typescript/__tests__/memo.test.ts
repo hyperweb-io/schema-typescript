@@ -1,12 +1,12 @@
 import { writeFileSync } from 'fs';
 
-import schema from '../__fixtures__/schemas/memo.json';
+import schema from '../../../__fixtures__/schemas/memo.json';
 import { generateTypeScript } from '../src';
 
 it('memo', () => {
     const code = generateTypeScript(schema as any);
     expect(code).toMatchSnapshot();
-    writeFileSync(__dirname + '/../__fixtures__/output/memo.ts', code);
+    writeFileSync(__dirname + '/../../../__fixtures__/output/memo.ts', code);
 });
 
 it('memo camelCase', () => {
@@ -15,5 +15,5 @@ it('memo camelCase', () => {
         camelCase: true
     });
     expect(code).toMatchSnapshot();
-    writeFileSync(__dirname + '/../__fixtures__/output/memo.camel.ts', code);
+    writeFileSync(__dirname + '/../../../__fixtures__/output/memo.camel.ts', code);
 });

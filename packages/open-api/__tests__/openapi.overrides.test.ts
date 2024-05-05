@@ -1,6 +1,6 @@
 import { writeFileSync } from 'fs';
 
-import schema from '../__fixtures__/openapi/swagger.json';
+import schema from '../../../__fixtures__/openapi/swagger.json';
 import { generateTypeScript } from '../src';
 
 const myschema = {
@@ -111,7 +111,7 @@ it('useLastSegment false', () => {
         }
     });
     expect(code).toMatchSnapshot();
-    writeFileSync(__dirname + '/../__fixtures__/output/swagger.overrides.all.ts', code);
+    writeFileSync(__dirname + '/../../../__fixtures__/output/swagger.overrides.all.ts', code);
 });
 
 it('useLastSegment true', () => {
@@ -123,5 +123,5 @@ it('useLastSegment true', () => {
         }
     });
     expect(code).toMatchSnapshot();
-    writeFileSync(__dirname + '/../__fixtures__/output/swagger.overrides.last.ts', code);
+    writeFileSync(__dirname + '/../../../__fixtures__/output/swagger.overrides.last.ts', code);
 });

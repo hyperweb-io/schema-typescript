@@ -25,6 +25,10 @@ jobs:
           yarn
           yarn build
 
-      - name: Test
+      - name: Test Schema TypeScript
         run: |
-          yarn test
+          cd ./packages/schema-typescript && yarn test
+
+      - name: Test OpenAPI Spec
+        run: |
+          cd ./packages/open-api && yarn test

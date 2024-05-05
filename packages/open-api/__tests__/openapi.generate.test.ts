@@ -1,6 +1,6 @@
 import { writeFileSync } from 'fs';
 
-import schema from '../__fixtures__/openapi/swagger.json';
+import schema from '../../../__fixtures__/openapi/swagger.json';
 import { getDefaultSchemaTSOptions } from '../src';
 import { generateOpenApiClient } from '../src/openapi';
 
@@ -52,7 +52,7 @@ it('swagger', () => {
         }
     }, schema as any);
     expect(code).toMatchSnapshot();
-    writeFileSync(__dirname + '/../__fixtures__/output/swagger-client.ts', code);
+    writeFileSync(__dirname + '/../../../__fixtures__/output/swagger-client.ts', code);
 });
 
 it('merged', () => {
@@ -71,10 +71,10 @@ it('merged', () => {
         mergedParams: true
     }, schema as any);
     expect(code).toMatchSnapshot();
-    writeFileSync(__dirname + '/../__fixtures__/output/swagger-client.merged.ts', code);
+    writeFileSync(__dirname + '/../../../__fixtures__/output/swagger-client.merged.ts', code);
 });
 
 it('openapi', () => {
     const data = Object.keys(schema.definitions)
-    writeFileSync(__dirname + '/../__fixtures__/output/swagger-definitions.json', JSON.stringify(data, null, 2));
+    writeFileSync(__dirname + '/../../../__fixtures__/output/swagger-definitions.json', JSON.stringify(data, null, 2));
 });
