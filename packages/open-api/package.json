@@ -3,7 +3,7 @@
   "version": "0.5.0",
   "description": "Convert JSON Schema to TypeScript Definitions",
   "author": "Dan Lynch <pyramation@gmail.com>",
-  "homepage": "https://github.com/pyramation/schema-typescript#readme",
+  "homepage": "https://github.com/cosmology-tech/schema-typescript#readme",
   "license": "SEE LICENSE IN LICENSE",
   "main": "index.js",
   "module": "esm/index.js",
@@ -14,10 +14,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pyramation/schema-typescript"
+    "url": "https://github.com/cosmology-tech/schema-typescript"
   },
   "bugs": {
-    "url": "https://github.com/pyramation/schema-typescript/issues"
+    "url": "https://github.com/cosmology-tech/schema-typescript/issues"
   },
   "scripts": {
     "copy": "copyfiles -f ../../LICENSE README.md package.json dist",
@@ -28,11 +28,9 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@babel/core": "^7.24.4",
     "@babel/generator": "^7.24.4",
     "@babel/types": "^7.24.0",
-    "deepmerge": "^4.3.1",
-    "minimatch": "^9.0.4"
+    "schema-typescript": "^0.5.0"
   },
-  "keywords": ["jsonschema", "schema", "typescript"]
+  "keywords": ["jsonschema", "schema", "typescript", "swagger", "openapi"]
 }

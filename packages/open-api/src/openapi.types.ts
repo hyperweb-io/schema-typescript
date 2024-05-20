@@ -1,4 +1,4 @@
-import { JSONSchema } from "./types";
+import { JSONSchema } from "schema-typescript";
 
 export interface OpenAPISpec {
     swagger: string;

@@ -1,7 +1,7 @@
 import generate from '@babel/generator';
+import { getDefaultSchemaTSOptions } from 'schema-typescript';
 
 import { createPathTemplateLiteral } from '../src';
-import { getDefaultSchemaTSOptions } from '../src';
 
 const options = getDefaultSchemaTSOptions();
 export const renderTemplateTag = (str: string) => {

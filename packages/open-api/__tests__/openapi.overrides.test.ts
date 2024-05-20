@@ -1,7 +1,7 @@
 import { writeFileSync } from 'fs';
+import { generateTypeScript } from 'schema-typescript';
 
 import schema from '../../../__fixtures__/openapi/swagger.json';
-import { generateTypeScript } from '../src';
 
 const myschema = {
     title: 'Kubernetes',

@@ -1,7 +1,7 @@
 import { writeFileSync } from 'fs';
+import { getDefaultSchemaTSOptions } from 'schema-typescript';
 
 import schema from '../../../__fixtures__/openapi/swagger.json';
-import { getDefaultSchemaTSOptions } from '../src';
 import { generateOpenApiClient } from '../src/openapi';
 
 it('swagger', () => {

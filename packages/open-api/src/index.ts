@@ -1,4 +1,3 @@
-export * from './context';
-export * from './schema';
-export * from './types';
+export * from './openapi';
+export * from './openapi.types';
 export * from './utils';
