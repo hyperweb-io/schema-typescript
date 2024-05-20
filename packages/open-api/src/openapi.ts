@@ -2,9 +2,10 @@ import generate from "@babel/generator";
 import * as t from '@babel/types';
 import { SchemaTSOptions } from "schema-typescript";
 import { generateTypeScriptTypes } from "schema-typescript";
-import { createPathTemplateLiteral, getTypeNameSafe, shouldInclude, toCamelCase, toPascalCase } from "schema-typescript";
+import { getTypeNameSafe, shouldInclude, toCamelCase, toPascalCase } from "schema-typescript";
 
 import { OpenAPIPathItem, OpenAPISpec, Operation, Parameter, Response } from "./openapi.types";
+import { createPathTemplateLiteral } from "./utils";
 
 export interface OpenAPIOptions extends SchemaTSOptions {
   version?: 'v1' | 'v1beta1' | 'v2beta1' | 'v2beta2';
