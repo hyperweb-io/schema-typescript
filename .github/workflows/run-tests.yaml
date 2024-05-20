@@ -31,4 +31,4 @@ jobs:
 
       - name: Test OpenAPI Spec
         run: |
-          cd ./packages/open-api && yarn test
+          cd ./packages/schema-sdk && yarn test
