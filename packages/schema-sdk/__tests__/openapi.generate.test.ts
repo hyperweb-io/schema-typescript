@@ -16,7 +16,7 @@ it('swagger', () => {
       'io.k8s.api.events.v1.Event',
       'io.k8s.api.flowcontrol*'
     ]
-  })
+  });
   const code = generateOpenApiClient({
     ...options,
     // version: 'v1',
@@ -64,7 +64,7 @@ it('merged', () => {
     namingStrategy: {
       useLastSegment: true
     }
-  })
+  });
   const code = generateOpenApiClient({
     ...options,
     version: 'v1',
@@ -75,6 +75,6 @@ it('merged', () => {
 });
 
 it('openapi', () => {
-  const data = Object.keys(schema.definitions)
+  const data = Object.keys(schema.definitions);
   writeFileSync(__dirname + '/../../../__fixtures__/output/swagger-definitions.json', JSON.stringify(data, null, 2));
 });

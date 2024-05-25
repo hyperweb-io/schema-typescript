@@ -53,7 +53,7 @@ export const shouldInclude = (type: string, options: ShouldIncludeOptions): bool
 
   // Default behavior if neither is effectively set
   return true;
-}
+};
 
 export const cleanComment = (str: string) => {
   return str.replace(/\*\//g, '*\\/');
@@ -84,10 +84,10 @@ export const processComment = (comment: string) => {
 };
 
 export const makeComment = (comment: string) => {
-  return [{ type: 'CommentBlock', value: ` ${comment} ` }]
-}
+  return [{ type: 'CommentBlock', value: ` ${comment} ` }];
+};
 
 export const makeCommentLine = (comment: string): t.CommentLine[] => {
   // @ts-ignore
   return [{ type: 'CommentBlock', value: ` ${comment} ` }] as t.CommentLine[];
-}
+};

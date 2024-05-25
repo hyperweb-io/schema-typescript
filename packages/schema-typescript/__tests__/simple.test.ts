@@ -20,5 +20,5 @@ const schema = {
 };
 
 it('works', () => {
-  expect(generateTypeScript(schema)).toMatchSnapshot()
-})
+  expect(generateTypeScript(schema)).toMatchSnapshot();
+});

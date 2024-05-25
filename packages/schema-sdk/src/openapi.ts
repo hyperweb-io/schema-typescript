@@ -1,27 +1,11 @@
 import generate from '@babel/generator';
 import * as t from '@babel/types';
-import { SchemaTSOptions } from 'schema-typescript';
 import { generateTypeScriptTypes } from 'schema-typescript';
 import { getTypeNameSafe, shouldInclude, toCamelCase, toPascalCase } from 'schema-typescript';
 
 import { OpenAPIPathItem, OpenAPISpec, Operation, Parameter, Response } from './openapi.types';
+import { OpenAPIOptions } from './types';
 import { createPathTemplateLiteral } from './utils';
-
-export interface OpenAPIOptions extends SchemaTSOptions {
-  version?: 'v1' | 'v1beta1' | 'v2beta1' | 'v2beta2';
-  mergedParams?: boolean;
-  paths?: {
-    // Include/Exclude types
-    include?: string[];
-    exclude?: string[];
-
-    includeTags?: string[];
-    excludeTags?: string[];
-
-    includeRequests?: string[];
-    excludeRequests?: string[];
-  }
-}
 
 /**
 includes: {
@@ -86,11 +70,11 @@ const shouldIncludeOperation = (
   const shouldIncludeByRequest = shouldInclude(method, {
     include: options.paths?.includeRequests ?? [],
     exclude: options.paths?.excludeRequests ?? []
-  })
+  });
 
   if (!shouldIncludeByRequest) return false;
   return true;
-}
+};
 
 export const getApiTypeNameSafe = (options: OpenAPIOptions, str: string): string => {
   return getTypeNameSafe(options.namingStrategy, str);
@@ -135,14 +119,14 @@ export const getResponseType = (options: OpenAPIOptions, prop: Response) => {
   // resolve $ref
   if (prop.schema) {
     if (!prop.schema.$ref) {
-      throw new Error('no property set on open api parameter schema!')
+      throw new Error('no property set on open api parameter schema!');
     }
     const ref = prop.schema.$ref.split('/');
     const definitionName = ref.pop();
     return t.tsTypeReference(t.identifier(getApiTypeNameSafe(options, definitionName)));
   }
   return t.tsAnyKeyword();
-}
+};
 
 export const getParameterType = (options: OpenAPIOptions, prop: Parameter) => {
   if (prop.type) {
@@ -168,14 +152,14 @@ export const getParameterType = (options: OpenAPIOptions, prop: Parameter) => {
   // resolve $ref
   if (prop.schema) {
     if (!prop.schema.$ref) {
-      throw new Error('no property set on open api parameter schema!')
+      throw new Error('no property set on open api parameter schema!');
     }
     const ref = prop.schema.$ref.split('/');
     const definitionName = ref.pop();
     return t.tsTypeReference(t.identifier(getApiTypeNameSafe(options, definitionName)));
   }
   return t.tsAnyKeyword();
-}
+};
 
 interface ParameterInterfaces {
   query: Parameter[];
@@ -203,8 +187,8 @@ const initParams = (): ParameterInterfaces => {
     path: [],
     formData: [],
     body: []
-  }
-}
+  };
+};
 
 
 export function generateOpenApiParams(options: OpenAPIOptions, path: string, pathItem: OpenAPIPathItem): t.TSInterfaceDeclaration[] {
@@ -253,7 +237,7 @@ export function generateOpenApiParams(options: OpenAPIOptions, path: string, pat
               p.optional = true;
             }
             inner.push(p);
-          })
+          });
 
           if (!options.mergedParams) {
             if (paramType === 'body') {
@@ -272,7 +256,7 @@ export function generateOpenApiParams(options: OpenAPIOptions, path: string, pat
               if (inner.length) {
                 props.push(
                   p
-                )
+                );
               }
             }
           } else {
@@ -312,7 +296,7 @@ export function getOpenApiParams(options: OpenAPIOptions, path: string, pathItem
   pathItem.parameters = pathItem.parameters ?? [];
   const pathParms = pathItem.parameters?.filter(param => param.in === 'path') ?? [];
   if (pathParms.length !== pathInfo.params.length) {
-    const parameters = pathItem.parameters?.filter(param => param.in !== 'path') ?? []
+    const parameters = pathItem.parameters?.filter(param => param.in !== 'path') ?? [];
     pathInfo.params.forEach(name => {
       const found = pathParms.find(param => param.name === name);
       parameters.push(found ? found : {
@@ -320,7 +304,7 @@ export function getOpenApiParams(options: OpenAPIOptions, path: string, pathItem
         type: 'string',
         required: true,
         in: 'path'
-      })
+      });
     });
     pathItem.parameters = parameters;
   }
@@ -358,7 +342,7 @@ export function getOpenApiParams(options: OpenAPIOptions, path: string, pathItem
         if (operation.parameters) {
           // Categorize parameters by 'in' field
           operation.parameters.forEach(param => {
-            opParamMethod[param.in].push(param)
+            opParamMethod[param.in].push(param);
           });
         }
 
@@ -373,13 +357,13 @@ export function generateOpenApiTypes(options: OpenAPIOptions, schema: OpenAPISpe
   Object.entries(schema.paths).forEach(([path, pathItem]) => {
     interfaces.push(...generateOpenApiParams(options, path, pathItem));
   });
-  return interfaces.map(i => t.exportNamedDeclaration(i))
+  return interfaces.map(i => t.exportNamedDeclaration(i));
 }
 
 const getOperationMethodName = (operation: Operation, method: string, path: string) => {
   const methodName = operation.operationId || toCamelCase(method + path.replace(/\W/g, '_'));
   return methodName;
-}
+};
 
 export function generateMethods(options: OpenAPIOptions, schema: OpenAPISpec): t.ClassMethod[] {
   const methods: t.ClassMethod[] = [];
@@ -398,7 +382,7 @@ export function generateMethods(options: OpenAPIOptions, schema: OpenAPISpec): t
 
         const typeName = toPascalCase(getOperationMethodName(operation, method, path)) + 'Request';
         const id = t.identifier('params');
-        id.typeAnnotation = t.tsTypeAnnotation(t.tsTypeReference(t.identifier(typeName)))
+        id.typeAnnotation = t.tsTypeAnnotation(t.tsTypeReference(t.identifier(typeName)));
         const params = [id];
 
         const returnType = getOperationReturnType(options, operation, method);
@@ -491,7 +475,7 @@ export function generateOpenApiClient(options: OpenAPIOptions, schema: OpenAPISp
       true
     ),
     ...generateMethods(options, schema)
-  ]
+  ];
 
   const classBody = t.classBody([
     t.classMethod(

@@ -16,5 +16,5 @@ it('const', () => {
     },
     required: ['firstName', 'age'],
     additionalProperties: true
-  } as any)).toMatchSnapshot()
-})
+  } as any)).toMatchSnapshot();
+});

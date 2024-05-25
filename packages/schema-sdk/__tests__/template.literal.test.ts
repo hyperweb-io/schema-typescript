@@ -1,15 +1,14 @@
 import generate from '@babel/generator';
-import { getDefaultSchemaTSOptions } from 'schema-typescript';
 
-import { createPathTemplateLiteral } from '../src';
+import { createPathTemplateLiteral, getDefaultSchemaSDKOptions } from '../src';
 
-const options = getDefaultSchemaTSOptions();
+const options = getDefaultSchemaSDKOptions();
 export const renderTemplateTag = (str: string) => {
   return generate(createPathTemplateLiteral({
     ...options,
     mergedParams: true
-  }, str)).code
-}
+  }, str)).code;
+};
 it('/osmosis/{gamm}/v1beta1/estimate/swap_exact_amount_in', () => {
   expect(renderTemplateTag('/osmosis/{gamm}/v1beta1/estimate/swap_exact_amount_in'))
     .toEqual('`/osmosis/${params.gamm}/v1beta1/estimate/swap_exact_amount_in`');

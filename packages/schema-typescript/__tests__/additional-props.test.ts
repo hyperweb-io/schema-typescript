@@ -19,8 +19,8 @@ it('additional', () => {
     },
     required: ['firstName', 'lastName'],
     additionalProperties: true
-  } as any)).toMatchSnapshot()
-})
+  } as any)).toMatchSnapshot();
+});
 
 it('additional', () => {
   expect(generateTypeScript({
@@ -43,5 +43,5 @@ it('additional', () => {
       required: ['newProp'],
       additionalProperties: true
     }
-  } as any)).toMatchSnapshot()
-})
+  } as any)).toMatchSnapshot();
+});

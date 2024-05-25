@@ -27,16 +27,16 @@ npm install schema-sdk
 
 ## Usage 
 
-Below are examples demonstrating how to use schema-sdk for generating TypeScript clients and handling OpenAPI specifications:
+Below are examples demonstrating how to use `schema-sdk` for generating TypeScript clients and handling OpenAPI specifications:
 
 ### Generating OpenAPI Client
 
 ```ts
 import schema from 'path-to-your/swagger.json';
-import { generateOpenApiClient, getDefaultSchemaTSOptions } from 'schema-sdk';
+import { generateOpenApiClient, getDefaultSchemaSDKOptions } from 'schema-sdk';
 import { writeFileSync } from 'fs';
 
-const options = getDefaultSchemaTSOptions({
+const options = getDefaultSchemaSDKOptions({
   exclude: [
     '*.v1beta1.*',
     '*.v2beta1.*',

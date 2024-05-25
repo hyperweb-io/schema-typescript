@@ -27,7 +27,7 @@ const anyOrObjectWithUnknownProps = (ctx: SchemaTSContext) => {
       t.tsTypeAnnotation(t.tsUnknownKeyword())
     )
   ]) : t.tsAnyKeyword();
-}
+};
 
 export function generateTypeScriptTypes(schema: JSONSchema, options?: Partial<SchemaTSOptions>): t.ExportNamedDeclaration[] {
   const ctx = new SchemaTSContext(options, schema, schema, []);
@@ -85,14 +85,14 @@ const createExportDeclarationForType = (
 
     if (name.includes('.')) {
       // for complex names, let's add them for clarity/mapping
-      result.leadingComments = [makeCommentLine(name)[0], makeCommentLine(schema.description)[0]]
+      result.leadingComments = [makeCommentLine(name)[0], makeCommentLine(schema.description)[0]];
     } else {
-      result.leadingComments = makeCommentLine(schema.description)
+      result.leadingComments = makeCommentLine(schema.description);
     }
 
   }
   return result;
-}
+};
 
 function createInterfaceDeclaration(
   ctx: SchemaTSContext,
@@ -155,7 +155,7 @@ function createInterfaceDeclaration(
   }
 
   if (schema.type) {
-    return createExportDeclarationForType(ctx, name, schema, t.tsTypeAliasDeclaration(t.identifier(getSchemaTypeNameSafe(ctx, name)), null, getTypeForProp(ctx, schema, [], schema)))    
+    return createExportDeclarationForType(ctx, name, schema, t.tsTypeAliasDeclaration(t.identifier(getSchemaTypeNameSafe(ctx, name)), null, getTypeForProp(ctx, schema, [], schema)));    
   }
 
   if (ctx.options.overrides && Object.prototype.hasOwnProperty.call(ctx.options.overrides, name)) {
@@ -167,7 +167,7 @@ function createInterfaceDeclaration(
 
   // Fallback to exporting a basic type if nothing else is possible
   // console.warn(`No properties or type definitions found for ${name}, defaulting to 'any'.`);
-  return createExportDeclarationForType(ctx, name, schema, t.tsTypeAliasDeclaration(t.identifier(getSchemaTypeNameSafe(ctx, name)), null, t.tsAnyKeyword()))
+  return createExportDeclarationForType(ctx, name, schema, t.tsTypeAliasDeclaration(t.identifier(getSchemaTypeNameSafe(ctx, name)), null, t.tsAnyKeyword()));
 }
 
 function createPropertySignature(
@@ -270,7 +270,7 @@ function getTypeForProp(ctx: SchemaTSContext, prop: JSONSchema, required: string
   }
 
   // Fallback when no types are defined
-  return t.tsAnyKeyword()
+  return t.tsAnyKeyword();
 
 }
 
