@@ -4,7 +4,10 @@ import { minimatch } from 'minimatch';
 
 import { SchemaNamingStrategy } from './context';
 
-export const getTypeNameSafe = (strategy: SchemaNamingStrategy, str: string): string => {
+export const getTypeNameSafe = (
+  strategy: SchemaNamingStrategy,
+  str: string
+): string => {
   if (Object.prototype.hasOwnProperty.call(strategy.renameMap ?? {}, str)) {
     return toPascalCase(strategy.renameMap[str]);
   }
@@ -22,6 +25,7 @@ export const getTypeNameSafe = (strategy: SchemaNamingStrategy, str: string): st
   return toPascalCase(str);
 };
 
+// eslint-disable-next-line
 const globPattern = /\*+([^+@!?\*\[\(]*)/;
 
 interface ShouldIncludeOptions {
@@ -29,18 +33,27 @@ interface ShouldIncludeOptions {
   exclude: string[];
 }
 
-export const shouldInclude = (type: string, options: ShouldIncludeOptions): boolean => {
+export const shouldInclude = (
+  type: string,
+  options: ShouldIncludeOptions
+): boolean => {
   // Determine if 'include' and 'exclude' are effectively set
   const includesEffectivelySet = options.include && options.include.length > 0;
   const excludesEffectivelySet = options.exclude && options.exclude.length > 0;
 
   // Function to check if any patterns in the array match the type
   const matchesPattern = (patterns: string[], type: string): boolean =>
-    patterns.some(pattern => globPattern.test(pattern) ? minimatch(type, pattern) : type === pattern);
+    patterns.some((pattern) =>
+      globPattern.test(pattern) ? minimatch(type, pattern) : type === pattern
+    );
 
   // Check if the type is explicitly included or excluded using minimatch or exact match
-  const isIncluded = includesEffectivelySet ? matchesPattern(options.include, type) : true;
-  const isExcluded = excludesEffectivelySet ? matchesPattern(options.exclude, type) : false;
+  const isIncluded = includesEffectivelySet
+    ? matchesPattern(options.include, type)
+    : true;
+  const isExcluded = excludesEffectivelySet
+    ? matchesPattern(options.exclude, type)
+    : false;
 
   // Apply the logic based on whether includes or excludes are effectively set
   if (includesEffectivelySet && excludesEffectivelySet) {
@@ -75,12 +88,14 @@ export const processComment = (comment: string) => {
   }
 
   let lines = comment.split('\n');
-  lines = ['*', ...lines.map(line => cleanComment(line).trim()), ' ']; // Clean and trim each line
-  return lines.map((line, i) => {
-    if (i === 0) return line;
-    if (i === lines.length - 1) return line; // The last line is just a space
-    return ` *${ensureOneSpace(line)}`; // Ensure a space after * for clean formatting
-  }).join('\n');
+  lines = ['*', ...lines.map((line) => cleanComment(line).trim()), ' ']; // Clean and trim each line
+  return lines
+    .map((line, i) => {
+      if (i === 0) return line;
+      if (i === lines.length - 1) return line; // The last line is just a space
+      return ` *${ensureOneSpace(line)}`; // Ensure a space after * for clean formatting
+    })
+    .join('\n');
 };
 
 export const makeComment = (comment: string) => {

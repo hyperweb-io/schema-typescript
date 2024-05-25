@@ -7,60 +7,64 @@ const schema = {
   type: 'object',
   properties: {
     firstName: {
-      type: 'string'
+      type: 'string',
     },
     lastName: {
-      type: 'string'
+      type: 'string',
     },
     age: {
-      type: 'integer'
+      type: 'integer',
     },
-    dogs: {  // Updated to be an array of dogs
+    dogs: {
+      // Updated to be an array of dogs
       type: 'array',
       items: {
-        $ref: '#/$defs/dog'
-      }
+        $ref: '#/$defs/dog',
+      },
     },
-    cats: {  // Added an array of cats
+    cats: {
+      // Added an array of cats
       type: 'array',
       items: {
-        $ref: '#/$defs/cat'
-      }
-    }
+        $ref: '#/$defs/cat',
+      },
+    },
   },
   required: ['lastName', 'age', 'dogs', 'cats'],
   $defs: {
-    dog: { // Defining dog as a reusable schema
+    dog: {
+      // Defining dog as a reusable schema
       type: 'object',
       properties: {
         name: {
-          type: 'string'
+          type: 'string',
         },
         breed: {
-          type: 'string'
+          type: 'string',
         },
         age: {
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
-      required: ['name', 'breed']
+      required: ['name', 'breed'],
     },
-    cat: { // Defining cat as a reusable schema
+    cat: {
+      // Defining cat as a reusable schema
       type: 'object',
       properties: {
         name: {
-          type: 'string'
+          type: 'string',
         },
         color: {
-          type: 'string'
+          type: 'string',
         },
         age: {
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
-      required: ['name', 'color']
-    }
-  }
+      required: ['name', 'color'],
+    },
+  },
 };
 
 it('works', () => {

@@ -1,13 +1,18 @@
 # schema-sdk 
 
 <p align="center" width="100%">
+  <img src="https://github.com/cosmology-tech/interweb-utils/assets/545047/89c743c4-be88-409f-9a77-4b02cd7fe9a4" width="80">
+  <br/>
+  OpenAPI Schema TypeScript utilities for the Interweb
+  <br />
   <a href="https://github.com/cosmology-tech/schema-typescript/actions/workflows/run-tests.yaml">
     <img height="20" src="https://github.com/cosmology-tech/schema-typescript/actions/workflows/run-tests.yaml/badge.svg" />
   </a>
    <a href="https://github.com/cosmology-tech/schema-typescript/blob/main/LICENSE-MIT">
     <img height="20" src="https://img.shields.io/badge/license-MIT-blue.svg"/>
-   </a>
+  </a>
 </p>
+
 
 Welcome to _schema-sdk_! This project provides robust tools for handling OpenAPI schemas and converting them to TypeScript clients with ease and efficiency.
 

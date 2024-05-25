@@ -8,14 +8,12 @@ const schema = {
   properties: {
     traces: {
       type: 'array',
-      description: 'The origin of the asset, capturing all transitions in form and location.',
+      description:
+        'The origin of the asset, capturing all transitions in form and location.',
       items: {
-        anyOf: [
-          { $ref: '#/$defs/dog' },
-          { $ref: '#/$defs/cat' }
-        ]
+        anyOf: [{ $ref: '#/$defs/dog' }, { $ref: '#/$defs/cat' }],
       },
-      minContains: 1
+      minContains: 1,
     },
     profile: {
       allOf: [
@@ -24,11 +22,11 @@ const schema = {
           type: 'object',
           properties: {
             microchipped: {
-              type: 'boolean'
-            }
-          }
-        }
-      ]
+              type: 'boolean',
+            },
+          },
+        },
+      ],
     },
     identity: {
       oneOf: [
@@ -36,53 +34,53 @@ const schema = {
           type: 'object',
           properties: {
             passportNumber: {
-              type: 'string'
-            }
-          }
+              type: 'string',
+            },
+          },
         },
         {
           type: 'object',
           properties: {
             driverLicense: {
-              type: 'string'
-            }
-          }
-        }
-      ]
-    }
+              type: 'string',
+            },
+          },
+        },
+      ],
+    },
   },
   $defs: {
     dog: {
       type: 'object',
       properties: {
         name: {
-          type: 'string'
+          type: 'string',
         },
         breed: {
-          type: 'string'
+          type: 'string',
         },
         age: {
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
-      required: ['name', 'breed']
+      required: ['name', 'breed'],
     },
     cat: {
       type: 'object',
       properties: {
         name: {
-          type: 'string'
+          type: 'string',
         },
         breed: {
-          type: 'string'
+          type: 'string',
         },
         age: {
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
-      required: ['name', 'breed']
-    }
-  }
+      required: ['name', 'breed'],
+    },
+  },
 };
 
 it('works', () => {

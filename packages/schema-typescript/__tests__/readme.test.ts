@@ -1,4 +1,3 @@
-
 import { generateTypeScript } from '../src';
 
 const schema = {
@@ -10,8 +9,8 @@ const schema = {
     firstName: { type: 'string' },
     pets: {
       type: 'array',
-      items: { $ref: '#/$defs/pet' }
-    }
+      items: { $ref: '#/$defs/pet' },
+    },
   },
   required: ['firstName', 'pets'],
   $defs: {
@@ -19,11 +18,11 @@ const schema = {
       type: 'object',
       properties: {
         name: { type: 'string' },
-        type: { type: 'string' }  // Indicates whether the pet is a dog, cat, etc.
+        type: { type: 'string' }, // Indicates whether the pet is a dog, cat, etc.
       },
-      required: ['name', 'type']
-    }
-  }
+      required: ['name', 'type'],
+    },
+  },
 };
 
 it('works', () => {

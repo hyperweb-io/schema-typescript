@@ -7,36 +7,37 @@ const schema = {
   type: 'object',
   properties: {
     firstName: {
-      type: 'string'
+      type: 'string',
     },
     lastName: {
-      type: 'string'
+      type: 'string',
     },
     age: {
-      type: 'integer'
+      type: 'integer',
     },
     dog: {
-      $ref: '#/$defs/dog' // Reference to the dog definition
-    }
+      $ref: '#/$defs/dog', // Reference to the dog definition
+    },
   },
   required: ['lastName', 'age', 'dog'],
   $defs: {
-    dog: { // Defining dog as a reusable schema
+    dog: {
+      // Defining dog as a reusable schema
       type: 'object',
       properties: {
         name: {
-          type: 'string'
+          type: 'string',
         },
         breed: {
-          type: 'string'
+          type: 'string',
         },
         age: {
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
-      required: ['name', 'breed']
-    }
-  }
+      required: ['name', 'breed'],
+    },
+  },
 };
 
 it('works', () => {

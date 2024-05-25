@@ -13,52 +13,54 @@ it('swagger', () => {
       '*.v2beta1.*',
       'io.k8s.api.events.v1.EventSeries',
       'io.k8s.api.events.v1.Event',
-      'io.k8s.api.flowcontrol*'
-    ]
+      'io.k8s.api.flowcontrol*',
+    ],
   });
-  const code = generateOpenApiClient({
-    ...options,
-    operationNamingStrategy: {
-      aliases: {
-        listCoreV1PodForAllNamespaces: 'getPods'
+  const code = generateOpenApiClient(
+    {
+      ...options,
+      operationNamingStrategy: {
+        aliases: {
+          listCoreV1PodForAllNamespaces: 'getPods',
+        },
+        renameMap: {
+          listCoreV1PodForAllNamespaces: 'listPods',
+        },
       },
-      renameMap: {
-        listCoreV1PodForAllNamespaces: 'listPods'
-      }
+      paths: {
+        exclude: ['*flowschema*', '*v1beta1*', '*v2beta1*'],
+        excludeRequests: ['head', 'options'],
+        excludeTags: [
+          'storage_v1beta1',
+          '*v1beta1',
+          '*v2beta1',
+          '*v1beta1*',
+          '*v2beta1*',
+        ],
+      },
+      includeTypeComments: true,
+      includeMethodComments: true,
+      mergedParams: false,
+      namingStrategy: {
+        useLastSegment: true,
+        renameMap: {
+          'io.k8s.api.discovery.v1.EndpointPort': 'DiscoveryEndpointPort',
+          'io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.ServiceReference':
+            'ApiExtServiceReference',
+          'io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.WebhookClientConfig':
+            'ApiExtWebhookClientConfig',
+          'io.k8s.api.admissionregistration.v1.ServiceReference':
+            'AdmissionServiceReference',
+        },
+      },
     },
-    paths: {
-      exclude: [
-        '*flowschema*',
-        '*v1beta1*',
-        '*v2beta1*'
-      ],
-      excludeRequests: [
-        'head',
-        'options'
-      ],
-      excludeTags: [
-        'storage_v1beta1',
-        '*v1beta1',
-        '*v2beta1',
-        '*v1beta1*',
-        '*v2beta1*'
-      ]
-    },
-    includeTypeComments: true,
-    includeMethodComments: true,
-    mergedParams: false,
-    namingStrategy: {
-      useLastSegment: true,
-      renameMap: {
-        'io.k8s.api.discovery.v1.EndpointPort': 'DiscoveryEndpointPort',
-        'io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.ServiceReference': 'ApiExtServiceReference',
-        'io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.WebhookClientConfig': 'ApiExtWebhookClientConfig',
-        'io.k8s.api.admissionregistration.v1.ServiceReference': 'AdmissionServiceReference'
-      }
-    }
-  }, schema as any);
+    schema as any
+  );
   expect(code).toMatchSnapshot();
-  writeFileSync(__dirname + '/../../../__fixtures__/output/swagger-client.ts', code);
+  writeFileSync(
+    __dirname + '/../../../__fixtures__/output/swagger-client.ts',
+    code
+  );
 });
 
 it('merged', () => {
@@ -70,19 +72,28 @@ it('merged', () => {
     includeSwaggerUrl: true,
     includeMethodComments: true,
     namingStrategy: {
-      useLastSegment: true
-    }
+      useLastSegment: true,
+    },
   });
-  const code = generateOpenApiClient({
-    ...options,
-    version: 'v1',
-    mergedParams: true
-  }, schema as any);
+  const code = generateOpenApiClient(
+    {
+      ...options,
+      version: 'v1',
+      mergedParams: true,
+    },
+    schema as any
+  );
   expect(code).toMatchSnapshot();
-  writeFileSync(__dirname + '/../../../__fixtures__/output/swagger-client.merged.ts', code);
+  writeFileSync(
+    __dirname + '/../../../__fixtures__/output/swagger-client.merged.ts',
+    code
+  );
 });
 
 it('openapi', () => {
   const data = Object.keys(schema.definitions);
-  writeFileSync(__dirname + '/../../../__fixtures__/output/swagger-definitions.json', JSON.stringify(data, null, 2));
+  writeFileSync(
+    __dirname + '/../../../__fixtures__/output/swagger-definitions.json',
+    JSON.stringify(data, null, 2)
+  );
 });

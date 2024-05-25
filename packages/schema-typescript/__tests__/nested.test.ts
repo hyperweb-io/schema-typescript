@@ -7,31 +7,31 @@ const schema = {
   type: 'object',
   properties: {
     firstName: {
-      type: 'string'
+      type: 'string',
     },
     lastName: {
-      type: 'string'
+      type: 'string',
     },
     age: {
-      type: 'integer'
+      type: 'integer',
     },
     dog: {
       type: 'object',
       properties: {
         name: {
-          type: 'string'
+          type: 'string',
         },
         breed: {
-          type: 'string'
+          type: 'string',
         },
         age: {
-          type: 'integer'
-        }
+          type: 'integer',
+        },
       },
-      required: ['name', 'breed']
-    }
+      required: ['name', 'breed'],
+    },
   },
-  required: ['lastName', 'age', 'dog']
+  required: ['lastName', 'age', 'dog'],
 };
 
 it('works', () => {

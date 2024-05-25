@@ -1,79 +1,34 @@
 # schema-typescript 
 
 <p align="center" width="100%">
-  <a href="https://github.com/pyramation/schema-typescript/actions/workflows/run-tests.yaml">
-    <img height="20" src="https://github.com/pyramation/schema-typescript/actions/workflows/run-tests.yaml/badge.svg" />
+  <img src="https://github.com/cosmology-tech/interweb-utils/assets/545047/89c743c4-be88-409f-9a77-4b02cd7fe9a4" width="80">
+  <br/>
+  JSON Schema TypeScript utilities for the Interweb
+  <br />
+  <a href="https://github.com/cosmology-tech/schema-typescript/actions/workflows/run-tests.yaml">
+    <img height="20" src="https://github.com/cosmology-tech/schema-typescript/actions/workflows/run-tests.yaml/badge.svg" />
   </a>
-   <a href="https://github.com/pyramation/schema-typescript/blob/main/LICENSE-MIT"><img height="20" src="https://img.shields.io/badge/license-MIT-blue.svg"/></a>
+   <a href="https://github.com/cosmology-tech/schema-typescript/blob/main/LICENSE-MIT">
+    <img height="20" src="https://img.shields.io/badge/license-MIT-blue.svg"/>
+  </a>
 </p>
 
-Welcome to _schema-typescript_! This project provides robust tools for handling JSON schemas and converting them to TypeScript interfaces with ease and efficiency.
+## Packages
 
-## Features 
+This repository contains the following packages:
 
-- **🔧 JSON Schema to TypeScript**: Convert JSON schemas into TypeScript interfaces automatically.
+- [`schema-typescript`](https://github.com/cosmology-tech/schema-typescript/tree/main/packages/schema-typescript)  
+  Provides robust tools for handling JSON schemas and converting them to TypeScript interfaces with ease and efficiency.
 
-- **📦 Modular**: Designed to be reusable with minimal dependencies.
+- [`@schema-typescript/cli`](https://github.com/cosmology-tech/schema-typescript/tree/main/packages/cli)  
+  CLI is the command line utility for `schema-typescript`.
 
-- **🔍 Supports `$ref` and `$defs`**: Fully supports JSON Schema references, allowing you to define complex schemas modularly.
+- [`schema-sdk`](https://github.com/cosmology-tech/schema-typescript/tree/main/packages/schema-sdk)  
+  Provides robust tools for handling OpenAPI schemas and converting them to TypeScript clients with ease and efficiency.
 
-- **🐕 Multiple Entities Handling**: Handles arrays of defined types, such as multiple dogs or cats, seamlessly in your schemas.
+- [`node-api-client`](https://github.com/cosmology-tech/schema-typescript/tree/main/packages/node-api-client)  
+  A lightweight and flexible HTTP client for interacting with RESTful APIs in Node.js, supporting common HTTP methods and customizable options.
 
-## Getting Started 🏁
-
-To get started with _schema-typescript_, simply run:
-
-```bash
-npm install schema-typescript
-```
-
-## Usage 📘
-
-Here's a quick example to show you how to convert a JSON schema into TypeScript interfaces:
-
-```javascript
-import { generateTypeScript } from 'schema-typescript';
-
-const schema = {
-    "$id": "https://example.com/person.schema.json",
-    "$schema": "https://json-schema.org/draft-07/schema#",
-    "title": "Person",
-    "type": "object",
-    "properties": {
-        "firstName": { "type": "string" },
-        "pets": {
-            "type": "array",
-            "items": { "$ref": "#/$defs/pet" }
-        }
-    },
-    "required": ["firstName", "pets"],
-    "$defs": {
-        "pet": {
-            "type": "object",
-            "properties": {
-                "name": { "type": "string" },
-                "type": { "type": "string" } 
-            },
-            "required": ["name", "type"]
-        }
-    }
-};
-
-console.log(generateTypeScript(schema));
-// OUTPUT:
-interface Pet {
-  name: string;
-  type: string;
-}
-interface Person {
-  firstName: string;
-  pets: Pet[];
-}
-```
-
-## Contributing 🤝
-
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 ## Need Help?
 

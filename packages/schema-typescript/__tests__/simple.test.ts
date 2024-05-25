@@ -7,16 +7,16 @@ const schema = {
   type: 'object',
   properties: {
     firstName: {
-      type: 'string'
+      type: 'string',
     },
     lastName: {
-      type: 'string'
+      type: 'string',
     },
     age: {
-      type: 'integer'
-    }
+      type: 'integer',
+    },
   },
-  required: ['firstName', 'lastName']
+  required: ['firstName', 'lastName'],
 };
 
 it('works', () => {

@@ -15,7 +15,7 @@ export interface OpenAPIOptions extends SchemaTSOptions {
     aliases?: {
       [originalName: string]: string;
     };
-  }
+  };
   paths?: {
     // Include/Exclude types
     include?: string[];
@@ -26,7 +26,7 @@ export interface OpenAPIOptions extends SchemaTSOptions {
 
     includeRequests?: string[];
     excludeRequests?: string[];
-  }
+  };
 }
 
 export const defaultSchemaSDKOptions: Partial<OpenAPIOptions> = {
@@ -36,7 +36,7 @@ export const defaultSchemaSDKOptions: Partial<OpenAPIOptions> = {
   includeSwaggerUrl: false,
   operationNamingStrategy: {
     renameMap: {},
-    aliases: {}
+    aliases: {},
   },
   paths: {
     include: [],
@@ -44,11 +44,12 @@ export const defaultSchemaSDKOptions: Partial<OpenAPIOptions> = {
     includeTags: [],
     excludeTags: [],
     includeRequests: [],
-    excludeRequests: []
-  }
+    excludeRequests: [],
+  },
 };
 
-export const getDefaultSchemaSDKOptions = (options?: DeepPartial<OpenAPIOptions>): OpenAPIOptions => {
+export const getDefaultSchemaSDKOptions = (
+  options?: DeepPartial<OpenAPIOptions>
+): OpenAPIOptions => {
   return deepmerge(defaultSchemaSDKOptions, options ?? {}) as OpenAPIOptions;
 };
-
