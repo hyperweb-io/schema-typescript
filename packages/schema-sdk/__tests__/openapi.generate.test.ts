@@ -1,14 +1,12 @@
 import { writeFileSync } from 'fs';
-import { getDefaultSchemaTSOptions } from 'schema-typescript';
 
 import schema from '../../../__fixtures__/openapi/swagger.json';
 import { generateOpenApiClient } from '../src/openapi';
+import { getDefaultSchemaSDKOptions } from '../src/types';
 
 it('swagger', () => {
-  const options = getDefaultSchemaTSOptions({
-    // include: [
-    //     '*.v1.*'
-    // ],
+  const options = getDefaultSchemaSDKOptions({
+    includeSwaggerUrl: true,
     exclude: [
       '*.v1beta1.*',
       '*.v2beta1.*',
@@ -56,10 +54,11 @@ it('swagger', () => {
 });
 
 it('merged', () => {
-  const options = getDefaultSchemaTSOptions({
+  const options = getDefaultSchemaSDKOptions({
     // include: [
     //     '*.v1.*'
     // ],
+    includeSwaggerUrl: true,
     includeMethodComments: true,
     namingStrategy: {
       useLastSegment: true

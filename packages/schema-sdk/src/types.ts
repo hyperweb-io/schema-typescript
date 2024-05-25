@@ -5,6 +5,7 @@ import { defaultSchemaTSOptions, SchemaTSOptions } from 'schema-typescript';
 export interface OpenAPIOptions extends SchemaTSOptions {
     version?: 'v1' | 'v1beta1' | 'v2beta1' | 'v2beta2';
     mergedParams?: boolean;
+    includeSwaggerUrl?: boolean;
     paths?: {
         // Include/Exclude types
         include?: string[];
@@ -21,6 +22,7 @@ export interface OpenAPIOptions extends SchemaTSOptions {
 export const defaultSchemaSDKOptions: OpenAPIOptions = {
   ...defaultSchemaTSOptions,
   mergedParams: false,
+  includeSwaggerUrl: false,
   paths: {
     include: [],
     exclude: [],
@@ -31,7 +33,7 @@ export const defaultSchemaSDKOptions: OpenAPIOptions = {
   }
 };
 
-export const getDefaultSchemaSDKOptions = (options?: DeepPartial<SchemaTSOptions>): SchemaTSOptions => {
-  return deepmerge(defaultSchemaSDKOptions, options ?? {}) as SchemaTSOptions;
+export const getDefaultSchemaSDKOptions = (options?: DeepPartial<OpenAPIOptions>): OpenAPIOptions => {
+  return deepmerge(defaultSchemaSDKOptions, options ?? {}) as OpenAPIOptions;
 };
 

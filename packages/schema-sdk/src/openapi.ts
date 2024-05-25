@@ -1,7 +1,8 @@
 import generate from '@babel/generator';
 import * as t from '@babel/types';
+import { toCamelCase, toPascalCase } from '@interweb-utils/casing';
 import { generateTypeScriptTypes } from 'schema-typescript';
-import { getTypeNameSafe, shouldInclude, toCamelCase, toPascalCase } from 'schema-typescript';
+import { getTypeNameSafe, shouldInclude } from 'schema-typescript';
 
 import { OpenAPIPathItem, OpenAPISpec, Operation, Parameter, Response } from './openapi.types';
 import { OpenAPIOptions } from './types';
@@ -449,34 +450,39 @@ export function generateMethods(options: OpenAPIOptions, schema: OpenAPISpec): t
 }
 
 
-export function generateOpenApiClient(options: OpenAPIOptions, schema: OpenAPISpec): string {
-  const methods = [
-    t.classMethod(
-      'method',
-      t.identifier('getSwaggerJSON'),
-      [],
-      t.blockStatement([
-        t.variableDeclaration('const', [
-          t.variableDeclarator(
-            t.identifier('path'),
-            t.stringLiteral('/openapi/v2') // Change to '/swagger.json' if needed
-          )
-        ]),
-        t.returnStatement(
-          t.callExpression(
-            t.memberExpression(t.thisExpression(), t.identifier('get')),
-            [t.identifier('path')]
-          )
+export const getSwaggerJSONMethod = (): t.ClassMethod => {
+  return t.classMethod(
+    'method',
+    t.identifier('getSwaggerJSON'),
+    [],
+    t.blockStatement([
+      t.variableDeclaration('const', [
+        t.variableDeclarator(
+          t.identifier('path'),
+          t.stringLiteral('/openapi/v2') 
         )
       ]),
-      false,
-      false,
-      false,
-      true
-    ),
-    ...generateMethods(options, schema)
-  ];
+      t.returnStatement(
+        t.callExpression(
+          t.memberExpression(t.thisExpression(), t.identifier('get')),
+          [t.identifier('path')]
+        )
+      )
+    ]),
+    false,
+    false,
+    false,
+    true
+  );
+};
 
+export function generateOpenApiClient(options: OpenAPIOptions, schema: OpenAPISpec): string {
+  const methods = [];
+  if (options.includeSwaggerUrl) {
+    methods.push(getSwaggerJSONMethod());
+  }
+  methods.push(...generateMethods(options, schema));
+  
   const classBody = t.classBody([
     t.classMethod(
       'constructor',
