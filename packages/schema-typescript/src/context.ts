@@ -1,6 +1,6 @@
 import deepmerge from 'deepmerge';
 
-import type { DeepPartial, JSONSchema } from "./types";
+import type { DeepPartial, JSONSchema } from './types';
 
 export interface SchemaDefinitionOverrides {
   [key: string]: JSONSchema

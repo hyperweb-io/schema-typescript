@@ -17,29 +17,29 @@ export function createPathTemplateLiteral(options: OpenAPIOptions, path: string)
   let isFirst = true;
 
   segments.forEach((segment, _index) => {
-      if (segment.startsWith('{') && segment.endsWith('}')) {
-          // Dynamic segment
-          const paramName = segment.slice(1, -1);
-          // Push the accumulated static text as a quasi before adding the expression
-          quasis.push(t.templateElement({ raw: accumulatedPath + '/', cooked: accumulatedPath }, false));
-          accumulatedPath = '';  // Reset accumulated path after adding to quasis
+    if (segment.startsWith('{') && segment.endsWith('}')) {
+      // Dynamic segment
+      const paramName = segment.slice(1, -1);
+      // Push the accumulated static text as a quasi before adding the expression
+      quasis.push(t.templateElement({ raw: accumulatedPath + '/', cooked: accumulatedPath }, false));
+      accumulatedPath = '';  // Reset accumulated path after adding to quasis
 
-          // expressions.push(t.identifier(`params.${paramName}`));
-          expressions.push( 
-            options.mergedParams ?
-            t.memberExpression(t.identifier('params'), t.identifier(paramName)) :
-            t.memberExpression(
-              t.memberExpression(t.identifier('params'), t.identifier('path'))
-              , t.identifier(paramName)) 
-          );
+      // expressions.push(t.identifier(`params.${paramName}`));
+      expressions.push(
+        options.mergedParams ?
+          t.memberExpression(t.identifier('params'), t.identifier(paramName)) :
+          t.memberExpression(
+            t.memberExpression(t.identifier('params'), t.identifier('path'))
+            , t.identifier(paramName))
+      );
 
-          // Prepare the next quasi to start with a slash if this is not the last segment
-          isFirst = false;
-      } else {
-          // Accumulate static text, ensuring to prepend a slash if it's not the first segment
-          accumulatedPath += (isFirst ? '' : '/') + segment;
-          isFirst = false;
-      }
+      // Prepare the next quasi to start with a slash if this is not the last segment
+      isFirst = false;
+    } else {
+      // Accumulate static text, ensuring to prepend a slash if it's not the first segment
+      accumulatedPath += (isFirst ? '' : '/') + segment;
+      isFirst = false;
+    }
   });
 
   // Add the final accumulated static text as the last quasi

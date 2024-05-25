@@ -1,11 +1,11 @@
-import generate from "@babel/generator";
+import generate from '@babel/generator';
 import * as t from '@babel/types';
-import { SchemaTSOptions } from "schema-typescript";
-import { generateTypeScriptTypes } from "schema-typescript";
-import { getTypeNameSafe, shouldInclude, toCamelCase, toPascalCase } from "schema-typescript";
+import { SchemaTSOptions } from 'schema-typescript';
+import { generateTypeScriptTypes } from 'schema-typescript';
+import { getTypeNameSafe, shouldInclude, toCamelCase, toPascalCase } from 'schema-typescript';
 
-import { OpenAPIPathItem, OpenAPISpec, Operation, Parameter, Response } from "./openapi.types";
-import { createPathTemplateLiteral } from "./utils";
+import { OpenAPIPathItem, OpenAPISpec, Operation, Parameter, Response } from './openapi.types';
+import { createPathTemplateLiteral } from './utils';
 
 export interface OpenAPIOptions extends SchemaTSOptions {
   version?: 'v1' | 'v1beta1' | 'v2beta1' | 'v2beta2';
@@ -114,21 +114,21 @@ export const getOperationReturnType = (
 export const getResponseType = (options: OpenAPIOptions, prop: Response) => {
   if (prop.schema.type) {
     switch (prop.schema.type) {
-      case 'string':
-        return t.tsStringKeyword();
-      case 'number':
-      case 'integer':
-        return t.tsNumberKeyword();
-      case 'boolean':
-        return t.tsBooleanKeyword();
-      case 'null':
-        return t.tsNullKeyword();
-      case 'array':
-        throw new Error('Array items specification is missing');
-      case 'object':
-        throw new Error('Array items specification is missing');
-      default:
-        return t.tsAnyKeyword();
+    case 'string':
+      return t.tsStringKeyword();
+    case 'number':
+    case 'integer':
+      return t.tsNumberKeyword();
+    case 'boolean':
+      return t.tsBooleanKeyword();
+    case 'null':
+      return t.tsNullKeyword();
+    case 'array':
+      throw new Error('Array items specification is missing');
+    case 'object':
+      throw new Error('Array items specification is missing');
+    default:
+      return t.tsAnyKeyword();
     }
   }
 
@@ -147,21 +147,21 @@ export const getResponseType = (options: OpenAPIOptions, prop: Response) => {
 export const getParameterType = (options: OpenAPIOptions, prop: Parameter) => {
   if (prop.type) {
     switch (prop.type) {
-      case 'string':
-        return t.tsStringKeyword();
-      case 'number':
-      case 'integer':
-        return t.tsNumberKeyword();
-      case 'boolean':
-        return t.tsBooleanKeyword();
-      case 'null':
-        return t.tsNullKeyword();
-      case 'array':
-        throw new Error('Array items specification is missing');
-      case 'object':
-        throw new Error('Array items specification is missing');
-      default:
-        return t.tsAnyKeyword();
+    case 'string':
+      return t.tsStringKeyword();
+    case 'number':
+    case 'integer':
+      return t.tsNumberKeyword();
+    case 'boolean':
+      return t.tsBooleanKeyword();
+    case 'null':
+      return t.tsNullKeyword();
+    case 'array':
+      throw new Error('Array items specification is missing');
+    case 'object':
+      throw new Error('Array items specification is missing');
+    default:
+      return t.tsAnyKeyword();
     }
   }
 
@@ -449,7 +449,7 @@ export function generateMethods(options: OpenAPIOptions, schema: OpenAPISpec): t
         );
         methodFunction.returnType = t.tsTypeAnnotation(
           t.tsTypeReference(
-            t.identifier("Promise"),
+            t.identifier('Promise'),
             t.tsTypeParameterInstantiation([
               returnType
             ])

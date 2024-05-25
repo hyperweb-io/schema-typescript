@@ -1,9 +1,9 @@
-import generate from "@babel/generator";
-import * as t from "@babel/types";
+import generate from '@babel/generator';
+import * as t from '@babel/types';
 
-import { SchemaTSContext, type SchemaTSOptions } from "./context";
-import type { JSONSchema } from "./types";
-import { getTypeNameSafe, isValidIdentifier, isValidIdentifierCamelized, makeCommentLine, shouldInclude, toCamelCase } from "./utils";
+import { SchemaTSContext, type SchemaTSOptions } from './context';
+import type { JSONSchema } from './types';
+import { getTypeNameSafe, isValidIdentifier, isValidIdentifierCamelized, makeCommentLine, shouldInclude, toCamelCase } from './utils';
 
 const getSchemaTypeNameSafe = (ctx: SchemaTSContext, str: string): string => {
   return getTypeNameSafe(ctx.options.namingStrategy, str);
@@ -114,7 +114,7 @@ function createInterfaceDeclaration(
     const additionalType = typeof schema.additionalProperties === 'boolean' ?
       t.tsStringKeyword() : getTypeForProp(ctx, schema.additionalProperties, [], schema);
     const indexSignature = t.tsIndexSignature(
-      [t.identifier("key")], // index name, can be any valid name
+      [t.identifier('key')], // index name, can be any valid name
       t.tsTypeAnnotation(additionalType)
     );
     indexSignature.parameters[0].typeAnnotation = t.tsTypeAnnotation(t.tsStringKeyword());
@@ -160,8 +160,8 @@ function createInterfaceDeclaration(
   if (ctx.options.overrides && Object.prototype.hasOwnProperty.call(ctx.options.overrides, name)) {
     return createExportDeclarationForType(ctx, name, schema,
       t.tsTypeAliasDeclaration(t.identifier(getSchemaTypeNameSafe(ctx, name)), null,
-      getTypeForProp(ctx, ctx.options.overrides[name], [], schema)
-    ));
+        getTypeForProp(ctx, ctx.options.overrides[name], [], schema)
+      ));
   }
 
   // Fallback to exporting a basic type if nothing else is possible
@@ -221,36 +221,36 @@ function getTypeForProp(ctx: SchemaTSContext, prop: JSONSchema, required: string
     }
 
     switch (prop.type) {
-      case 'string':
-        return t.tsStringKeyword();
-      case 'number':
-      case 'integer':
-        return t.tsNumberKeyword();
-      case 'boolean':
-        return t.tsBooleanKeyword();
-      case 'null':
-        return t.tsNullKeyword();
-      case 'array':
-        if (prop.items) {
-          return t.tsArrayType(getTypeForProp(ctx, prop.items, required, schema));
-        } else {
-          throw new Error('Array items specification is missing');
-        }
-      case 'object':
-        if (prop.properties) {
-          const nestedProperties = prop.properties;
-          const nestedRequired = prop.required || [];
-          const typeElements = Object.keys(nestedProperties).map(nestedKey => {
-            const nestedProp = nestedProperties[nestedKey];
-            return createPropertySignature(ctx, nestedKey, nestedProp, nestedRequired, schema);
-          });
-          return t.tsTypeLiteral(typeElements);
-        } else {
-          // Handle dynamic properties with strict type safety option
-          return anyOrObjectWithUnknownProps(ctx);
-        }
-      default:
-        return t.tsAnyKeyword();
+    case 'string':
+      return t.tsStringKeyword();
+    case 'number':
+    case 'integer':
+      return t.tsNumberKeyword();
+    case 'boolean':
+      return t.tsBooleanKeyword();
+    case 'null':
+      return t.tsNullKeyword();
+    case 'array':
+      if (prop.items) {
+        return t.tsArrayType(getTypeForProp(ctx, prop.items, required, schema));
+      } else {
+        throw new Error('Array items specification is missing');
+      }
+    case 'object':
+      if (prop.properties) {
+        const nestedProperties = prop.properties;
+        const nestedRequired = prop.required || [];
+        const typeElements = Object.keys(nestedProperties).map(nestedKey => {
+          const nestedProp = nestedProperties[nestedKey];
+          return createPropertySignature(ctx, nestedKey, nestedProp, nestedRequired, schema);
+        });
+        return t.tsTypeLiteral(typeElements);
+      } else {
+        // Handle dynamic properties with strict type safety option
+        return anyOrObjectWithUnknownProps(ctx);
+      }
+    default:
+      return t.tsAnyKeyword();
     }
   }
 

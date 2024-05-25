@@ -1,7 +1,7 @@
 import * as t from '@babel/types';
 import { minimatch } from 'minimatch';
 
-import { SchemaNamingStrategy } from "./context";
+import { SchemaNamingStrategy } from './context';
 
 export function toPascalCase(str: string) {
   return str.replace(/(^|_|\s|-)(\w)/g, (_: any, __: any, letter: string) => letter.toUpperCase()).replace(/[_\s-]/g, '');
@@ -81,7 +81,7 @@ export const shouldInclude = (type: string, options: ShouldIncludeOptions): bool
 }
 
 export const cleanComment = (str: string) => {
-  return str.replace(/\*\//g, "*\\/");
+  return str.replace(/\*\//g, '*\\/');
 };
 
 const ensureOneSpaceEnd = (str: string) => {
