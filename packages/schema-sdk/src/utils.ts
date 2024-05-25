@@ -1,6 +1,6 @@
 import * as t from '@babel/types';
 
-import { OpenAPIOptions } from './openapi';
+import { OpenAPIOptions } from './types';
 
 /**
  * Converts a URL path with placeholders into a Babel AST TemplateLiteral.
