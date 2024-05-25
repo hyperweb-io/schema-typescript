@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`merged 1`] = `
-"import { APIClient } from "./api-client";
+"import { APIClient } from "@interweb/fetch-api-client";
 export interface MutatingWebhook {
   admissionReviewVersions: string[];
   clientConfig: WebhookClientConfig;
@@ -13345,7 +13345,7 @@ export class KubernetesClient extends APIClient {
 `;
 
 exports[`swagger 1`] = `
-"import { APIClient } from "./api-client";
+"import { APIClient } from "@interweb/fetch-api-client";
 /* io.k8s.api.admissionregistration.v1.MutatingWebhook */
 /* MutatingWebhook describes an admission webhook and the resources and operations it applies to. */
 export interface MutatingWebhook {

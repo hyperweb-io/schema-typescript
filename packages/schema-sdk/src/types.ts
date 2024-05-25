@@ -5,6 +5,7 @@ import { defaultSchemaTSOptions, SchemaTSOptions } from 'schema-typescript';
 export interface OpenAPIOptions extends SchemaTSOptions {
   clientName: string;
   version?: 'v1' | 'v1beta1' | 'v2beta1' | 'v2beta2';
+  npmApiClient?: '@interweb/fetch-api-client' | '@interweb/node-api-client' | string;
   mergedParams?: boolean;
   includeSwaggerUrl?: boolean;
   operationNamingStrategy?: {
@@ -32,6 +33,7 @@ export interface OpenAPIOptions extends SchemaTSOptions {
 export const defaultSchemaSDKOptions: Partial<OpenAPIOptions> = {
   ...defaultSchemaTSOptions,
   clientName: 'Client',
+  npmApiClient: '@interweb/fetch-api-client',
   mergedParams: false,
   includeSwaggerUrl: false,
   operationNamingStrategy: {

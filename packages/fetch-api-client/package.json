@@ -1,0 +1,39 @@
+{
+  "name": "@interweb/fetch-api-client",
+  "version": "0.4.0",
+  "author": "Dan Lynch <pyramation@gmail.com>",
+  "description": "Node.js API Client",
+  "main": "index.js",
+  "module": "esm/index.js",
+  "types": "index.d.ts",
+  "homepage": "https://github.com/cosmology-tech/schema-typescript",
+  "license": "SEE LICENSE IN LICENSE",
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cosmology-tech/schema-typescript"
+  },
+  "bugs": {
+    "url": "https://github.com/cosmology-tech/schema-typescript/issues"
+  },
+  "scripts": {
+    "copy": "copyfiles -f ../../LICENSE README.md package.json dist",
+    "clean": "rimraf dist/**",
+    "prepare": "npm run build",
+    "build": "npm run clean; tsc; tsc -p tsconfig.esm.json; npm run copy",
+    "lint": "eslint . --fix",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [],
+  "gitHead": "06e20539d2cfce7522a29d7e9b20a9eb4d78fe2c",
+  "dependencies": {
+    "isomorphic-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/isomorphic-fetch": "^0.0.39"
+  }
+}

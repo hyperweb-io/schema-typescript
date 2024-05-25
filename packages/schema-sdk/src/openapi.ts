@@ -607,7 +607,7 @@ export function generateOpenApiClient(
               t.identifier('APIClient')
             ),
           ],
-          t.stringLiteral('./api-client')
+          t.stringLiteral(options.npmApiClient)
         ),
         ...types,
         ...openApiTypes,

@@ -1,4 +1,4 @@
-import { APIClient } from "./api-client";
+import { APIClient } from "@interweb/fetch-api-client";
 /* io.k8s.api.admissionregistration.v1.MutatingWebhook */
 /* MutatingWebhook describes an admission webhook and the resources and operations it applies to. */
 export interface MutatingWebhook {
