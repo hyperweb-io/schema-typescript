@@ -47,7 +47,7 @@ export class APIClient {
     params: Params,
     opts: http.RequestOptions & { timeout?: number; isFormData?: boolean } = {}
   ): Promise<Resp> {
-    const headers = opts.isFormData
+    const headers: http.OutgoingHttpHeaders = opts.isFormData
       ? {
         'Content-Type': 'application/x-www-form-urlencoded',
         ...opts.headers,
@@ -77,7 +77,7 @@ export class APIClient {
     params: Params,
     opts: http.RequestOptions & { timeout?: number; isFormData?: boolean } = {}
   ): Promise<Resp> {
-    const headers = opts.isFormData
+    const headers: http.OutgoingHttpHeaders = opts.isFormData
       ? {
         'Content-Type': 'application/x-www-form-urlencoded',
         ...opts.headers,
