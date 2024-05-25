@@ -1,10 +1,10 @@
 # schema-typescript 
 
 <p align="center" width="100%">
-  <a href="https://github.com/pyramation/schema-typescript/actions/workflows/run-tests.yaml">
-    <img height="20" src="https://github.com/pyramation/schema-typescript/actions/workflows/run-tests.yaml/badge.svg" />
+  <a href="https://github.com/cosmology-tech/schema-typescript/actions/workflows/run-tests.yaml">
+    <img height="20" src="https://github.com/cosmology-tech/schema-typescript/actions/workflows/run-tests.yaml/badge.svg" />
   </a>
-   <a href="https://github.com/pyramation/schema-typescript/blob/main/LICENSE-MIT"><img height="20" src="https://img.shields.io/badge/license-MIT-blue.svg"/></a>
+   <a href="https://github.com/cosmology-tech/schema-typescript/blob/main/LICENSE-MIT"><img height="20" src="https://img.shields.io/badge/license-MIT-blue.svg"/></a>
 </p>
 
 Welcome to _schema-typescript_! This project provides robust tools for handling JSON schemas and converting them to TypeScript interfaces with ease and efficiency.
@@ -77,7 +77,7 @@ Contributions are what make the open-source community such an amazing place to l
 
 ## Need Help?
 
-`schema-typescript` might not work perfectly for all JSON schemas yet. We value your feedback and contributions to make it better. If you encounter any issues or have suggestions for improvements, please [let us know](https://github.com/pyramation/schema-typescript/issues).
+`schema-typescript` might not work perfectly for all JSON schemas yet. We value your feedback and contributions to make it better. If you encounter any issues or have suggestions for improvements, please [let us know](https://github.com/cosmology-tech/schema-typescript/issues).
 
 ## License 📜
 
