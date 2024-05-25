@@ -26,7 +26,7 @@ This repository contains the following packages:
 - [`schema-sdk`](https://github.com/cosmology-tech/schema-typescript/tree/main/packages/schema-sdk)  
   Provides robust tools for handling OpenAPI schemas and converting them to TypeScript clients with ease and efficiency.
 
-- [`node-api-client`](https://github.com/cosmology-tech/schema-typescript/tree/main/packages/node-api-client)  
+- [`@interweb/node-api-client`](https://github.com/cosmology-tech/schema-typescript/tree/main/packages/node-api-client)  
   A lightweight and flexible HTTP client for interacting with RESTful APIs in Node.js, supporting common HTTP methods and customizable options.
 
 
