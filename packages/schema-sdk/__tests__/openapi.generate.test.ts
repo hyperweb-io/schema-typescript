@@ -6,6 +6,7 @@ import { getDefaultSchemaSDKOptions } from '../src/types';
 
 it('swagger', () => {
   const options = getDefaultSchemaSDKOptions({
+    clientName: 'KubernetesClient',
     includeSwaggerUrl: true,
     exclude: [
       '*.v1beta1.*',
@@ -17,7 +18,14 @@ it('swagger', () => {
   });
   const code = generateOpenApiClient({
     ...options,
-    // version: 'v1',
+    operationNamingStrategy: {
+      aliases: {
+        listCoreV1PodForAllNamespaces: 'getPods'
+      },
+      renameMap: {
+        listCoreV1PodForAllNamespaces: 'listPods'
+      }
+    },
     paths: {
       exclude: [
         '*flowschema*',
@@ -58,6 +66,7 @@ it('merged', () => {
     // include: [
     //     '*.v1.*'
     // ],
+    clientName: 'KubernetesClient',
     includeSwaggerUrl: true,
     includeMethodComments: true,
     namingStrategy: {

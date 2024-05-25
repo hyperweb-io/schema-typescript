@@ -25674,7 +25674,11 @@ export class KubernetesClient extends APIClient {
     const path = \`/api/v1/persistentvolumes/\${params.path.name}/status\`;
     return await this.patch<PersistentVolume>(path, params.body);
   }
-  async listCoreV1PodForAllNamespaces(params: ListCoreV1PodForAllNamespacesRequest): Promise<PodList> {
+  async getPods(params: ListCoreV1PodForAllNamespacesRequest): Promise<PodList> {
+    const path = \`/api/v1/pods\`;
+    return await this.get<PodList>(path);
+  }
+  async listPods(params: ListCoreV1PodForAllNamespacesRequest): Promise<PodList> {
     const path = \`/api/v1/pods\`;
     return await this.get<PodList>(path);
   }

@@ -3,26 +3,41 @@ import type { DeepPartial } from 'schema-typescript';
 import { defaultSchemaTSOptions, SchemaTSOptions } from 'schema-typescript';
 
 export interface OpenAPIOptions extends SchemaTSOptions {
-    version?: 'v1' | 'v1beta1' | 'v2beta1' | 'v2beta2';
-    mergedParams?: boolean;
-    includeSwaggerUrl?: boolean;
-    paths?: {
-        // Include/Exclude types
-        include?: string[];
-        exclude?: string[];
+  clientName: string;
+  version?: 'v1' | 'v1beta1' | 'v2beta1' | 'v2beta2';
+  mergedParams?: boolean;
+  includeSwaggerUrl?: boolean;
+  operationNamingStrategy?: {
+    renameTypes?: boolean;
+    renameMap?: {
+      [originalName: string]: string;
+    };
+    aliases?: {
+      [originalName: string]: string;
+    };
+  }
+  paths?: {
+    // Include/Exclude types
+    include?: string[];
+    exclude?: string[];
 
-        includeTags?: string[];
-        excludeTags?: string[];
+    includeTags?: string[];
+    excludeTags?: string[];
 
-        includeRequests?: string[];
-        excludeRequests?: string[];
-    }
+    includeRequests?: string[];
+    excludeRequests?: string[];
+  }
 }
 
-export const defaultSchemaSDKOptions: OpenAPIOptions = {
+export const defaultSchemaSDKOptions: Partial<OpenAPIOptions> = {
   ...defaultSchemaTSOptions,
+  clientName: 'Client',
   mergedParams: false,
   includeSwaggerUrl: false,
+  operationNamingStrategy: {
+    renameMap: {},
+    aliases: {}
+  },
   paths: {
     include: [],
     exclude: [],

@@ -265,7 +265,7 @@ export function generateOpenApiParams(options: OpenAPIOptions, path: string, pat
           }
         });
 
-        const typeName = toPascalCase(getOperationMethodName(operation, method, path)) + 'Request';
+        const typeName = getOperationTypeName(options, operation, method, path) + 'Request';
         const paramsInterface = t.tsInterfaceDeclaration(
           t.identifier(typeName),
           null,
@@ -361,12 +361,115 @@ export function generateOpenApiTypes(options: OpenAPIOptions, schema: OpenAPISpe
   return interfaces.map(i => t.exportNamedDeclaration(i));
 }
 
-const getOperationMethodName = (operation: Operation, method: string, path: string) => {
-  const methodName = operation.operationId || toCamelCase(method + path.replace(/\W/g, '_'));
+const getOperationMethodName = (
+  options: OpenAPIOptions,
+  operation: Operation,
+  method: string,
+  path: string
+) => {
+  const defaultMethodName = toCamelCase(method + path.replace(/\W/g, '_'));
+  const methodName = operation.operationId || defaultMethodName;
+
+  if (options?.operationNamingStrategy?.renameMap) {
+    return options.operationNamingStrategy.renameMap[methodName] || methodName;
+  }
+
   return methodName;
 };
 
-export function generateMethods(options: OpenAPIOptions, schema: OpenAPISpec): t.ClassMethod[] {
+const getOperationTypeName = (
+  options: OpenAPIOptions,
+  operation: Operation,
+  method: string,
+  path: string
+) => {
+  const defaultMethodName = toCamelCase(method + path.replace(/\W/g, '_'));
+  const methodName = operation.operationId || defaultMethodName;
+
+  if (!options?.operationNamingStrategy?.renameTypes) {
+    return toPascalCase(methodName);
+  }
+
+  if (options?.operationNamingStrategy?.renameMap) {
+    return toPascalCase(options.operationNamingStrategy.renameMap[methodName] || methodName);
+  }
+
+  return methodName;
+};
+
+export const createOperation = (
+  options: OpenAPIOptions,
+  operation: Operation,
+  path: string,
+  method: string,
+  alias?: string
+): t.ClassMethod => {
+  const typeName = getOperationTypeName(options, operation, method, path) + 'Request';
+  const id = t.identifier('params');
+  id.typeAnnotation = t.tsTypeAnnotation(t.tsTypeReference(t.identifier(typeName)));
+  const params = [id];
+
+  const returnType = getOperationReturnType(options, operation, method);
+  const methodName = getOperationMethodName(options, operation, method, path);
+
+  const callMethod = t.callExpression(
+    t.memberExpression(
+      t.thisExpression(),
+      t.identifier(method)
+    ),
+    ['post', 'put', 'patch', 'formData'].includes(method) ?
+      [
+        t.identifier('path'),
+        t.memberExpression(
+          t.identifier('params'),
+          t.identifier('body')
+        )
+      ] : [
+        t.identifier('path')
+      ]
+  );
+  callMethod.typeParameters = t.tsTypeParameterInstantiation([
+    returnType
+  ]);
+
+  const methodFunction = t.classMethod(
+    'method',
+    t.identifier(alias ? toCamelCase(alias) : methodName),
+    params,
+    t.blockStatement([
+      t.variableDeclaration('const', [
+        t.variableDeclarator(
+          t.identifier('path'),
+          createPathTemplateLiteral(options, path)
+        )
+      ]),
+      t.returnStatement(
+        t.awaitExpression(
+          callMethod
+        )
+      )
+    ]),
+    false,
+    false,
+    false,
+    true
+  );
+  methodFunction.returnType = t.tsTypeAnnotation(
+    t.tsTypeReference(
+      t.identifier('Promise'),
+      t.tsTypeParameterInstantiation([
+        returnType
+      ])
+    )
+  );
+
+  return methodFunction;
+};
+
+export function generateMethods(
+  options: OpenAPIOptions,
+  schema: OpenAPISpec
+): t.ClassMethod[] {
   const methods: t.ClassMethod[] = [];
 
   // Iterate through each path and each method in the path
@@ -380,67 +483,11 @@ export function generateMethods(options: OpenAPIOptions, schema: OpenAPISpec): t
         const operation: Operation = pathItem[method];
         if (!shouldIncludeOperation(options, pathItem, path, method as any)) return;
 
-
-        const typeName = toPascalCase(getOperationMethodName(operation, method, path)) + 'Request';
-        const id = t.identifier('params');
-        id.typeAnnotation = t.tsTypeAnnotation(t.tsTypeReference(t.identifier(typeName)));
-        const params = [id];
-
-        const returnType = getOperationReturnType(options, operation, method);
-        const methodName = getOperationMethodName(operation, method, path);
-
-
-
-        const callMethod = t.callExpression(
-          t.memberExpression(
-            t.thisExpression(),
-            t.identifier(method)
-          ),
-          ['post', 'put', 'patch', 'formData'].includes(method) ?
-            [
-              t.identifier('path'),
-              t.memberExpression(
-                t.identifier('params'),
-                t.identifier('body')
-              )
-            ] : [
-              t.identifier('path')
-            ]
-        );
-        callMethod.typeParameters = t.tsTypeParameterInstantiation([
-          returnType
-        ]);
-        const methodFunction = t.classMethod(
-          'method',
-          t.identifier(methodName),
-          params,
-          t.blockStatement([
-            t.variableDeclaration('const', [
-              t.variableDeclarator(
-                t.identifier('path'),
-                createPathTemplateLiteral(options, path)
-              )
-            ]),
-            t.returnStatement(
-              t.awaitExpression(
-                callMethod
-              )
-            )
-          ]),
-          false,
-          false,
-          false,
-          true
-        );
-        methodFunction.returnType = t.tsTypeAnnotation(
-          t.tsTypeReference(
-            t.identifier('Promise'),
-            t.tsTypeParameterInstantiation([
-              returnType
-            ])
-          )
-        );
-        methods.push(methodFunction);
+        const alias = options.operationNamingStrategy?.aliases?.[operation.operationId];
+        if (alias) {
+          methods.push(createOperation(options, operation, path, method, alias));
+        }
+        methods.push(createOperation(options, operation, path, method));
       }
 
     });
@@ -476,7 +523,10 @@ export const getSwaggerJSONMethod = (): t.ClassMethod => {
   );
 };
 
-export function generateOpenApiClient(options: OpenAPIOptions, schema: OpenAPISpec): string {
+export function generateOpenApiClient(
+  options: OpenAPIOptions,
+  schema: OpenAPISpec
+): string {
   const methods = [];
   if (options.includeSwaggerUrl) {
     methods.push(getSwaggerJSONMethod());
@@ -498,21 +548,21 @@ export function generateOpenApiClient(options: OpenAPIOptions, schema: OpenAPISp
   ]);
 
   const clientClass = t.exportNamedDeclaration(t.classDeclaration(
-    t.identifier('KubernetesClient'),
+    t.identifier(options.clientName),
     t.identifier('APIClient'),
     classBody,
     []
   ));
 
   //// INTERFACES
-  const kubeSchema = {
-    title: 'Kubernetes',
+  const apiSchema = {
+    title: options.clientName,
     definitions: schema.definitions
   };
 
-  const types = generateTypeScriptTypes(kubeSchema, {
+  const types = generateTypeScriptTypes(apiSchema, {
     ...(options as any),
-    exclude: ['Kubernetes', ...(options.exclude ?? [])]
+    exclude: [options.clientName, ...(options.exclude ?? [])]
   });
   const openApiTypes = generateOpenApiTypes(options, schema);
 
