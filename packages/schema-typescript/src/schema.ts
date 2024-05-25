@@ -1,9 +1,10 @@
 import generate from '@babel/generator';
 import * as t from '@babel/types';
+import { isValidIdentifier, isValidIdentifierCamelized, toCamelCase } from '@interweb-utils/casing';
 
 import { SchemaTSContext, type SchemaTSOptions } from './context';
 import type { JSONSchema } from './types';
-import { getTypeNameSafe, isValidIdentifier, isValidIdentifierCamelized, makeCommentLine, shouldInclude, toCamelCase } from './utils';
+import { getTypeNameSafe, makeCommentLine, shouldInclude } from './utils';
 
 const getSchemaTypeNameSafe = (ctx: SchemaTSContext, str: string): string => {
   return getTypeNameSafe(ctx.options.namingStrategy, str);

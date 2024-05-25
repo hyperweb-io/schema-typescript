@@ -1,32 +1,8 @@
 import * as t from '@babel/types';
+import { toPascalCase } from '@interweb-utils/casing';
 import { minimatch } from 'minimatch';
 
 import { SchemaNamingStrategy } from './context';
-
-export function toPascalCase(str: string) {
-  return str.replace(/(^|_|\s|-)(\w)/g, (_: any, __: any, letter: string) => letter.toUpperCase()).replace(/[_\s-]/g, '');
-}
-
-export function toCamelCase(key: string) {
-  return key
-    // First, remove all leading non-alphabet characters
-    .replace(/^[^a-zA-Z]+/, '')
-    // Convert what follows a separator into upper case
-    .replace(/[-_\s]+(.)?/g, (_, c) => c ? c.toUpperCase() : '')
-    // Ensure the first character of the result is always lowercase
-    .replace(/^./, (c) => c.toLowerCase());
-}
-
-// // Determine if the key is a valid JavaScript identifier
-export function isValidIdentifier(key: string) {
-  return /^[$A-Z_][0-9A-Z_$]*$/i.test(key) && !/^[0-9]+$/.test(key);
-}
-
-
-// Determine if the key is a valid JavaScript-like identifier, allowing internal hyphens
-export function isValidIdentifierCamelized(key: string) {
-  return /^[$A-Z_][0-9A-Z_$\-]*$/i.test(key) && !/^[0-9]+$/.test(key) && !/^-/.test(key);
-}
 
 export const getTypeNameSafe = (strategy: SchemaNamingStrategy, str: string): string => {
   if (Object.prototype.hasOwnProperty.call(strategy.renameMap ?? {}, str)) {
@@ -45,7 +21,6 @@ export const getTypeNameSafe = (strategy: SchemaNamingStrategy, str: string): st
 
   return toPascalCase(str);
 };
-
 
 const globPattern = /\*+([^+@!?\*\[\(]*)/;
 

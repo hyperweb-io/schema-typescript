@@ -31,8 +31,13 @@
   "dependencies": {
     "@babel/generator": "^7.24.4",
     "@babel/types": "^7.24.0",
+    "@interweb-utils/casing": "^0.2.0",
     "deepmerge": "^4.3.1",
     "minimatch": "^9.0.4"
   },
-  "keywords": ["jsonschema", "schema", "typescript"]
+  "keywords": [
+    "jsonschema",
+    "schema",
+    "typescript"
+  ]
 }
