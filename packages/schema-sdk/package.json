@@ -1,6 +1,6 @@
 {
   "name": "schema-sdk",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Convert JSON Schema OpenAPI Spec to TypeScript Clients",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "homepage": "https://github.com/cosmology-tech/schema-typescript#readme",
@@ -33,7 +33,7 @@
     "@babel/types": "^7.24.0",
     "@interweb-utils/casing": "^0.2.0",
     "deepmerge": "^4.3.1",
-    "schema-typescript": "^0.8.0"
+    "schema-typescript": "^0.9.0"
   },
   "keywords": [
     "jsonschema",
