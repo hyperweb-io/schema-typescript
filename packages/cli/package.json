@@ -28,5 +28,6 @@
     "test": "jest",
     "test:watch": "jest --watch"
   },
-  "keywords": []
+  "keywords": [],
+  "gitHead": "873dbb38ae35c089c0df12bb11dae85854f69da8"
 }
