@@ -463,7 +463,7 @@ export const createOperation = (
 
   const hasBody = operation.parameters?.some(
     (param) => param.in === 'body' || param.in === 'formData'
-  );
+  ) && ['post', 'put', 'patch'].includes(method)
 
   const hasQuery = operation.parameters?.some(
     (param) => param.in === 'query'
