@@ -99,10 +99,10 @@ export const processComment = (comment: string) => {
 };
 
 export const makeComment = (comment: string) => {
-  return [{ type: 'CommentBlock', value: ` ${comment} ` }];
+  return [{ type: 'CommentBlock', value: ` ${cleanComment(comment)} ` }];
 };
 
 export const makeCommentLine = (comment: string): t.CommentLine[] => {
   // @ts-ignore
-  return [{ type: 'CommentBlock', value: ` ${comment} ` }] as t.CommentLine[];
+  return [{ type: 'CommentBlock', value: ` ${cleanComment(comment)} ` }] as t.CommentLine[];
 };
