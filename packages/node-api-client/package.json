@@ -1,6 +1,6 @@
 {
   "name": "@interweb/node-api-client",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "description": "Node.js API Client",
   "main": "index.js",
