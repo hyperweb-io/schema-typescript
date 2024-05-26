@@ -99,6 +99,7 @@ export interface APIClientRequestHeaders {
 export type APIClientRequestOpts = {
   headers?: APIClientRequestHeaders;
   timeout?: number;
+  isFormData?: boolean;
 };
 export class APIClient {
   private hostname: string;
@@ -136,7 +137,7 @@ export class APIClient {
     endpoint: string,
     query?: { [key: string]: any },
     body?: Params,
-    opts: http.RequestOptions & { timeout?: number; isFormData?: boolean } = {}
+    opts: APIClientRequestOpts = {}
   ): Promise<Resp> {
     const fullPath = this.buildFullPath(endpoint, query);
     const headers: http.OutgoingHttpHeaders = opts.isFormData
@@ -168,7 +169,7 @@ export class APIClient {
     endpoint: string,
     query?: { [key: string]: any },
     body?: Params,
-    opts: http.RequestOptions & { timeout?: number; isFormData?: boolean } = {}
+    opts: APIClientRequestOpts = {}
   ): Promise<Resp> {
     const fullPath = this.buildFullPath(endpoint, query);
     const headers: http.OutgoingHttpHeaders = opts.isFormData
@@ -200,7 +201,7 @@ export class APIClient {
     endpoint: string,
     query?: { [key: string]: any },
     body?: Params,
-    opts: http.RequestOptions & { timeout?: number } = {}
+    opts: APIClientRequestOpts = {}
   ): Promise<Resp> {
     const fullPath = this.buildFullPath(endpoint, query);
     const bodyContent = JSON.stringify(body);
@@ -225,7 +226,7 @@ export class APIClient {
     endpoint: string,
     query?: { [key: string]: any },
     body?: void,
-    opts: http.RequestOptions & { timeout?: number } = {}
+    opts: APIClientRequestOpts = {}
   ): Promise<Resp> {
     const fullPath = this.buildFullPath(endpoint, query);
     return this.request<Resp, void>({
