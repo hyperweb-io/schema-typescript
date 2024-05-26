@@ -31,8 +31,13 @@ client.get('/endpoint')
   .then(response => console.log(response))
   .catch(error => console.error(error));
 
+// GET request with query params
+client.get('/endpoint', { search: 'value' })
+  .then(response => console.log(response))
+  .catch(error => console.error(error));
+
 // POST request with JSON body
-client.post('/endpoint', { key: 'value' })
+client.post('/endpoint', null, { key: 'value' })
   .then(response => console.log(response))
   .catch(error => console.error(error));
 ```
