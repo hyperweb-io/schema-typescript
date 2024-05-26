@@ -40,5 +40,8 @@
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@interweb/fetch-api-client": "^0.4.1"
   }
 }

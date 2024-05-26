@@ -444,26 +444,45 @@ export const createOperation = (
   method: string,
   alias?: string
 ): t.ClassMethod => {
-  const typeName =
-    getOperationTypeName(options, operation, method, path) + 'Request';
+  const typeName = getOperationTypeName(options, operation, method, path) + 'Request';
   const id = t.identifier('params');
   id.typeAnnotation = t.tsTypeAnnotation(
     t.tsTypeReference(t.identifier(typeName))
   );
-  const params = [id];
+
+  const opts = t.identifier('opts');
+  opts.optional = true;
+  opts.typeAnnotation = t.tsTypeAnnotation(
+    t.tsTypeReference(t.identifier('APIClientRequestOpts'))
+  );
+
+  const params = [
+    id,
+    opts
+  ];
+
+  const hasBody = operation.parameters?.some(
+    (param) => param.in === 'body' || param.in === 'formData'
+  );
+
+  const hasQuery = operation.parameters?.some(
+    (param) => param.in === 'query'
+  );
 
   const returnType = getOperationReturnType(options, operation, method);
   const methodName = getOperationMethodName(options, operation, method, path);
 
   const callMethod = t.callExpression(
     t.memberExpression(t.thisExpression(), t.identifier(method)),
-    ['post', 'put', 'patch', 'formData'].includes(method)
-      ? [
-        t.identifier('path'),
-        t.memberExpression(t.identifier('params'), t.identifier('body')),
-      ]
-      : [t.identifier('path')]
+    [
+      t.identifier('path'),
+      hasQuery ? t.memberExpression(t.identifier('params'), t.identifier('query')) : t.nullLiteral(),  // The query parameter
+      hasBody ? t.memberExpression(t.identifier('params'), t.identifier('body')) : t.nullLiteral(),  // The body parameter
+      t.identifier('opts')
+    ]
+     
   );
+
   callMethod.typeParameters = t.tsTypeParameterInstantiation([returnType]);
 
   const methodFunction = t.classMethod(
@@ -513,6 +532,7 @@ export function generateMethods(
 
         const alias =
           options.operationNamingStrategy?.aliases?.[operation.operationId];
+
         if (alias) {
           methods.push(
             createOperation(options, operation, path, method, alias)
@@ -605,6 +625,10 @@ export function generateOpenApiClient(
             t.importSpecifier(
               t.identifier('APIClient'),
               t.identifier('APIClient')
+            ),
+            t.importSpecifier(
+              t.identifier('APIClientRequestOpts'),
+              t.identifier('APIClientRequestOpts')
             ),
           ],
           t.stringLiteral(options.npmApiClient)
