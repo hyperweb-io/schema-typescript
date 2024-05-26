@@ -10264,7 +10264,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1CollectionNamespacedConfigMap(params: DeleteCoreV1CollectionNamespacedConfigMapRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/namespaces/${params.namespace}/configmaps`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readCoreV1NamespacedConfigMap(params: ReadCoreV1NamespacedConfigMapRequest, opts?: APIClientRequestOpts): Promise<ConfigMap> {
     const path = `/api/v1/namespaces/${params.namespace}/configmaps/${params.name}`;
@@ -10276,7 +10276,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1NamespacedConfigMap(params: DeleteCoreV1NamespacedConfigMapRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/namespaces/${params.namespace}/configmaps/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchCoreV1NamespacedConfigMap(params: PatchCoreV1NamespacedConfigMapRequest, opts?: APIClientRequestOpts): Promise<ConfigMap> {
     const path = `/api/v1/namespaces/${params.namespace}/configmaps/${params.name}`;
@@ -10292,7 +10292,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1CollectionNamespacedEndpoints(params: DeleteCoreV1CollectionNamespacedEndpointsRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/namespaces/${params.namespace}/endpoints`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readCoreV1NamespacedEndpoints(params: ReadCoreV1NamespacedEndpointsRequest, opts?: APIClientRequestOpts): Promise<Endpoints> {
     const path = `/api/v1/namespaces/${params.namespace}/endpoints/${params.name}`;
@@ -10304,7 +10304,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1NamespacedEndpoints(params: DeleteCoreV1NamespacedEndpointsRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/namespaces/${params.namespace}/endpoints/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchCoreV1NamespacedEndpoints(params: PatchCoreV1NamespacedEndpointsRequest, opts?: APIClientRequestOpts): Promise<Endpoints> {
     const path = `/api/v1/namespaces/${params.namespace}/endpoints/${params.name}`;
@@ -10320,7 +10320,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1CollectionNamespacedEvent(params: DeleteCoreV1CollectionNamespacedEventRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/namespaces/${params.namespace}/events`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readCoreV1NamespacedEvent(params: ReadCoreV1NamespacedEventRequest, opts?: APIClientRequestOpts): Promise<Event> {
     const path = `/api/v1/namespaces/${params.namespace}/events/${params.name}`;
@@ -10332,7 +10332,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1NamespacedEvent(params: DeleteCoreV1NamespacedEventRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/namespaces/${params.namespace}/events/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchCoreV1NamespacedEvent(params: PatchCoreV1NamespacedEventRequest, opts?: APIClientRequestOpts): Promise<Event> {
     const path = `/api/v1/namespaces/${params.namespace}/events/${params.name}`;
@@ -10348,7 +10348,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1CollectionNamespacedLimitRange(params: DeleteCoreV1CollectionNamespacedLimitRangeRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/namespaces/${params.namespace}/limitranges`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readCoreV1NamespacedLimitRange(params: ReadCoreV1NamespacedLimitRangeRequest, opts?: APIClientRequestOpts): Promise<LimitRange> {
     const path = `/api/v1/namespaces/${params.namespace}/limitranges/${params.name}`;
@@ -10360,7 +10360,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1NamespacedLimitRange(params: DeleteCoreV1NamespacedLimitRangeRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/namespaces/${params.namespace}/limitranges/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchCoreV1NamespacedLimitRange(params: PatchCoreV1NamespacedLimitRangeRequest, opts?: APIClientRequestOpts): Promise<LimitRange> {
     const path = `/api/v1/namespaces/${params.namespace}/limitranges/${params.name}`;
@@ -10376,7 +10376,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1CollectionNamespacedPersistentVolumeClaim(params: DeleteCoreV1CollectionNamespacedPersistentVolumeClaimRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/namespaces/${params.namespace}/persistentvolumeclaims`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readCoreV1NamespacedPersistentVolumeClaim(params: ReadCoreV1NamespacedPersistentVolumeClaimRequest, opts?: APIClientRequestOpts): Promise<PersistentVolumeClaim> {
     const path = `/api/v1/namespaces/${params.namespace}/persistentvolumeclaims/${params.name}`;
@@ -10388,7 +10388,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1NamespacedPersistentVolumeClaim(params: DeleteCoreV1NamespacedPersistentVolumeClaimRequest, opts?: APIClientRequestOpts): Promise<PersistentVolumeClaim> {
     const path = `/api/v1/namespaces/${params.namespace}/persistentvolumeclaims/${params.name}`;
-    return await this.delete<PersistentVolumeClaim>(path, params.query, params.body, opts);
+    return await this.delete<PersistentVolumeClaim>(path, params.query, null, opts);
   }
   async patchCoreV1NamespacedPersistentVolumeClaim(params: PatchCoreV1NamespacedPersistentVolumeClaimRequest, opts?: APIClientRequestOpts): Promise<PersistentVolumeClaim> {
     const path = `/api/v1/namespaces/${params.namespace}/persistentvolumeclaims/${params.name}`;
@@ -10416,7 +10416,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1CollectionNamespacedPod(params: DeleteCoreV1CollectionNamespacedPodRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/namespaces/${params.namespace}/pods`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readCoreV1NamespacedPod(params: ReadCoreV1NamespacedPodRequest, opts?: APIClientRequestOpts): Promise<Pod> {
     const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}`;
@@ -10428,7 +10428,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1NamespacedPod(params: DeleteCoreV1NamespacedPodRequest, opts?: APIClientRequestOpts): Promise<Pod> {
     const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}`;
-    return await this.delete<Pod>(path, params.query, params.body, opts);
+    return await this.delete<Pod>(path, params.query, null, opts);
   }
   async patchCoreV1NamespacedPod(params: PatchCoreV1NamespacedPodRequest, opts?: APIClientRequestOpts): Promise<Pod> {
     const path = `/api/v1/namespaces/${params.namespace}/pods/${params.name}`;
@@ -10548,7 +10548,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1CollectionNamespacedPodTemplate(params: DeleteCoreV1CollectionNamespacedPodTemplateRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/namespaces/${params.namespace}/podtemplates`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readCoreV1NamespacedPodTemplate(params: ReadCoreV1NamespacedPodTemplateRequest, opts?: APIClientRequestOpts): Promise<PodTemplate> {
     const path = `/api/v1/namespaces/${params.namespace}/podtemplates/${params.name}`;
@@ -10560,7 +10560,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1NamespacedPodTemplate(params: DeleteCoreV1NamespacedPodTemplateRequest, opts?: APIClientRequestOpts): Promise<PodTemplate> {
     const path = `/api/v1/namespaces/${params.namespace}/podtemplates/${params.name}`;
-    return await this.delete<PodTemplate>(path, params.query, params.body, opts);
+    return await this.delete<PodTemplate>(path, params.query, null, opts);
   }
   async patchCoreV1NamespacedPodTemplate(params: PatchCoreV1NamespacedPodTemplateRequest, opts?: APIClientRequestOpts): Promise<PodTemplate> {
     const path = `/api/v1/namespaces/${params.namespace}/podtemplates/${params.name}`;
@@ -10576,7 +10576,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1CollectionNamespacedReplicationController(params: DeleteCoreV1CollectionNamespacedReplicationControllerRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/namespaces/${params.namespace}/replicationcontrollers`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readCoreV1NamespacedReplicationController(params: ReadCoreV1NamespacedReplicationControllerRequest, opts?: APIClientRequestOpts): Promise<ReplicationController> {
     const path = `/api/v1/namespaces/${params.namespace}/replicationcontrollers/${params.name}`;
@@ -10588,7 +10588,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1NamespacedReplicationController(params: DeleteCoreV1NamespacedReplicationControllerRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/namespaces/${params.namespace}/replicationcontrollers/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchCoreV1NamespacedReplicationController(params: PatchCoreV1NamespacedReplicationControllerRequest, opts?: APIClientRequestOpts): Promise<ReplicationController> {
     const path = `/api/v1/namespaces/${params.namespace}/replicationcontrollers/${params.name}`;
@@ -10628,7 +10628,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1CollectionNamespacedResourceQuota(params: DeleteCoreV1CollectionNamespacedResourceQuotaRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/namespaces/${params.namespace}/resourcequotas`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readCoreV1NamespacedResourceQuota(params: ReadCoreV1NamespacedResourceQuotaRequest, opts?: APIClientRequestOpts): Promise<ResourceQuota> {
     const path = `/api/v1/namespaces/${params.namespace}/resourcequotas/${params.name}`;
@@ -10640,7 +10640,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1NamespacedResourceQuota(params: DeleteCoreV1NamespacedResourceQuotaRequest, opts?: APIClientRequestOpts): Promise<ResourceQuota> {
     const path = `/api/v1/namespaces/${params.namespace}/resourcequotas/${params.name}`;
-    return await this.delete<ResourceQuota>(path, params.query, params.body, opts);
+    return await this.delete<ResourceQuota>(path, params.query, null, opts);
   }
   async patchCoreV1NamespacedResourceQuota(params: PatchCoreV1NamespacedResourceQuotaRequest, opts?: APIClientRequestOpts): Promise<ResourceQuota> {
     const path = `/api/v1/namespaces/${params.namespace}/resourcequotas/${params.name}`;
@@ -10668,7 +10668,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1CollectionNamespacedSecret(params: DeleteCoreV1CollectionNamespacedSecretRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/namespaces/${params.namespace}/secrets`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readCoreV1NamespacedSecret(params: ReadCoreV1NamespacedSecretRequest, opts?: APIClientRequestOpts): Promise<Secret> {
     const path = `/api/v1/namespaces/${params.namespace}/secrets/${params.name}`;
@@ -10680,7 +10680,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1NamespacedSecret(params: DeleteCoreV1NamespacedSecretRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/namespaces/${params.namespace}/secrets/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchCoreV1NamespacedSecret(params: PatchCoreV1NamespacedSecretRequest, opts?: APIClientRequestOpts): Promise<Secret> {
     const path = `/api/v1/namespaces/${params.namespace}/secrets/${params.name}`;
@@ -10696,7 +10696,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1CollectionNamespacedServiceAccount(params: DeleteCoreV1CollectionNamespacedServiceAccountRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/namespaces/${params.namespace}/serviceaccounts`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readCoreV1NamespacedServiceAccount(params: ReadCoreV1NamespacedServiceAccountRequest, opts?: APIClientRequestOpts): Promise<ServiceAccount> {
     const path = `/api/v1/namespaces/${params.namespace}/serviceaccounts/${params.name}`;
@@ -10708,7 +10708,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1NamespacedServiceAccount(params: DeleteCoreV1NamespacedServiceAccountRequest, opts?: APIClientRequestOpts): Promise<ServiceAccount> {
     const path = `/api/v1/namespaces/${params.namespace}/serviceaccounts/${params.name}`;
-    return await this.delete<ServiceAccount>(path, params.query, params.body, opts);
+    return await this.delete<ServiceAccount>(path, params.query, null, opts);
   }
   async patchCoreV1NamespacedServiceAccount(params: PatchCoreV1NamespacedServiceAccountRequest, opts?: APIClientRequestOpts): Promise<ServiceAccount> {
     const path = `/api/v1/namespaces/${params.namespace}/serviceaccounts/${params.name}`;
@@ -10736,7 +10736,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1NamespacedService(params: DeleteCoreV1NamespacedServiceRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchCoreV1NamespacedService(params: PatchCoreV1NamespacedServiceRequest, opts?: APIClientRequestOpts): Promise<Service> {
     const path = `/api/v1/namespaces/${params.namespace}/services/${params.name}`;
@@ -10820,7 +10820,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1Namespace(params: DeleteCoreV1NamespaceRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/namespaces/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchCoreV1Namespace(params: PatchCoreV1NamespaceRequest, opts?: APIClientRequestOpts): Promise<Namespace> {
     const path = `/api/v1/namespaces/${params.name}`;
@@ -10852,7 +10852,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1CollectionNode(params: DeleteCoreV1CollectionNodeRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/nodes`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readCoreV1Node(params: ReadCoreV1NodeRequest, opts?: APIClientRequestOpts): Promise<Node> {
     const path = `/api/v1/nodes/${params.name}`;
@@ -10864,7 +10864,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1Node(params: DeleteCoreV1NodeRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/nodes/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchCoreV1Node(params: PatchCoreV1NodeRequest, opts?: APIClientRequestOpts): Promise<Node> {
     const path = `/api/v1/nodes/${params.name}`;
@@ -10952,7 +10952,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1CollectionPersistentVolume(params: DeleteCoreV1CollectionPersistentVolumeRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/api/v1/persistentvolumes`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readCoreV1PersistentVolume(params: ReadCoreV1PersistentVolumeRequest, opts?: APIClientRequestOpts): Promise<PersistentVolume> {
     const path = `/api/v1/persistentvolumes/${params.name}`;
@@ -10964,7 +10964,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoreV1PersistentVolume(params: DeleteCoreV1PersistentVolumeRequest, opts?: APIClientRequestOpts): Promise<PersistentVolume> {
     const path = `/api/v1/persistentvolumes/${params.name}`;
-    return await this.delete<PersistentVolume>(path, params.query, params.body, opts);
+    return await this.delete<PersistentVolume>(path, params.query, null, opts);
   }
   async patchCoreV1PersistentVolume(params: PatchCoreV1PersistentVolumeRequest, opts?: APIClientRequestOpts): Promise<PersistentVolume> {
     const path = `/api/v1/persistentvolumes/${params.name}`;
@@ -11200,7 +11200,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAdmissionregistrationV1CollectionMutatingWebhookConfiguration(params: DeleteAdmissionregistrationV1CollectionMutatingWebhookConfigurationRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readAdmissionregistrationV1MutatingWebhookConfiguration(params: ReadAdmissionregistrationV1MutatingWebhookConfigurationRequest, opts?: APIClientRequestOpts): Promise<MutatingWebhookConfiguration> {
     const path = `/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations/${params.name}`;
@@ -11212,7 +11212,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAdmissionregistrationV1MutatingWebhookConfiguration(params: DeleteAdmissionregistrationV1MutatingWebhookConfigurationRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchAdmissionregistrationV1MutatingWebhookConfiguration(params: PatchAdmissionregistrationV1MutatingWebhookConfigurationRequest, opts?: APIClientRequestOpts): Promise<MutatingWebhookConfiguration> {
     const path = `/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations/${params.name}`;
@@ -11228,7 +11228,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAdmissionregistrationV1CollectionValidatingWebhookConfiguration(params: DeleteAdmissionregistrationV1CollectionValidatingWebhookConfigurationRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readAdmissionregistrationV1ValidatingWebhookConfiguration(params: ReadAdmissionregistrationV1ValidatingWebhookConfigurationRequest, opts?: APIClientRequestOpts): Promise<ValidatingWebhookConfiguration> {
     const path = `/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations/${params.name}`;
@@ -11240,7 +11240,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAdmissionregistrationV1ValidatingWebhookConfiguration(params: DeleteAdmissionregistrationV1ValidatingWebhookConfigurationRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchAdmissionregistrationV1ValidatingWebhookConfiguration(params: PatchAdmissionregistrationV1ValidatingWebhookConfigurationRequest, opts?: APIClientRequestOpts): Promise<ValidatingWebhookConfiguration> {
     const path = `/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations/${params.name}`;
@@ -11280,7 +11280,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteApiextensionsV1CollectionCustomResourceDefinition(params: DeleteApiextensionsV1CollectionCustomResourceDefinitionRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/apiextensions.k8s.io/v1/customresourcedefinitions`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readApiextensionsV1CustomResourceDefinition(params: ReadApiextensionsV1CustomResourceDefinitionRequest, opts?: APIClientRequestOpts): Promise<CustomResourceDefinition> {
     const path = `/apis/apiextensions.k8s.io/v1/customresourcedefinitions/${params.name}`;
@@ -11292,7 +11292,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteApiextensionsV1CustomResourceDefinition(params: DeleteApiextensionsV1CustomResourceDefinitionRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/apiextensions.k8s.io/v1/customresourcedefinitions/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchApiextensionsV1CustomResourceDefinition(params: PatchApiextensionsV1CustomResourceDefinitionRequest, opts?: APIClientRequestOpts): Promise<CustomResourceDefinition> {
     const path = `/apis/apiextensions.k8s.io/v1/customresourcedefinitions/${params.name}`;
@@ -11336,7 +11336,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteApiregistrationV1CollectionAPIService(params: DeleteApiregistrationV1CollectionAPIServiceRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/apiregistration.k8s.io/v1/apiservices`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readApiregistrationV1APIService(params: ReadApiregistrationV1APIServiceRequest, opts?: APIClientRequestOpts): Promise<APIService> {
     const path = `/apis/apiregistration.k8s.io/v1/apiservices/${params.name}`;
@@ -11348,7 +11348,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteApiregistrationV1APIService(params: DeleteApiregistrationV1APIServiceRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/apiregistration.k8s.io/v1/apiservices/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchApiregistrationV1APIService(params: PatchApiregistrationV1APIServiceRequest, opts?: APIClientRequestOpts): Promise<APIService> {
     const path = `/apis/apiregistration.k8s.io/v1/apiservices/${params.name}`;
@@ -11404,7 +11404,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAppsV1CollectionNamespacedControllerRevision(params: DeleteAppsV1CollectionNamespacedControllerRevisionRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/controllerrevisions`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readAppsV1NamespacedControllerRevision(params: ReadAppsV1NamespacedControllerRevisionRequest, opts?: APIClientRequestOpts): Promise<ControllerRevision> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/controllerrevisions/${params.name}`;
@@ -11416,7 +11416,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAppsV1NamespacedControllerRevision(params: DeleteAppsV1NamespacedControllerRevisionRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/controllerrevisions/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchAppsV1NamespacedControllerRevision(params: PatchAppsV1NamespacedControllerRevisionRequest, opts?: APIClientRequestOpts): Promise<ControllerRevision> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/controllerrevisions/${params.name}`;
@@ -11432,7 +11432,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAppsV1CollectionNamespacedDaemonSet(params: DeleteAppsV1CollectionNamespacedDaemonSetRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/daemonsets`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readAppsV1NamespacedDaemonSet(params: ReadAppsV1NamespacedDaemonSetRequest, opts?: APIClientRequestOpts): Promise<DaemonSet> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/daemonsets/${params.name}`;
@@ -11444,7 +11444,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAppsV1NamespacedDaemonSet(params: DeleteAppsV1NamespacedDaemonSetRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/daemonsets/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchAppsV1NamespacedDaemonSet(params: PatchAppsV1NamespacedDaemonSetRequest, opts?: APIClientRequestOpts): Promise<DaemonSet> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/daemonsets/${params.name}`;
@@ -11472,7 +11472,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAppsV1CollectionNamespacedDeployment(params: DeleteAppsV1CollectionNamespacedDeploymentRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/deployments`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readAppsV1NamespacedDeployment(params: ReadAppsV1NamespacedDeploymentRequest, opts?: APIClientRequestOpts): Promise<Deployment> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/deployments/${params.name}`;
@@ -11484,7 +11484,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAppsV1NamespacedDeployment(params: DeleteAppsV1NamespacedDeploymentRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/deployments/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchAppsV1NamespacedDeployment(params: PatchAppsV1NamespacedDeploymentRequest, opts?: APIClientRequestOpts): Promise<Deployment> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/deployments/${params.name}`;
@@ -11524,7 +11524,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAppsV1CollectionNamespacedReplicaSet(params: DeleteAppsV1CollectionNamespacedReplicaSetRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/replicasets`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readAppsV1NamespacedReplicaSet(params: ReadAppsV1NamespacedReplicaSetRequest, opts?: APIClientRequestOpts): Promise<ReplicaSet> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/replicasets/${params.name}`;
@@ -11536,7 +11536,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAppsV1NamespacedReplicaSet(params: DeleteAppsV1NamespacedReplicaSetRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/replicasets/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchAppsV1NamespacedReplicaSet(params: PatchAppsV1NamespacedReplicaSetRequest, opts?: APIClientRequestOpts): Promise<ReplicaSet> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/replicasets/${params.name}`;
@@ -11576,7 +11576,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAppsV1CollectionNamespacedStatefulSet(params: DeleteAppsV1CollectionNamespacedStatefulSetRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/statefulsets`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readAppsV1NamespacedStatefulSet(params: ReadAppsV1NamespacedStatefulSetRequest, opts?: APIClientRequestOpts): Promise<StatefulSet> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/statefulsets/${params.name}`;
@@ -11588,7 +11588,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAppsV1NamespacedStatefulSet(params: DeleteAppsV1NamespacedStatefulSetRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/statefulsets/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchAppsV1NamespacedStatefulSet(params: PatchAppsV1NamespacedStatefulSetRequest, opts?: APIClientRequestOpts): Promise<StatefulSet> {
     const path = `/apis/apps/v1/namespaces/${params.namespace}/statefulsets/${params.name}`;
@@ -11744,7 +11744,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAutoscalingV1CollectionNamespacedHorizontalPodAutoscaler(params: DeleteAutoscalingV1CollectionNamespacedHorizontalPodAutoscalerRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/autoscaling/v1/namespaces/${params.namespace}/horizontalpodautoscalers`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readAutoscalingV1NamespacedHorizontalPodAutoscaler(params: ReadAutoscalingV1NamespacedHorizontalPodAutoscalerRequest, opts?: APIClientRequestOpts): Promise<HorizontalPodAutoscaler> {
     const path = `/apis/autoscaling/v1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
@@ -11756,7 +11756,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAutoscalingV1NamespacedHorizontalPodAutoscaler(params: DeleteAutoscalingV1NamespacedHorizontalPodAutoscalerRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/autoscaling/v1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchAutoscalingV1NamespacedHorizontalPodAutoscaler(params: PatchAutoscalingV1NamespacedHorizontalPodAutoscalerRequest, opts?: APIClientRequestOpts): Promise<HorizontalPodAutoscaler> {
     const path = `/apis/autoscaling/v1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
@@ -11804,7 +11804,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAutoscalingV2beta1CollectionNamespacedHorizontalPodAutoscaler(params: DeleteAutoscalingV2beta1CollectionNamespacedHorizontalPodAutoscalerRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/autoscaling/v2beta1/namespaces/${params.namespace}/horizontalpodautoscalers`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readAutoscalingV2beta1NamespacedHorizontalPodAutoscaler(params: ReadAutoscalingV2beta1NamespacedHorizontalPodAutoscalerRequest, opts?: APIClientRequestOpts): Promise<HorizontalPodAutoscaler> {
     const path = `/apis/autoscaling/v2beta1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
@@ -11816,7 +11816,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAutoscalingV2beta1NamespacedHorizontalPodAutoscaler(params: DeleteAutoscalingV2beta1NamespacedHorizontalPodAutoscalerRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/autoscaling/v2beta1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchAutoscalingV2beta1NamespacedHorizontalPodAutoscaler(params: PatchAutoscalingV2beta1NamespacedHorizontalPodAutoscalerRequest, opts?: APIClientRequestOpts): Promise<HorizontalPodAutoscaler> {
     const path = `/apis/autoscaling/v2beta1/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
@@ -11864,7 +11864,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAutoscalingV2beta2CollectionNamespacedHorizontalPodAutoscaler(params: DeleteAutoscalingV2beta2CollectionNamespacedHorizontalPodAutoscalerRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/autoscaling/v2beta2/namespaces/${params.namespace}/horizontalpodautoscalers`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readAutoscalingV2beta2NamespacedHorizontalPodAutoscaler(params: ReadAutoscalingV2beta2NamespacedHorizontalPodAutoscalerRequest, opts?: APIClientRequestOpts): Promise<HorizontalPodAutoscaler> {
     const path = `/apis/autoscaling/v2beta2/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
@@ -11876,7 +11876,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteAutoscalingV2beta2NamespacedHorizontalPodAutoscaler(params: DeleteAutoscalingV2beta2NamespacedHorizontalPodAutoscalerRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/autoscaling/v2beta2/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchAutoscalingV2beta2NamespacedHorizontalPodAutoscaler(params: PatchAutoscalingV2beta2NamespacedHorizontalPodAutoscalerRequest, opts?: APIClientRequestOpts): Promise<HorizontalPodAutoscaler> {
     const path = `/apis/autoscaling/v2beta2/namespaces/${params.namespace}/horizontalpodautoscalers/${params.name}`;
@@ -11932,7 +11932,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteBatchV1CollectionNamespacedCronJob(params: DeleteBatchV1CollectionNamespacedCronJobRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/batch/v1/namespaces/${params.namespace}/cronjobs`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readBatchV1NamespacedCronJob(params: ReadBatchV1NamespacedCronJobRequest, opts?: APIClientRequestOpts): Promise<CronJob> {
     const path = `/apis/batch/v1/namespaces/${params.namespace}/cronjobs/${params.name}`;
@@ -11944,7 +11944,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteBatchV1NamespacedCronJob(params: DeleteBatchV1NamespacedCronJobRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/batch/v1/namespaces/${params.namespace}/cronjobs/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchBatchV1NamespacedCronJob(params: PatchBatchV1NamespacedCronJobRequest, opts?: APIClientRequestOpts): Promise<CronJob> {
     const path = `/apis/batch/v1/namespaces/${params.namespace}/cronjobs/${params.name}`;
@@ -11972,7 +11972,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteBatchV1CollectionNamespacedJob(params: DeleteBatchV1CollectionNamespacedJobRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/batch/v1/namespaces/${params.namespace}/jobs`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readBatchV1NamespacedJob(params: ReadBatchV1NamespacedJobRequest, opts?: APIClientRequestOpts): Promise<Job> {
     const path = `/apis/batch/v1/namespaces/${params.namespace}/jobs/${params.name}`;
@@ -11984,7 +11984,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteBatchV1NamespacedJob(params: DeleteBatchV1NamespacedJobRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/batch/v1/namespaces/${params.namespace}/jobs/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchBatchV1NamespacedJob(params: PatchBatchV1NamespacedJobRequest, opts?: APIClientRequestOpts): Promise<Job> {
     const path = `/apis/batch/v1/namespaces/${params.namespace}/jobs/${params.name}`;
@@ -12044,7 +12044,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteBatchV1beta1CollectionNamespacedCronJob(params: DeleteBatchV1beta1CollectionNamespacedCronJobRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/batch/v1beta1/namespaces/${params.namespace}/cronjobs`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readBatchV1beta1NamespacedCronJob(params: ReadBatchV1beta1NamespacedCronJobRequest, opts?: APIClientRequestOpts): Promise<CronJob> {
     const path = `/apis/batch/v1beta1/namespaces/${params.namespace}/cronjobs/${params.name}`;
@@ -12056,7 +12056,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteBatchV1beta1NamespacedCronJob(params: DeleteBatchV1beta1NamespacedCronJobRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/batch/v1beta1/namespaces/${params.namespace}/cronjobs/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchBatchV1beta1NamespacedCronJob(params: PatchBatchV1beta1NamespacedCronJobRequest, opts?: APIClientRequestOpts): Promise<CronJob> {
     const path = `/apis/batch/v1beta1/namespaces/${params.namespace}/cronjobs/${params.name}`;
@@ -12104,7 +12104,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCertificatesV1CollectionCertificateSigningRequest(params: DeleteCertificatesV1CollectionCertificateSigningRequestRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/certificates.k8s.io/v1/certificatesigningrequests`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readCertificatesV1CertificateSigningRequest(params: ReadCertificatesV1CertificateSigningRequestRequest, opts?: APIClientRequestOpts): Promise<CertificateSigningRequest> {
     const path = `/apis/certificates.k8s.io/v1/certificatesigningrequests/${params.name}`;
@@ -12116,7 +12116,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCertificatesV1CertificateSigningRequest(params: DeleteCertificatesV1CertificateSigningRequestRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/certificates.k8s.io/v1/certificatesigningrequests/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchCertificatesV1CertificateSigningRequest(params: PatchCertificatesV1CertificateSigningRequestRequest, opts?: APIClientRequestOpts): Promise<CertificateSigningRequest> {
     const path = `/apis/certificates.k8s.io/v1/certificatesigningrequests/${params.name}`;
@@ -12176,7 +12176,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoordinationV1CollectionNamespacedLease(params: DeleteCoordinationV1CollectionNamespacedLeaseRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/coordination.k8s.io/v1/namespaces/${params.namespace}/leases`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readCoordinationV1NamespacedLease(params: ReadCoordinationV1NamespacedLeaseRequest, opts?: APIClientRequestOpts): Promise<Lease> {
     const path = `/apis/coordination.k8s.io/v1/namespaces/${params.namespace}/leases/${params.name}`;
@@ -12188,7 +12188,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteCoordinationV1NamespacedLease(params: DeleteCoordinationV1NamespacedLeaseRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/coordination.k8s.io/v1/namespaces/${params.namespace}/leases/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchCoordinationV1NamespacedLease(params: PatchCoordinationV1NamespacedLeaseRequest, opts?: APIClientRequestOpts): Promise<Lease> {
     const path = `/apis/coordination.k8s.io/v1/namespaces/${params.namespace}/leases/${params.name}`;
@@ -12228,7 +12228,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteDiscoveryV1CollectionNamespacedEndpointSlice(params: DeleteDiscoveryV1CollectionNamespacedEndpointSliceRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/discovery.k8s.io/v1/namespaces/${params.namespace}/endpointslices`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readDiscoveryV1NamespacedEndpointSlice(params: ReadDiscoveryV1NamespacedEndpointSliceRequest, opts?: APIClientRequestOpts): Promise<EndpointSlice> {
     const path = `/apis/discovery.k8s.io/v1/namespaces/${params.namespace}/endpointslices/${params.name}`;
@@ -12240,7 +12240,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteDiscoveryV1NamespacedEndpointSlice(params: DeleteDiscoveryV1NamespacedEndpointSliceRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/discovery.k8s.io/v1/namespaces/${params.namespace}/endpointslices/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchDiscoveryV1NamespacedEndpointSlice(params: PatchDiscoveryV1NamespacedEndpointSliceRequest, opts?: APIClientRequestOpts): Promise<EndpointSlice> {
     const path = `/apis/discovery.k8s.io/v1/namespaces/${params.namespace}/endpointslices/${params.name}`;
@@ -12276,7 +12276,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteDiscoveryV1beta1CollectionNamespacedEndpointSlice(params: DeleteDiscoveryV1beta1CollectionNamespacedEndpointSliceRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/discovery.k8s.io/v1beta1/namespaces/${params.namespace}/endpointslices`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readDiscoveryV1beta1NamespacedEndpointSlice(params: ReadDiscoveryV1beta1NamespacedEndpointSliceRequest, opts?: APIClientRequestOpts): Promise<EndpointSlice> {
     const path = `/apis/discovery.k8s.io/v1beta1/namespaces/${params.namespace}/endpointslices/${params.name}`;
@@ -12288,7 +12288,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteDiscoveryV1beta1NamespacedEndpointSlice(params: DeleteDiscoveryV1beta1NamespacedEndpointSliceRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/discovery.k8s.io/v1beta1/namespaces/${params.namespace}/endpointslices/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchDiscoveryV1beta1NamespacedEndpointSlice(params: PatchDiscoveryV1beta1NamespacedEndpointSliceRequest, opts?: APIClientRequestOpts): Promise<EndpointSlice> {
     const path = `/apis/discovery.k8s.io/v1beta1/namespaces/${params.namespace}/endpointslices/${params.name}`;
@@ -12328,7 +12328,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteEventsV1CollectionNamespacedEvent(params: DeleteEventsV1CollectionNamespacedEventRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/events.k8s.io/v1/namespaces/${params.namespace}/events`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readEventsV1NamespacedEvent(params: ReadEventsV1NamespacedEventRequest, opts?: APIClientRequestOpts): Promise<Event> {
     const path = `/apis/events.k8s.io/v1/namespaces/${params.namespace}/events/${params.name}`;
@@ -12340,7 +12340,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteEventsV1NamespacedEvent(params: DeleteEventsV1NamespacedEventRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/events.k8s.io/v1/namespaces/${params.namespace}/events/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchEventsV1NamespacedEvent(params: PatchEventsV1NamespacedEventRequest, opts?: APIClientRequestOpts): Promise<Event> {
     const path = `/apis/events.k8s.io/v1/namespaces/${params.namespace}/events/${params.name}`;
@@ -12376,7 +12376,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteEventsV1beta1CollectionNamespacedEvent(params: DeleteEventsV1beta1CollectionNamespacedEventRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/events.k8s.io/v1beta1/namespaces/${params.namespace}/events`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readEventsV1beta1NamespacedEvent(params: ReadEventsV1beta1NamespacedEventRequest, opts?: APIClientRequestOpts): Promise<Event> {
     const path = `/apis/events.k8s.io/v1beta1/namespaces/${params.namespace}/events/${params.name}`;
@@ -12388,7 +12388,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteEventsV1beta1NamespacedEvent(params: DeleteEventsV1beta1NamespacedEventRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/events.k8s.io/v1beta1/namespaces/${params.namespace}/events/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchEventsV1beta1NamespacedEvent(params: PatchEventsV1beta1NamespacedEventRequest, opts?: APIClientRequestOpts): Promise<Event> {
     const path = `/apis/events.k8s.io/v1beta1/namespaces/${params.namespace}/events/${params.name}`;
@@ -12424,7 +12424,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteFlowcontrolApiserverV1beta1CollectionFlowSchema(params: DeleteFlowcontrolApiserverV1beta1CollectionFlowSchemaRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readFlowcontrolApiserverV1beta1FlowSchema(params: ReadFlowcontrolApiserverV1beta1FlowSchemaRequest, opts?: APIClientRequestOpts): Promise<FlowSchema> {
     const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/${params.name}`;
@@ -12436,7 +12436,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteFlowcontrolApiserverV1beta1FlowSchema(params: DeleteFlowcontrolApiserverV1beta1FlowSchemaRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchFlowcontrolApiserverV1beta1FlowSchema(params: PatchFlowcontrolApiserverV1beta1FlowSchemaRequest, opts?: APIClientRequestOpts): Promise<FlowSchema> {
     const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/${params.name}`;
@@ -12464,7 +12464,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteFlowcontrolApiserverV1beta1CollectionPriorityLevelConfiguration(params: DeleteFlowcontrolApiserverV1beta1CollectionPriorityLevelConfigurationRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readFlowcontrolApiserverV1beta1PriorityLevelConfiguration(params: ReadFlowcontrolApiserverV1beta1PriorityLevelConfigurationRequest, opts?: APIClientRequestOpts): Promise<PriorityLevelConfiguration> {
     const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations/${params.name}`;
@@ -12476,7 +12476,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteFlowcontrolApiserverV1beta1PriorityLevelConfiguration(params: DeleteFlowcontrolApiserverV1beta1PriorityLevelConfigurationRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchFlowcontrolApiserverV1beta1PriorityLevelConfiguration(params: PatchFlowcontrolApiserverV1beta1PriorityLevelConfigurationRequest, opts?: APIClientRequestOpts): Promise<PriorityLevelConfiguration> {
     const path = `/apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations/${params.name}`;
@@ -12528,7 +12528,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteNetworkingV1CollectionIngressClass(params: DeleteNetworkingV1CollectionIngressClassRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/networking.k8s.io/v1/ingressclasses`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readNetworkingV1IngressClass(params: ReadNetworkingV1IngressClassRequest, opts?: APIClientRequestOpts): Promise<IngressClass> {
     const path = `/apis/networking.k8s.io/v1/ingressclasses/${params.name}`;
@@ -12540,7 +12540,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteNetworkingV1IngressClass(params: DeleteNetworkingV1IngressClassRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/networking.k8s.io/v1/ingressclasses/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchNetworkingV1IngressClass(params: PatchNetworkingV1IngressClassRequest, opts?: APIClientRequestOpts): Promise<IngressClass> {
     const path = `/apis/networking.k8s.io/v1/ingressclasses/${params.name}`;
@@ -12560,7 +12560,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteNetworkingV1CollectionNamespacedIngress(params: DeleteNetworkingV1CollectionNamespacedIngressRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/ingresses`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readNetworkingV1NamespacedIngress(params: ReadNetworkingV1NamespacedIngressRequest, opts?: APIClientRequestOpts): Promise<Ingress> {
     const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/ingresses/${params.name}`;
@@ -12572,7 +12572,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteNetworkingV1NamespacedIngress(params: DeleteNetworkingV1NamespacedIngressRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/ingresses/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchNetworkingV1NamespacedIngress(params: PatchNetworkingV1NamespacedIngressRequest, opts?: APIClientRequestOpts): Promise<Ingress> {
     const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/ingresses/${params.name}`;
@@ -12600,7 +12600,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteNetworkingV1CollectionNamespacedNetworkPolicy(params: DeleteNetworkingV1CollectionNamespacedNetworkPolicyRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/networkpolicies`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readNetworkingV1NamespacedNetworkPolicy(params: ReadNetworkingV1NamespacedNetworkPolicyRequest, opts?: APIClientRequestOpts): Promise<NetworkPolicy> {
     const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/networkpolicies/${params.name}`;
@@ -12612,7 +12612,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteNetworkingV1NamespacedNetworkPolicy(params: DeleteNetworkingV1NamespacedNetworkPolicyRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/networkpolicies/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchNetworkingV1NamespacedNetworkPolicy(params: PatchNetworkingV1NamespacedNetworkPolicyRequest, opts?: APIClientRequestOpts): Promise<NetworkPolicy> {
     const path = `/apis/networking.k8s.io/v1/namespaces/${params.namespace}/networkpolicies/${params.name}`;
@@ -12672,7 +12672,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteNodeV1CollectionRuntimeClass(params: DeleteNodeV1CollectionRuntimeClassRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/node.k8s.io/v1/runtimeclasses`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readNodeV1RuntimeClass(params: ReadNodeV1RuntimeClassRequest, opts?: APIClientRequestOpts): Promise<RuntimeClass> {
     const path = `/apis/node.k8s.io/v1/runtimeclasses/${params.name}`;
@@ -12684,7 +12684,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteNodeV1RuntimeClass(params: DeleteNodeV1RuntimeClassRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/node.k8s.io/v1/runtimeclasses/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchNodeV1RuntimeClass(params: PatchNodeV1RuntimeClassRequest, opts?: APIClientRequestOpts): Promise<RuntimeClass> {
     const path = `/apis/node.k8s.io/v1/runtimeclasses/${params.name}`;
@@ -12712,7 +12712,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteNodeV1beta1CollectionRuntimeClass(params: DeleteNodeV1beta1CollectionRuntimeClassRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/node.k8s.io/v1beta1/runtimeclasses`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readNodeV1beta1RuntimeClass(params: ReadNodeV1beta1RuntimeClassRequest, opts?: APIClientRequestOpts): Promise<RuntimeClass> {
     const path = `/apis/node.k8s.io/v1beta1/runtimeclasses/${params.name}`;
@@ -12724,7 +12724,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteNodeV1beta1RuntimeClass(params: DeleteNodeV1beta1RuntimeClassRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/node.k8s.io/v1beta1/runtimeclasses/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchNodeV1beta1RuntimeClass(params: PatchNodeV1beta1RuntimeClassRequest, opts?: APIClientRequestOpts): Promise<RuntimeClass> {
     const path = `/apis/node.k8s.io/v1beta1/runtimeclasses/${params.name}`;
@@ -12756,7 +12756,7 @@ export class KubernetesClient extends APIClient {
   }
   async deletePolicyV1CollectionNamespacedPodDisruptionBudget(params: DeletePolicyV1CollectionNamespacedPodDisruptionBudgetRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/policy/v1/namespaces/${params.namespace}/poddisruptionbudgets`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readPolicyV1NamespacedPodDisruptionBudget(params: ReadPolicyV1NamespacedPodDisruptionBudgetRequest, opts?: APIClientRequestOpts): Promise<PodDisruptionBudget> {
     const path = `/apis/policy/v1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}`;
@@ -12768,7 +12768,7 @@ export class KubernetesClient extends APIClient {
   }
   async deletePolicyV1NamespacedPodDisruptionBudget(params: DeletePolicyV1NamespacedPodDisruptionBudgetRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/policy/v1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchPolicyV1NamespacedPodDisruptionBudget(params: PatchPolicyV1NamespacedPodDisruptionBudgetRequest, opts?: APIClientRequestOpts): Promise<PodDisruptionBudget> {
     const path = `/apis/policy/v1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}`;
@@ -12816,7 +12816,7 @@ export class KubernetesClient extends APIClient {
   }
   async deletePolicyV1beta1CollectionNamespacedPodDisruptionBudget(params: DeletePolicyV1beta1CollectionNamespacedPodDisruptionBudgetRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/policy/v1beta1/namespaces/${params.namespace}/poddisruptionbudgets`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readPolicyV1beta1NamespacedPodDisruptionBudget(params: ReadPolicyV1beta1NamespacedPodDisruptionBudgetRequest, opts?: APIClientRequestOpts): Promise<PodDisruptionBudget> {
     const path = `/apis/policy/v1beta1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}`;
@@ -12828,7 +12828,7 @@ export class KubernetesClient extends APIClient {
   }
   async deletePolicyV1beta1NamespacedPodDisruptionBudget(params: DeletePolicyV1beta1NamespacedPodDisruptionBudgetRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/policy/v1beta1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchPolicyV1beta1NamespacedPodDisruptionBudget(params: PatchPolicyV1beta1NamespacedPodDisruptionBudgetRequest, opts?: APIClientRequestOpts): Promise<PodDisruptionBudget> {
     const path = `/apis/policy/v1beta1/namespaces/${params.namespace}/poddisruptionbudgets/${params.name}`;
@@ -12860,7 +12860,7 @@ export class KubernetesClient extends APIClient {
   }
   async deletePolicyV1beta1CollectionPodSecurityPolicy(params: DeletePolicyV1beta1CollectionPodSecurityPolicyRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/policy/v1beta1/podsecuritypolicies`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readPolicyV1beta1PodSecurityPolicy(params: ReadPolicyV1beta1PodSecurityPolicyRequest, opts?: APIClientRequestOpts): Promise<PodSecurityPolicy> {
     const path = `/apis/policy/v1beta1/podsecuritypolicies/${params.name}`;
@@ -12872,7 +12872,7 @@ export class KubernetesClient extends APIClient {
   }
   async deletePolicyV1beta1PodSecurityPolicy(params: DeletePolicyV1beta1PodSecurityPolicyRequest, opts?: APIClientRequestOpts): Promise<PodSecurityPolicy> {
     const path = `/apis/policy/v1beta1/podsecuritypolicies/${params.name}`;
-    return await this.delete<PodSecurityPolicy>(path, params.query, params.body, opts);
+    return await this.delete<PodSecurityPolicy>(path, params.query, null, opts);
   }
   async patchPolicyV1beta1PodSecurityPolicy(params: PatchPolicyV1beta1PodSecurityPolicyRequest, opts?: APIClientRequestOpts): Promise<PodSecurityPolicy> {
     const path = `/apis/policy/v1beta1/podsecuritypolicies/${params.name}`;
@@ -12916,7 +12916,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteRbacAuthorizationV1CollectionClusterRoleBinding(params: DeleteRbacAuthorizationV1CollectionClusterRoleBindingRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/rbac.authorization.k8s.io/v1/clusterrolebindings`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readRbacAuthorizationV1ClusterRoleBinding(params: ReadRbacAuthorizationV1ClusterRoleBindingRequest, opts?: APIClientRequestOpts): Promise<ClusterRoleBinding> {
     const path = `/apis/rbac.authorization.k8s.io/v1/clusterrolebindings/${params.name}`;
@@ -12928,7 +12928,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteRbacAuthorizationV1ClusterRoleBinding(params: DeleteRbacAuthorizationV1ClusterRoleBindingRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/rbac.authorization.k8s.io/v1/clusterrolebindings/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchRbacAuthorizationV1ClusterRoleBinding(params: PatchRbacAuthorizationV1ClusterRoleBindingRequest, opts?: APIClientRequestOpts): Promise<ClusterRoleBinding> {
     const path = `/apis/rbac.authorization.k8s.io/v1/clusterrolebindings/${params.name}`;
@@ -12944,7 +12944,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteRbacAuthorizationV1CollectionClusterRole(params: DeleteRbacAuthorizationV1CollectionClusterRoleRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/rbac.authorization.k8s.io/v1/clusterroles`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readRbacAuthorizationV1ClusterRole(params: ReadRbacAuthorizationV1ClusterRoleRequest, opts?: APIClientRequestOpts): Promise<ClusterRole> {
     const path = `/apis/rbac.authorization.k8s.io/v1/clusterroles/${params.name}`;
@@ -12956,7 +12956,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteRbacAuthorizationV1ClusterRole(params: DeleteRbacAuthorizationV1ClusterRoleRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/rbac.authorization.k8s.io/v1/clusterroles/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchRbacAuthorizationV1ClusterRole(params: PatchRbacAuthorizationV1ClusterRoleRequest, opts?: APIClientRequestOpts): Promise<ClusterRole> {
     const path = `/apis/rbac.authorization.k8s.io/v1/clusterroles/${params.name}`;
@@ -12972,7 +12972,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteRbacAuthorizationV1CollectionNamespacedRoleBinding(params: DeleteRbacAuthorizationV1CollectionNamespacedRoleBindingRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/rolebindings`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readRbacAuthorizationV1NamespacedRoleBinding(params: ReadRbacAuthorizationV1NamespacedRoleBindingRequest, opts?: APIClientRequestOpts): Promise<RoleBinding> {
     const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/rolebindings/${params.name}`;
@@ -12984,7 +12984,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteRbacAuthorizationV1NamespacedRoleBinding(params: DeleteRbacAuthorizationV1NamespacedRoleBindingRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/rolebindings/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchRbacAuthorizationV1NamespacedRoleBinding(params: PatchRbacAuthorizationV1NamespacedRoleBindingRequest, opts?: APIClientRequestOpts): Promise<RoleBinding> {
     const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/rolebindings/${params.name}`;
@@ -13000,7 +13000,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteRbacAuthorizationV1CollectionNamespacedRole(params: DeleteRbacAuthorizationV1CollectionNamespacedRoleRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/roles`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readRbacAuthorizationV1NamespacedRole(params: ReadRbacAuthorizationV1NamespacedRoleRequest, opts?: APIClientRequestOpts): Promise<Role> {
     const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/roles/${params.name}`;
@@ -13012,7 +13012,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteRbacAuthorizationV1NamespacedRole(params: DeleteRbacAuthorizationV1NamespacedRoleRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/roles/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchRbacAuthorizationV1NamespacedRole(params: PatchRbacAuthorizationV1NamespacedRoleRequest, opts?: APIClientRequestOpts): Promise<Role> {
     const path = `/apis/rbac.authorization.k8s.io/v1/namespaces/${params.namespace}/roles/${params.name}`;
@@ -13084,7 +13084,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteSchedulingV1CollectionPriorityClass(params: DeleteSchedulingV1CollectionPriorityClassRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/scheduling.k8s.io/v1/priorityclasses`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readSchedulingV1PriorityClass(params: ReadSchedulingV1PriorityClassRequest, opts?: APIClientRequestOpts): Promise<PriorityClass> {
     const path = `/apis/scheduling.k8s.io/v1/priorityclasses/${params.name}`;
@@ -13096,7 +13096,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteSchedulingV1PriorityClass(params: DeleteSchedulingV1PriorityClassRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/scheduling.k8s.io/v1/priorityclasses/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchSchedulingV1PriorityClass(params: PatchSchedulingV1PriorityClassRequest, opts?: APIClientRequestOpts): Promise<PriorityClass> {
     const path = `/apis/scheduling.k8s.io/v1/priorityclasses/${params.name}`;
@@ -13128,7 +13128,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteStorageV1CollectionCSIDriver(params: DeleteStorageV1CollectionCSIDriverRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/storage.k8s.io/v1/csidrivers`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readStorageV1CSIDriver(params: ReadStorageV1CSIDriverRequest, opts?: APIClientRequestOpts): Promise<CSIDriver> {
     const path = `/apis/storage.k8s.io/v1/csidrivers/${params.name}`;
@@ -13140,7 +13140,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteStorageV1CSIDriver(params: DeleteStorageV1CSIDriverRequest, opts?: APIClientRequestOpts): Promise<CSIDriver> {
     const path = `/apis/storage.k8s.io/v1/csidrivers/${params.name}`;
-    return await this.delete<CSIDriver>(path, params.query, params.body, opts);
+    return await this.delete<CSIDriver>(path, params.query, null, opts);
   }
   async patchStorageV1CSIDriver(params: PatchStorageV1CSIDriverRequest, opts?: APIClientRequestOpts): Promise<CSIDriver> {
     const path = `/apis/storage.k8s.io/v1/csidrivers/${params.name}`;
@@ -13156,7 +13156,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteStorageV1CollectionCSINode(params: DeleteStorageV1CollectionCSINodeRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/storage.k8s.io/v1/csinodes`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readStorageV1CSINode(params: ReadStorageV1CSINodeRequest, opts?: APIClientRequestOpts): Promise<CSINode> {
     const path = `/apis/storage.k8s.io/v1/csinodes/${params.name}`;
@@ -13168,7 +13168,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteStorageV1CSINode(params: DeleteStorageV1CSINodeRequest, opts?: APIClientRequestOpts): Promise<CSINode> {
     const path = `/apis/storage.k8s.io/v1/csinodes/${params.name}`;
-    return await this.delete<CSINode>(path, params.query, params.body, opts);
+    return await this.delete<CSINode>(path, params.query, null, opts);
   }
   async patchStorageV1CSINode(params: PatchStorageV1CSINodeRequest, opts?: APIClientRequestOpts): Promise<CSINode> {
     const path = `/apis/storage.k8s.io/v1/csinodes/${params.name}`;
@@ -13184,7 +13184,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteStorageV1CollectionStorageClass(params: DeleteStorageV1CollectionStorageClassRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/storage.k8s.io/v1/storageclasses`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readStorageV1StorageClass(params: ReadStorageV1StorageClassRequest, opts?: APIClientRequestOpts): Promise<StorageClass> {
     const path = `/apis/storage.k8s.io/v1/storageclasses/${params.name}`;
@@ -13196,7 +13196,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteStorageV1StorageClass(params: DeleteStorageV1StorageClassRequest, opts?: APIClientRequestOpts): Promise<StorageClass> {
     const path = `/apis/storage.k8s.io/v1/storageclasses/${params.name}`;
-    return await this.delete<StorageClass>(path, params.query, params.body, opts);
+    return await this.delete<StorageClass>(path, params.query, null, opts);
   }
   async patchStorageV1StorageClass(params: PatchStorageV1StorageClassRequest, opts?: APIClientRequestOpts): Promise<StorageClass> {
     const path = `/apis/storage.k8s.io/v1/storageclasses/${params.name}`;
@@ -13212,7 +13212,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteStorageV1CollectionVolumeAttachment(params: DeleteStorageV1CollectionVolumeAttachmentRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/storage.k8s.io/v1/volumeattachments`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readStorageV1VolumeAttachment(params: ReadStorageV1VolumeAttachmentRequest, opts?: APIClientRequestOpts): Promise<VolumeAttachment> {
     const path = `/apis/storage.k8s.io/v1/volumeattachments/${params.name}`;
@@ -13224,7 +13224,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteStorageV1VolumeAttachment(params: DeleteStorageV1VolumeAttachmentRequest, opts?: APIClientRequestOpts): Promise<VolumeAttachment> {
     const path = `/apis/storage.k8s.io/v1/volumeattachments/${params.name}`;
-    return await this.delete<VolumeAttachment>(path, params.query, params.body, opts);
+    return await this.delete<VolumeAttachment>(path, params.query, null, opts);
   }
   async patchStorageV1VolumeAttachment(params: PatchStorageV1VolumeAttachmentRequest, opts?: APIClientRequestOpts): Promise<VolumeAttachment> {
     const path = `/apis/storage.k8s.io/v1/volumeattachments/${params.name}`;
@@ -13292,7 +13292,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteStorageV1beta1CollectionNamespacedCSIStorageCapacity(params: DeleteStorageV1beta1CollectionNamespacedCSIStorageCapacityRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/storage.k8s.io/v1beta1/namespaces/${params.namespace}/csistoragecapacities`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async readStorageV1beta1NamespacedCSIStorageCapacity(params: ReadStorageV1beta1NamespacedCSIStorageCapacityRequest, opts?: APIClientRequestOpts): Promise<CSIStorageCapacity> {
     const path = `/apis/storage.k8s.io/v1beta1/namespaces/${params.namespace}/csistoragecapacities/${params.name}`;
@@ -13304,7 +13304,7 @@ export class KubernetesClient extends APIClient {
   }
   async deleteStorageV1beta1NamespacedCSIStorageCapacity(params: DeleteStorageV1beta1NamespacedCSIStorageCapacityRequest, opts?: APIClientRequestOpts): Promise<Status> {
     const path = `/apis/storage.k8s.io/v1beta1/namespaces/${params.namespace}/csistoragecapacities/${params.name}`;
-    return await this.delete<Status>(path, params.query, params.body, opts);
+    return await this.delete<Status>(path, params.query, null, opts);
   }
   async patchStorageV1beta1NamespacedCSIStorageCapacity(params: PatchStorageV1beta1NamespacedCSIStorageCapacityRequest, opts?: APIClientRequestOpts): Promise<CSIStorageCapacity> {
     const path = `/apis/storage.k8s.io/v1beta1/namespaces/${params.namespace}/csistoragecapacities/${params.name}`;
