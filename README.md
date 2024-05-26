@@ -29,6 +29,9 @@ This repository contains the following packages:
 - [`@interweb/node-api-client`](https://github.com/cosmology-tech/schema-typescript/tree/main/packages/node-api-client)  
   A lightweight and flexible HTTP client for interacting with RESTful APIs in Node.js, supporting common HTTP methods and customizable options.
 
+- [`@interweb/fetch-api-client`](https://github.com/cosmology-tech/schema-typescript/tree/main/packages/fetch-api-client)  
+  A lightweight and flexible HTTP client for interacting with RESTful APIs in Node.js *and the Browser*, supporting common HTTP methods and customizable options.
+
 
 ## Need Help?
 
