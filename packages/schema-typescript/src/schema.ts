@@ -130,7 +130,7 @@ function createInterfaceDeclaration(
   if (schema.additionalProperties) {
     const additionalType =
       typeof schema.additionalProperties === 'boolean'
-        ? t.tsStringKeyword()
+        ? t.tsAnyKeyword()
         : getTypeForProp(ctx, schema.additionalProperties, [], schema);
     const indexSignature = t.tsIndexSignature(
       [t.identifier('key')], // index name, can be any valid name
