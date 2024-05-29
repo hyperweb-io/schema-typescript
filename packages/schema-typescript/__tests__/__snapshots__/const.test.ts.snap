@@ -4,6 +4,6 @@ exports[`const 1`] = `
 "export interface Person {
   firstName: "Dan";
   age: number;
-  [key: string]: string;
+  [key: string]: any;
 }"
 `;

@@ -5,7 +5,7 @@ exports[`additional 1`] = `
   firstName: string;
   lastName: string;
   age?: number;
-  [key: string]: string;
+  [key: string]: any;
 }"
 `;
 
