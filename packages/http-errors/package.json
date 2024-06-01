@@ -1,8 +1,8 @@
 {
-  "name": "@interweb/node-api-client",
-  "version": "0.6.1",
+  "name": "@interweb/http-errors",
+  "version": "0.0.1",
   "author": "Dan Lynch <pyramation@gmail.com>",
-  "description": "Node.js API Client",
+  "description": "http errors",
   "main": "index.js",
   "module": "esm/index.js",
   "types": "index.d.ts",
@@ -27,9 +27,6 @@
     "lint": "eslint . --fix",
     "test": "jest",
     "test:watch": "jest --watch"
-  },
-  "dependencies": {
-    "@interweb/http-errors": "^0.0.1"
   },
   "keywords": []
 }

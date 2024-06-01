@@ -29,9 +29,10 @@
     "test:watch": "jest --watch"
   },
   "keywords": [],
-  "gitHead": "06e20539d2cfce7522a29d7e9b20a9eb4d78fe2c",
   "dependencies": {
-    "isomorphic-fetch": "^3.0.0"
+    "isomorphic-fetch": "^3.0.0",
+    "@interweb/http-errors": "^0.0.1"
+
   },
   "devDependencies": {
     "@types/isomorphic-fetch": "^0.0.39"

@@ -1,3 +1,4 @@
+import { createHTTPError } from '@interweb/http-errors';
 import * as http from 'http';
 import * as querystring from 'querystring';
 import { URLSearchParams } from 'url';
@@ -256,11 +257,15 @@ export class APIClient {
           data += chunk;
         });
         res.on('end', () => {
-          try {
-            const parsedData: Resp = JSON.parse(data);
-            resolve(parsedData);
-          } catch (error) {
-            reject(error);
+          if (!res.statusCode || res.statusCode < 200 || res.statusCode >= 300) {
+            reject(createHTTPError(res.statusCode || 500));  // Use 500 as a fallback if status code is undefined
+          } else {
+            try {
+              const parsedData: Resp = JSON.parse(data);
+              resolve(parsedData);
+            } catch (error) {
+              reject(error);
+            }
           }
         });
       });
@@ -271,7 +276,8 @@ export class APIClient {
 
       req.setTimeout(options.timeout, () => {
         req.abort();
-        reject(new Error('Request timeout'));
+        // Use createHTTPError for timeout as well, typically 408 Request Timeout
+        reject(createHTTPError(408));
       });
 
       if (options.params && ['POST', 'PUT', 'PATCH'].includes(options.method)) {

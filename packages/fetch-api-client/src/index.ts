@@ -1,4 +1,10 @@
+import { createHTTPError } from '@interweb/http-errors';
 import { URLSearchParams } from 'url';
+
+export class NotFoundError extends Error {}
+export class UnauthorizedError extends Error {}
+export class InternalServerError extends Error {}
+
 
 interface RequestOptions<Params> {
   hostname: string;
@@ -130,12 +136,14 @@ export class APIClient {
       body: method !== 'GET' && method !== 'DELETE' ? JSON.stringify(params) : null,
     };
 
+
     try {
       const response = await fetch(url, fetchOptions);
       clearTimeout(id);
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        // Use the factory function to create an error based on the status code
+        throw createHTTPError(response.status);
       }
 
       return response.json() as Promise<Resp>;

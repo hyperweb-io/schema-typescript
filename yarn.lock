@@ -371,6 +371,13 @@
   resolved "https://registry.yarnpkg.com/@interweb-utils/casing/-/casing-0.2.0.tgz#dbe9aa742cadf60805511093c9afa66290a50e28"
   integrity sha512-ORQySrHzMYmtVRkYvtE1HGa8QnoqYPhu5UWQyv9302D/ZZe0Ae6cpk4NH1xEXgHeFq/CraiOcnLhmc3h7wdNHg==
 
+"@interweb/fetch-api-client@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@interweb/fetch-api-client/-/fetch-api-client-0.4.1.tgz#6cae3e7a711bdeba25a36bfe3cd31db9fbe88370"
+  integrity sha512-S81w+TIaFqCoIzjMTv2nze2ybBcawWFp23xJhEf5AHOrSWAtYB/EALg5rudep1LVqYmSVIxg/3MAFaXGSurKBQ==
+  dependencies:
+    isomorphic-fetch "^3.0.0"
+
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/@isaacs/cliui/-/cliui-8.0.2.tgz#b37667b7bc181c168782259bab42474fbf52b550"
