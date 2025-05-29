@@ -1,6 +1,6 @@
 {
   "name": "@interweb/fetch-api-client",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "description": "Node.js API Client",
   "main": "index.js",
@@ -30,7 +30,7 @@
   },
   "keywords": [],
   "dependencies": {
-    "@interweb/http-errors": "^0.1.0",
+    "@interweb/http-errors": "^0.1.1",
     "isomorphic-fetch": "^3.0.0"
   },
   "devDependencies": {
