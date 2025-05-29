@@ -3,7 +3,7 @@
   "version": "0.12.0",
   "description": "Convert JSON Schema to TypeScript Definitions",
   "author": "Dan Lynch <pyramation@gmail.com>",
-  "homepage": "https://github.com/cosmology-tech/schema-typescript#readme",
+  "homepage": "https://github.com/hyperweb-io/schema-typescript#readme",
   "license": "SEE LICENSE IN LICENSE",
   "main": "index.js",
   "module": "esm/index.js",
@@ -14,10 +14,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cosmology-tech/schema-typescript"
+    "url": "https://github.com/hyperweb-io/schema-typescript"
   },
   "bugs": {
-    "url": "https://github.com/cosmology-tech/schema-typescript/issues"
+    "url": "https://github.com/hyperweb-io/schema-typescript/issues"
   },
   "scripts": {
     "copy": "copyfiles -f ../../LICENSE README.md package.json dist",
@@ -39,6 +39,5 @@
     "jsonschema",
     "schema",
     "typescript"
-  ],
-  "gitHead": "06e20539d2cfce7522a29d7e9b20a9eb4d78fe2c"
+  ]
 }
