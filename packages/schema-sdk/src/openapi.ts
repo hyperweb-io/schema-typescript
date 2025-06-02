@@ -524,22 +524,30 @@ export function generateMethods(
     // const opParams: OpParameterInterfaces = getOpenApiParams(options, path, pathItem);
 
     METHOD_TYPES.forEach((method) => {
-      if (Object.prototype.hasOwnProperty.call(pathItem, method)) {
-        // @ts-ignore
-        const operation: Operation = pathItem[method];
-        if (!shouldIncludeOperation(options, pathItem, path, method as any))
-          return;
-
-        const alias =
-          options.operationNamingStrategy?.aliases?.[operation.operationId];
-
-        if (alias) {
-          methods.push(
-            createOperation(options, operation, path, method, alias)
-          );
-        }
-        methods.push(createOperation(options, operation, path, method));
+      // Hoist file path and key declaration for this hook
+      const normalized = normalizePath(path);
+      const fileName = `${options.hooks?.path ?? 'hooks'}/${normalized}_${method}.ts`;
+      const keyName = `${normalized.toUpperCase()}_KEY`;
+      const keyDecl = t.variableDeclaration('const', [
+        t.variableDeclarator(
+          t.identifier(keyName),
+          t.arrayExpression([t.stringLiteral(normalized)])
+        ),
+      ]);
+      const operation = (pathItem as any)[method] as Operation;
+      if (!operation || !shouldIncludeOperation(options, pathItem, path, method as any)) {
+        return;
       }
+
+      const alias =
+        options.operationNamingStrategy?.aliases?.[operation.operationId];
+
+      if (alias) {
+        methods.push(
+          createOperation(options, operation, path, method, alias)
+        );
+      }
+      methods.push(createOperation(options, operation, path, method));
     });
   });
 
@@ -639,4 +647,313 @@ export function generateOpenApiClient(
       ])
     )
   ).code;
+}
+
+// Interface for generated hook files
+export interface HookFile {
+  fileName: string;
+  code: string;
+}
+
+// Component for raw hook AST nodes
+export interface HookComponent {
+  importDecls: t.ImportDeclaration[];
+  funcDecl: t.ExportNamedDeclaration;
+  constDecls: t.VariableDeclaration[];
+  fileName: string;
+}
+
+/**
+ * Collect raw AST components (imports + function) for each hook
+ */
+
+export function collectReactQueryHookComponents(
+  options: OpenAPIOptions,
+  schema: OpenAPISpec
+): HookComponent[] {
+  if (!options.hooks?.enabled) return [];
+
+  const components: HookComponent[] = [];
+  const contextHookName = options.hooks?.contextHookName ?? `use${toPascalCase(schema.info.title)}`;
+  const contextImportPath = options.hooks?.contextImportPath;
+
+  Object.entries(schema.paths).forEach(([path, pathItem]) => {
+    METHOD_TYPES.forEach((method) => {
+      const operation = (pathItem as any)[method] as Operation;
+      if (!operation || !shouldIncludeOperation(options, pathItem, path, method as any)) return;
+
+      const opMethodName = getOperationMethodName(options, operation, method, path);
+      const hookName = `use${toPascalCase(opMethodName)}`;
+      const keyName = `${normalizePath(path).toUpperCase()}_KEY`;
+      const keyDecl = t.variableDeclaration('const', [
+        t.variableDeclarator(
+          t.identifier(keyName),
+          t.arrayExpression([t.stringLiteral(normalizePath(path))])
+        ),
+      ]);
+      const requestTypeName = getOperationTypeName(options, operation, method, path) + 'Request';
+      const returnTypeAST = getOperationReturnType(options, operation, method);
+      const methodName = opMethodName;
+
+      const importDecls: t.ImportDeclaration[] = [
+        t.importDeclaration(
+          [t.importSpecifier(t.identifier(contextHookName), t.identifier(contextHookName))],
+          t.stringLiteral(contextImportPath)
+        ),
+      ];
+      if (t.isTSTypeReference(returnTypeAST) && t.isIdentifier(returnTypeAST.typeName)) {
+        const typeName = returnTypeAST.typeName.name;
+        importDecls.push(
+          t.importDeclaration(
+            [t.importSpecifier(t.identifier(typeName), t.identifier(typeName))],
+            t.stringLiteral(options.hooks.typesImportPath)
+          )
+        );
+      }
+      // Import request type only for create (POST) and update (PUT) operations
+      if (method === 'post' || method === 'put') {
+        importDecls.push(
+          t.importDeclaration(
+            [t.importSpecifier(t.identifier(requestTypeName), t.identifier(requestTypeName))],
+            t.stringLiteral(options.hooks.typesImportPath)
+          )
+        );
+      }
+      const statements: t.Statement[] = [];
+
+      // Dynamically extract path parameter names from schema
+      const pathParams = (pathItem.parameters ?? []).filter(p => p.in === 'path').map(p => p.name);
+
+      if (method === 'get') {
+        importDecls.push(
+          t.importDeclaration([
+            t.importSpecifier(t.identifier('useQuery'), t.identifier('useQuery')),
+          ], t.stringLiteral('@tanstack/react-query'))
+        );
+
+        const paramName = 'params';
+        const funcParams = [t.identifier(paramName)];
+
+        statements.push(
+          t.variableDeclaration('const', [
+            t.variableDeclarator(
+              t.identifier('client'),
+              t.memberExpression(
+                t.callExpression(t.identifier(contextHookName), []),
+                t.identifier('client')
+              )
+            )
+          ])
+        );
+
+        const queryFn = t.arrowFunctionExpression([], t.blockStatement([
+          t.returnStatement(
+            t.awaitExpression(
+              t.callExpression(
+                t.memberExpression(t.identifier('client'), t.identifier(methodName)),
+                [t.identifier(paramName)]
+              )
+            )
+          )
+        ]), true);
+
+        // Build enabled expression: require all path params to be defined
+        const enabledExpr = pathParams.length > 0
+          ? pathParams.reduce((acc, param) => {
+              const cmp = t.binaryExpression(
+                '!==',
+                t.memberExpression(
+                  t.memberExpression(t.identifier(paramName), t.identifier('path')),
+                  t.identifier(param)
+                ),
+                t.identifier('undefined')
+              );
+              return acc ? t.logicalExpression('&&', acc, cmp) : cmp;
+            }, null as t.Expression | null) || t.booleanLiteral(true)
+          : t.booleanLiteral(true);
+        const queryCall = t.callExpression(t.identifier('useQuery'), [
+          t.objectExpression([
+            t.objectProperty(
+              t.identifier('queryKey'),
+              t.arrayExpression([
+                t.spreadElement(t.identifier(keyName)),
+                ...pathParams.map(param =>
+                  t.memberExpression(
+                    t.memberExpression(t.identifier(paramName), t.identifier('path')),
+                    t.identifier(param)
+                  )
+                )
+              ])
+            ),
+            t.objectProperty(t.identifier('queryFn'), queryFn),
+            t.objectProperty(
+              t.identifier('enabled'),
+              enabledExpr
+            )
+          ])
+        ]);
+
+        queryCall.typeParameters = t.tsTypeParameterInstantiation([
+          returnTypeAST,
+          t.tsTypeReference(t.identifier('Error')),
+        ]);
+
+        statements.push(t.returnStatement(queryCall));
+
+        const funcDecl = t.exportNamedDeclaration(
+          t.functionDeclaration(t.identifier(`${hookName}Query`), funcParams, t.blockStatement(statements)),
+          []
+        );
+
+        components.push({ importDecls, funcDecl, constDecls: [keyDecl], fileName: `${options.hooks.path}/${hookName}.ts` });
+      } else {
+        importDecls.push(
+          t.importDeclaration([
+            t.importSpecifier(t.identifier('useMutation'), t.identifier('useMutation')),
+            t.importSpecifier(t.identifier('useQueryClient'), t.identifier('useQueryClient')),
+          ], t.stringLiteral('@tanstack/react-query'))
+        );
+
+        const funcParams: t.Identifier[] = [];
+
+        statements.push(
+          t.variableDeclaration('const', [
+            t.variableDeclarator(
+              t.identifier('client'),
+              t.memberExpression(t.callExpression(t.identifier(contextHookName), []), t.identifier('client'))
+            )
+          ])
+        );
+        statements.push(
+          t.variableDeclaration('const', [
+            t.variableDeclarator(
+              t.identifier('queryClient'),
+              t.callExpression(t.identifier('useQueryClient'), [])
+            )
+          ])
+        );
+
+        const mutationFn = t.arrowFunctionExpression(
+          [t.identifier('request')],
+          t.blockStatement([
+            t.returnStatement(
+              t.callExpression(
+                t.memberExpression(t.identifier('client'), t.identifier(methodName)),
+                [t.identifier('request')]
+              )
+            )
+          ])
+        );
+        mutationFn.async = true;
+
+        const onSuccess = t.arrowFunctionExpression(
+          [t.identifier('_'), t.identifier('response')],
+          t.blockStatement([
+            t.expressionStatement(
+              t.callExpression(
+                t.memberExpression(t.identifier('queryClient'), t.identifier('invalidateQueries')),
+                [t.objectExpression([
+                  t.objectProperty(
+                    t.identifier('queryKey'),
+                    t.arrayExpression([
+                      t.spreadElement(t.identifier(keyName)),
+                      ...pathParams.map(param =>
+                        t.memberExpression(
+                          t.memberExpression(t.identifier('response'), t.identifier('path')),
+                          t.identifier(param)
+                        )
+                      )
+                    ])
+                  )
+                ])]
+              )
+            )
+          ])
+        );
+
+        const mutationCall = t.callExpression(t.identifier('useMutation'), [
+          t.objectExpression([
+            t.objectProperty(t.identifier('mutationFn'), mutationFn),
+            t.objectProperty(t.identifier('onSuccess'), onSuccess)
+          ])
+        ]);
+
+        mutationCall.typeParameters = t.tsTypeParameterInstantiation([
+          returnTypeAST,
+          t.tsTypeReference(t.identifier('Error')),
+          t.tsTypeReference(t.identifier(requestTypeName)),
+        ]);
+
+        statements.push(t.returnStatement(mutationCall));
+
+        const funcDecl = t.exportNamedDeclaration(
+          t.functionDeclaration(t.identifier(hookName), funcParams, t.blockStatement(statements)),
+          []
+        );
+
+        components.push({ importDecls, funcDecl, constDecls: [keyDecl], fileName: `${options.hooks.path}/${hookName}.ts` });
+      }
+    });
+  });
+
+  return components;
+}
+
+/**
+ * Generate final HookFile entries by grouping imports and rendering all hooks together
+ */
+export function generateReactQueryHooks(
+  options: OpenAPIOptions,
+  schema: OpenAPISpec
+): HookFile[] {
+  const components = collectReactQueryHookComponents(options, schema);
+  if (!components.length) return [];
+  const basePath = options.hooks?.path ?? 'hooks';
+  // Group imports
+  const importMap = new Map<string, Set<string>>();
+  // Collect unique imports and consts
+  const constMap = new Map<string, t.VariableDeclaration>();
+  components.forEach((comp) => {
+    comp.importDecls.forEach((decl) =>
+      decl.specifiers
+        .filter((s): s is t.ImportSpecifier => t.isImportSpecifier(s))
+        .forEach((spec) => {
+          const source = decl.source.value as string;
+          const id = spec.imported;
+          const importedName = t.isIdentifier(id) ? id.name : id.value;
+          if (!importMap.has(source)) importMap.set(source, new Set());
+          importMap.get(source)!.add(importedName);
+        })
+    );
+    // collect const declarations
+    comp.constDecls.forEach((decl) => {
+      const varName = (decl.declarations[0].id as t.Identifier).name;
+      constMap.set(varName, decl);
+    });
+  });
+  // Build unique import declarations
+  const uniqueImportDecls = Array.from(importMap.entries()).map(
+    ([source, names]) =>
+      t.importDeclaration(
+        Array.from(names).map((name) => t.importSpecifier(t.identifier(name), t.identifier(name))),
+        t.stringLiteral(source)
+      )
+  );
+  // Unique const declarations
+  const uniqueConstDecls = Array.from(constMap.values());
+  // Collect all function declarations
+  const funcDecls = components.map((comp) => comp.funcDecl);
+  // Build AST and generate code
+  const ast = t.file(t.program([...uniqueImportDecls, ...uniqueConstDecls, ...funcDecls]));
+  const code = generate(ast).code;
+  return [{ fileName: `${basePath}/index.ts`, code }];
+}
+
+/**
+ * Normalize a URL path into a safe file name fragment.
+ */
+function normalizePath(path: string): string {
+  return path
+    .replace(/[^a-zA-Z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '');
 }

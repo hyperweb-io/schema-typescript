@@ -28,9 +28,23 @@ export interface OpenAPIOptions extends SchemaTSOptions {
     includeRequests?: string[];
     excludeRequests?: string[];
   };
+  hooks?: {
+    enabled?: boolean;
+    path?: string;
+    /**
+     * Custom hook name for context, e.g. useKubernetes
+     */
+    contextHookName?: string;
+    /**
+     * Import path for the context hook, e.g. '../contexts/KubernetesContext'
+     */
+    contextImportPath: string;
+
+    typesImportPath: string; // kubernetesjs, ./swagger-client, etc. 
+  };
 }
 
-export const defaultSchemaSDKOptions: Partial<OpenAPIOptions> = {
+export const defaultSchemaSDKOptions: DeepPartial<OpenAPIOptions> = {
   ...defaultSchemaTSOptions,
   clientName: 'Client',
   npmApiClient: '@interweb/fetch-api-client',
@@ -47,6 +61,12 @@ export const defaultSchemaSDKOptions: Partial<OpenAPIOptions> = {
     excludeTags: [],
     includeRequests: [],
     excludeRequests: [],
+  },
+  hooks: {
+    enabled: false,
+    path: 'hooks',
+    typesImportPath: './client',
+    contextHookName: './context'
   },
 };
 
