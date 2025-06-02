@@ -1,6 +1,6 @@
 export const generateContext = (Type: string, pathToClient: string) => `
 import React, { createContext, useContext, useMemo, useState } from 'react'
-import { KubernetesClient } from '${pathToClient}'
+import { ${Type}Client } from '${pathToClient}'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 // Configuration types
@@ -11,11 +11,13 @@ export interface ${Type}Config {
 
 // Context types
 interface ${Type}ContextValue {
-  client: ${Type}Client
+  client: ${Type}Client;
+  config: ${Type}Config;
+  updateConfig: (config: Partial<${Type}Config>) => void;
 }
 
 // Create context
-const ${Type}Context = createContext<${Type}ContextValue | undefined>(undefined)
+const ${Type}Context = createContext<${Type}ContextValue | undefined>(undefined);
 
 // Query client for TanStack Query
 const queryClient = new QueryClient({
@@ -31,8 +33,8 @@ const queryClient = new QueryClient({
 
 // Provider props
 interface ${Type}ProviderProps {
-  children: React.ReactNode
-  initialConfig?: Partial<${Type}Config>
+  children: React.ReactNode;
+  initialConfig?: Partial<${Type}Config>;
 }
 
 // Provider component
@@ -52,8 +54,15 @@ export function ${Type}Provider({
     })
   }, [config.restEndpoint])
 
+  // Update config function
+  const updateConfig = (newConfig: Partial<${Type}Config>) => {
+    setConfig(prev => ({ ...prev, ...newConfig }))
+  }
+
   const contextValue: ${Type}ContextValue = {
-    client
+    client,
+    config,
+    updateConfig,
   }
 
   return (
@@ -75,4 +84,5 @@ export function use${Type}() {
 }
 
 // Export query client for use in hooks
-export { queryClient };`;
+export { queryClient }
+`;

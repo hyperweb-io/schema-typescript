@@ -47,7 +47,7 @@ describe('generateReactQueryHooks', () => {
   it('generate context', () => {
     const context = generateContext('Kubernetes', './swagger-client');
     writeFileSync(
-      __dirname + '/../../../__fixtures__/output/context.ts',
+      __dirname + '/../../../__fixtures__/output/context.tsx',
       context
     );
   });

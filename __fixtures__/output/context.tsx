@@ -11,11 +11,13 @@ export interface KubernetesConfig {
 
 // Context types
 interface KubernetesContextValue {
-  client: KubernetesClient
+  client: KubernetesClient;
+  config: KubernetesConfig;
+  updateConfig: (config: Partial<KubernetesConfig>) => void;
 }
 
 // Create context
-const KubernetesContext = createContext<KubernetesContextValue | undefined>(undefined)
+const KubernetesContext = createContext<KubernetesContextValue | undefined>(undefined);
 
 // Query client for TanStack Query
 const queryClient = new QueryClient({
@@ -31,8 +33,8 @@ const queryClient = new QueryClient({
 
 // Provider props
 interface KubernetesProviderProps {
-  children: React.ReactNode
-  initialConfig?: Partial<KubernetesConfig>
+  children: React.ReactNode;
+  initialConfig?: Partial<KubernetesConfig>;
 }
 
 // Provider component
@@ -52,8 +54,15 @@ export function KubernetesProvider({
     })
   }, [config.restEndpoint])
 
+  // Update config function
+  const updateConfig = (newConfig: Partial<KubernetesConfig>) => {
+    setConfig(prev => ({ ...prev, ...newConfig }))
+  }
+
   const contextValue: KubernetesContextValue = {
-    client
+    client,
+    config,
+    updateConfig,
   }
 
   return (
@@ -75,4 +84,4 @@ export function useKubernetes() {
 }
 
 // Export query client for use in hooks
-export { queryClient };
+export { queryClient }
