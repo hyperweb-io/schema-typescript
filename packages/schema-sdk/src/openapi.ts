@@ -525,15 +525,6 @@ export function generateMethods(
 
     METHOD_TYPES.forEach((method) => {
       // Hoist file path and key declaration for this hook
-      const normalized = normalizePath(path);
-      const fileName = `${options.hooks?.path ?? 'hooks'}/${normalized}_${method}.ts`;
-      const keyName = `${normalized.toUpperCase()}_KEY`;
-      const keyDecl = t.variableDeclaration('const', [
-        t.variableDeclarator(
-          t.identifier(keyName),
-          t.arrayExpression([t.stringLiteral(normalized)])
-        ),
-      ]);
       const operation = (pathItem as any)[method] as Operation;
       if (!operation || !shouldIncludeOperation(options, pathItem, path, method as any)) {
         return;
@@ -660,7 +651,6 @@ export interface HookComponent {
   importDecls: t.ImportDeclaration[];
   funcDecl: t.ExportNamedDeclaration;
   constDecls: t.VariableDeclaration[];
-  fileName: string;
 }
 
 /**
@@ -805,7 +795,7 @@ export function collectReactQueryHookComponents(
           []
         );
 
-        components.push({ importDecls, funcDecl, constDecls: [keyDecl], fileName: `${options.hooks.path}/${hookName}.ts` });
+        components.push({ importDecls, funcDecl, constDecls: [keyDecl] });
       } else {
         importDecls.push(
           t.importDeclaration([
@@ -891,7 +881,7 @@ export function collectReactQueryHookComponents(
           []
         );
 
-        components.push({ importDecls, funcDecl, constDecls: [keyDecl], fileName: `${options.hooks.path}/${hookName}.ts` });
+        components.push({ importDecls, funcDecl, constDecls: [keyDecl] });
       }
     });
   });
@@ -905,10 +895,9 @@ export function collectReactQueryHookComponents(
 export function generateReactQueryHooks(
   options: OpenAPIOptions,
   schema: OpenAPISpec
-): HookFile[] {
+): string {
   const components = collectReactQueryHookComponents(options, schema);
-  if (!components.length) return [];
-  const basePath = options.hooks?.path ?? 'hooks';
+  if (!components.length) return ''
   // Group imports
   const importMap = new Map<string, Set<string>>();
   // Collect unique imports and consts
@@ -946,7 +935,7 @@ export function generateReactQueryHooks(
   // Build AST and generate code
   const ast = t.file(t.program([...uniqueImportDecls, ...uniqueConstDecls, ...funcDecls]));
   const code = generate(ast).code;
-  return [{ fileName: `${basePath}/index.ts`, code }];
+  return code;
 }
 
 /**

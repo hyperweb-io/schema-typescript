@@ -30,7 +30,6 @@ export interface OpenAPIOptions extends SchemaTSOptions {
   };
   hooks?: {
     enabled?: boolean;
-    path?: string;
     /**
      * Custom hook name for context, e.g. useKubernetes
      */
@@ -64,7 +63,6 @@ export const defaultSchemaSDKOptions: DeepPartial<OpenAPIOptions> = {
   },
   hooks: {
     enabled: false,
-    path: 'hooks',
     typesImportPath: './client',
     contextHookName: './context'
   },

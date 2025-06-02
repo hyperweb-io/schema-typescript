@@ -35,14 +35,12 @@ describe('generateReactQueryHooks', () => {
     const hooks = generateReactQueryHooks(options, testSchema);
     expect(hooks.length).toBeGreaterThan(0);
     // Verify each hook file has expected properties
-    hooks.forEach(hook => {
-      expect(hook).toHaveProperty('fileName');
-      expect(hook).toHaveProperty('code');
-    });
+    expect(hooks).toHaveProperty('fileName');
+    expect(hooks).toHaveProperty('code');
 
     writeFileSync(
       __dirname + '/../../../__fixtures__/output/hooks.ts',
-      hooks[0].code
+      hooks
     );
   });
 }); 
