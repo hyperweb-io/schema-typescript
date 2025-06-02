@@ -701,7 +701,19 @@ export function collectReactQueryHookComponents(
         );
       }
       // Import request type only for create (POST) and update (PUT) operations
-      if (method === 'post' || method === 'put' || method === 'patch') {
+      if (
+        !['get', 'post', 'put', 'patch', 'delete'].includes(method)
+      ) {
+        return;
+      }
+      
+      // Import request type only for create (POST) and update (PUT) operations
+      if (
+        method === 'post' ||
+        method === 'put' ||
+        method === 'patch' ||
+        method === 'delete'
+      ) {
         importDecls.push(
           t.importDeclaration(
             [t.importSpecifier(t.identifier(requestTypeName), t.identifier(requestTypeName))],
