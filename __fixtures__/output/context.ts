@@ -1,23 +1,17 @@
-'use client'
 
 import React, { createContext, useContext, useMemo, useState } from 'react'
-import { KubernetesClient } from 'kubernetesjs'
+import { KubernetesClient } from './swagger-client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 // Configuration types
 export interface KubernetesConfig {
   restEndpoint: string
-  namespace?: string
   headers?: Record<string, string>
 }
 
 // Context types
 interface KubernetesContextValue {
   client: KubernetesClient
-  config: KubernetesConfig
-  namespace: string
-  setNamespace: (namespace: string) => void
-  updateConfig: (config: Partial<KubernetesConfig>) => void
 }
 
 // Create context
@@ -47,12 +41,9 @@ export function KubernetesProvider({
   initialConfig 
 }: KubernetesProviderProps) {
   const [config, setConfig] = useState<KubernetesConfig>({
-    restEndpoint: initialConfig?.restEndpoint || process.env.NEXT_PUBLIC_K8S_API_URL || '/api/k8s',
-    namespace: initialConfig?.namespace || 'default',
+    restEndpoint: initialConfig?.restEndpoint,
     headers: initialConfig?.headers || {},
   })
-
-  const [namespace, setNamespace] = useState(config.namespace || 'default')
 
   // Create client instance
   const client = useMemo(() => {
@@ -61,20 +52,8 @@ export function KubernetesProvider({
     })
   }, [config.restEndpoint])
 
-  // Update config function
-  const updateConfig = (newConfig: Partial<KubernetesConfig>) => {
-    setConfig(prev => ({ ...prev, ...newConfig }))
-    if (newConfig.namespace) {
-      setNamespace(newConfig.namespace)
-    }
-  }
-
   const contextValue: KubernetesContextValue = {
-    client,
-    config,
-    namespace,
-    setNamespace,
-    updateConfig,
+    client
   }
 
   return (
@@ -96,4 +75,4 @@ export function useKubernetes() {
 }
 
 // Export query client for use in hooks
-export { queryClient }
+export { queryClient };

@@ -3,6 +3,7 @@ import { defaultSchemaSDKOptions } from '../src/types';
 import { generateReactQueryHooks } from '../src/openapi';
 import { writeFileSync } from 'fs';
 import { OpenAPIOptions } from '../dist';
+import { generateContext } from '../src';
 
 /**
  * Return a new schema object filtered to only include the given paths.
@@ -40,6 +41,14 @@ describe('generateReactQueryHooks', () => {
     writeFileSync(
       __dirname + '/../../../__fixtures__/output/hooks.ts',
       hooks
+    );
+  });
+
+  it('generate context', () => {
+    const context = generateContext('Kubernetes', './swagger-client');
+    writeFileSync(
+      __dirname + '/../../../__fixtures__/output/context.ts',
+      context
     );
   });
 }); 

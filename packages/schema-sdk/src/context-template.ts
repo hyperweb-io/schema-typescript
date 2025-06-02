@@ -1,10 +1,7 @@
 export const generateContext = (Type: string, pathToClient: string) => `
-'use client'
-
 import React, { createContext, useContext, useMemo, useState } from 'react'
 import { KubernetesClient } from '${pathToClient}'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import generate from '@babel/generator'
 
 // Configuration types
 export interface ${Type}Config {
