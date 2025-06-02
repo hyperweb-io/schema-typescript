@@ -1,6 +1,6 @@
 {
   "name": "schema-sdk",
-  "version": "0.11.2",
+  "version": "0.11.3",
   "description": "Convert JSON Schema OpenAPI Spec to TypeScript Clients",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "homepage": "https://github.com/hyperweb-io/schema-typescript#readme",
