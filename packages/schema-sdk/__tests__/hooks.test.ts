@@ -28,7 +28,7 @@ describe('generateReactQueryHooks', () => {
         enabled: true,
         path: 'hooks',
         typesImportPath: './swagger-client',
-        contextImportPath: './k8s-context',
+        contextImportPath: './context',
       },
     } as any;
     // const testSchema = getFilteredSchema(schema as any, patterns);

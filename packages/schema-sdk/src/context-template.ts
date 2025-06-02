@@ -75,7 +75,7 @@ export function ${Type}Provider({
 }
 
 // Hook to use ${Type} context
-export function use${Type}() {
+export function use${Type}(): ${Type}ContextValue {
   const context = useContext(${Type}Context)
   if (!context) {
     throw new Error('use${Type} must be used within a ${Type}Provider')

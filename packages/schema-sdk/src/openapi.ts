@@ -701,7 +701,7 @@ export function collectReactQueryHookComponents(
         );
       }
       // Import request type only for create (POST) and update (PUT) operations
-      if (method === 'post' || method === 'put') {
+      if (method === 'post' || method === 'put' || method === 'patch') {
         importDecls.push(
           t.importDeclaration(
             [t.importSpecifier(t.identifier(requestTypeName), t.identifier(requestTypeName))],
@@ -721,8 +721,21 @@ export function collectReactQueryHookComponents(
           ], t.stringLiteral('@tanstack/react-query'))
         );
 
+        // Import request type for GET hook parameter
+        importDecls.push(
+          t.importDeclaration(
+            [t.importSpecifier(t.identifier(requestTypeName), t.identifier(requestTypeName))],
+            t.stringLiteral(options.hooks.typesImportPath)
+          )
+        );
+
         const paramName = 'params';
-        const funcParams = [t.identifier(paramName)];
+        // Create a typed parameter identifier for request params
+        const paramId = t.identifier(paramName);
+        paramId.typeAnnotation = t.tsTypeAnnotation(
+          t.tsTypeReference(t.identifier(requestTypeName))
+        );
+        const funcParams = [paramId];
 
         statements.push(
           t.variableDeclaration('const', [
