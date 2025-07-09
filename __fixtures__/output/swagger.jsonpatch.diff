@@ -1,0 +1,24 @@
+JSON Patch Effect on IntOrString Type
+======================================
+
+The following diff shows how the JSON patch transforms the IntOrString type
+from a simple string type to a proper union type (string | number).
+
+[32m- Without JSON Patch  - 1[39m
+[31m+ With JSON Patch     + 1[39m
+
+[33m@@ -23,6 +23,6 @@[39m
+[2m    selector?: LabelSelector;[22m
+[2m    [key: string]: unknown;[22m
+[2m  };[22m
+[32m- export type IntOrString = string;[39m
+[31m+ export type IntOrString = string | number;[39m
+[2m  export interface Info {[22m
+[2m    buildDate: string;[22m
+
+Key Changes:
+- Original: export type IntOrString = string;
+- Patched:  export type IntOrString = string | number;
+
+This affects all properties that use IntOrString, making them accept both
+string and number values as originally intended by the Kubernetes API.

@@ -43,5 +43,8 @@
     "typescript",
     "swagger",
     "openapi"
-  ]
+  ],
+  "devDependencies": {
+    "jest-diff": "^30.0.4"
+  }
 }
