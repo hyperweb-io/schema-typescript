@@ -1,6 +1,7 @@
 import deepmerge from 'deepmerge';
 import type { DeepPartial } from 'schema-typescript';
 import { defaultSchemaTSOptions, SchemaTSOptions } from 'schema-typescript';
+import type { Operation } from 'fast-json-patch';
 
 export interface OpenAPIOptions extends SchemaTSOptions {
   clientName: string;
@@ -41,6 +42,12 @@ export interface OpenAPIOptions extends SchemaTSOptions {
 
     typesImportPath: string; // kubernetesjs, ./swagger-client, etc. 
   };
+  /**
+   * JSON Patch operations to apply to the OpenAPI spec before processing
+   * Uses RFC 6902 JSON Patch format
+   * @see https://www.npmjs.com/package/fast-json-patch
+   */
+  jsonpatch?: Operation[];
 }
 
 export const defaultSchemaSDKOptions: DeepPartial<OpenAPIOptions> = {
@@ -66,6 +73,7 @@ export const defaultSchemaSDKOptions: DeepPartial<OpenAPIOptions> = {
     typesImportPath: './client',
     contextHookName: './context'
   },
+  jsonpatch: [],
 };
 
 export const getDefaultSchemaSDKOptions = (

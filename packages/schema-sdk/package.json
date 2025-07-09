@@ -34,6 +34,7 @@
     "@interweb-utils/casing": "^0.2.0",
     "@interweb/fetch-api-client": "^0.6.1",
     "deepmerge": "^4.3.1",
+    "fast-json-patch": "^3.1.1",
     "schema-typescript": "^0.12.1"
   },
   "keywords": [
@@ -42,5 +43,8 @@
     "typescript",
     "swagger",
     "openapi"
-  ]
+  ],
+  "devDependencies": {
+    "jest-diff": "^30.0.4"
+  }
 }

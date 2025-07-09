@@ -1,4 +1,5 @@
 import * as t from '@babel/types';
+import * as jsonpatch from 'fast-json-patch';
 
 import { OpenAPIOptions } from './types';
 
@@ -57,4 +58,29 @@ export function createPathTemplateLiteral(
   ); // Mark the last quasi as tail
 
   return t.templateLiteral(quasis, expressions);
+}
+
+/**
+ * Applies JSON patch operations to an OpenAPI specification
+ * @param spec - The OpenAPI specification object
+ * @param options - The OpenAPI options containing jsonpatch operations
+ * @returns The patched OpenAPI specification
+ */
+export function applyJsonPatch<T>(spec: T, options: OpenAPIOptions): T {
+  if (!options.jsonpatch || options.jsonpatch.length === 0) {
+    return spec;
+  }
+
+  try {
+    // Create a deep copy to avoid mutating the original
+    const specCopy = JSON.parse(JSON.stringify(spec));
+    
+    // Apply the patches
+    const patchedSpec = jsonpatch.applyPatch(specCopy, options.jsonpatch, true, false);
+    
+    return patchedSpec.newDocument;
+  } catch (error) {
+    console.error('Failed to apply JSON patches:', error);
+    throw new Error(`Failed to apply JSON patches: ${error instanceof Error ? error.message : String(error)}`);
+  }
 }
