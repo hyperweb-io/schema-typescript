@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/hyperweb-io/schema-typescript/compare/schema-sdk@0.11.3...schema-sdk@0.12.0) (2025-07-09)
+
+**Note:** Version bump only for package schema-sdk
+
+
+
+
+
 ## [0.11.3](https://github.com/hyperweb-io/schema-typescript/compare/schema-sdk@0.11.2...schema-sdk@0.11.3) (2025-06-02)
 
 **Note:** Version bump only for package schema-sdk
