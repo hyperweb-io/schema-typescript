@@ -12,7 +12,7 @@ import {
   Response,
 } from './openapi.types';
 import { OpenAPIOptions } from './types';
-import { createPathTemplateLiteral } from './utils';
+import { createPathTemplateLiteral, applyJsonPatch } from './utils';
 
 /**
 includes: {
@@ -575,11 +575,14 @@ export function generateOpenApiClient(
   options: OpenAPIOptions,
   schema: OpenAPISpec
 ): string {
+  // Apply JSON patches if configured
+  const patchedSchema = applyJsonPatch(schema, options);
+  
   const methods = [];
   if (options.includeSwaggerUrl) {
     methods.push(getSwaggerJSONMethod());
   }
-  methods.push(...generateMethods(options, schema));
+  methods.push(...generateMethods(options, patchedSchema));
 
   const classBody = t.classBody([
     t.classMethod(
@@ -607,14 +610,14 @@ export function generateOpenApiClient(
   //// INTERFACES
   const apiSchema = {
     title: options.clientName,
-    definitions: schema.definitions,
+    definitions: patchedSchema.definitions,
   };
 
   const types = generateTypeScriptTypes(apiSchema, {
     ...(options as any),
     exclude: [options.clientName, ...(options.exclude ?? [])],
   });
-  const openApiTypes = generateOpenApiTypes(options, schema);
+  const openApiTypes = generateOpenApiTypes(options, patchedSchema);
 
   return generate(
     t.file(
@@ -921,7 +924,10 @@ export function generateReactQueryHooks(
   options: OpenAPIOptions,
   schema: OpenAPISpec
 ): string {
-  const components = collectReactQueryHookComponents(options, schema);
+  // Apply JSON patches if configured
+  const patchedSchema = applyJsonPatch(schema, options);
+  
+  const components = collectReactQueryHookComponents(options, patchedSchema);
   if (!components.length) return ''
   // Group imports
   const importMap = new Map<string, Set<string>>();

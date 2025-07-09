@@ -90,6 +90,54 @@ const code = generateOpenApiClient({
 writeFileSync(__dirname + '/output/swagger-client.ts', code);
 ```
 
+### Using JSON Patch to Modify OpenAPI Schemas
+
+The `jsonpatch` option allows you to apply RFC 6902 JSON Patch operations to the OpenAPI specification before processing. This is useful for fixing schema issues or making adjustments without modifying the source file.
+
+```ts
+import schema from 'path-to-your/swagger.json';
+import { generateOpenApiClient, getDefaultSchemaSDKOptions } from 'schema-sdk';
+import type { Operation } from 'fast-json-patch';
+
+// Example: Fix IntOrString type to be a proper union type
+const jsonPatchOperations: Operation[] = [
+  {
+    op: 'remove',
+    path: '/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString/type'
+  },
+  {
+    op: 'remove',
+    path: '/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString/format'
+  },
+  {
+    op: 'add',
+    path: '/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString/oneOf',
+    value: [
+      { type: 'string' },
+      { type: 'integer', format: 'int32' }
+    ]
+  }
+];
+
+const options = getDefaultSchemaSDKOptions({
+  clientName: 'KubernetesClient',
+  jsonpatch: jsonPatchOperations,
+  // ... other options
+});
+
+const code = generateOpenApiClient(options, schema);
+```
+
+The JSON Patch operations support all standard operations:
+- `add`: Add a new value
+- `remove`: Remove a value
+- `replace`: Replace an existing value
+- `move`: Move a value from one location to another
+- `copy`: Copy a value from one location to another
+- `test`: Test that a value equals a specified value
+
+For more information about JSON Patch format, see [RFC 6902](https://tools.ietf.org/html/rfc6902) and the [fast-json-patch documentation](https://www.npmjs.com/package/fast-json-patch).
+
 ## Contributing 🤝
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
