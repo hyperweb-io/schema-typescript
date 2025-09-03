@@ -218,13 +218,32 @@ const initParams = (): ParameterInterfaces => {
   };
 };
 
+// Resolve a parameter $ref against the spec's global parameters collection
+function resolveParameterRef(
+  schema: OpenAPISpec,
+  param: any
+): Parameter {
+  if (param && typeof param === 'object' && (param as any).$ref) {
+    const ref: string = (param as any).$ref;
+    if (ref.includes('/parameters/')) {
+      const parts = ref.split('/');
+      const name = parts[parts.length - 1];
+      const resolved = schema.parameters?.[name];
+      if (resolved) return resolved as Parameter;
+    }
+  }
+  return param as Parameter;
+}
+
 export function generateOpenApiParams(
   options: OpenAPIOptions,
+  schema: OpenAPISpec,
   path: string,
   pathItem: OpenAPIPathItem
 ): t.TSInterfaceDeclaration[] {
   const opParams: OpParameterInterfaces = getOpenApiParams(
     options,
+    schema,
     path,
     pathItem
   );
@@ -313,6 +332,7 @@ export function generateOpenApiParams(
 
 export function getOpenApiParams(
   options: OpenAPIOptions,
+  schema: OpenAPISpec,
   path: string,
   pathItem: OpenAPIPathItem
 ): OpParameterInterfaces {
@@ -331,11 +351,13 @@ export function getOpenApiParams(
 
   // BEGIN SANITIZE PARAMS
   pathItem.parameters = pathItem.parameters ?? [];
-  const pathParms =
-    pathItem.parameters?.filter((param) => param.in === 'path') ?? [];
+  const resolvedPathParams = pathItem.parameters.map((p) =>
+    resolveParameterRef(schema, p as any)
+  );
+  const pathParms = resolvedPathParams.filter((param) => param.in === 'path') ?? [];
   if (pathParms.length !== pathInfo.params.length) {
     const parameters =
-      pathItem.parameters?.filter((param) => param.in !== 'path') ?? [];
+      resolvedPathParams.filter((param) => param.in !== 'path') ?? [];
     pathInfo.params.forEach((name) => {
       const found = pathParms.find((param) => param.name === name);
       parameters.push(
@@ -355,7 +377,8 @@ export function getOpenApiParams(
 
   // load Path-Level params
   pathItem.parameters.forEach((param) => {
-    opParams.pathLevel[param.in].push(param);
+    const resolved = resolveParameterRef(schema, param as any);
+    opParams.pathLevel[resolved.in].push(resolved);
   });
 
   ['get', 'post', 'put', 'delete', 'options', 'head', 'patch'].forEach(
@@ -378,7 +401,8 @@ export function getOpenApiParams(
         if (operation.parameters) {
           // Categorize parameters by 'in' field
           operation.parameters.forEach((param) => {
-            opParamMethod[param.in].push(param);
+            const resolved = resolveParameterRef(schema, param as any);
+            opParamMethod[resolved.in].push(resolved);
           });
         }
       }
@@ -394,7 +418,7 @@ export function generateOpenApiTypes(
   const interfaces: t.TSInterfaceDeclaration[] = [];
   // Iterate through each path and each method to generate interfaces
   Object.entries(schema.paths).forEach(([path, pathItem]) => {
-    interfaces.push(...generateOpenApiParams(options, path, pathItem));
+    interfaces.push(...generateOpenApiParams(options, schema, path, pathItem));
   });
   return interfaces.map((i) => t.exportNamedDeclaration(i));
 }
