@@ -2,6 +2,7 @@ import * as t from '@babel/types';
 import * as jsonpatch from 'fast-json-patch';
 
 import { OpenAPIOptions } from './types';
+import type { OpenAPISpec } from './openapi.types';
 
 /**
  * Converts a URL path with placeholders into a Babel AST TemplateLiteral.
@@ -83,4 +84,49 @@ export function applyJsonPatch<T>(spec: T, options: OpenAPIOptions): T {
     console.error('Failed to apply JSON patches:', error);
     throw new Error(`Failed to apply JSON patches: ${error instanceof Error ? error.message : String(error)}`);
   }
+}
+
+/**
+ * Resolve an in-spec $ref object against OpenAPI v2 sections (definitions, parameters, responses).
+ * If the provided object is not a $ref, it is returned as-is.
+ */
+export function resolveRefObject<T>(spec: OpenAPISpec, obj: any): T {
+  let current: any = obj;
+  let depth = 0;
+  const MAX_DEPTH = 8;
+  while (current && typeof current === 'object' && current.$ref && depth < MAX_DEPTH) {
+    const ref: string = current.$ref as string;
+    if (!ref.startsWith('#/')) break;
+    const parts = ref.slice(2).split('/'); // remove leading '#/'
+    const section = parts[0];
+    const key = decodeURIComponent(parts.slice(1).join('/'));
+    let resolved: any;
+    switch (section) {
+    case 'definitions':
+      resolved = spec.definitions?.[key];
+      break;
+    case 'parameters':
+      resolved = spec.parameters?.[key];
+      break;
+    case 'responses':
+      resolved = spec.responses?.[key];
+      break;
+    default:
+      resolved = undefined;
+    }
+    if (!resolved) break;
+    current = resolved;
+    depth += 1;
+  }
+  return current as T;
+}
+
+/**
+ * Convenience wrapper to resolve an object if it is a $ref, otherwise return it unchanged.
+ */
+export function resolveMaybeRef<T>(spec: OpenAPISpec, obj: any): T {
+  if (obj && typeof obj === 'object' && (obj as any).$ref) {
+    return resolveRefObject<T>(spec, obj);
+  }
+  return obj as T;
 }

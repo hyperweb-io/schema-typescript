@@ -12,7 +12,7 @@ import {
   Response,
 } from './openapi.types';
 import { OpenAPIOptions } from './types';
-import { createPathTemplateLiteral, applyJsonPatch } from './utils';
+import { createPathTemplateLiteral, applyJsonPatch, resolveMaybeRef } from './utils';
 
 /**
 includes: {
@@ -106,12 +106,13 @@ export const getApiTypeNameSafe = (
 
 export const getOperationReturnType = (
   options: OpenAPIOptions,
+  schema: OpenAPISpec,
   operation: Operation,
   method: string
 ) => {
   if (operation.responses) {
     if (operation.responses['200']) {
-      const prop = operation.responses['200'];
+      const prop = resolveMaybeRef<Response>(schema, operation.responses['200'] as any);
       return getResponseType(options, prop);
     }
   }
@@ -218,42 +219,26 @@ const initParams = (): ParameterInterfaces => {
   };
 };
 
-// Resolve a parameter $ref against the spec's global parameters collection
-function resolveParameterRef(
-  schema: OpenAPISpec,
-  param: any
-): Parameter {
-  if (param && typeof param === 'object' && (param as any).$ref) {
-    const ref: string = (param as any).$ref;
-    if (ref.includes('/parameters/')) {
-      const parts = ref.split('/');
-      const name = parts[parts.length - 1];
-      const resolved = schema.parameters?.[name];
-      if (resolved) return resolved as Parameter;
-    }
-  }
-  return param as Parameter;
-}
-
 export function generateOpenApiParams(
   options: OpenAPIOptions,
   schema: OpenAPISpec,
   path: string,
   pathItem: OpenAPIPathItem
 ): t.TSInterfaceDeclaration[] {
+  const resolvedPathItem = resolveMaybeRef<OpenAPIPathItem>(schema, pathItem as any);
   const opParams: OpParameterInterfaces = getOpenApiParams(
     options,
     schema,
     path,
-    pathItem
+    resolvedPathItem
   );
   const interfaces: t.TSInterfaceDeclaration[] = [];
   ['get', 'post', 'put', 'delete', 'options', 'head', 'patch'].forEach(
     (method) => {
-      if (Object.prototype.hasOwnProperty.call(pathItem, method)) {
+      if (Object.prototype.hasOwnProperty.call(resolvedPathItem, method)) {
         // @ts-ignore
-        const operation: Operation = pathItem[method];
-        if (!shouldIncludeOperation(options, pathItem, path, method as any))
+        const operation: Operation = (resolvedPathItem as any)[method];
+        if (!shouldIncludeOperation(options, resolvedPathItem, path, method as any))
           return;
 
         // @ts-ignore
@@ -352,7 +337,7 @@ export function getOpenApiParams(
   // BEGIN SANITIZE PARAMS
   pathItem.parameters = pathItem.parameters ?? [];
   const resolvedPathParams = pathItem.parameters.map((p) =>
-    resolveParameterRef(schema, p as any)
+    resolveMaybeRef<Parameter>(schema, p as any)
   );
   const pathParms = resolvedPathParams.filter((param) => param.in === 'path') ?? [];
   if (pathParms.length !== pathInfo.params.length) {
@@ -377,7 +362,7 @@ export function getOpenApiParams(
 
   // load Path-Level params
   pathItem.parameters.forEach((param) => {
-    const resolved = resolveParameterRef(schema, param as any);
+    const resolved = resolveMaybeRef<Parameter>(schema, param as any);
     opParams.pathLevel[resolved.in].push(resolved);
   });
 
@@ -401,7 +386,7 @@ export function getOpenApiParams(
         if (operation.parameters) {
           // Categorize parameters by 'in' field
           operation.parameters.forEach((param) => {
-            const resolved = resolveParameterRef(schema, param as any);
+            const resolved = resolveMaybeRef<Parameter>(schema, param as any);
             opParamMethod[resolved.in].push(resolved);
           });
         }
@@ -463,6 +448,7 @@ const getOperationTypeName = (
 
 export const createOperation = (
   options: OpenAPIOptions,
+  schema: OpenAPISpec,
   operation: Operation,
   path: string,
   method: string,
@@ -493,7 +479,7 @@ export const createOperation = (
     (param) => param.in === 'query'
   );
 
-  const returnType = getOperationReturnType(options, operation, method);
+  const returnType = getOperationReturnType(options, schema, operation, method);
   const methodName = getOperationMethodName(options, operation, method, path);
 
   const callMethod = t.callExpression(
@@ -559,10 +545,10 @@ export function generateMethods(
 
       if (alias) {
         methods.push(
-          createOperation(options, operation, path, method, alias)
+          createOperation(options, schema, operation, path, method, alias)
         );
       }
-      methods.push(createOperation(options, operation, path, method));
+      methods.push(createOperation(options, schema, operation, path, method));
     });
   });
 
@@ -709,7 +695,7 @@ export function collectReactQueryHookComponents(
         ),
       ]);
       const requestTypeName = getOperationTypeName(options, operation, method, path) + 'Request';
-      const returnTypeAST = getOperationReturnType(options, operation, method);
+      const returnTypeAST = getOperationReturnType(options, schema, operation, method);
       const methodName = opMethodName;
 
       const importDecls: t.ImportDeclaration[] = [
