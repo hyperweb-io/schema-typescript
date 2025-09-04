@@ -1,4 +1,4 @@
-import { APIClient, APIClientRequestOpts } from "@interweb/fetch-api-client";
+import { APIClient, APIClientRequestOpts, APIClientOptions } from "@interweb/fetch-api-client";
 export interface MutatingWebhook {
   admissionReviewVersions: string[];
   clientConfig: WebhookClientConfig;
@@ -10199,7 +10199,7 @@ export interface LogFileHandlerRequest {
 export interface GetServiceAccountIssuerOpenIDKeysetRequest {}
 export interface GetCodeVersionRequest {}
 export class KubernetesClient extends APIClient {
-  constructor(options) {
+  constructor(options: APIClientOptions) {
     super(options);
   }
   async getSwaggerJSON() {

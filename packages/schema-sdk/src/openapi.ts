@@ -608,11 +608,16 @@ export function generateOpenApiClient(
   }
   methods.push(...generateMethods(options, patchedSchema));
 
+  const constructorOptionsParam = t.identifier('options');
+  constructorOptionsParam.typeAnnotation = t.tsTypeAnnotation(
+    t.tsTypeReference(t.identifier('APIClientOptions'))
+  );
+
   const classBody = t.classBody([
     t.classMethod(
       'constructor',
       t.identifier('constructor'),
-      [t.identifier('options')],
+      [constructorOptionsParam],
       t.blockStatement([
         t.expressionStatement(
           t.callExpression(t.super(), [t.identifier('options')])
@@ -655,6 +660,10 @@ export function generateOpenApiClient(
             t.importSpecifier(
               t.identifier('APIClientRequestOpts'),
               t.identifier('APIClientRequestOpts')
+            ),
+            t.importSpecifier(
+              t.identifier('APIClientOptions'),
+              t.identifier('APIClientOptions')
             ),
           ],
           t.stringLiteral(options.npmApiClient)
