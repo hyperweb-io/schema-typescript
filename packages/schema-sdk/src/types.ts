@@ -9,6 +9,25 @@ export interface OpenAPIOptions extends SchemaTSOptions {
   npmApiClient?: '@interweb/fetch-api-client' | '@interweb/node-api-client' | string;
   mergedParams?: boolean;
   includeSwaggerUrl?: boolean;
+  /**
+   * Emit a compact Group/Version/Kind → Operations index.
+   * This is a lightweight registry mapping each GVK to the generated
+   * KubernetesClient method names and request type names.
+   */
+  opsIndex?: {
+    enabled?: boolean;
+    /**
+     * Optional import path to bring in resource TS types so we can emit a
+     * ResourceTypeMap keyed by GVKKey. If omitted, only string type names
+     * are embedded in the data and no type map is generated.
+     * Example: './swagger-extended-client'
+     */
+    typesImportPath?: string;
+    /**
+     * Normalize empty group to this label for keys. Default: 'core'.
+     */
+    emptyGroupLabel?: string;
+  };
   operationNamingStrategy?: {
     renameTypes?: boolean;
     renameMap?: {
@@ -56,6 +75,10 @@ export const defaultSchemaSDKOptions: DeepPartial<OpenAPIOptions> = {
   npmApiClient: '@interweb/fetch-api-client',
   mergedParams: false,
   includeSwaggerUrl: false,
+  opsIndex: {
+    enabled: false,
+    emptyGroupLabel: 'core',
+  },
   operationNamingStrategy: {
     renameMap: {},
     aliases: {},
