@@ -64,7 +64,7 @@ it('swagger', () => {
     schema as any
   );
   writeFileSync(
-    __dirname + '/../../../__fixtures__/output/swagger-extended-client.merged.ts',
+    __dirname + '/../../../__fixtures__/output/swagger-extended-client.swagger.ts',
     codeWithGVK
   );
 });

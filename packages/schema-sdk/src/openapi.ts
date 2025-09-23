@@ -126,6 +126,27 @@ export const generateTypeNameFromGVK = (
   return getApiTypeNameSafe(options, fullName);
 };
 
+// Generate qualified type names for Option 2: Keep core simple, qualify non-core
+export const generateQualifiedTypeName = (
+  gvk: GVKInfo,
+  options: OpenAPIOptions
+): string => {
+  const { group, version, kind } = gvk;
+  
+  // Core resources (empty group or "core") keep simple names
+  if (!group || group === '' || group === 'core') {
+    return getApiTypeNameSafe(options, kind);
+  }
+  
+  // Non-core resources get qualified names: {Group}{Version}{Kind}
+  // e.g., "serving.knative.dev" + "v1" + "Service" -> "ServingKnativeDevV1Service"
+  const groupParts = group.split('.').map(part => toPascalCase(part)).join('');
+  const versionPart = toPascalCase(version);
+  const qualifiedName = `${groupParts}${versionPart}${toPascalCase(kind)}`;
+  
+  return getApiTypeNameSafe(options, qualifiedName);
+};
+
 export const getOperationReturnType = (
   options: OpenAPIOptions,
   operation: Operation,
@@ -446,6 +467,170 @@ export function generateOpenApiTypes(
 }
 
 // ---------------------------------------------
+// Helper functions for GVK-based interface naming
+// ---------------------------------------------
+
+// Generate utility functions for ResourceTypeMap lookup
+function generateResourceTypeMapUtilities(): t.Statement[] {
+  const statements: t.Statement[] = [];
+  
+  // GVK interface for utility functions
+  const gvkInterface = t.tsInterfaceDeclaration(
+    t.identifier('GVK'),
+    null,
+    [],
+    t.tsInterfaceBody([
+      t.tsPropertySignature(t.identifier('group'), t.tsTypeAnnotation(t.tsStringKeyword())),
+      t.tsPropertySignature(t.identifier('version'), t.tsTypeAnnotation(t.tsStringKeyword())),
+      t.tsPropertySignature(t.identifier('kind'), t.tsTypeAnnotation(t.tsStringKeyword())),
+    ])
+  );
+  statements.push(t.exportNamedDeclaration(gvkInterface));
+
+  // getResourceType function - Get type by exact GVK
+  const getResourceTypeFunc = t.functionDeclaration(
+    t.identifier('getResourceType'),
+    [
+      (() => {
+        const param = t.identifier('gvk');
+        param.typeAnnotation = t.tsTypeAnnotation(t.tsTypeReference(t.identifier('GVK')));
+        return param;
+      })()
+    ],
+    t.blockStatement([
+      t.variableDeclaration('const', [
+        t.variableDeclarator(
+          t.identifier('key'),
+          t.templateLiteral([
+            t.templateElement({ raw: '', cooked: '' }),
+            t.templateElement({ raw: '/', cooked: '/' }),
+            t.templateElement({ raw: '/', cooked: '/' }),
+            t.templateElement({ raw: '', cooked: '' }, true)
+          ], [
+            t.memberExpression(t.identifier('gvk'), t.identifier('group')),
+            t.memberExpression(t.identifier('gvk'), t.identifier('version')),
+            t.memberExpression(t.identifier('gvk'), t.identifier('kind'))
+          ])
+        )
+      ]),
+      t.returnStatement(
+        t.tsAsExpression(
+          t.memberExpression(
+            t.identifier('ResourceTypeMap'),
+            t.identifier('key'),
+            true
+          ),
+          t.tsUnknownKeyword()
+        )
+      )
+    ])
+  );
+  getResourceTypeFunc.returnType = t.tsTypeAnnotation(t.tsUnknownKeyword());
+  statements.push(t.exportNamedDeclaration(getResourceTypeFunc));
+
+  // searchResourceTypes function - Search by partial match
+  const searchResourceTypesFunc = t.functionDeclaration(
+    t.identifier('searchResourceTypes'),
+    [
+      (() => {
+        const param = t.identifier('query');
+        param.typeAnnotation = t.tsTypeAnnotation(t.tsStringKeyword());
+        return param;
+      })()
+    ],
+    t.blockStatement([
+      t.variableDeclaration('const', [
+        t.variableDeclarator(
+          t.identifier('results'),
+          t.arrayExpression([])
+        )
+      ]),
+      t.variableDeclaration('const', [
+        t.variableDeclarator(
+          t.identifier('lowercaseQuery'),
+          t.callExpression(
+            t.memberExpression(t.identifier('query'), t.identifier('toLowerCase')),
+            []
+          )
+        )
+      ]),
+      t.forInStatement(
+        t.variableDeclaration('const', [t.variableDeclarator(t.identifier('key'))]),
+        t.identifier('ResourceTypeMap'),
+        t.blockStatement([
+          t.ifStatement(
+            t.callExpression(
+              t.memberExpression(
+                t.callExpression(
+                  t.memberExpression(t.identifier('key'), t.identifier('toLowerCase')),
+                  []
+                ),
+                t.identifier('includes')
+              ),
+              [t.identifier('lowercaseQuery')]
+            ),
+            t.blockStatement([
+              t.expressionStatement(
+                t.callExpression(
+                  t.memberExpression(t.identifier('results'), t.identifier('push')),
+                  [
+                    t.objectExpression([
+                      t.objectProperty(t.identifier('gvkKey'), t.identifier('key')),
+                      t.objectProperty(
+                        t.identifier('typeName'),
+                        t.tsAsExpression(
+                          t.memberExpression(
+                            t.identifier('ResourceTypeMap'),
+                            t.identifier('key'),
+                            true
+                          ),
+                          t.tsStringKeyword()
+                        )
+                      )
+                    ])
+                  ]
+                )
+              )
+            ])
+          )
+        ])
+      ),
+      t.returnStatement(t.identifier('results'))
+    ])
+  );
+  searchResourceTypesFunc.returnType = t.tsTypeAnnotation(
+    t.tsArrayType(
+      t.tsTypeLiteral([
+        t.tsPropertySignature(t.identifier('gvkKey'), t.tsTypeAnnotation(t.tsStringKeyword())),
+        t.tsPropertySignature(t.identifier('typeName'), t.tsTypeAnnotation(t.tsStringKeyword()))
+      ])
+    )
+  );
+  statements.push(t.exportNamedDeclaration(searchResourceTypesFunc));
+
+  // getAllResourceTypes function - Get all available GVK keys
+  const getAllResourceTypesFunc = t.functionDeclaration(
+    t.identifier('getAllResourceTypes'),
+    [],
+    t.blockStatement([
+      t.returnStatement(
+        t.callExpression(
+          t.memberExpression(t.identifier('Object'), t.identifier('keys')),
+          [t.identifier('ResourceTypeMap')]
+        )
+      )
+    ])
+  );
+  getAllResourceTypesFunc.returnType = t.tsTypeAnnotation(
+    t.tsArrayType(t.tsStringKeyword())
+  );
+  statements.push(t.exportNamedDeclaration(getAllResourceTypesFunc));
+
+  // Return the array of statements
+  return statements;
+}
+
+// ---------------------------------------------
 // GVK_OPS: Generate compact GVK → Operations index
 // ---------------------------------------------
 
@@ -513,6 +698,8 @@ function generateGVKOpsStatements(
   const patchedSchema = applyJsonPatch(schema, options);
 
   const defToGVKs = new Map<string, { group: string; version: string; kind: string }[]>();
+  
+  // Extract GVK metadata from definitions section (original logic)
   Object.entries(patchedSchema.definitions || {}).forEach(([defName, defSchema]) => {
     const ext = (defSchema as any)['x-kubernetes-group-version-kind'] as Array<any> | undefined;
     if (ext && Array.isArray(ext)) {
@@ -524,6 +711,41 @@ function generateGVKOpsStatements(
         defToGVKs.get(defName)!.push({ group, version, kind });
       });
     }
+  });
+
+  // Extract GVK metadata from paths section (where it actually exists in many schemas)
+  Object.entries(patchedSchema.paths).forEach(([path, pathItem]) => {
+    METHOD_TYPES.forEach((m) => {
+      // @ts-ignore
+      const operation: Operation = (pathItem as any)[m];
+      if (!operation || !shouldIncludeOperation(options, pathItem, path, m as any)) return;
+      
+      // Check for GVK metadata in the operation
+      const gvk = (operation as any)['x-kubernetes-group-version-kind'];
+      if (gvk && typeof gvk === 'object') {
+        const group: string = gvk.group ?? '';
+        const version: string = gvk.version;
+        const kind: string = gvk.kind;
+        
+        // Find the definition name that this operation refers to
+        const retDef = getRefDefName(operation.responses?.['200']);
+        const bodyParam = (operation.parameters || []).find((p) => p.in === 'body' && (p.schema as any)?.$ref);
+        const bodyDef = bodyParam ? String((bodyParam!.schema as any).$ref).split('/').pop()! : null;
+        const defCandidate = retDef || bodyDef;
+        
+        if (defCandidate) {
+          const baseDef = baseDefFromListName(defCandidate);
+          if (!defToGVKs.has(baseDef)) defToGVKs.set(baseDef, []);
+          
+          // Check if this GVK is already recorded for this definition
+          const existing = defToGVKs.get(baseDef)!;
+          const alreadyExists = existing.some(e => e.group === group && e.version === version && e.kind === kind);
+          if (!alreadyExists) {
+            defToGVKs.get(baseDef)!.push({ group, version, kind });
+          }
+        }
+      }
+    });
   });
 
   const pathBaseToDef = new Map<string, string>();
@@ -572,148 +794,37 @@ function generateGVKOpsStatements(
       const params = parseRoute(path).params;
       const hasBody = (operation.parameters || []).some((p) => p.in === 'body' || p.in === 'formData');
       const hasQuery = (operation.parameters || []).some((p) => p.in === 'query');
-      const mainType = getApiTypeNameSafe(options, baseDef.split('.').pop()!);
-      const listType = defCandidate && /List$/.test(defCandidate.split('.').pop()!) ? getApiTypeNameSafe(options, defCandidate.split('.').pop()!) : undefined;
+      
       gvks.forEach((g) => {
         const groupNorm = g.group && g.group.length ? g.group : emptyGroupLabel;
         const key = `${groupNorm}/${g.version}/${g.kind}`;
+        
+        // Use qualified naming: keep core resources simple, qualify non-core resources
+        const mainType = generateQualifiedTypeName(g, options);
+        const listType = defCandidate && /List$/.test(defCandidate.split('.').pop()!) ? getApiTypeNameSafe(options, defCandidate.split('.').pop()!) : undefined;
+        
         if (!map.has(key)) {
           map.set(key, { key, gvk: { group: groupNorm, version: g.version, kind: g.kind }, scope: 'Unknown', types: { main: mainType, ...(listType ? { list: listType } : {}) }, ops: {} });
         }
         const entry = map.get(key)!;
         if (namespaced) entry.scope = 'Namespaced'; else if (entry.scope !== 'Namespaced') entry.scope = 'Cluster';
-        const spec = { methodName, requestType, pathParams: params, hasBody, hasQuery };
-        if (!subresource) {
-          if (kind === 'list') {
-            if (namespaced && entry.scope === 'Namespaced') (entry.ops as any).list = (entry.ops as any).list || spec;
-            else if (!namespaced && entry.scope === 'Namespaced') (entry.ops as any).listAllNamespaces = (entry.ops as any).listAllNamespaces || spec;
-            else (entry.ops as any).list = (entry.ops as any).list || spec;
-          } else {
-            (entry.ops as any)[kind] = (entry.ops as any)[kind] || spec;
-          }
-        } else {
-          (entry.ops as any)[subresource] = (entry.ops as any)[subresource] || {};
-          (entry.ops as any)[subresource][kind] = (entry.ops as any)[subresource][kind] || spec;
-        }
       });
     });
   });
 
   const stmts: t.Statement[] = [];
-  // Interfaces
-  stmts.push(t.exportNamedDeclaration(t.tsInterfaceDeclaration(
-    t.identifier('GVK'), null, [], t.tsInterfaceBody([
-      t.tsPropertySignature(t.identifier('group'), t.tsTypeAnnotation(t.tsStringKeyword())),
-      t.tsPropertySignature(t.identifier('version'), t.tsTypeAnnotation(t.tsStringKeyword())),
-      t.tsPropertySignature(t.identifier('kind'), t.tsTypeAnnotation(t.tsStringKeyword())),
-    ])
-  )));
-  stmts.push(t.exportNamedDeclaration(t.tsTypeAliasDeclaration(t.identifier('GVKKey'), null, t.tsStringKeyword())));
-  stmts.push(t.exportNamedDeclaration(t.tsTypeAliasDeclaration(
-    t.identifier('OperationKind'), null,
-    t.tsUnionType(['list','listAllNamespaces','read','create','replace','patch','delete','deleteCollection'].map(s=>t.tsLiteralType(t.stringLiteral(s))))
-  )));
-  stmts.push(t.exportNamedDeclaration(t.tsInterfaceDeclaration(
-    t.identifier('OperationSpec'), null, [], t.tsInterfaceBody([
-      t.tsPropertySignature(t.identifier('methodName'), t.tsTypeAnnotation(t.tsStringKeyword())),
-      t.tsPropertySignature(t.identifier('requestType'), t.tsTypeAnnotation(t.tsStringKeyword())),
-      t.tsPropertySignature(t.identifier('pathParams'), t.tsTypeAnnotation(t.tsArrayType(t.tsStringKeyword()))),
-      t.tsPropertySignature(t.identifier('hasBody'), t.tsTypeAnnotation(t.tsBooleanKeyword())),
-      t.tsPropertySignature(t.identifier('hasQuery'), t.tsTypeAnnotation(t.tsBooleanKeyword())),
-    ]))));
-  stmts.push(t.exportNamedDeclaration(t.tsInterfaceDeclaration(
-    t.identifier('TypeRefs'), null, [], t.tsInterfaceBody([
-      t.tsPropertySignature(t.identifier('main'), t.tsTypeAnnotation(t.tsStringKeyword())),
-      (()=>{ const p=t.tsPropertySignature(t.identifier('list'), t.tsTypeAnnotation(t.tsStringKeyword())); (p as any).optional=true; return p; })(),
-    ])
-  )));
-
-  const statusRecord = t.tsTypeReference(t.identifier('Partial'), t.tsTypeParameterInstantiation([
-    t.tsTypeReference(t.identifier('Record'), t.tsTypeParameterInstantiation([
-      t.tsUnionType([t.tsLiteralType(t.stringLiteral('read')), t.tsLiteralType(t.stringLiteral('replace')), t.tsLiteralType(t.stringLiteral('patch'))]),
-      t.tsTypeReference(t.identifier('OperationSpec')),
-    ]))
-  ]));
-
-  stmts.push(t.exportNamedDeclaration(t.tsInterfaceDeclaration(
-    t.identifier('ResourceOps'), null, [], t.tsInterfaceBody([
-      t.tsPropertySignature(t.identifier('key'), t.tsTypeAnnotation(t.tsTypeReference(t.identifier('GVKKey')))),
-      t.tsPropertySignature(t.identifier('gvk'), t.tsTypeAnnotation(t.tsTypeReference(t.identifier('GVK')))),
-      t.tsPropertySignature(t.identifier('scope'), t.tsTypeAnnotation(t.tsUnionType([t.tsLiteralType(t.stringLiteral('Namespaced')), t.tsLiteralType(t.stringLiteral('Cluster')), t.tsLiteralType(t.stringLiteral('Unknown'))]))),
-      t.tsPropertySignature(t.identifier('types'), t.tsTypeAnnotation(t.tsTypeReference(t.identifier('TypeRefs')))),
-      t.tsPropertySignature(t.identifier('ops'), t.tsTypeAnnotation(t.tsIntersectionType([
-        t.tsTypeReference(t.identifier('Partial'), t.tsTypeParameterInstantiation([
-          t.tsTypeReference(t.identifier('Record'), t.tsTypeParameterInstantiation([
-            t.tsTypeReference(t.identifier('OperationKind')),
-            t.tsTypeReference(t.identifier('OperationSpec')),
-          ]))
-        ])),
-        t.tsTypeLiteral([
-          (()=>{ const p=t.tsPropertySignature(t.identifier('status'), t.tsTypeAnnotation(statusRecord)); (p as any).optional=true; return p; })(),
-          (()=>{ const p=t.tsPropertySignature(t.identifier('scale'), t.tsTypeAnnotation(statusRecord)); (p as any).optional=true; return p; })(),
-        ])
-      ])))
-    ])
-  )));
 
   // ResourceTypeMap
   const typeMapProps = Array.from(map.values()).map(e => t.tsPropertySignature(t.stringLiteral(e.key), t.tsTypeAnnotation(t.tsTypeReference(t.identifier(e.types.main)))));
   stmts.push(t.exportNamedDeclaration(t.tsInterfaceDeclaration(t.identifier('ResourceTypeMap'), null, [], t.tsInterfaceBody(typeMapProps))));
-  const listTypeProps = Array.from(map.values()).filter(e=>e.types.list).map(e => t.tsPropertySignature(t.stringLiteral(e.key), t.tsTypeAnnotation(t.tsTypeReference(t.identifier(e.types.list!)))));
-  stmts.push(t.exportNamedDeclaration(t.tsInterfaceDeclaration(t.identifier('ResourceListTypeMap'), null, [], t.tsInterfaceBody(listTypeProps))));
+  
+  // KubernetesResource union type
+  const resourceTypes = Array.from(map.values()).map(e => t.tsTypeReference(t.identifier(e.types.main)));
+  const uniqueResourceTypes = Array.from(new Set(resourceTypes.map(t => (t.typeName as any).name))).map(name => t.tsTypeReference(t.identifier(name)));
+  stmts.push(t.exportNamedDeclaration(t.tsTypeAliasDeclaration(t.identifier('KubernetesResource'), null, t.tsUnionType(uniqueResourceTypes))));
 
-  // const GVK_OPS = { ... }
-  const specObj = (spec:any) => spec ? t.objectExpression([
-    t.objectProperty(t.identifier('methodName'), t.stringLiteral(spec.methodName)),
-    t.objectProperty(t.identifier('requestType'), t.stringLiteral(spec.requestType)),
-    t.objectProperty(t.identifier('pathParams'), t.arrayExpression((spec.pathParams||[]).map((p:string)=>t.stringLiteral(p)))),
-    t.objectProperty(t.identifier('hasBody'), t.booleanLiteral(!!spec.hasBody)),
-    t.objectProperty(t.identifier('hasQuery'), t.booleanLiteral(!!spec.hasQuery)),
-  ]) : null;
-
-  const entries = Array.from(map.values()).sort((a,b)=>a.key.localeCompare(b.key)).map(e=>{
-    const props: t.ObjectProperty[] = [];
-    const add=(k:string,s:any)=>{ const o=specObj(s); if(o) props.push(t.objectProperty(t.identifier(k),o)); };
-    add('list',(e as any).ops.list); add('listAllNamespaces',(e as any).ops.listAllNamespaces); add('read',(e as any).ops.read); add('create',(e as any).ops.create); add('replace',(e as any).ops.replace); add('patch',(e as any).ops.patch); add('delete',(e as any).ops.delete); add('deleteCollection',(e as any).ops.deleteCollection);
-    if ((e as any).ops.status && (((e as any).ops.status.read) || ((e as any).ops.status.replace) || ((e as any).ops.status.patch))) {
-      const sp: t.ObjectProperty[]=[]; const addB=(n:string,s:any)=>{const o=specObj(s); if(o) sp.push(t.objectProperty(t.identifier(n),o));}; addB('read',(e as any).ops.status.read); addB('replace',(e as any).ops.status.replace); addB('patch',(e as any).ops.status.patch); props.push(t.objectProperty(t.identifier('status'), t.objectExpression(sp)));
-    }
-    if ((e as any).ops.scale && (((e as any).ops.scale.read) || ((e as any).ops.scale.replace) || ((e as any).ops.scale.patch))) {
-      const sp: t.ObjectProperty[]=[]; const addB=(n:string,s:any)=>{const o=specObj(s); if(o) sp.push(t.objectProperty(t.identifier(n),o));}; addB('read',(e as any).ops.scale.read); addB('replace',(e as any).ops.scale.replace); addB('patch',(e as any).ops.scale.patch); props.push(t.objectProperty(t.identifier('scale'), t.objectExpression(sp)));
-    }
-    return t.objectProperty(
-      t.stringLiteral(e.key),
-      t.objectExpression([
-        t.objectProperty(t.identifier('key'), t.stringLiteral(e.key)),
-        t.objectProperty(t.identifier('gvk'), t.objectExpression([
-          t.objectProperty(t.identifier('group'), t.stringLiteral(e.gvk.group)),
-          t.objectProperty(t.identifier('version'), t.stringLiteral(e.gvk.version)),
-          t.objectProperty(t.identifier('kind'), t.stringLiteral(e.gvk.kind)),
-        ])),
-        t.objectProperty(t.identifier('scope'), t.stringLiteral(e.scope)),
-        t.objectProperty(t.identifier('types'), t.objectExpression([
-          t.objectProperty(t.identifier('main'), t.stringLiteral(e.types.main)),
-          ...(e.types.list ? [t.objectProperty(t.identifier('list'), t.stringLiteral(e.types.list))] : []),
-        ])),
-        t.objectProperty(t.identifier('ops'), t.objectExpression(props)),
-      ])
-    );
-  });
-  stmts.push(t.exportNamedDeclaration(t.variableDeclaration('const', [ t.variableDeclarator(t.identifier('GVK_OPS'), t.objectExpression(entries)) ])));
-
-  // toKey/getOps/isNamespaced
-  const gvkParam = () => { const p=t.identifier('gvk'); p.typeAnnotation = t.tsTypeAnnotation(t.tsTypeReference(t.identifier('GVK'))); return p; };
-  stmts.push(t.exportNamedDeclaration(t.functionDeclaration(t.identifier('toKey'), [gvkParam()], t.blockStatement([
-    t.returnStatement(t.tsAsExpression(t.templateLiteral([
-      t.templateElement({ raw: '', cooked: '' }), t.templateElement({ raw: '/', cooked: '/' }), t.templateElement({ raw: '/', cooked: '/' }, true)
-    ], [t.memberExpression(t.identifier('gvk'), t.identifier('group')), t.memberExpression(t.identifier('gvk'), t.identifier('version')), t.memberExpression(t.identifier('gvk'), t.identifier('kind'))]), t.tsTypeReference(t.identifier('GVKKey'))))
-  ]))));
-  stmts.push(t.exportNamedDeclaration(t.functionDeclaration(t.identifier('getOps'), [gvkParam()], t.blockStatement([
-    t.returnStatement(t.memberExpression(t.identifier('GVK_OPS'), t.callExpression(t.identifier('toKey'), [t.identifier('gvk')]), true))
-  ]))));
-  stmts.push(t.exportNamedDeclaration(t.functionDeclaration(t.identifier('isNamespaced'), [gvkParam()], t.blockStatement([
-    t.returnStatement(t.binaryExpression('===', t.optionalMemberExpression(t.memberExpression(t.identifier('GVK_OPS'), t.callExpression(t.identifier('toKey'), [t.identifier('gvk')]), true), t.identifier('scope'), false, true), t.stringLiteral('Namespaced')))
-  ]))));
+  // Utility functions for ResourceTypeMap lookup
+  stmts.push(...generateResourceTypeMapUtilities());
 
   return stmts;
 }
@@ -890,6 +1001,83 @@ export const getSwaggerJSONMethod = (): t.ClassMethod => {
   );
 };
 
+// Build interface rename map directly from schema for qualified naming
+function buildInterfaceRenameMapFromSchema(
+  schema: OpenAPISpec,
+  options: OpenAPIOptions
+): { [key: string]: string } {
+  const renameMap: { [key: string]: string } = {};
+  const defToGVKs = new Map<string, { group: string; version: string; kind: string }[]>();
+  
+  // Extract GVK metadata from definitions section (original logic)
+  Object.entries(schema.definitions || {}).forEach(([defName, defSchema]) => {
+    const ext = (defSchema as any)['x-kubernetes-group-version-kind'] as Array<any> | undefined;
+    if (ext && Array.isArray(ext)) {
+      ext.forEach((e) => {
+        const group: string = e.group ?? '';
+        const version: string = e.version;
+        const kind: string = e.kind;
+        if (!defToGVKs.has(defName)) defToGVKs.set(defName, []);
+        defToGVKs.get(defName)!.push({ group, version, kind });
+      });
+    }
+  });
+
+  // Extract GVK metadata from paths section (where it actually exists in many schemas)
+  Object.entries(schema.paths).forEach(([path, pathItem]) => {
+    METHOD_TYPES.forEach((m) => {
+      // @ts-ignore
+      const operation: Operation = (pathItem as any)[m];
+      if (!operation || !shouldIncludeOperation(options, pathItem, path, m as any)) return;
+      
+      // Check for GVK metadata in the operation
+      const gvk = (operation as any)['x-kubernetes-group-version-kind'];
+      if (gvk && typeof gvk === 'object') {
+        const group: string = gvk.group ?? '';
+        const version: string = gvk.version;
+        const kind: string = gvk.kind;
+        
+        // Find the definition name that this operation refers to
+        const retDef = getRefDefName(operation.responses?.['200']);
+        const bodyParam = (operation.parameters || []).find((p) => p.in === 'body' && (p.schema as any)?.$ref);
+        const bodyDef = bodyParam ? String((bodyParam!.schema as any).$ref).split('/').pop()! : null;
+        const defCandidate = retDef || bodyDef;
+        
+        if (defCandidate) {
+          const baseDef = baseDefFromListName(defCandidate);
+          if (!defToGVKs.has(baseDef)) defToGVKs.set(baseDef, []);
+          
+          // Check if this GVK is already recorded for this definition
+          const existing = defToGVKs.get(baseDef)!;
+          const alreadyExists = existing.some(e => e.group === group && e.version === version && e.kind === kind);
+          if (!alreadyExists) {
+            defToGVKs.get(baseDef)!.push({ group, version, kind });
+          }
+        }
+      }
+    });
+  });
+
+  // Build rename map for each definition that has GVK data
+  defToGVKs.forEach((gvks, defName) => {
+    if (gvks.length > 0) {
+      // Use the first GVK entry (there's usually only one per definition)
+      const gvk = gvks[0];
+      const qualifiedName = generateQualifiedTypeName(gvk, options);
+      
+      // Extract the simple name from the definition name (e.g., "io.k8s.api.core.v1.Service" -> "Service")
+      const simpleName = defName.split('.').pop() || defName;
+      
+      // Only add to rename map if the qualified name is different from the simple name
+      if (qualifiedName !== simpleName) {
+        renameMap[defName] = qualifiedName;
+      }
+    }
+  });
+  
+  return renameMap;
+}
+
 export function generateOpenApiClient(
   options: OpenAPIOptions,
   schema: OpenAPISpec
@@ -937,9 +1125,22 @@ export function generateOpenApiClient(
     definitions: patchedSchema.definitions,
   };
 
+  // Build rename map for qualified interface names when opsIndex is enabled
+  let interfaceRenameMap: { [key: string]: string } = {};
+  if (options.opsIndex?.enabled) {
+    interfaceRenameMap = buildInterfaceRenameMapFromSchema(patchedSchema, options);
+  }
+
   const types = generateTypeScriptTypes(apiSchema, {
     ...(options as any),
     exclude: [options.clientName, ...(options.exclude ?? [])],
+    namingStrategy: {
+      ...(options.namingStrategy || {}),
+      renameMap: {
+        ...(options.namingStrategy?.renameMap || {}),
+        ...interfaceRenameMap,
+      },
+    },
   });
   const openApiTypes = generateOpenApiTypes(options, patchedSchema);
   const gvkOpsStmts = options.opsIndex?.enabled ? generateGVKOpsStatements(options, patchedSchema) : [];

@@ -1,5 +1,5 @@
 import { APIClient, APIClientRequestOpts, APIClientOptions } from "@interweb/fetch-api-client";
-export interface MonitoringCoreosComAlertmanager {
+export interface MonitoringCoreosComV1Alertmanager {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -1693,13 +1693,13 @@ export interface MonitoringCoreosComAlertmanager {
     updatedReplicas: number;
   };
 }
-export interface MonitoringCoreosComAlertmanagerList {
+export interface MonitoringCoreosComV1AlertmanagerList {
   apiVersion?: string;
-  items: MonitoringCoreosComAlertmanager[];
+  items: MonitoringCoreosComV1Alertmanager[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface MonitoringCoreosComPodMonitor {
+export interface MonitoringCoreosComV1PodMonitor {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -1907,13 +1907,13 @@ export interface MonitoringCoreosComPodMonitor {
     targetLimit?: number;
   };
 }
-export interface MonitoringCoreosComPodMonitorList {
+export interface MonitoringCoreosComV1PodMonitorList {
   apiVersion?: string;
-  items: MonitoringCoreosComPodMonitor[];
+  items: MonitoringCoreosComV1PodMonitor[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface MonitoringCoreosComProbe {
+export interface MonitoringCoreosComV1Probe {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -2128,13 +2128,13 @@ export interface MonitoringCoreosComProbe {
     };
   };
 }
-export interface MonitoringCoreosComProbeList {
+export interface MonitoringCoreosComV1ProbeList {
   apiVersion?: string;
-  items: MonitoringCoreosComProbe[];
+  items: MonitoringCoreosComV1Probe[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface MonitoringCoreosComPrometheus {
+export interface MonitoringCoreosComV1Prometheus {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -4419,13 +4419,13 @@ export interface MonitoringCoreosComPrometheus {
     updatedReplicas: number;
   };
 }
-export interface MonitoringCoreosComPrometheusList {
+export interface MonitoringCoreosComV1PrometheusList {
   apiVersion?: string;
-  items: MonitoringCoreosComPrometheus[];
+  items: MonitoringCoreosComV1Prometheus[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface MonitoringCoreosComPrometheusRule {
+export interface MonitoringCoreosComV1PrometheusRule {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -4455,13 +4455,13 @@ export interface MonitoringCoreosComPrometheusRule {
     }[];
   };
 }
-export interface MonitoringCoreosComPrometheusRuleList {
+export interface MonitoringCoreosComV1PrometheusRuleList {
   apiVersion?: string;
-  items: MonitoringCoreosComPrometheusRule[];
+  items: MonitoringCoreosComV1PrometheusRule[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface MonitoringCoreosComServiceMonitor {
+export interface MonitoringCoreosComV1ServiceMonitor {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -4689,13 +4689,13 @@ export interface MonitoringCoreosComServiceMonitor {
     }[];
   };
 }
-export interface MonitoringCoreosComServiceMonitorList {
+export interface MonitoringCoreosComV1ServiceMonitorList {
   apiVersion?: string;
-  items: MonitoringCoreosComServiceMonitor[];
+  items: MonitoringCoreosComV1ServiceMonitor[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface MonitoringCoreosComThanosRuler {
+export interface MonitoringCoreosComV1ThanosRuler {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -6316,13 +6316,13 @@ export interface MonitoringCoreosComThanosRuler {
     updatedReplicas: number;
   };
 }
-export interface MonitoringCoreosComThanosRulerList {
+export interface MonitoringCoreosComV1ThanosRulerList {
   apiVersion?: string;
-  items: MonitoringCoreosComThanosRuler[];
+  items: MonitoringCoreosComV1ThanosRuler[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface MonitoringCoreosComAlertmanagerConfig {
+export interface MonitoringCoreosComV1alpha1AlertmanagerConfig {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -8626,13 +8626,13 @@ export interface MonitoringCoreosComAlertmanagerConfig {
     };
   };
 }
-export interface MonitoringCoreosComAlertmanagerConfigList {
+export interface MonitoringCoreosComV1alpha1AlertmanagerConfigList {
   apiVersion?: string;
-  items: MonitoringCoreosComAlertmanagerConfig[];
+  items: MonitoringCoreosComV1alpha1AlertmanagerConfig[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface MonitoringCoreosComPrometheusAgent {
+export interface MonitoringCoreosComV1alpha1PrometheusAgent {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -10503,13 +10503,13 @@ export interface MonitoringCoreosComPrometheusAgent {
     updatedReplicas: number;
   };
 }
-export interface MonitoringCoreosComPrometheusAgentList {
+export interface MonitoringCoreosComV1alpha1PrometheusAgentList {
   apiVersion?: string;
-  items: MonitoringCoreosComPrometheusAgent[];
+  items: MonitoringCoreosComV1alpha1PrometheusAgent[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface MonitoringCoreosComScrapeConfig {
+export interface MonitoringCoreosComV1alpha1ScrapeConfig {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -12937,13 +12937,13 @@ export interface MonitoringCoreosComScrapeConfig {
     trackTimestampsStaleness?: boolean;
   };
 }
-export interface MonitoringCoreosComScrapeConfigList {
+export interface MonitoringCoreosComV1alpha1ScrapeConfigList {
   apiVersion?: string;
-  items: MonitoringCoreosComScrapeConfig[];
+  items: MonitoringCoreosComV1alpha1ScrapeConfig[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface AutoscalingInternalKnativeDevMetric {
+export interface AutoscalingInternalKnativeDevV1alpha1Metric {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -12967,13 +12967,13 @@ export interface AutoscalingInternalKnativeDevMetric {
     observedGeneration?: number;
   };
 }
-export interface AutoscalingInternalKnativeDevMetricList {
+export interface AutoscalingInternalKnativeDevV1alpha1MetricList {
   apiVersion?: string;
-  items: AutoscalingInternalKnativeDevMetric[];
+  items: AutoscalingInternalKnativeDevV1alpha1Metric[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface AutoscalingInternalKnativeDevPodAutoscaler {
+export interface AutoscalingInternalKnativeDevV1alpha1PodAutoscaler {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -13006,13 +13006,13 @@ export interface AutoscalingInternalKnativeDevPodAutoscaler {
     serviceName: string;
   };
 }
-export interface AutoscalingInternalKnativeDevPodAutoscalerList {
+export interface AutoscalingInternalKnativeDevV1alpha1PodAutoscalerList {
   apiVersion?: string;
-  items: AutoscalingInternalKnativeDevPodAutoscaler[];
+  items: AutoscalingInternalKnativeDevV1alpha1PodAutoscaler[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface CachingInternalKnativeDevImage {
+export interface CachingInternalKnativeDevV1alpha1Image {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -13038,13 +13038,13 @@ export interface CachingInternalKnativeDevImage {
     observedGeneration?: number;
   };
 }
-export interface CachingInternalKnativeDevImageList {
+export interface CachingInternalKnativeDevV1alpha1ImageList {
   apiVersion?: string;
-  items: CachingInternalKnativeDevImage[];
+  items: CachingInternalKnativeDevV1alpha1Image[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface NetworkingInternalKnativeDevCertificate {
+export interface NetworkingInternalKnativeDevV1alpha1Certificate {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -13075,13 +13075,13 @@ export interface NetworkingInternalKnativeDevCertificate {
     observedGeneration?: number;
   };
 }
-export interface NetworkingInternalKnativeDevCertificateList {
+export interface NetworkingInternalKnativeDevV1alpha1CertificateList {
   apiVersion?: string;
-  items: NetworkingInternalKnativeDevCertificate[];
+  items: NetworkingInternalKnativeDevV1alpha1Certificate[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface NetworkingInternalKnativeDevClusterDomainClaim {
+export interface NetworkingInternalKnativeDevV1alpha1ClusterDomainClaim {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -13089,13 +13089,13 @@ export interface NetworkingInternalKnativeDevClusterDomainClaim {
     namespace: string;
   };
 }
-export interface NetworkingInternalKnativeDevClusterDomainClaimList {
+export interface NetworkingInternalKnativeDevV1alpha1ClusterDomainClaimList {
   apiVersion?: string;
-  items: NetworkingInternalKnativeDevClusterDomainClaim[];
+  items: NetworkingInternalKnativeDevV1alpha1ClusterDomainClaim[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface NetworkingInternalKnativeDevIngress {
+export interface NetworkingInternalKnativeDevV1alpha1Ingress {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -13163,13 +13163,13 @@ export interface NetworkingInternalKnativeDevIngress {
     };
   };
 }
-export interface NetworkingInternalKnativeDevIngressList {
+export interface NetworkingInternalKnativeDevV1alpha1IngressList {
   apiVersion?: string;
-  items: NetworkingInternalKnativeDevIngress[];
+  items: NetworkingInternalKnativeDevV1alpha1Ingress[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface NetworkingInternalKnativeDevServerlessService {
+export interface NetworkingInternalKnativeDevV1alpha1ServerlessService {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -13204,13 +13204,13 @@ export interface NetworkingInternalKnativeDevServerlessService {
     serviceName?: string;
   };
 }
-export interface NetworkingInternalKnativeDevServerlessServiceList {
+export interface NetworkingInternalKnativeDevV1alpha1ServerlessServiceList {
   apiVersion?: string;
-  items: NetworkingInternalKnativeDevServerlessService[];
+  items: NetworkingInternalKnativeDevV1alpha1ServerlessService[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface ServingKnativeDevConfiguration {
+export interface ServingKnativeDevV1Configuration {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -13489,13 +13489,13 @@ export interface ServingKnativeDevConfiguration {
     observedGeneration?: number;
   };
 }
-export interface ServingKnativeDevConfigurationList {
+export interface ServingKnativeDevV1ConfigurationList {
   apiVersion?: string;
-  items: ServingKnativeDevConfiguration[];
+  items: ServingKnativeDevV1Configuration[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface ServingKnativeDevRevision {
+export interface ServingKnativeDevV1Revision {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -13778,13 +13778,13 @@ export interface ServingKnativeDevRevision {
     observedGeneration?: number;
   };
 }
-export interface ServingKnativeDevRevisionList {
+export interface ServingKnativeDevV1RevisionList {
   apiVersion?: string;
-  items: ServingKnativeDevRevision[];
+  items: ServingKnativeDevV1Revision[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface ServingKnativeDevRoute {
+export interface ServingKnativeDevV1Route {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -13828,13 +13828,13 @@ export interface ServingKnativeDevRoute {
     url?: string;
   };
 }
-export interface ServingKnativeDevRouteList {
+export interface ServingKnativeDevV1RouteList {
   apiVersion?: string;
-  items: ServingKnativeDevRoute[];
+  items: ServingKnativeDevV1Route[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface ServingKnativeDevService {
+export interface ServingKnativeDevV1Service {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -14136,13 +14136,13 @@ export interface ServingKnativeDevService {
     url?: string;
   };
 }
-export interface ServingKnativeDevServiceList {
+export interface ServingKnativeDevV1ServiceList {
   apiVersion?: string;
-  items: ServingKnativeDevService[];
+  items: ServingKnativeDevV1Service[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface AcmeCertManagerIoChallenge {
+export interface AcmeCertManagerIoV1Challenge {
   apiVersion?: string;
   kind?: string;
   metadata: ObjectMeta;
@@ -14703,13 +14703,13 @@ export interface AcmeCertManagerIoChallenge {
     state?: "valid" | "ready" | "pending" | "processing" | "invalid" | "expired" | "errored";
   };
 }
-export interface AcmeCertManagerIoChallengeList {
+export interface AcmeCertManagerIoV1ChallengeList {
   apiVersion?: string;
-  items: AcmeCertManagerIoChallenge[];
+  items: AcmeCertManagerIoV1Challenge[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface AcmeCertManagerIoOrder {
+export interface AcmeCertManagerIoV1Order {
   apiVersion?: string;
   kind?: string;
   metadata: ObjectMeta;
@@ -14745,13 +14745,13 @@ export interface AcmeCertManagerIoOrder {
     url?: string;
   };
 }
-export interface AcmeCertManagerIoOrderList {
+export interface AcmeCertManagerIoV1OrderList {
   apiVersion?: string;
-  items: AcmeCertManagerIoOrder[];
+  items: AcmeCertManagerIoV1Order[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface CertManagerIoCertificate {
+export interface CertManagerIoV1Certificate {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -14860,13 +14860,13 @@ export interface CertManagerIoCertificate {
     revision?: number;
   };
 }
-export interface CertManagerIoCertificateList {
+export interface CertManagerIoV1CertificateList {
   apiVersion?: string;
-  items: CertManagerIoCertificate[];
+  items: CertManagerIoV1Certificate[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface CertManagerIoCertificateRequest {
+export interface CertManagerIoV1CertificateRequest {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -14900,13 +14900,13 @@ export interface CertManagerIoCertificateRequest {
     failureTime?: string;
   };
 }
-export interface CertManagerIoCertificateRequestList {
+export interface CertManagerIoV1CertificateRequestList {
   apiVersion?: string;
-  items: CertManagerIoCertificateRequest[];
+  items: CertManagerIoV1CertificateRequest[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface CertManagerIoClusterIssuer {
+export interface CertManagerIoV1ClusterIssuer {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -15564,13 +15564,13 @@ export interface CertManagerIoClusterIssuer {
     }[];
   };
 }
-export interface CertManagerIoClusterIssuerList {
+export interface CertManagerIoV1ClusterIssuerList {
   apiVersion?: string;
-  items: CertManagerIoClusterIssuer[];
+  items: CertManagerIoV1ClusterIssuer[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface CertManagerIoIssuer {
+export interface CertManagerIoV1Issuer {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -16228,13 +16228,13 @@ export interface CertManagerIoIssuer {
     }[];
   };
 }
-export interface CertManagerIoIssuerList {
+export interface CertManagerIoV1IssuerList {
   apiVersion?: string;
-  items: CertManagerIoIssuer[];
+  items: CertManagerIoV1Issuer[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface PostgresqlCnpgIoBackup {
+export interface PostgresqlCnpgIoV1Backup {
   apiVersion?: string;
   kind?: string;
   metadata: ObjectMeta;
@@ -16342,13 +16342,13 @@ export interface PostgresqlCnpgIoBackup {
     tablespaceMapFile?: string;
   };
 }
-export interface PostgresqlCnpgIoBackupList {
+export interface PostgresqlCnpgIoV1BackupList {
   apiVersion?: string;
-  items: PostgresqlCnpgIoBackup[];
+  items: PostgresqlCnpgIoV1Backup[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface PostgresqlCnpgIoCluster {
+export interface PostgresqlCnpgIoV1Cluster {
   apiVersion?: string;
   kind?: string;
   metadata: ObjectMeta;
@@ -17539,7 +17539,7 @@ export interface PostgresqlCnpgIoCluster {
     writeService?: string;
   };
 }
-export interface PostgresqlCnpgIoClusterImageCatalog {
+export interface PostgresqlCnpgIoV1ClusterImageCatalog {
   apiVersion?: string;
   kind?: string;
   metadata: ObjectMeta;
@@ -17550,19 +17550,19 @@ export interface PostgresqlCnpgIoClusterImageCatalog {
     }[];
   };
 }
-export interface PostgresqlCnpgIoClusterImageCatalogList {
+export interface PostgresqlCnpgIoV1ClusterImageCatalogList {
   apiVersion?: string;
-  items: PostgresqlCnpgIoClusterImageCatalog[];
+  items: PostgresqlCnpgIoV1ClusterImageCatalog[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface PostgresqlCnpgIoClusterList {
+export interface PostgresqlCnpgIoV1ClusterList {
   apiVersion?: string;
-  items: PostgresqlCnpgIoCluster[];
+  items: PostgresqlCnpgIoV1Cluster[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface PostgresqlCnpgIoDatabase {
+export interface PostgresqlCnpgIoV1Database {
   apiVersion?: string;
   kind?: string;
   metadata: ObjectMeta;
@@ -17595,13 +17595,13 @@ export interface PostgresqlCnpgIoDatabase {
     observedGeneration?: number;
   };
 }
-export interface PostgresqlCnpgIoDatabaseList {
+export interface PostgresqlCnpgIoV1DatabaseList {
   apiVersion?: string;
-  items: PostgresqlCnpgIoDatabase[];
+  items: PostgresqlCnpgIoV1Database[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface PostgresqlCnpgIoImageCatalog {
+export interface PostgresqlCnpgIoV1ImageCatalog {
   apiVersion?: string;
   kind?: string;
   metadata: ObjectMeta;
@@ -17612,13 +17612,13 @@ export interface PostgresqlCnpgIoImageCatalog {
     }[];
   };
 }
-export interface PostgresqlCnpgIoImageCatalogList {
+export interface PostgresqlCnpgIoV1ImageCatalogList {
   apiVersion?: string;
-  items: PostgresqlCnpgIoImageCatalog[];
+  items: PostgresqlCnpgIoV1ImageCatalog[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface PostgresqlCnpgIoPooler {
+export interface PostgresqlCnpgIoV1Pooler {
   apiVersion?: string;
   kind?: string;
   metadata: ObjectMeta;
@@ -19106,13 +19106,13 @@ export interface PostgresqlCnpgIoPooler {
     };
   };
 }
-export interface PostgresqlCnpgIoPoolerList {
+export interface PostgresqlCnpgIoV1PoolerList {
   apiVersion?: string;
-  items: PostgresqlCnpgIoPooler[];
+  items: PostgresqlCnpgIoV1Pooler[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface PostgresqlCnpgIoPublication {
+export interface PostgresqlCnpgIoV1Publication {
   apiVersion?: string;
   kind?: string;
   metadata: ObjectMeta;
@@ -19145,13 +19145,13 @@ export interface PostgresqlCnpgIoPublication {
     observedGeneration?: number;
   };
 }
-export interface PostgresqlCnpgIoPublicationList {
+export interface PostgresqlCnpgIoV1PublicationList {
   apiVersion?: string;
-  items: PostgresqlCnpgIoPublication[];
+  items: PostgresqlCnpgIoV1Publication[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface PostgresqlCnpgIoScheduledBackup {
+export interface PostgresqlCnpgIoV1ScheduledBackup {
   apiVersion?: string;
   kind?: string;
   metadata: ObjectMeta;
@@ -19183,13 +19183,13 @@ export interface PostgresqlCnpgIoScheduledBackup {
     nextScheduleTime?: string;
   };
 }
-export interface PostgresqlCnpgIoScheduledBackupList {
+export interface PostgresqlCnpgIoV1ScheduledBackupList {
   apiVersion?: string;
-  items: PostgresqlCnpgIoScheduledBackup[];
+  items: PostgresqlCnpgIoV1ScheduledBackup[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface PostgresqlCnpgIoSubscription {
+export interface PostgresqlCnpgIoV1Subscription {
   apiVersion?: string;
   kind?: string;
   metadata: ObjectMeta;
@@ -19213,9 +19213,9 @@ export interface PostgresqlCnpgIoSubscription {
     observedGeneration?: number;
   };
 }
-export interface PostgresqlCnpgIoSubscriptionList {
+export interface PostgresqlCnpgIoV1SubscriptionList {
   apiVersion?: string;
-  items: PostgresqlCnpgIoSubscription[];
+  items: PostgresqlCnpgIoV1Subscription[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -19252,15 +19252,15 @@ export interface MutatingWebhook {
   sideEffects: "None" | "NoneOnDryRun" | "Some" | "Unknown";
   timeoutSeconds?: number;
 }
-export interface AdmissionregistrationK8sIoMutatingWebhookConfiguration {
+export interface AdmissionregistrationK8sIoV1MutatingWebhookConfiguration {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
   webhooks?: MutatingWebhook[];
 }
-export interface AdmissionregistrationK8sIoMutatingWebhookConfigurationList {
+export interface AdmissionregistrationK8sIoV1MutatingWebhookConfigurationList {
   apiVersion?: string;
-  items: AdmissionregistrationK8sIoMutatingWebhookConfiguration[];
+  items: AdmissionregistrationK8sIoV1MutatingWebhookConfiguration[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -19298,22 +19298,22 @@ export interface ServiceReference {
 export interface TypeChecking {
   expressionWarnings?: ExpressionWarning[];
 }
-export interface AdmissionregistrationK8sIoValidatingAdmissionPolicy {
+export interface AdmissionregistrationK8sIoV1ValidatingAdmissionPolicy {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
   spec?: ValidatingAdmissionPolicySpec;
   status?: ValidatingAdmissionPolicyStatus;
 }
-export interface AdmissionregistrationK8sIoValidatingAdmissionPolicyBinding {
+export interface AdmissionregistrationK8sIoV1ValidatingAdmissionPolicyBinding {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
   spec?: ValidatingAdmissionPolicyBindingSpec;
 }
-export interface AdmissionregistrationK8sIoValidatingAdmissionPolicyBindingList {
+export interface AdmissionregistrationK8sIoV1ValidatingAdmissionPolicyBindingList {
   apiVersion?: string;
-  items: AdmissionregistrationK8sIoValidatingAdmissionPolicyBinding[];
+  items: AdmissionregistrationK8sIoV1ValidatingAdmissionPolicyBinding[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -19323,9 +19323,9 @@ export interface ValidatingAdmissionPolicyBindingSpec {
   policyName?: string;
   validationActions?: ("Audit" | "Deny" | "Warn")[];
 }
-export interface AdmissionregistrationK8sIoValidatingAdmissionPolicyList {
+export interface AdmissionregistrationK8sIoV1ValidatingAdmissionPolicyList {
   apiVersion?: string;
-  items: AdmissionregistrationK8sIoValidatingAdmissionPolicy[];
+  items: AdmissionregistrationK8sIoV1ValidatingAdmissionPolicy[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -19356,15 +19356,15 @@ export interface ValidatingWebhook {
   sideEffects: "None" | "NoneOnDryRun" | "Some" | "Unknown";
   timeoutSeconds?: number;
 }
-export interface AdmissionregistrationK8sIoValidatingWebhookConfiguration {
+export interface AdmissionregistrationK8sIoV1ValidatingWebhookConfiguration {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
   webhooks?: ValidatingWebhook[];
 }
-export interface AdmissionregistrationK8sIoValidatingWebhookConfigurationList {
+export interface AdmissionregistrationK8sIoV1ValidatingWebhookConfigurationList {
   apiVersion?: string;
-  items: AdmissionregistrationK8sIoValidatingWebhookConfiguration[];
+  items: AdmissionregistrationK8sIoV1ValidatingWebhookConfiguration[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -19383,20 +19383,20 @@ export interface WebhookClientConfig {
   service?: ServiceReference;
   url?: string;
 }
-export interface AppsControllerRevision {
+export interface AppsV1ControllerRevision {
   apiVersion?: string;
   data?: RawExtension;
   kind?: string;
   metadata?: ObjectMeta;
   revision: number;
 }
-export interface AppsControllerRevisionList {
+export interface AppsV1ControllerRevisionList {
   apiVersion?: string;
-  items: AppsControllerRevision[];
+  items: AppsV1ControllerRevision[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface AppsDaemonSet {
+export interface AppsV1DaemonSet {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -19410,9 +19410,9 @@ export interface DaemonSetCondition {
   status: string;
   type: string;
 }
-export interface AppsDaemonSetList {
+export interface AppsV1DaemonSetList {
   apiVersion?: string;
-  items: AppsDaemonSet[];
+  items: AppsV1DaemonSet[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -19439,7 +19439,7 @@ export interface DaemonSetUpdateStrategy {
   rollingUpdate?: RollingUpdateDaemonSet;
   type?: "OnDelete" | "RollingUpdate";
 }
-export interface AppsDeployment {
+export interface AppsV1Deployment {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -19454,9 +19454,9 @@ export interface DeploymentCondition {
   status: string;
   type: string;
 }
-export interface AppsDeploymentList {
+export interface AppsV1DeploymentList {
   apiVersion?: string;
-  items: AppsDeployment[];
+  items: AppsV1Deployment[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -19484,7 +19484,7 @@ export interface DeploymentStrategy {
   rollingUpdate?: RollingUpdateDeployment;
   type?: "Recreate" | "RollingUpdate";
 }
-export interface AppsReplicaSet {
+export interface AppsV1ReplicaSet {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -19498,9 +19498,9 @@ export interface ReplicaSetCondition {
   status: string;
   type: string;
 }
-export interface AppsReplicaSetList {
+export interface AppsV1ReplicaSetList {
   apiVersion?: string;
-  items: AppsReplicaSet[];
+  items: AppsV1ReplicaSet[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -19530,7 +19530,7 @@ export interface RollingUpdateStatefulSetStrategy {
   maxUnavailable?: IntOrString;
   partition?: number;
 }
-export interface AppsStatefulSet {
+export interface AppsV1StatefulSet {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -19544,9 +19544,9 @@ export interface StatefulSetCondition {
   status: string;
   type: string;
 }
-export interface AppsStatefulSetList {
+export interface AppsV1StatefulSetList {
   apiVersion?: string;
-  items: AppsStatefulSet[];
+  items: AppsV1StatefulSet[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -19592,7 +19592,7 @@ export interface BoundObjectReference {
   name?: string;
   uid?: string;
 }
-export interface AuthenticationK8sIoSelfSubjectReview {
+export interface AuthenticationK8sIoV1SelfSubjectReview {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -19601,7 +19601,7 @@ export interface AuthenticationK8sIoSelfSubjectReview {
 export interface SelfSubjectReviewStatus {
   userInfo?: UserInfo;
 }
-export interface AuthenticationK8sIoTokenRequest {
+export interface AuthenticationK8sIoV1TokenRequest {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -19617,7 +19617,7 @@ export interface TokenRequestStatus {
   expirationTimestamp: Time;
   token: string;
 }
-export interface AuthenticationK8sIoTokenReview {
+export interface AuthenticationK8sIoV1TokenReview {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -19650,7 +19650,7 @@ export interface LabelSelectorAttributes {
   rawSelector?: string;
   requirements?: LabelSelectorRequirement[];
 }
-export interface AuthorizationK8sIoLocalSubjectAccessReview {
+export interface AuthorizationK8sIoV1LocalSubjectAccessReview {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -19682,7 +19682,7 @@ export interface ResourceRule {
   resources?: string[];
   verbs: string[];
 }
-export interface AuthorizationK8sIoSelfSubjectAccessReview {
+export interface AuthorizationK8sIoV1SelfSubjectAccessReview {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -19693,7 +19693,7 @@ export interface SelfSubjectAccessReviewSpec {
   nonResourceAttributes?: NonResourceAttributes;
   resourceAttributes?: ResourceAttributes;
 }
-export interface AuthorizationK8sIoSelfSubjectRulesReview {
+export interface AuthorizationK8sIoV1SelfSubjectRulesReview {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -19703,7 +19703,7 @@ export interface AuthorizationK8sIoSelfSubjectRulesReview {
 export interface SelfSubjectRulesReviewSpec {
   namespace?: string;
 }
-export interface AuthorizationK8sIoSubjectAccessReview {
+export interface AuthorizationK8sIoV1SubjectAccessReview {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -19737,16 +19737,16 @@ export interface CrossVersionObjectReference {
   kind: string;
   name: string;
 }
-export interface AutoscalingHorizontalPodAutoscaler {
+export interface AutoscalingV1HorizontalPodAutoscaler {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
   spec?: HorizontalPodAutoscalerSpec;
   status?: HorizontalPodAutoscalerStatus;
 }
-export interface AutoscalingHorizontalPodAutoscalerList {
+export interface AutoscalingV1HorizontalPodAutoscalerList {
   apiVersion?: string;
-  items: AutoscalingHorizontalPodAutoscaler[];
+  items: AutoscalingV1HorizontalPodAutoscaler[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -19763,7 +19763,7 @@ export interface HorizontalPodAutoscalerStatus {
   lastScaleTime?: Time;
   observedGeneration?: number;
 }
-export interface AutoscalingScale {
+export interface AutoscalingV1Scale {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -19810,7 +19810,7 @@ export interface HPAScalingRules {
   selectPolicy?: string;
   stabilizationWindowSeconds?: number;
 }
-export interface AutoscalingHorizontalPodAutoscaler {
+export interface AutoscalingV2HorizontalPodAutoscaler {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -19828,9 +19828,9 @@ export interface HorizontalPodAutoscalerCondition {
   status: string;
   type: string;
 }
-export interface AutoscalingHorizontalPodAutoscalerList {
+export interface AutoscalingV2HorizontalPodAutoscalerList {
   apiVersion?: string;
-  items: AutoscalingHorizontalPodAutoscaler[];
+  items: AutoscalingV2HorizontalPodAutoscaler[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -19906,16 +19906,16 @@ export interface ResourceMetricStatus {
   current: MetricValueStatus;
   name: string;
 }
-export interface BatchCronJob {
+export interface BatchV1CronJob {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
   spec?: CronJobSpec;
   status?: CronJobStatus;
 }
-export interface BatchCronJobList {
+export interface BatchV1CronJobList {
   apiVersion?: string;
-  items: BatchCronJob[];
+  items: BatchV1CronJob[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -19934,7 +19934,7 @@ export interface CronJobStatus {
   lastScheduleTime?: Time;
   lastSuccessfulTime?: Time;
 }
-export interface BatchJob {
+export interface BatchV1Job {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -19949,9 +19949,9 @@ export interface JobCondition {
   status: string;
   type: string;
 }
-export interface BatchJobList {
+export interface BatchV1JobList {
   apiVersion?: string;
-  items: BatchJob[];
+  items: BatchV1Job[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -20018,7 +20018,7 @@ export interface UncountedTerminatedPods {
   failed?: string[];
   succeeded?: string[];
 }
-export interface CertificatesK8sIoCertificateSigningRequest {
+export interface CertificatesK8sIoV1CertificateSigningRequest {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -20033,9 +20033,9 @@ export interface CertificateSigningRequestCondition {
   status: string;
   type: string;
 }
-export interface CertificatesK8sIoCertificateSigningRequestList {
+export interface CertificatesK8sIoV1CertificateSigningRequestList {
   apiVersion?: string;
-  items: CertificatesK8sIoCertificateSigningRequest[];
+  items: CertificatesK8sIoV1CertificateSigningRequest[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -20055,15 +20055,15 @@ export interface CertificateSigningRequestStatus {
   certificate?: string;
   conditions?: CertificateSigningRequestCondition[];
 }
-export interface CoordinationK8sIoLease {
+export interface CoordinationK8sIoV1Lease {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
   spec?: LeaseSpec;
 }
-export interface CoordinationK8sIoLeaseList {
+export interface CoordinationK8sIoV1LeaseList {
   apiVersion?: string;
-  items: CoordinationK8sIoLease[];
+  items: CoordinationK8sIoV1Lease[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -21563,7 +21563,7 @@ export interface EndpointPort {
   port?: number;
   protocol?: "SCTP" | "TCP" | "UDP";
 }
-export interface DiscoveryK8sIoEndpointSlice {
+export interface DiscoveryK8sIoV1EndpointSlice {
   addressType: "FQDN" | "IPv4" | "IPv6";
   apiVersion?: string;
   endpoints: Endpoint[];
@@ -21571,18 +21571,18 @@ export interface DiscoveryK8sIoEndpointSlice {
   metadata?: ObjectMeta;
   ports?: EndpointPort[];
 }
-export interface DiscoveryK8sIoEndpointSliceList {
+export interface DiscoveryK8sIoV1EndpointSliceList {
   apiVersion?: string;
-  items: DiscoveryK8sIoEndpointSlice[];
+  items: DiscoveryK8sIoV1EndpointSlice[];
   kind?: string;
   metadata?: ListMeta;
 }
 export interface ForZone {
   name: string;
 }
-export interface EventsK8sIoEventList {
+export interface EventsK8sIoV1EventList {
   apiVersion?: string;
-  items: EventsK8sIoEvent[];
+  items: EventsK8sIoV1Event[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -21598,7 +21598,7 @@ export interface IPBlock {
   cidr: string;
   except?: string[];
 }
-export interface NetworkingK8sIoIngress {
+export interface NetworkingK8sIoV1Ingress {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -21609,15 +21609,15 @@ export interface IngressBackend {
   resource?: TypedLocalObjectReference;
   service?: IngressServiceBackend;
 }
-export interface NetworkingK8sIoIngressClass {
+export interface NetworkingK8sIoV1IngressClass {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
   spec?: IngressClassSpec;
 }
-export interface NetworkingK8sIoIngressClassList {
+export interface NetworkingK8sIoV1IngressClassList {
   apiVersion?: string;
-  items: NetworkingK8sIoIngressClass[];
+  items: NetworkingK8sIoV1IngressClass[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -21632,9 +21632,9 @@ export interface IngressClassSpec {
   controller?: string;
   parameters?: IngressClassParametersReference;
 }
-export interface NetworkingK8sIoIngressList {
+export interface NetworkingK8sIoV1IngressList {
   apiVersion?: string;
-  items: NetworkingK8sIoIngress[];
+  items: NetworkingK8sIoV1Ingress[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -21672,7 +21672,7 @@ export interface IngressTLS {
   hosts?: string[];
   secretName?: string;
 }
-export interface NetworkingK8sIoNetworkPolicy {
+export interface NetworkingK8sIoV1NetworkPolicy {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -21686,9 +21686,9 @@ export interface NetworkPolicyIngressRule {
   from?: NetworkPolicyPeer[];
   ports?: NetworkPolicyPort[];
 }
-export interface NetworkingK8sIoNetworkPolicyList {
+export interface NetworkingK8sIoV1NetworkPolicyList {
   apiVersion?: string;
-  items: NetworkingK8sIoNetworkPolicy[];
+  items: NetworkingK8sIoV1NetworkPolicy[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -21717,7 +21717,7 @@ export interface Overhead {
     [key: string]: unknown;
   };
 }
-export interface NodeK8sIoRuntimeClass {
+export interface NodeK8sIoV1RuntimeClass {
   apiVersion?: string;
   handler: string;
   kind?: string;
@@ -21725,9 +21725,9 @@ export interface NodeK8sIoRuntimeClass {
   overhead?: Overhead;
   scheduling?: Scheduling;
 }
-export interface NodeK8sIoRuntimeClassList {
+export interface NodeK8sIoV1RuntimeClassList {
   apiVersion?: string;
-  items: NodeK8sIoRuntimeClass[];
+  items: NodeK8sIoV1RuntimeClass[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -21737,22 +21737,22 @@ export interface Scheduling {
   };
   tolerations?: Toleration[];
 }
-export interface PolicyEviction {
+export interface PolicyV1Eviction {
   apiVersion?: string;
   deleteOptions?: DeleteOptions;
   kind?: string;
   metadata?: ObjectMeta;
 }
-export interface PolicyPodDisruptionBudget {
+export interface PolicyV1PodDisruptionBudget {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
   spec?: PodDisruptionBudgetSpec;
   status?: PodDisruptionBudgetStatus;
 }
-export interface PolicyPodDisruptionBudgetList {
+export interface PolicyV1PodDisruptionBudgetList {
   apiVersion?: string;
-  items: PolicyPodDisruptionBudget[];
+  items: PolicyV1PodDisruptionBudget[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -21776,29 +21776,29 @@ export interface PodDisruptionBudgetStatus {
 export interface AggregationRule {
   clusterRoleSelectors?: LabelSelector[];
 }
-export interface RbacAuthorizationK8sIoClusterRole {
+export interface RbacAuthorizationK8sIoV1ClusterRole {
   aggregationRule?: AggregationRule;
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
   rules?: PolicyRule[];
 }
-export interface RbacAuthorizationK8sIoClusterRoleBinding {
+export interface RbacAuthorizationK8sIoV1ClusterRoleBinding {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
   roleRef: RoleRef;
   subjects?: Subject[];
 }
-export interface RbacAuthorizationK8sIoClusterRoleBindingList {
+export interface RbacAuthorizationK8sIoV1ClusterRoleBindingList {
   apiVersion?: string;
-  items: RbacAuthorizationK8sIoClusterRoleBinding[];
+  items: RbacAuthorizationK8sIoV1ClusterRoleBinding[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface RbacAuthorizationK8sIoClusterRoleList {
+export interface RbacAuthorizationK8sIoV1ClusterRoleList {
   apiVersion?: string;
-  items: RbacAuthorizationK8sIoClusterRole[];
+  items: RbacAuthorizationK8sIoV1ClusterRole[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -21809,28 +21809,28 @@ export interface PolicyRule {
   resources?: string[];
   verbs: string[];
 }
-export interface RbacAuthorizationK8sIoRole {
+export interface RbacAuthorizationK8sIoV1Role {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
   rules?: PolicyRule[];
 }
-export interface RbacAuthorizationK8sIoRoleBinding {
+export interface RbacAuthorizationK8sIoV1RoleBinding {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
   roleRef: RoleRef;
   subjects?: Subject[];
 }
-export interface RbacAuthorizationK8sIoRoleBindingList {
+export interface RbacAuthorizationK8sIoV1RoleBindingList {
   apiVersion?: string;
-  items: RbacAuthorizationK8sIoRoleBinding[];
+  items: RbacAuthorizationK8sIoV1RoleBinding[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface RbacAuthorizationK8sIoRoleList {
+export interface RbacAuthorizationK8sIoV1RoleList {
   apiVersion?: string;
-  items: RbacAuthorizationK8sIoRole[];
+  items: RbacAuthorizationK8sIoV1Role[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -21845,7 +21845,7 @@ export interface Subject {
   name: string;
   namespace?: string;
 }
-export interface SchedulingK8sIoPriorityClass {
+export interface SchedulingK8sIoV1PriorityClass {
   apiVersion?: string;
   description?: string;
   globalDefault?: boolean;
@@ -21854,21 +21854,21 @@ export interface SchedulingK8sIoPriorityClass {
   preemptionPolicy?: "Never" | "PreemptLowerPriority";
   value: number;
 }
-export interface SchedulingK8sIoPriorityClassList {
+export interface SchedulingK8sIoV1PriorityClassList {
   apiVersion?: string;
-  items: SchedulingK8sIoPriorityClass[];
+  items: SchedulingK8sIoV1PriorityClass[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface StorageK8sIoCSIDriver {
+export interface StorageK8sIoV1CSIDriver {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
   spec: CSIDriverSpec;
 }
-export interface StorageK8sIoCSIDriverList {
+export interface StorageK8sIoV1CSIDriverList {
   apiVersion?: string;
-  items: StorageK8sIoCSIDriver[];
+  items: StorageK8sIoV1CSIDriver[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -21882,7 +21882,7 @@ export interface CSIDriverSpec {
   tokenRequests?: TokenRequest[];
   volumeLifecycleModes?: string[];
 }
-export interface StorageK8sIoCSINode {
+export interface StorageK8sIoV1CSINode {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -21894,16 +21894,16 @@ export interface CSINodeDriver {
   nodeID: string;
   topologyKeys?: string[];
 }
-export interface StorageK8sIoCSINodeList {
+export interface StorageK8sIoV1CSINodeList {
   apiVersion?: string;
-  items: StorageK8sIoCSINode[];
+  items: StorageK8sIoV1CSINode[];
   kind?: string;
   metadata?: ListMeta;
 }
 export interface CSINodeSpec {
   drivers: CSINodeDriver[];
 }
-export interface StorageK8sIoCSIStorageCapacity {
+export interface StorageK8sIoV1CSIStorageCapacity {
   apiVersion?: string;
   capacity?: Quantity;
   kind?: string;
@@ -21912,13 +21912,13 @@ export interface StorageK8sIoCSIStorageCapacity {
   nodeTopology?: LabelSelector;
   storageClassName: string;
 }
-export interface StorageK8sIoCSIStorageCapacityList {
+export interface StorageK8sIoV1CSIStorageCapacityList {
   apiVersion?: string;
-  items: StorageK8sIoCSIStorageCapacity[];
+  items: StorageK8sIoV1CSIStorageCapacity[];
   kind?: string;
   metadata?: ListMeta;
 }
-export interface StorageK8sIoStorageClass {
+export interface StorageK8sIoV1StorageClass {
   allowVolumeExpansion?: boolean;
   allowedTopologies?: TopologySelectorTerm[];
   apiVersion?: string;
@@ -21932,9 +21932,9 @@ export interface StorageK8sIoStorageClass {
   reclaimPolicy?: "Delete" | "Recycle" | "Retain";
   volumeBindingMode?: "Immediate" | "WaitForFirstConsumer";
 }
-export interface StorageK8sIoStorageClassList {
+export interface StorageK8sIoV1StorageClassList {
   apiVersion?: string;
-  items: StorageK8sIoStorageClass[];
+  items: StorageK8sIoV1StorageClass[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -21942,16 +21942,16 @@ export interface TokenRequest {
   audience: string;
   expirationSeconds?: number;
 }
-export interface StorageK8sIoVolumeAttachment {
+export interface StorageK8sIoV1VolumeAttachment {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
   spec: VolumeAttachmentSpec;
   status?: VolumeAttachmentStatus;
 }
-export interface StorageK8sIoVolumeAttachmentList {
+export interface StorageK8sIoV1VolumeAttachmentList {
   apiVersion?: string;
-  items: StorageK8sIoVolumeAttachment[];
+  items: StorageK8sIoV1VolumeAttachment[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -21991,7 +21991,7 @@ export interface CustomResourceConversion {
   strategy: string;
   webhook?: WebhookConversion;
 }
-export interface ApiextensionsK8sIoCustomResourceDefinition {
+export interface ApiextensionsK8sIoV1CustomResourceDefinition {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -22005,9 +22005,9 @@ export interface CustomResourceDefinitionCondition {
   status: string;
   type: string;
 }
-export interface ApiextensionsK8sIoCustomResourceDefinitionList {
+export interface ApiextensionsK8sIoV1CustomResourceDefinitionList {
   apiVersion?: string;
-  items: ApiextensionsK8sIoCustomResourceDefinition[];
+  items: ApiextensionsK8sIoV1CustomResourceDefinition[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -22324,7 +22324,7 @@ export interface Info {
   minor: string;
   platform: string;
 }
-export interface ApiregistrationK8sIoAPIService {
+export interface ApiregistrationK8sIoV1APIService {
   apiVersion?: string;
   kind?: string;
   metadata?: ObjectMeta;
@@ -22338,9 +22338,9 @@ export interface APIServiceCondition {
   status: string;
   type: string;
 }
-export interface ApiregistrationK8sIoAPIServiceList {
+export interface ApiregistrationK8sIoV1APIServiceList {
   apiVersion?: string;
-  items: ApiregistrationK8sIoAPIService[];
+  items: ApiregistrationK8sIoV1APIService[];
   kind?: string;
   metadata?: ListMeta;
 }
@@ -41585,87 +41585,115 @@ export interface ResourceTypeMap {
   "core/v1/Service": Service;
   "core/v1/Node": Node;
   "core/v1/PersistentVolume": PersistentVolume;
-  "acme.cert-manager.io/v1/Challenge": AcmeCertManagerIoChallenge;
-  "acme.cert-manager.io/v1/Order": AcmeCertManagerIoOrder;
-  "admissionregistration.k8s.io/v1/MutatingWebhookConfiguration": AdmissionregistrationK8sIoMutatingWebhookConfiguration;
-  "admissionregistration.k8s.io/v1/ValidatingAdmissionPolicy": AdmissionregistrationK8sIoValidatingAdmissionPolicy;
-  "admissionregistration.k8s.io/v1/ValidatingAdmissionPolicyBinding": AdmissionregistrationK8sIoValidatingAdmissionPolicyBinding;
-  "admissionregistration.k8s.io/v1/ValidatingWebhookConfiguration": AdmissionregistrationK8sIoValidatingWebhookConfiguration;
-  "apiextensions.k8s.io/v1/CustomResourceDefinition": ApiextensionsK8sIoCustomResourceDefinition;
-  "apiregistration.k8s.io/v1/APIService": ApiregistrationK8sIoAPIService;
-  "apps/v1/ControllerRevision": AppsControllerRevision;
-  "apps/v1/DaemonSet": AppsDaemonSet;
-  "apps/v1/Deployment": AppsDeployment;
-  "apps/v1/ReplicaSet": AppsReplicaSet;
-  "apps/v1/StatefulSet": AppsStatefulSet;
-  "autoscaling.internal.knative.dev/v1alpha1/Metric": AutoscalingInternalKnativeDevMetric;
-  "autoscaling.internal.knative.dev/v1alpha1/PodAutoscaler": AutoscalingInternalKnativeDevPodAutoscaler;
-  "autoscaling/v1/HorizontalPodAutoscaler": AutoscalingHorizontalPodAutoscaler;
-  "autoscaling/v2/HorizontalPodAutoscaler": AutoscalingHorizontalPodAutoscaler;
-  "batch/v1/CronJob": BatchCronJob;
-  "batch/v1/Job": BatchJob;
-  "caching.internal.knative.dev/v1alpha1/Image": CachingInternalKnativeDevImage;
-  "cert-manager.io/v1/ClusterIssuer": CertManagerIoClusterIssuer;
-  "cert-manager.io/v1/CertificateRequest": CertManagerIoCertificateRequest;
-  "cert-manager.io/v1/Certificate": CertManagerIoCertificate;
-  "cert-manager.io/v1/Issuer": CertManagerIoIssuer;
-  "certificates.k8s.io/v1/CertificateSigningRequest": CertificatesK8sIoCertificateSigningRequest;
-  "coordination.k8s.io/v1/Lease": CoordinationK8sIoLease;
-  "discovery.k8s.io/v1/EndpointSlice": DiscoveryK8sIoEndpointSlice;
-  "events.k8s.io/v1/Event": EventsK8sIoEvent;
-  "flowcontrol.apiserver.k8s.io/v1/FlowSchema": FlowcontrolApiserverK8sIoFlowSchema;
-  "flowcontrol.apiserver.k8s.io/v1/PriorityLevelConfiguration": FlowcontrolApiserverK8sIoPriorityLevelConfiguration;
-  "monitoring.coreos.com/v1/Alertmanager": MonitoringCoreosComAlertmanager;
-  "monitoring.coreos.com/v1/PodMonitor": MonitoringCoreosComPodMonitor;
-  "monitoring.coreos.com/v1/Probe": MonitoringCoreosComProbe;
-  "monitoring.coreos.com/v1/Prometheus": MonitoringCoreosComPrometheus;
-  "monitoring.coreos.com/v1/PrometheusRule": MonitoringCoreosComPrometheusRule;
-  "monitoring.coreos.com/v1/ServiceMonitor": MonitoringCoreosComServiceMonitor;
-  "monitoring.coreos.com/v1/ThanosRuler": MonitoringCoreosComThanosRuler;
-  "monitoring.coreos.com/v1alpha1/AlertmanagerConfig": MonitoringCoreosComAlertmanagerConfig;
-  "monitoring.coreos.com/v1alpha1/PrometheusAgent": MonitoringCoreosComPrometheusAgent;
-  "monitoring.coreos.com/v1alpha1/ScrapeConfig": MonitoringCoreosComScrapeConfig;
-  "networking.internal.knative.dev/v1alpha1/ClusterDomainClaim": NetworkingInternalKnativeDevClusterDomainClaim;
-  "networking.internal.knative.dev/v1alpha1/Certificate": NetworkingInternalKnativeDevCertificate;
-  "networking.internal.knative.dev/v1alpha1/Ingress": NetworkingInternalKnativeDevIngress;
-  "networking.internal.knative.dev/v1alpha1/ServerlessService": NetworkingInternalKnativeDevServerlessService;
-  "networking.k8s.io/v1/IngressClass": NetworkingK8sIoIngressClass;
-  "networking.k8s.io/v1/Ingress": NetworkingK8sIoIngress;
-  "networking.k8s.io/v1/NetworkPolicy": NetworkingK8sIoNetworkPolicy;
-  "node.k8s.io/v1/RuntimeClass": NodeK8sIoRuntimeClass;
-  "policy/v1/PodDisruptionBudget": PolicyPodDisruptionBudget;
-  "postgresql.cnpg.io/v1/ClusterImageCatalog": PostgresqlCnpgIoClusterImageCatalog;
-  "postgresql.cnpg.io/v1/Backup": PostgresqlCnpgIoBackup;
-  "postgresql.cnpg.io/v1/Cluster": PostgresqlCnpgIoCluster;
-  "postgresql.cnpg.io/v1/Database": PostgresqlCnpgIoDatabase;
-  "postgresql.cnpg.io/v1/ImageCatalog": PostgresqlCnpgIoImageCatalog;
-  "postgresql.cnpg.io/v1/Pooler": PostgresqlCnpgIoPooler;
-  "postgresql.cnpg.io/v1/Publication": PostgresqlCnpgIoPublication;
-  "postgresql.cnpg.io/v1/ScheduledBackup": PostgresqlCnpgIoScheduledBackup;
-  "postgresql.cnpg.io/v1/Subscription": PostgresqlCnpgIoSubscription;
-  "rbac.authorization.k8s.io/v1/ClusterRoleBinding": RbacAuthorizationK8sIoClusterRoleBinding;
-  "rbac.authorization.k8s.io/v1/ClusterRole": RbacAuthorizationK8sIoClusterRole;
-  "rbac.authorization.k8s.io/v1/RoleBinding": RbacAuthorizationK8sIoRoleBinding;
-  "rbac.authorization.k8s.io/v1/Role": RbacAuthorizationK8sIoRole;
-  "scheduling.k8s.io/v1/PriorityClass": SchedulingK8sIoPriorityClass;
-  "serving.knative.dev/v1/Configuration": ServingKnativeDevConfiguration;
-  "serving.knative.dev/v1/Revision": ServingKnativeDevRevision;
-  "serving.knative.dev/v1/Route": ServingKnativeDevRoute;
-  "serving.knative.dev/v1/Service": ServingKnativeDevService;
-  "serving.knative.dev/v1beta1/DomainMapping": ServingKnativeDevDomainMapping;
-  "storage.k8s.io/v1/CSIDriver": StorageK8sIoCSIDriver;
-  "storage.k8s.io/v1/CSINode": StorageK8sIoCSINode;
-  "storage.k8s.io/v1/CSIStorageCapacity": StorageK8sIoCSIStorageCapacity;
-  "storage.k8s.io/v1/StorageClass": StorageK8sIoStorageClass;
-  "storage.k8s.io/v1/VolumeAttachment": StorageK8sIoVolumeAttachment;
-  "policy/v1/Eviction": PolicyEviction;
-  "autoscaling/v1/Scale": AutoscalingScale;
-  "authentication.k8s.io/v1/TokenRequest": AuthenticationK8sIoTokenRequest;
-  "authentication.k8s.io/v1/SelfSubjectReview": AuthenticationK8sIoSelfSubjectReview;
-  "authentication.k8s.io/v1/TokenReview": AuthenticationK8sIoTokenReview;
-  "authorization.k8s.io/v1/LocalSubjectAccessReview": AuthorizationK8sIoLocalSubjectAccessReview;
-  "authorization.k8s.io/v1/SelfSubjectAccessReview": AuthorizationK8sIoSelfSubjectAccessReview;
-  "authorization.k8s.io/v1/SelfSubjectRulesReview": AuthorizationK8sIoSelfSubjectRulesReview;
-  "authorization.k8s.io/v1/SubjectAccessReview": AuthorizationK8sIoSubjectAccessReview;
+  "acme.cert-manager.io/v1/Challenge": AcmeCertManagerIoV1Challenge;
+  "acme.cert-manager.io/v1/Order": AcmeCertManagerIoV1Order;
+  "admissionregistration.k8s.io/v1/MutatingWebhookConfiguration": AdmissionregistrationK8sIoV1MutatingWebhookConfiguration;
+  "admissionregistration.k8s.io/v1/ValidatingAdmissionPolicy": AdmissionregistrationK8sIoV1ValidatingAdmissionPolicy;
+  "admissionregistration.k8s.io/v1/ValidatingAdmissionPolicyBinding": AdmissionregistrationK8sIoV1ValidatingAdmissionPolicyBinding;
+  "admissionregistration.k8s.io/v1/ValidatingWebhookConfiguration": AdmissionregistrationK8sIoV1ValidatingWebhookConfiguration;
+  "apiextensions.k8s.io/v1/CustomResourceDefinition": ApiextensionsK8sIoV1CustomResourceDefinition;
+  "apiregistration.k8s.io/v1/APIService": ApiregistrationK8sIoV1APIService;
+  "apps/v1/ControllerRevision": AppsV1ControllerRevision;
+  "apps/v1/DaemonSet": AppsV1DaemonSet;
+  "apps/v1/Deployment": AppsV1Deployment;
+  "apps/v1/ReplicaSet": AppsV1ReplicaSet;
+  "apps/v1/StatefulSet": AppsV1StatefulSet;
+  "autoscaling.internal.knative.dev/v1alpha1/Metric": AutoscalingInternalKnativeDevV1alpha1Metric;
+  "autoscaling.internal.knative.dev/v1alpha1/PodAutoscaler": AutoscalingInternalKnativeDevV1alpha1PodAutoscaler;
+  "autoscaling/v1/HorizontalPodAutoscaler": AutoscalingV1HorizontalPodAutoscaler;
+  "autoscaling/v2/HorizontalPodAutoscaler": AutoscalingV2HorizontalPodAutoscaler;
+  "batch/v1/CronJob": BatchV1CronJob;
+  "batch/v1/Job": BatchV1Job;
+  "caching.internal.knative.dev/v1alpha1/Image": CachingInternalKnativeDevV1alpha1Image;
+  "cert-manager.io/v1/ClusterIssuer": CertManagerIoV1ClusterIssuer;
+  "cert-manager.io/v1/CertificateRequest": CertManagerIoV1CertificateRequest;
+  "cert-manager.io/v1/Certificate": CertManagerIoV1Certificate;
+  "cert-manager.io/v1/Issuer": CertManagerIoV1Issuer;
+  "certificates.k8s.io/v1/CertificateSigningRequest": CertificatesK8sIoV1CertificateSigningRequest;
+  "coordination.k8s.io/v1/Lease": CoordinationK8sIoV1Lease;
+  "discovery.k8s.io/v1/EndpointSlice": DiscoveryK8sIoV1EndpointSlice;
+  "events.k8s.io/v1/Event": EventsK8sIoV1Event;
+  "flowcontrol.apiserver.k8s.io/v1/FlowSchema": FlowcontrolApiserverK8sIoV1FlowSchema;
+  "flowcontrol.apiserver.k8s.io/v1/PriorityLevelConfiguration": FlowcontrolApiserverK8sIoV1PriorityLevelConfiguration;
+  "monitoring.coreos.com/v1/Alertmanager": MonitoringCoreosComV1Alertmanager;
+  "monitoring.coreos.com/v1/PodMonitor": MonitoringCoreosComV1PodMonitor;
+  "monitoring.coreos.com/v1/Probe": MonitoringCoreosComV1Probe;
+  "monitoring.coreos.com/v1/Prometheus": MonitoringCoreosComV1Prometheus;
+  "monitoring.coreos.com/v1/PrometheusRule": MonitoringCoreosComV1PrometheusRule;
+  "monitoring.coreos.com/v1/ServiceMonitor": MonitoringCoreosComV1ServiceMonitor;
+  "monitoring.coreos.com/v1/ThanosRuler": MonitoringCoreosComV1ThanosRuler;
+  "monitoring.coreos.com/v1alpha1/AlertmanagerConfig": MonitoringCoreosComV1alpha1AlertmanagerConfig;
+  "monitoring.coreos.com/v1alpha1/PrometheusAgent": MonitoringCoreosComV1alpha1PrometheusAgent;
+  "monitoring.coreos.com/v1alpha1/ScrapeConfig": MonitoringCoreosComV1alpha1ScrapeConfig;
+  "networking.internal.knative.dev/v1alpha1/ClusterDomainClaim": NetworkingInternalKnativeDevV1alpha1ClusterDomainClaim;
+  "networking.internal.knative.dev/v1alpha1/Certificate": NetworkingInternalKnativeDevV1alpha1Certificate;
+  "networking.internal.knative.dev/v1alpha1/Ingress": NetworkingInternalKnativeDevV1alpha1Ingress;
+  "networking.internal.knative.dev/v1alpha1/ServerlessService": NetworkingInternalKnativeDevV1alpha1ServerlessService;
+  "networking.k8s.io/v1/IngressClass": NetworkingK8sIoV1IngressClass;
+  "networking.k8s.io/v1/Ingress": NetworkingK8sIoV1Ingress;
+  "networking.k8s.io/v1/NetworkPolicy": NetworkingK8sIoV1NetworkPolicy;
+  "node.k8s.io/v1/RuntimeClass": NodeK8sIoV1RuntimeClass;
+  "policy/v1/PodDisruptionBudget": PolicyV1PodDisruptionBudget;
+  "postgresql.cnpg.io/v1/ClusterImageCatalog": PostgresqlCnpgIoV1ClusterImageCatalog;
+  "postgresql.cnpg.io/v1/Backup": PostgresqlCnpgIoV1Backup;
+  "postgresql.cnpg.io/v1/Cluster": PostgresqlCnpgIoV1Cluster;
+  "postgresql.cnpg.io/v1/Database": PostgresqlCnpgIoV1Database;
+  "postgresql.cnpg.io/v1/ImageCatalog": PostgresqlCnpgIoV1ImageCatalog;
+  "postgresql.cnpg.io/v1/Pooler": PostgresqlCnpgIoV1Pooler;
+  "postgresql.cnpg.io/v1/Publication": PostgresqlCnpgIoV1Publication;
+  "postgresql.cnpg.io/v1/ScheduledBackup": PostgresqlCnpgIoV1ScheduledBackup;
+  "postgresql.cnpg.io/v1/Subscription": PostgresqlCnpgIoV1Subscription;
+  "rbac.authorization.k8s.io/v1/ClusterRoleBinding": RbacAuthorizationK8sIoV1ClusterRoleBinding;
+  "rbac.authorization.k8s.io/v1/ClusterRole": RbacAuthorizationK8sIoV1ClusterRole;
+  "rbac.authorization.k8s.io/v1/RoleBinding": RbacAuthorizationK8sIoV1RoleBinding;
+  "rbac.authorization.k8s.io/v1/Role": RbacAuthorizationK8sIoV1Role;
+  "scheduling.k8s.io/v1/PriorityClass": SchedulingK8sIoV1PriorityClass;
+  "serving.knative.dev/v1/Configuration": ServingKnativeDevV1Configuration;
+  "serving.knative.dev/v1/Revision": ServingKnativeDevV1Revision;
+  "serving.knative.dev/v1/Route": ServingKnativeDevV1Route;
+  "serving.knative.dev/v1/Service": ServingKnativeDevV1Service;
+  "serving.knative.dev/v1beta1/DomainMapping": ServingKnativeDevV1beta1DomainMapping;
+  "storage.k8s.io/v1/CSIDriver": StorageK8sIoV1CSIDriver;
+  "storage.k8s.io/v1/CSINode": StorageK8sIoV1CSINode;
+  "storage.k8s.io/v1/CSIStorageCapacity": StorageK8sIoV1CSIStorageCapacity;
+  "storage.k8s.io/v1/StorageClass": StorageK8sIoV1StorageClass;
+  "storage.k8s.io/v1/VolumeAttachment": StorageK8sIoV1VolumeAttachment;
+  "policy/v1/Eviction": PolicyV1Eviction;
+  "autoscaling/v1/Scale": AutoscalingV1Scale;
+  "authentication.k8s.io/v1/TokenRequest": AuthenticationK8sIoV1TokenRequest;
+  "authentication.k8s.io/v1/SelfSubjectReview": AuthenticationK8sIoV1SelfSubjectReview;
+  "authentication.k8s.io/v1/TokenReview": AuthenticationK8sIoV1TokenReview;
+  "authorization.k8s.io/v1/LocalSubjectAccessReview": AuthorizationK8sIoV1LocalSubjectAccessReview;
+  "authorization.k8s.io/v1/SelfSubjectAccessReview": AuthorizationK8sIoV1SelfSubjectAccessReview;
+  "authorization.k8s.io/v1/SelfSubjectRulesReview": AuthorizationK8sIoV1SelfSubjectRulesReview;
+  "authorization.k8s.io/v1/SubjectAccessReview": AuthorizationK8sIoV1SubjectAccessReview;
 }
-export type KubernetesResource = ComponentStatus | ConfigMap | Endpoints | Event | LimitRange | Namespace | Binding | Status | PersistentVolumeClaim | Pod | PodTemplate | ReplicationController | ResourceQuota | Secret | ServiceAccount | Service | Node | PersistentVolume | AcmeCertManagerIoChallenge | AcmeCertManagerIoOrder | AdmissionregistrationK8sIoMutatingWebhookConfiguration | AdmissionregistrationK8sIoValidatingAdmissionPolicy | AdmissionregistrationK8sIoValidatingAdmissionPolicyBinding | AdmissionregistrationK8sIoValidatingWebhookConfiguration | ApiextensionsK8sIoCustomResourceDefinition | ApiregistrationK8sIoAPIService | AppsControllerRevision | AppsDaemonSet | AppsDeployment | AppsReplicaSet | AppsStatefulSet | AutoscalingInternalKnativeDevMetric | AutoscalingInternalKnativeDevPodAutoscaler | AutoscalingHorizontalPodAutoscaler | BatchCronJob | BatchJob | CachingInternalKnativeDevImage | CertManagerIoClusterIssuer | CertManagerIoCertificateRequest | CertManagerIoCertificate | CertManagerIoIssuer | CertificatesK8sIoCertificateSigningRequest | CoordinationK8sIoLease | DiscoveryK8sIoEndpointSlice | EventsK8sIoEvent | FlowcontrolApiserverK8sIoFlowSchema | FlowcontrolApiserverK8sIoPriorityLevelConfiguration | MonitoringCoreosComAlertmanager | MonitoringCoreosComPodMonitor | MonitoringCoreosComProbe | MonitoringCoreosComPrometheus | MonitoringCoreosComPrometheusRule | MonitoringCoreosComServiceMonitor | MonitoringCoreosComThanosRuler | MonitoringCoreosComAlertmanagerConfig | MonitoringCoreosComPrometheusAgent | MonitoringCoreosComScrapeConfig | NetworkingInternalKnativeDevClusterDomainClaim | NetworkingInternalKnativeDevCertificate | NetworkingInternalKnativeDevIngress | NetworkingInternalKnativeDevServerlessService | NetworkingK8sIoIngressClass | NetworkingK8sIoIngress | NetworkingK8sIoNetworkPolicy | NodeK8sIoRuntimeClass | PolicyPodDisruptionBudget | PostgresqlCnpgIoClusterImageCatalog | PostgresqlCnpgIoBackup | PostgresqlCnpgIoCluster | PostgresqlCnpgIoDatabase | PostgresqlCnpgIoImageCatalog | PostgresqlCnpgIoPooler | PostgresqlCnpgIoPublication | PostgresqlCnpgIoScheduledBackup | PostgresqlCnpgIoSubscription | RbacAuthorizationK8sIoClusterRoleBinding | RbacAuthorizationK8sIoClusterRole | RbacAuthorizationK8sIoRoleBinding | RbacAuthorizationK8sIoRole | SchedulingK8sIoPriorityClass | ServingKnativeDevConfiguration | ServingKnativeDevRevision | ServingKnativeDevRoute | ServingKnativeDevService | ServingKnativeDevDomainMapping | StorageK8sIoCSIDriver | StorageK8sIoCSINode | StorageK8sIoCSIStorageCapacity | StorageK8sIoStorageClass | StorageK8sIoVolumeAttachment | PolicyEviction | AutoscalingScale | AuthenticationK8sIoTokenRequest | AuthenticationK8sIoSelfSubjectReview | AuthenticationK8sIoTokenReview | AuthorizationK8sIoLocalSubjectAccessReview | AuthorizationK8sIoSelfSubjectAccessReview | AuthorizationK8sIoSelfSubjectRulesReview | AuthorizationK8sIoSubjectAccessReview;
+export type KubernetesResource = ComponentStatus | ConfigMap | Endpoints | Event | LimitRange | Namespace | Binding | Status | PersistentVolumeClaim | Pod | PodTemplate | ReplicationController | ResourceQuota | Secret | ServiceAccount | Service | Node | PersistentVolume | AcmeCertManagerIoV1Challenge | AcmeCertManagerIoV1Order | AdmissionregistrationK8sIoV1MutatingWebhookConfiguration | AdmissionregistrationK8sIoV1ValidatingAdmissionPolicy | AdmissionregistrationK8sIoV1ValidatingAdmissionPolicyBinding | AdmissionregistrationK8sIoV1ValidatingWebhookConfiguration | ApiextensionsK8sIoV1CustomResourceDefinition | ApiregistrationK8sIoV1APIService | AppsV1ControllerRevision | AppsV1DaemonSet | AppsV1Deployment | AppsV1ReplicaSet | AppsV1StatefulSet | AutoscalingInternalKnativeDevV1alpha1Metric | AutoscalingInternalKnativeDevV1alpha1PodAutoscaler | AutoscalingV1HorizontalPodAutoscaler | AutoscalingV2HorizontalPodAutoscaler | BatchV1CronJob | BatchV1Job | CachingInternalKnativeDevV1alpha1Image | CertManagerIoV1ClusterIssuer | CertManagerIoV1CertificateRequest | CertManagerIoV1Certificate | CertManagerIoV1Issuer | CertificatesK8sIoV1CertificateSigningRequest | CoordinationK8sIoV1Lease | DiscoveryK8sIoV1EndpointSlice | EventsK8sIoV1Event | FlowcontrolApiserverK8sIoV1FlowSchema | FlowcontrolApiserverK8sIoV1PriorityLevelConfiguration | MonitoringCoreosComV1Alertmanager | MonitoringCoreosComV1PodMonitor | MonitoringCoreosComV1Probe | MonitoringCoreosComV1Prometheus | MonitoringCoreosComV1PrometheusRule | MonitoringCoreosComV1ServiceMonitor | MonitoringCoreosComV1ThanosRuler | MonitoringCoreosComV1alpha1AlertmanagerConfig | MonitoringCoreosComV1alpha1PrometheusAgent | MonitoringCoreosComV1alpha1ScrapeConfig | NetworkingInternalKnativeDevV1alpha1ClusterDomainClaim | NetworkingInternalKnativeDevV1alpha1Certificate | NetworkingInternalKnativeDevV1alpha1Ingress | NetworkingInternalKnativeDevV1alpha1ServerlessService | NetworkingK8sIoV1IngressClass | NetworkingK8sIoV1Ingress | NetworkingK8sIoV1NetworkPolicy | NodeK8sIoV1RuntimeClass | PolicyV1PodDisruptionBudget | PostgresqlCnpgIoV1ClusterImageCatalog | PostgresqlCnpgIoV1Backup | PostgresqlCnpgIoV1Cluster | PostgresqlCnpgIoV1Database | PostgresqlCnpgIoV1ImageCatalog | PostgresqlCnpgIoV1Pooler | PostgresqlCnpgIoV1Publication | PostgresqlCnpgIoV1ScheduledBackup | PostgresqlCnpgIoV1Subscription | RbacAuthorizationK8sIoV1ClusterRoleBinding | RbacAuthorizationK8sIoV1ClusterRole | RbacAuthorizationK8sIoV1RoleBinding | RbacAuthorizationK8sIoV1Role | SchedulingK8sIoV1PriorityClass | ServingKnativeDevV1Configuration | ServingKnativeDevV1Revision | ServingKnativeDevV1Route | ServingKnativeDevV1Service | ServingKnativeDevV1beta1DomainMapping | StorageK8sIoV1CSIDriver | StorageK8sIoV1CSINode | StorageK8sIoV1CSIStorageCapacity | StorageK8sIoV1StorageClass | StorageK8sIoV1VolumeAttachment | PolicyV1Eviction | AutoscalingV1Scale | AuthenticationK8sIoV1TokenRequest | AuthenticationK8sIoV1SelfSubjectReview | AuthenticationK8sIoV1TokenReview | AuthorizationK8sIoV1LocalSubjectAccessReview | AuthorizationK8sIoV1SelfSubjectAccessReview | AuthorizationK8sIoV1SelfSubjectRulesReview | AuthorizationK8sIoV1SubjectAccessReview;
+export interface GVK {
+  group: string;
+  version: string;
+  kind: string;
+}
+export function getResourceType(gvk: GVK): unknown {
+  const key = `${gvk.group}/${gvk.version}/${gvk.kind}`;
+  return (ResourceTypeMap[key] as unknown);
+}
+export function searchResourceTypes(query: string): {
+  gvkKey: string;
+  typeName: string;
+}[] {
+  const results = [];
+  const lowercaseQuery = query.toLowerCase();
+  for (const key in ResourceTypeMap) {
+    if (key.toLowerCase().includes(lowercaseQuery)) {
+      results.push({
+        gvkKey: key,
+        typeName: (ResourceTypeMap[key] as string)
+      });
+    }
+  }
+  return results;
+}
+export function getAllResourceTypes(): string[] {
+  return Object.keys(ResourceTypeMap);
+}
