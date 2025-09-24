@@ -56,6 +56,17 @@ it('swagger', () => {
   const codeWithGVK = generateOpenApiClient(
     {
       ...options,
+      paths: {
+        exclude: ['*flowschema*', '*v1beta1*', '*v2beta1*'],
+        excludeRequests: ['head', 'options'],
+        excludeTags: [
+          'storage_v1beta1',
+          '*v1beta1',
+          '*v2beta1',
+          '*v1beta1*',
+          '*v2beta1*',
+        ],
+      },
       opsIndex: {
         enabled: true,
         emptyGroupLabel: 'core',
@@ -86,6 +97,9 @@ it('merged', () => {
       ...options,
       version: 'v1',
       mergedParams: true,
+      paths: {
+        excludeRequests: ['head', 'options'],
+      },
     },
     schema as any
   );

@@ -1,4 +1,5 @@
 import generate from '@babel/generator';
+import template from '@babel/template';
 import * as t from '@babel/types';
 import { toCamelCase, toPascalCase } from '@interweb-utils/casing';
 import { generateTypeScriptTypes } from 'schema-typescript';
@@ -147,22 +148,35 @@ export const generateQualifiedTypeName = (
   return getApiTypeNameSafe(options, qualifiedName);
 };
 
+const pascalFromDefinitionName = (defName: string): string => {
+  return defName
+    .split(/[^A-Za-z0-9]+/)
+    .filter(Boolean)
+    .map((segment) => toPascalCase(segment))
+    .join('');
+};
+
 export const getOperationReturnType = (
   options: OpenAPIOptions,
   operation: Operation,
-  method: string
+  method: string,
+  interfaceRenameMap?: { [key: string]: string }
 ) => {
   if (operation.responses) {
     if (operation.responses['200']) {
       const prop = operation.responses['200'];
-      return getResponseType(options, prop);
+      return getResponseType(options, prop, interfaceRenameMap);
     }
   }
   if (method === 'get') return t.tsAnyKeyword();
   return t.tsVoidKeyword();
 };
 
-export const getResponseType = (options: OpenAPIOptions, prop: Response) => {
+export const getResponseType = (
+  options: OpenAPIOptions,
+  prop: Response,
+  interfaceRenameMap?: { [key: string]: string }
+) => {
   if (prop.schema.type) {
     switch (prop.schema.type) {
     case 'string':
@@ -190,14 +204,18 @@ export const getResponseType = (options: OpenAPIOptions, prop: Response) => {
     }
     const ref = prop.schema.$ref.split('/');
     const definitionName = ref.pop();
-    return t.tsTypeReference(
-      t.identifier(getApiTypeNameSafe(options, definitionName))
-    );
+    const resolvedName = interfaceRenameMap?.[definitionName!]
+      ?? getApiTypeNameSafe(options, definitionName);
+    return t.tsTypeReference(t.identifier(resolvedName));
   }
   return t.tsAnyKeyword();
 };
 
-export const getParameterType = (options: OpenAPIOptions, prop: Parameter) => {
+export const getParameterType = (
+  options: OpenAPIOptions,
+  prop: Parameter,
+  interfaceRenameMap?: { [key: string]: string }
+) => {
   if (prop.type) {
     switch (prop.type) {
     case 'string':
@@ -225,9 +243,9 @@ export const getParameterType = (options: OpenAPIOptions, prop: Parameter) => {
     }
     const ref = prop.schema.$ref.split('/');
     const definitionName = ref.pop();
-    return t.tsTypeReference(
-      t.identifier(getApiTypeNameSafe(options, definitionName))
-    );
+    const resolvedName = interfaceRenameMap?.[definitionName!]
+      ?? getApiTypeNameSafe(options, definitionName);
+    return t.tsTypeReference(t.identifier(resolvedName));
   }
   return t.tsAnyKeyword();
 };
@@ -282,7 +300,8 @@ export function generateOpenApiParams(
   options: OpenAPIOptions,
   schema: OpenAPISpec,
   path: string,
-  pathItem: OpenAPIPathItem
+  pathItem: OpenAPIPathItem,
+  interfaceRenameMap?: { [key: string]: string }
 ): t.TSInterfaceDeclaration[] {
   const opParams: OpParameterInterfaces = getOpenApiParams(
     options,
@@ -332,7 +351,7 @@ export function generateOpenApiParams(
           params.forEach((param) => {
             const p = t.tsPropertySignature(
               t.identifier(param.name),
-              t.tsTypeAnnotation(getParameterType(options, param))
+              t.tsTypeAnnotation(getParameterType(options, param, interfaceRenameMap))
             );
             if (!param.required) {
               p.optional = true;
@@ -456,12 +475,15 @@ export function getOpenApiParams(
 }
 export function generateOpenApiTypes(
   options: OpenAPIOptions,
-  schema: OpenAPISpec
+  schema: OpenAPISpec,
+  interfaceRenameMap?: { [key: string]: string }
 ): t.ExportNamedDeclaration[] {
   const interfaces: t.TSInterfaceDeclaration[] = [];
   // Iterate through each path and each method to generate interfaces
   Object.entries(schema.paths).forEach(([path, pathItem]) => {
-    interfaces.push(...generateOpenApiParams(options, schema, path, pathItem));
+    interfaces.push(
+      ...generateOpenApiParams(options, schema, path, pathItem, interfaceRenameMap)
+    );
   });
   return interfaces.map((i) => t.exportNamedDeclaration(i));
 }
@@ -471,10 +493,9 @@ export function generateOpenApiTypes(
 // ---------------------------------------------
 
 // Generate utility functions for ResourceTypeMap lookup
-function generateResourceTypeMapUtilities(): t.Statement[] {
+function generateResourceTypeMapUtilities(entries: { key: string; typeName: string }[]): t.Statement[] {
   const statements: t.Statement[] = [];
-  
-  // GVK interface for utility functions
+
   const gvkInterface = t.tsInterfaceDeclaration(
     t.identifier('GVK'),
     null,
@@ -487,146 +508,51 @@ function generateResourceTypeMapUtilities(): t.Statement[] {
   );
   statements.push(t.exportNamedDeclaration(gvkInterface));
 
-  // getResourceType function - Get type by exact GVK
-  const getResourceTypeFunc = t.functionDeclaration(
-    t.identifier('getResourceType'),
-    [
-      (() => {
-        const param = t.identifier('gvk');
-        param.typeAnnotation = t.tsTypeAnnotation(t.tsTypeReference(t.identifier('GVK')));
-        return param;
-      })()
-    ],
-    t.blockStatement([
-      t.variableDeclaration('const', [
-        t.variableDeclarator(
-          t.identifier('key'),
-          t.templateLiteral([
-            t.templateElement({ raw: '', cooked: '' }),
-            t.templateElement({ raw: '/', cooked: '/' }),
-            t.templateElement({ raw: '/', cooked: '/' }),
-            t.templateElement({ raw: '', cooked: '' }, true)
-          ], [
-            t.memberExpression(t.identifier('gvk'), t.identifier('group')),
-            t.memberExpression(t.identifier('gvk'), t.identifier('version')),
-            t.memberExpression(t.identifier('gvk'), t.identifier('kind'))
-          ])
-        )
-      ]),
-      t.returnStatement(
-        t.tsAsExpression(
-          t.memberExpression(
-            t.identifier('ResourceTypeMap'),
-            t.identifier('key'),
-            true
-          ),
-          t.tsUnknownKeyword()
-        )
-      )
-    ])
-  );
-  getResourceTypeFunc.returnType = t.tsTypeAnnotation(t.tsUnknownKeyword());
-  statements.push(t.exportNamedDeclaration(getResourceTypeFunc));
-
-  // searchResourceTypes function - Search by partial match
-  const searchResourceTypesFunc = t.functionDeclaration(
-    t.identifier('searchResourceTypes'),
-    [
-      (() => {
-        const param = t.identifier('query');
-        param.typeAnnotation = t.tsTypeAnnotation(t.tsStringKeyword());
-        return param;
-      })()
-    ],
-    t.blockStatement([
-      t.variableDeclaration('const', [
-        t.variableDeclarator(
-          t.identifier('results'),
-          t.arrayExpression([])
-        )
-      ]),
-      t.variableDeclaration('const', [
-        t.variableDeclarator(
-          t.identifier('lowercaseQuery'),
-          t.callExpression(
-            t.memberExpression(t.identifier('query'), t.identifier('toLowerCase')),
-            []
-          )
-        )
-      ]),
-      t.forInStatement(
-        t.variableDeclaration('const', [t.variableDeclarator(t.identifier('key'))]),
-        t.identifier('ResourceTypeMap'),
-        t.blockStatement([
-          t.ifStatement(
-            t.callExpression(
-              t.memberExpression(
-                t.callExpression(
-                  t.memberExpression(t.identifier('key'), t.identifier('toLowerCase')),
-                  []
-                ),
-                t.identifier('includes')
-              ),
-              [t.identifier('lowercaseQuery')]
-            ),
-            t.blockStatement([
-              t.expressionStatement(
-                t.callExpression(
-                  t.memberExpression(t.identifier('results'), t.identifier('push')),
-                  [
-                    t.objectExpression([
-                      t.objectProperty(t.identifier('gvkKey'), t.identifier('key')),
-                      t.objectProperty(
-                        t.identifier('typeName'),
-                        t.tsAsExpression(
-                          t.memberExpression(
-                            t.identifier('ResourceTypeMap'),
-                            t.identifier('key'),
-                            true
-                          ),
-                          t.tsStringKeyword()
-                        )
-                      )
-                    ])
-                  ]
-                )
-              )
-            ])
-          )
-        ])
-      ),
-      t.returnStatement(t.identifier('results'))
-    ])
-  );
-  searchResourceTypesFunc.returnType = t.tsTypeAnnotation(
-    t.tsArrayType(
-      t.tsTypeLiteral([
-        t.tsPropertySignature(t.identifier('gvkKey'), t.tsTypeAnnotation(t.tsStringKeyword())),
-        t.tsPropertySignature(t.identifier('typeName'), t.tsTypeAnnotation(t.tsStringKeyword()))
-      ])
+  const interfaceProps = entries.map(({ key, typeName }) =>
+    t.tsPropertySignature(
+      t.stringLiteral(key),
+      t.tsTypeAnnotation(t.tsTypeReference(t.identifier(typeName)))
     )
   );
-  statements.push(t.exportNamedDeclaration(searchResourceTypesFunc));
-
-  // getAllResourceTypes function - Get all available GVK keys
-  const getAllResourceTypesFunc = t.functionDeclaration(
-    t.identifier('getAllResourceTypes'),
-    [],
-    t.blockStatement([
-      t.returnStatement(
-        t.callExpression(
-          t.memberExpression(t.identifier('Object'), t.identifier('keys')),
-          [t.identifier('ResourceTypeMap')]
-        )
+  statements.push(
+    t.exportNamedDeclaration(
+      t.tsInterfaceDeclaration(
+        t.identifier('ResourceTypeMap'),
+        null,
+        [],
+        t.tsInterfaceBody(interfaceProps)
       )
-    ])
+    )
   );
-  getAllResourceTypesFunc.returnType = t.tsTypeAnnotation(
-    t.tsArrayType(t.tsStringKeyword())
-  );
-  statements.push(t.exportNamedDeclaration(getAllResourceTypesFunc));
 
-  // Return the array of statements
+  const uniqueTypeNames = Array.from(new Set(entries.map((entry) => entry.typeName)));
+  if (uniqueTypeNames.length === 0) {
+    statements.push(
+      template.statement('export type KubernetesResource = never;', {
+        plugins: ['typescript'],
+        placeholderPattern: false,
+      })()
+    );
+  } else if (uniqueTypeNames.length === 1) {
+    statements.push(
+      template.statement(`export type KubernetesResource = ${uniqueTypeNames[0]};`, {
+        plugins: ['typescript'],
+        placeholderPattern: false,
+      })()
+    );
+  } else {
+    const unionLines = uniqueTypeNames.map((name) => `  | ${name}`).join('\n');
+    statements.push(
+      template.statement(
+        `export type KubernetesResource =\n${unionLines};`,
+        {
+          plugins: ['typescript'],
+          placeholderPattern: false,
+        }
+      )()
+    );
+  }
+
   return statements;
 }
 
@@ -814,17 +740,12 @@ function generateGVKOpsStatements(
 
   const stmts: t.Statement[] = [];
 
-  // ResourceTypeMap
-  const typeMapProps = Array.from(map.values()).map(e => t.tsPropertySignature(t.stringLiteral(e.key), t.tsTypeAnnotation(t.tsTypeReference(t.identifier(e.types.main)))));
-  stmts.push(t.exportNamedDeclaration(t.tsInterfaceDeclaration(t.identifier('ResourceTypeMap'), null, [], t.tsInterfaceBody(typeMapProps))));
-  
-  // KubernetesResource union type
-  const resourceTypes = Array.from(map.values()).map(e => t.tsTypeReference(t.identifier(e.types.main)));
-  const uniqueResourceTypes = Array.from(new Set(resourceTypes.map(t => (t.typeName as any).name))).map(name => t.tsTypeReference(t.identifier(name)));
-  stmts.push(t.exportNamedDeclaration(t.tsTypeAliasDeclaration(t.identifier('KubernetesResource'), null, t.tsUnionType(uniqueResourceTypes))));
+  const resourceTypeEntries = Array.from(map.values()).map((entry) => ({
+    key: entry.key,
+    typeName: entry.types.main,
+  }));
 
-  // Utility functions for ResourceTypeMap lookup
-  stmts.push(...generateResourceTypeMapUtilities());
+  stmts.push(...generateResourceTypeMapUtilities(resourceTypeEntries));
 
   return stmts;
 }
@@ -872,7 +793,8 @@ export const createOperation = (
   operation: Operation,
   path: string,
   method: string,
-  alias?: string
+  alias?: string,
+  interfaceRenameMap?: { [key: string]: string }
 ): t.ClassMethod => {
   const typeName = getOperationTypeName(options, operation, method, path) + 'Request';
   const id = t.identifier('params');
@@ -899,7 +821,7 @@ export const createOperation = (
     (param) => param.in === 'query'
   );
 
-  const returnType = getOperationReturnType(options, operation, method);
+  const returnType = getOperationReturnType(options, operation, method, interfaceRenameMap);
   const methodName = getOperationMethodName(options, operation, method, path);
 
   const callMethod = t.callExpression(
@@ -945,7 +867,8 @@ export const createOperation = (
 
 export function generateMethods(
   options: OpenAPIOptions,
-  schema: OpenAPISpec
+  schema: OpenAPISpec,
+  interfaceRenameMap?: { [key: string]: string }
 ): t.ClassMethod[] {
   const methods: t.ClassMethod[] = [];
 
@@ -965,10 +888,10 @@ export function generateMethods(
 
       if (alias) {
         methods.push(
-          createOperation(options, operation, path, method, alias)
+          createOperation(options, operation, path, method, alias, interfaceRenameMap)
         );
       }
-      methods.push(createOperation(options, operation, path, method));
+      methods.push(createOperation(options, operation, path, method, undefined, interfaceRenameMap));
     });
   });
 
@@ -1008,6 +931,11 @@ function buildInterfaceRenameMapFromSchema(
 ): { [key: string]: string } {
   const renameMap: { [key: string]: string } = {};
   const defToGVKs = new Map<string, { group: string; version: string; kind: string }[]>();
+  const simpleNameCounts = new Map<string, number>();
+  Object.keys(schema.definitions || {}).forEach((defName) => {
+    const simpleName = defName.split('.').pop() || defName;
+    simpleNameCounts.set(simpleName, (simpleNameCounts.get(simpleName) ?? 0) + 1);
+  });
   
   // Extract GVK metadata from definitions section (original logic)
   Object.entries(schema.definitions || {}).forEach(([defName, defSchema]) => {
@@ -1074,6 +1002,21 @@ function buildInterfaceRenameMapFromSchema(
       }
     }
   });
+
+  Object.keys(schema.definitions || {}).forEach((defName) => {
+    const simpleName = defName.split('.').pop() || defName;
+    const requiresQualification =
+      (simpleNameCounts.get(simpleName) ?? 0) > 1 || options.namingStrategy?.useLastSegment === false;
+    if (!requiresQualification) return;
+    if (renameMap[defName]) return;
+
+    const gvks = defToGVKs.get(defName);
+    if (gvks && gvks.length) {
+      renameMap[defName] = generateQualifiedTypeName(gvks[0], options);
+    } else {
+      renameMap[defName] = pascalFromDefinitionName(defName);
+    }
+  });
   
   return renameMap;
 }
@@ -1085,11 +1028,13 @@ export function generateOpenApiClient(
   // Apply JSON patches if configured
   const patchedSchema = applyJsonPatch(schema, options);
   
+  const interfaceRenameMap = buildInterfaceRenameMapFromSchema(patchedSchema, options);
+
   const methods = [];
   if (options.includeSwaggerUrl) {
     methods.push(getSwaggerJSONMethod());
   }
-  methods.push(...generateMethods(options, patchedSchema));
+  methods.push(...generateMethods(options, patchedSchema, interfaceRenameMap));
 
   const constructorOptionsParam = t.identifier('options');
   constructorOptionsParam.typeAnnotation = t.tsTypeAnnotation(
@@ -1125,12 +1070,6 @@ export function generateOpenApiClient(
     definitions: patchedSchema.definitions,
   };
 
-  // Build rename map for qualified interface names when opsIndex is enabled
-  let interfaceRenameMap: { [key: string]: string } = {};
-  if (options.opsIndex?.enabled) {
-    interfaceRenameMap = buildInterfaceRenameMapFromSchema(patchedSchema, options);
-  }
-
   const types = generateTypeScriptTypes(apiSchema, {
     ...(options as any),
     exclude: [options.clientName, ...(options.exclude ?? [])],
@@ -1142,10 +1081,10 @@ export function generateOpenApiClient(
       },
     },
   });
-  const openApiTypes = generateOpenApiTypes(options, patchedSchema);
+  const openApiTypes = generateOpenApiTypes(options, patchedSchema, interfaceRenameMap);
   const gvkOpsStmts = options.opsIndex?.enabled ? generateGVKOpsStatements(options, patchedSchema) : [];
 
-  return generate(
+  let code = generate(
     t.file(
       t.program([
         t.importDeclaration(
@@ -1172,6 +1111,23 @@ export function generateOpenApiClient(
       ])
     )
   ).code;
+
+  code = code.replace(
+    /export type KubernetesResource = ([^;]+);/,
+    (full, types) => {
+      const parts = types
+        .split('|')
+        .map((part: string) => part.trim())
+        .filter(Boolean);
+      if (parts.length <= 1) {
+        return full;
+      }
+      const union = parts.map((part: string) => `  | ${part}`).join('\n');
+      return `export type KubernetesResource =\n${union};`;
+    }
+  );
+
+  return code;
 }
 
 // Interface for generated hook files
