@@ -510,32 +510,27 @@ function generateResourceTypeMapUtilities(entries: { key: string; typeName: stri
   );
 
   const uniqueTypeNames = Array.from(new Set(entries.map((entry) => entry.typeName)));
+  
+  let kubernetesResourceType: t.TSType;
   if (uniqueTypeNames.length === 0) {
-    statements.push(
-      template.statement('export type KubernetesResource = never;', {
-        plugins: ['typescript'],
-        placeholderPattern: false,
-      })()
-    );
+    kubernetesResourceType = t.tsNeverKeyword();
   } else if (uniqueTypeNames.length === 1) {
-    statements.push(
-      template.statement(`export type KubernetesResource = ${uniqueTypeNames[0]};`, {
-        plugins: ['typescript'],
-        placeholderPattern: false,
-      })()
-    );
+    kubernetesResourceType = t.tsTypeReference(t.identifier(uniqueTypeNames[0]));
   } else {
-    const unionLines = uniqueTypeNames.map((name) => `  | ${name}`).join('\n');
-    statements.push(
-      template.statement(
-        `export type KubernetesResource =\n${unionLines};`,
-        {
-          plugins: ['typescript'],
-          placeholderPattern: false,
-        }
-      )()
+    kubernetesResourceType = t.tsUnionType(
+      uniqueTypeNames.map((name) => t.tsTypeReference(t.identifier(name)))
     );
   }
+  
+  statements.push(
+    t.exportNamedDeclaration(
+      t.tsTypeAliasDeclaration(
+        t.identifier('KubernetesResource'),
+        null,
+        kubernetesResourceType
+      )
+    )
+  );
 
   return statements;
 }
@@ -1092,20 +1087,6 @@ export function generateOpenApiClient(
     )
   ).code;
 
-  code = code.replace(
-    /export type KubernetesResource = ([^;]+);/,
-    (full, types) => {
-      const parts = types
-        .split('|')
-        .map((part: string) => part.trim())
-        .filter(Boolean);
-      if (parts.length <= 1) {
-        return full;
-      }
-      const union = parts.map((part: string) => `  | ${part}`).join('\n');
-      return `export type KubernetesResource =\n${union};`;
-    }
-  );
 
   return code;
 }
