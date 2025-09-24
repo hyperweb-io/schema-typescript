@@ -1,4 +1,5 @@
 import generate from '@babel/generator';
+import template from '@babel/template';
 import * as t from '@babel/types';
 import { toCamelCase, toPascalCase } from '@interweb-utils/casing';
 import { generateTypeScriptTypes } from 'schema-typescript';
@@ -67,8 +68,7 @@ const shouldIncludeOperation = (
   path: string,
   method: MethodType
 ) => {
-  // @ts-ignore
-  const operation: Operation = pathItem[method];
+  const operation: Operation | undefined = pathItem[method];
 
   if (!operation) return false;
 
@@ -79,7 +79,7 @@ const shouldIncludeOperation = (
 
   if (!shouldIncludeByPath) return false;
 
-  const shouldIncludeByTag = operation.tags.some((tag) =>
+  const shouldIncludeByTag = (operation.tags || []).some((tag) =>
     shouldInclude(tag, {
       include: options.paths?.includeTags ?? [],
       exclude: options.paths?.excludeTags ?? [],
@@ -104,22 +104,78 @@ export const getApiTypeNameSafe = (
   return getTypeNameSafe(options.namingStrategy, str);
 };
 
+// GVK-based naming strategy for conflict resolution
+interface GVKInfo {
+  group: string;
+  version: string;
+  kind: string;
+}
+
+export const generateTypeNameFromGVK = (
+  gvk: GVKInfo,
+  options: OpenAPIOptions
+): string => {
+  const { group, version, kind } = gvk;
+  
+  // Handle core group (empty group) and normalize group names
+  const groupName = group === '' ? 'Core' : toPascalCase(group.replace(/\./g, ''));
+  const versionName = toPascalCase(version);
+  const kindName = toPascalCase(kind);
+  
+  const fullName = `${groupName}${versionName}${kindName}`;
+  return getApiTypeNameSafe(options, fullName);
+};
+
+// Generate qualified type names for Option 2: Keep core simple, qualify non-core
+export const generateQualifiedTypeName = (
+  gvk: GVKInfo,
+  options: OpenAPIOptions
+): string => {
+  const { group, version, kind } = gvk;
+  
+  // Core resources (empty group or "core") keep simple names
+  if (!group || group === '' || group === 'core') {
+    return getApiTypeNameSafe(options, kind);
+  }
+  
+  // Non-core resources get qualified names: {Group}{Version}{Kind}
+  // e.g., "serving.knative.dev" + "v1" + "Service" -> "ServingKnativeDevV1Service"
+  const groupParts = group.split('.').map(part => toPascalCase(part)).join('');
+  const versionPart = toPascalCase(version);
+  const qualifiedName = `${groupParts}${versionPart}${toPascalCase(kind)}`;
+  
+  return getApiTypeNameSafe(options, qualifiedName);
+};
+
+const pascalFromDefinitionName = (defName: string): string => {
+  return defName
+    .split(/[^A-Za-z0-9]+/)
+    .filter(Boolean)
+    .map((segment) => toPascalCase(segment))
+    .join('');
+};
+
 export const getOperationReturnType = (
   options: OpenAPIOptions,
   operation: Operation,
-  method: string
+  method: string,
+  interfaceRenameMap?: { [key: string]: string }
 ) => {
   if (operation.responses) {
     if (operation.responses['200']) {
       const prop = operation.responses['200'];
-      return getResponseType(options, prop);
+      return getResponseType(options, prop, interfaceRenameMap);
     }
   }
   if (method === 'get') return t.tsAnyKeyword();
   return t.tsVoidKeyword();
 };
 
-export const getResponseType = (options: OpenAPIOptions, prop: Response) => {
+export const getResponseType = (
+  options: OpenAPIOptions,
+  prop: Response,
+  interfaceRenameMap?: { [key: string]: string }
+) => {
   if (prop.schema.type) {
     switch (prop.schema.type) {
     case 'string':
@@ -147,14 +203,18 @@ export const getResponseType = (options: OpenAPIOptions, prop: Response) => {
     }
     const ref = prop.schema.$ref.split('/');
     const definitionName = ref.pop();
-    return t.tsTypeReference(
-      t.identifier(getApiTypeNameSafe(options, definitionName))
-    );
+    const resolvedName = interfaceRenameMap?.[definitionName!]
+      ?? getApiTypeNameSafe(options, definitionName);
+    return t.tsTypeReference(t.identifier(resolvedName));
   }
   return t.tsAnyKeyword();
 };
 
-export const getParameterType = (options: OpenAPIOptions, prop: Parameter) => {
+export const getParameterType = (
+  options: OpenAPIOptions,
+  prop: Parameter,
+  interfaceRenameMap?: { [key: string]: string }
+) => {
   if (prop.type) {
     switch (prop.type) {
     case 'string':
@@ -182,9 +242,9 @@ export const getParameterType = (options: OpenAPIOptions, prop: Parameter) => {
     }
     const ref = prop.schema.$ref.split('/');
     const definitionName = ref.pop();
-    return t.tsTypeReference(
-      t.identifier(getApiTypeNameSafe(options, definitionName))
-    );
+    const resolvedName = interfaceRenameMap?.[definitionName!]
+      ?? getApiTypeNameSafe(options, definitionName);
+    return t.tsTypeReference(t.identifier(resolvedName));
   }
   return t.tsAnyKeyword();
 };
@@ -239,7 +299,8 @@ export function generateOpenApiParams(
   options: OpenAPIOptions,
   schema: OpenAPISpec,
   path: string,
-  pathItem: OpenAPIPathItem
+  pathItem: OpenAPIPathItem,
+  interfaceRenameMap?: { [key: string]: string }
 ): t.TSInterfaceDeclaration[] {
   const opParams: OpParameterInterfaces = getOpenApiParams(
     options,
@@ -251,32 +312,19 @@ export function generateOpenApiParams(
   ['get', 'post', 'put', 'delete', 'options', 'head', 'patch'].forEach(
     (method) => {
       if (Object.prototype.hasOwnProperty.call(pathItem, method)) {
-        // @ts-ignore
-        const operation: Operation = pathItem[method];
-        if (!shouldIncludeOperation(options, pathItem, path, method as any))
+        const operation: Operation | undefined = pathItem[method as keyof OpenAPIPathItem] as Operation | undefined;
+        if (!operation || !shouldIncludeOperation(options, pathItem, path, method as any))
           return;
 
-        // @ts-ignore
-        const methodType:
-          | 'get'
-          | 'post'
-          | 'put'
-          | 'delete'
-          | 'options'
-          | 'head'
-          | 'patch' = method;
+        const methodType = method as MethodType;
 
-        // @ts-ignore
-        const opParamMethod: ParameterInterfaces = opParams[method];
+        const opParamMethod: ParameterInterfaces = opParams[methodType];
 
         const props: t.TSPropertySignature[] = [];
 
         Object.keys(opParamMethod).forEach((key) => {
-          // @ts-ignore
-          const params: Parameter[] = opParamMethod[key];
-          // @ts-ignore
-          const paramType: 'query' | 'body' | 'formData' | 'header' | 'path' =
-            key;
+          const params: Parameter[] = opParamMethod[key as keyof ParameterInterfaces];
+          const paramType = key as 'query' | 'body' | 'formData' | 'header' | 'path';
 
           // only include body sometimes
           if (
@@ -289,7 +337,7 @@ export function generateOpenApiParams(
           params.forEach((param) => {
             const p = t.tsPropertySignature(
               t.identifier(param.name),
-              t.tsTypeAnnotation(getParameterType(options, param))
+              t.tsTypeAnnotation(getParameterType(options, param, interfaceRenameMap))
             );
             if (!param.required) {
               p.optional = true;
@@ -384,13 +432,11 @@ export function getOpenApiParams(
   ['get', 'post', 'put', 'delete', 'options', 'head', 'patch'].forEach(
     (method) => {
       if (Object.prototype.hasOwnProperty.call(pathItem, method)) {
-        // @ts-ignore
-        const operation: Operation = pathItem[method];
-        if (!shouldIncludeOperation(options, pathItem, path, method as any))
+        const operation: Operation | undefined = pathItem[method as keyof OpenAPIPathItem] as Operation | undefined;
+        if (!operation || !shouldIncludeOperation(options, pathItem, path, method as any))
           return;
 
-        // @ts-ignore
-        const opParamMethod: ParameterInterfaces = opParams[method];
+        const opParamMethod: ParameterInterfaces = opParams[method as keyof OpParameterInterfaces];
 
         // push Path-Level params into op
         opParamMethod.path.push(...opParams.pathLevel.path);
@@ -413,14 +459,271 @@ export function getOpenApiParams(
 }
 export function generateOpenApiTypes(
   options: OpenAPIOptions,
-  schema: OpenAPISpec
+  schema: OpenAPISpec,
+  interfaceRenameMap?: { [key: string]: string }
 ): t.ExportNamedDeclaration[] {
   const interfaces: t.TSInterfaceDeclaration[] = [];
   // Iterate through each path and each method to generate interfaces
   Object.entries(schema.paths).forEach(([path, pathItem]) => {
-    interfaces.push(...generateOpenApiParams(options, schema, path, pathItem));
+    interfaces.push(
+      ...generateOpenApiParams(options, schema, path, pathItem, interfaceRenameMap)
+    );
   });
   return interfaces.map((i) => t.exportNamedDeclaration(i));
+}
+
+// ---------------------------------------------
+// Helper functions for GVK-based interface naming
+// ---------------------------------------------
+
+// Generate utility functions for ResourceTypeMap lookup
+function generateResourceTypeMapUtilities(entries: { key: string; typeName: string }[]): t.Statement[] {
+  const statements: t.Statement[] = [];
+
+  const gvkInterface = t.tsInterfaceDeclaration(
+    t.identifier('GVK'),
+    null,
+    [],
+    t.tsInterfaceBody([
+      t.tsPropertySignature(t.identifier('group'), t.tsTypeAnnotation(t.tsStringKeyword())),
+      t.tsPropertySignature(t.identifier('version'), t.tsTypeAnnotation(t.tsStringKeyword())),
+      t.tsPropertySignature(t.identifier('kind'), t.tsTypeAnnotation(t.tsStringKeyword())),
+    ])
+  );
+  statements.push(t.exportNamedDeclaration(gvkInterface));
+
+  const interfaceProps = entries.map(({ key, typeName }) =>
+    t.tsPropertySignature(
+      t.stringLiteral(key),
+      t.tsTypeAnnotation(t.tsTypeReference(t.identifier(typeName)))
+    )
+  );
+  statements.push(
+    t.exportNamedDeclaration(
+      t.tsInterfaceDeclaration(
+        t.identifier('ResourceTypeMap'),
+        null,
+        [],
+        t.tsInterfaceBody(interfaceProps)
+      )
+    )
+  );
+
+  const uniqueTypeNames = Array.from(new Set(entries.map((entry) => entry.typeName)));
+  
+  let kubernetesResourceType: t.TSType;
+  if (uniqueTypeNames.length === 0) {
+    kubernetesResourceType = t.tsNeverKeyword();
+  } else if (uniqueTypeNames.length === 1) {
+    kubernetesResourceType = t.tsTypeReference(t.identifier(uniqueTypeNames[0]));
+  } else {
+    kubernetesResourceType = t.tsUnionType(
+      uniqueTypeNames.map((name) => t.tsTypeReference(t.identifier(name)))
+    );
+  }
+  
+  statements.push(
+    t.exportNamedDeclaration(
+      t.tsTypeAliasDeclaration(
+        t.identifier('KubernetesResource'),
+        null,
+        kubernetesResourceType
+      )
+    )
+  );
+
+  return statements;
+}
+
+// ---------------------------------------------
+// GVK_OPS: Generate compact GVK → Operations index
+// ---------------------------------------------
+
+interface GVKEntry {
+  key: string; // e.g., 'core/v1/Service'
+  gvk: { group: string; version: string; kind: string };
+  scope: 'Namespaced' | 'Cluster' | 'Unknown';
+  types: { main: string; list?: string };
+  ops: any; // OperationSpec-ish
+}
+
+const classifyOperation = (
+  operationId: string | undefined,
+  method: string
+):
+  | 'list' | 'listAllNamespaces' | 'read' | 'create'
+  | 'replace' | 'patch' | 'delete' | 'deleteCollection'
+  | 'watch' | 'unknown' => {
+  if (!operationId) {
+    switch (method) {
+    case 'get': return 'read';
+    case 'post': return 'create';
+    case 'put': return 'replace';
+    case 'patch': return 'patch';
+    case 'delete': return 'delete';
+    default: return 'unknown';
+    }
+  }
+  const id = operationId.toLowerCase();
+  if (id.startsWith('list')) return 'list';
+  if (id.startsWith('create')) return 'create';
+  if (id.startsWith('read')) return 'read';
+  if (id.startsWith('replace')) return 'replace';
+  if (id.startsWith('patch')) return 'patch';
+  if (id.startsWith('deletecollection')) return 'deleteCollection';
+  if (id.startsWith('delete')) return 'delete';
+  if (id.startsWith('watch')) return 'watch';
+  return 'unknown';
+};
+
+const getRefDefName = (resp?: Response): string | null => {
+  const s = resp?.schema as any;
+  if (s && typeof s === 'object' && s.$ref) {
+    const parts = String(s.$ref).split('/');
+    return parts.pop() || null;
+  }
+  return null;
+};
+
+const baseDefFromListName = (defName: string): string => {
+  const parts = defName.split('.');
+  const last = parts.pop() as string;
+  if (last.endsWith('List')) return [...parts, last.slice(0, -4)].join('.');
+  return defName;
+};
+
+const isNamespacedPathRe = /\/namespaces\/{[^}]+}\//;
+
+// AST version for embedding into the same generated client file
+function generateGVKOpsStatements(
+  options: OpenAPIOptions,
+  schema: OpenAPISpec
+): t.Statement[] {
+  const emptyGroupLabel = options.opsIndex?.emptyGroupLabel ?? 'core';
+  const patchedSchema = applyJsonPatch(schema, options);
+
+  const defToGVKs = new Map<string, { group: string; version: string; kind: string }[]>();
+  
+  // Extract GVK metadata from definitions section (original logic)
+  Object.entries(patchedSchema.definitions || {}).forEach(([defName, defSchema]) => {
+    const ext = (defSchema as any)['x-kubernetes-group-version-kind'] as Array<any> | undefined;
+    if (ext && Array.isArray(ext)) {
+      ext.forEach((e) => {
+        const group: string = e.group ?? '';
+        const version: string = e.version;
+        const kind: string = e.kind;
+        if (!defToGVKs.has(defName)) defToGVKs.set(defName, []);
+        defToGVKs.get(defName)!.push({ group, version, kind });
+      });
+    }
+  });
+
+  // Extract GVK metadata from paths section (where it actually exists in many schemas)
+  Object.entries(patchedSchema.paths).forEach(([path, pathItem]) => {
+    METHOD_TYPES.forEach((m) => {
+      const operation: Operation | undefined = pathItem[m as keyof OpenAPIPathItem] as Operation | undefined;
+      if (!operation || !shouldIncludeOperation(options, pathItem, path, m as any)) return;
+      
+      // Check for GVK metadata in the operation
+      const gvk = (operation as any)['x-kubernetes-group-version-kind'];
+      if (gvk && typeof gvk === 'object') {
+        const group: string = gvk.group ?? '';
+        const version: string = gvk.version;
+        const kind: string = gvk.kind;
+        
+        // Find the definition name that this operation refers to
+        const retDef = getRefDefName(operation.responses?.['200']);
+        const bodyParam = (operation.parameters || []).find((p) => p.in === 'body' && (p.schema as any)?.$ref);
+        const bodyDef = bodyParam ? String((bodyParam!.schema as any).$ref).split('/').pop()! : null;
+        const defCandidate = retDef || bodyDef;
+        
+        if (defCandidate) {
+          const baseDef = baseDefFromListName(defCandidate);
+          if (!defToGVKs.has(baseDef)) defToGVKs.set(baseDef, []);
+          
+          // Check if this GVK is already recorded for this definition
+          const existing = defToGVKs.get(baseDef)!;
+          const alreadyExists = existing.some(e => e.group === group && e.version === version && e.kind === kind);
+          if (!alreadyExists) {
+            defToGVKs.get(baseDef)!.push({ group, version, kind });
+          }
+        }
+      }
+    });
+  });
+
+  const pathBaseToDef = new Map<string, string>();
+  Object.entries(patchedSchema.paths).forEach(([path, pathItem]) => {
+    METHOD_TYPES.forEach((m) => {
+      const operation: Operation | undefined = pathItem[m as keyof OpenAPIPathItem] as Operation | undefined;
+      if (!operation || !shouldIncludeOperation(options, pathItem, path, m as any)) return;
+      const retDef = getRefDefName(operation.responses?.['200']);
+      const bodyParam = (operation.parameters || []).find((p) => p.in === 'body' && (p.schema as any)?.$ref);
+      const bodyDef = bodyParam ? String((bodyParam!.schema as any).$ref).split('/').pop()! : null;
+      const defCandidate = retDef || bodyDef;
+      if (!defCandidate) return;
+      const baseDef = baseDefFromListName(defCandidate);
+      const base = path.endsWith('/status') ? path.slice(0, -7) : path.endsWith('/scale') ? path.slice(0, -6) : path;
+      const base2 = base.replace(/\/{[^}]+}$/g, '');
+      pathBaseToDef.set(base2, baseDef);
+    });
+  });
+
+  const map = new Map<string, GVKEntry>();
+  Object.entries(patchedSchema.paths).forEach(([path, pathItem]) => {
+    METHOD_TYPES.forEach((m) => {
+      const operation: Operation | undefined = pathItem[m as keyof OpenAPIPathItem] as Operation | undefined;
+      if (!operation || !shouldIncludeOperation(options, pathItem, path, m as any)) return;
+      const kind = classifyOperation(operation.operationId, m);
+      if (kind === 'watch' || kind === 'unknown') return;
+      const methodName = getOperationMethodName(options, operation, m, path);
+      const requestType = getOperationTypeName(options, operation, m, path) + 'Request';
+      const retDef = getRefDefName(operation.responses?.['200']);
+      const bodyParam = (operation.parameters || []).find((p) => p.in === 'body' && (p.schema as any)?.$ref);
+      const bodyDef = bodyParam ? String((bodyParam!.schema as any).$ref).split('/').pop()! : null;
+      const defCandidate = retDef || bodyDef || null;
+      const { base, subresource } = ((): { base: string; subresource?: 'status' | 'scale' } => {
+        if (path.endsWith('/status')) return { base: path.slice(0, -7), subresource: 'status' };
+        if (path.endsWith('/scale')) return { base: path.slice(0, -6), subresource: 'scale' };
+        return { base: path };
+      })();
+      const base2 = base.replace(/\/{[^}]+}$/g, '');
+      let baseDef = defCandidate ? baseDefFromListName(defCandidate) : pathBaseToDef.get(base2);
+      if (!baseDef) return;
+      const gvks = defToGVKs.get(baseDef) || [];
+      if (!gvks.length) return;
+      const namespaced = isNamespacedPathRe.test(path);
+      const params = parseRoute(path).params;
+      const hasBody = (operation.parameters || []).some((p) => p.in === 'body' || p.in === 'formData');
+      const hasQuery = (operation.parameters || []).some((p) => p.in === 'query');
+      
+      gvks.forEach((g) => {
+        const groupNorm = g.group && g.group.length ? g.group : emptyGroupLabel;
+        const key = `${groupNorm}/${g.version}/${g.kind}`;
+        
+        // Use qualified naming: keep core resources simple, qualify non-core resources
+        const mainType = generateQualifiedTypeName(g, options);
+        const listType = defCandidate && /List$/.test(defCandidate.split('.').pop()!) ? getApiTypeNameSafe(options, defCandidate.split('.').pop()!) : undefined;
+        
+        if (!map.has(key)) {
+          map.set(key, { key, gvk: { group: groupNorm, version: g.version, kind: g.kind }, scope: 'Unknown', types: { main: mainType, ...(listType ? { list: listType } : {}) }, ops: {} });
+        }
+        const entry = map.get(key)!;
+        if (namespaced) entry.scope = 'Namespaced'; else if (entry.scope !== 'Namespaced') entry.scope = 'Cluster';
+      });
+    });
+  });
+
+  const stmts: t.Statement[] = [];
+
+  const resourceTypeEntries = Array.from(map.values()).map((entry) => ({
+    key: entry.key,
+    typeName: entry.types.main,
+  }));
+
+  stmts.push(...generateResourceTypeMapUtilities(resourceTypeEntries));
+
+  return stmts;
 }
 
 const getOperationMethodName = (
@@ -466,7 +769,8 @@ export const createOperation = (
   operation: Operation,
   path: string,
   method: string,
-  alias?: string
+  alias?: string,
+  interfaceRenameMap?: { [key: string]: string }
 ): t.ClassMethod => {
   const typeName = getOperationTypeName(options, operation, method, path) + 'Request';
   const id = t.identifier('params');
@@ -493,7 +797,7 @@ export const createOperation = (
     (param) => param.in === 'query'
   );
 
-  const returnType = getOperationReturnType(options, operation, method);
+  const returnType = getOperationReturnType(options, operation, method, interfaceRenameMap);
   const methodName = getOperationMethodName(options, operation, method, path);
 
   const callMethod = t.callExpression(
@@ -539,7 +843,8 @@ export const createOperation = (
 
 export function generateMethods(
   options: OpenAPIOptions,
-  schema: OpenAPISpec
+  schema: OpenAPISpec,
+  interfaceRenameMap?: { [key: string]: string }
 ): t.ClassMethod[] {
   const methods: t.ClassMethod[] = [];
 
@@ -559,10 +864,10 @@ export function generateMethods(
 
       if (alias) {
         methods.push(
-          createOperation(options, operation, path, method, alias)
+          createOperation(options, operation, path, method, alias, interfaceRenameMap)
         );
       }
-      methods.push(createOperation(options, operation, path, method));
+      methods.push(createOperation(options, operation, path, method, undefined, interfaceRenameMap));
     });
   });
 
@@ -595,6 +900,102 @@ export const getSwaggerJSONMethod = (): t.ClassMethod => {
   );
 };
 
+// Build interface rename map directly from schema for qualified naming
+function buildInterfaceRenameMapFromSchema(
+  schema: OpenAPISpec,
+  options: OpenAPIOptions
+): { [key: string]: string } {
+  const renameMap: { [key: string]: string } = {};
+  const defToGVKs = new Map<string, { group: string; version: string; kind: string }[]>();
+  const simpleNameCounts = new Map<string, number>();
+  Object.keys(schema.definitions || {}).forEach((defName) => {
+    const simpleName = defName.split('.').pop() || defName;
+    simpleNameCounts.set(simpleName, (simpleNameCounts.get(simpleName) ?? 0) + 1);
+  });
+  
+  // Extract GVK metadata from definitions section (original logic)
+  Object.entries(schema.definitions || {}).forEach(([defName, defSchema]) => {
+    const ext = (defSchema as any)['x-kubernetes-group-version-kind'] as Array<any> | undefined;
+    if (ext && Array.isArray(ext)) {
+      ext.forEach((e) => {
+        const group: string = e.group ?? '';
+        const version: string = e.version;
+        const kind: string = e.kind;
+        if (!defToGVKs.has(defName)) defToGVKs.set(defName, []);
+        defToGVKs.get(defName)!.push({ group, version, kind });
+      });
+    }
+  });
+
+  // Extract GVK metadata from paths section (where it actually exists in many schemas)
+  Object.entries(schema.paths).forEach(([path, pathItem]) => {
+    METHOD_TYPES.forEach((m) => {
+      const operation: Operation | undefined = pathItem[m as keyof OpenAPIPathItem] as Operation | undefined;
+      if (!operation || !shouldIncludeOperation(options, pathItem, path, m as any)) return;
+      
+      // Check for GVK metadata in the operation
+      const gvk = (operation as any)['x-kubernetes-group-version-kind'];
+      if (gvk && typeof gvk === 'object') {
+        const group: string = gvk.group ?? '';
+        const version: string = gvk.version;
+        const kind: string = gvk.kind;
+        
+        // Find the definition name that this operation refers to
+        const retDef = getRefDefName(operation.responses?.['200']);
+        const bodyParam = (operation.parameters || []).find((p) => p.in === 'body' && (p.schema as any)?.$ref);
+        const bodyDef = bodyParam ? String((bodyParam!.schema as any).$ref).split('/').pop()! : null;
+        const defCandidate = retDef || bodyDef;
+        
+        if (defCandidate) {
+          const baseDef = baseDefFromListName(defCandidate);
+          if (!defToGVKs.has(baseDef)) defToGVKs.set(baseDef, []);
+          
+          // Check if this GVK is already recorded for this definition
+          const existing = defToGVKs.get(baseDef)!;
+          const alreadyExists = existing.some(e => e.group === group && e.version === version && e.kind === kind);
+          if (!alreadyExists) {
+            defToGVKs.get(baseDef)!.push({ group, version, kind });
+          }
+        }
+      }
+    });
+  });
+
+  // Build rename map for each definition that has GVK data
+  defToGVKs.forEach((gvks, defName) => {
+    if (gvks.length > 0) {
+      // Use the first GVK entry (there's usually only one per definition)
+      const gvk = gvks[0];
+      const qualifiedName = generateQualifiedTypeName(gvk, options);
+      
+      // Extract the simple name from the definition name (e.g., "io.k8s.api.core.v1.Service" -> "Service")
+      const simpleName = defName.split('.').pop() || defName;
+      
+      // Only add to rename map if the qualified name is different from the simple name
+      if (qualifiedName !== simpleName) {
+        renameMap[defName] = qualifiedName;
+      }
+    }
+  });
+
+  Object.keys(schema.definitions || {}).forEach((defName) => {
+    const simpleName = defName.split('.').pop() || defName;
+    const requiresQualification =
+      (simpleNameCounts.get(simpleName) ?? 0) > 1 || options.namingStrategy?.useLastSegment === false;
+    if (!requiresQualification) return;
+    if (renameMap[defName]) return;
+
+    const gvks = defToGVKs.get(defName);
+    if (gvks && gvks.length) {
+      renameMap[defName] = generateQualifiedTypeName(gvks[0], options);
+    } else {
+      renameMap[defName] = pascalFromDefinitionName(defName);
+    }
+  });
+  
+  return renameMap;
+}
+
 export function generateOpenApiClient(
   options: OpenAPIOptions,
   schema: OpenAPISpec
@@ -602,11 +1003,13 @@ export function generateOpenApiClient(
   // Apply JSON patches if configured
   const patchedSchema = applyJsonPatch(schema, options);
   
+  const interfaceRenameMap = buildInterfaceRenameMapFromSchema(patchedSchema, options);
+
   const methods = [];
   if (options.includeSwaggerUrl) {
     methods.push(getSwaggerJSONMethod());
   }
-  methods.push(...generateMethods(options, patchedSchema));
+  methods.push(...generateMethods(options, patchedSchema, interfaceRenameMap));
 
   const constructorOptionsParam = t.identifier('options');
   constructorOptionsParam.typeAnnotation = t.tsTypeAnnotation(
@@ -645,10 +1048,18 @@ export function generateOpenApiClient(
   const types = generateTypeScriptTypes(apiSchema, {
     ...(options as any),
     exclude: [options.clientName, ...(options.exclude ?? [])],
+    namingStrategy: {
+      ...(options.namingStrategy || {}),
+      renameMap: {
+        ...(options.namingStrategy?.renameMap || {}),
+        ...interfaceRenameMap,
+      },
+    },
   });
-  const openApiTypes = generateOpenApiTypes(options, patchedSchema);
+  const openApiTypes = generateOpenApiTypes(options, patchedSchema, interfaceRenameMap);
+  const gvkOpsStmts = options.opsIndex?.enabled ? generateGVKOpsStatements(options, patchedSchema) : [];
 
-  return generate(
+  let code = generate(
     t.file(
       t.program([
         t.importDeclaration(
@@ -671,9 +1082,13 @@ export function generateOpenApiClient(
         ...types,
         ...openApiTypes,
         clientClass,
+        ...gvkOpsStmts,
       ])
     )
   ).code;
+
+
+  return code;
 }
 
 // Interface for generated hook files

@@ -18,6 +18,7 @@
     "clean": "lerna run clean",
     "build": "lerna run build --stream",
     "lint": "lerna run lint --parallel",
+    "test": "NODE_OPTIONS=--no-deprecation jest",
     "symlink": "symlink-workspace --logLevel error",
     "postinstall": "yarn symlink"
   },
