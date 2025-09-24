@@ -68,8 +68,7 @@ const shouldIncludeOperation = (
   path: string,
   method: MethodType
 ) => {
-  // @ts-ignore
-  const operation: Operation = pathItem[method];
+  const operation: Operation | undefined = pathItem[method];
 
   if (!operation) return false;
 
@@ -80,7 +79,7 @@ const shouldIncludeOperation = (
 
   if (!shouldIncludeByPath) return false;
 
-  const shouldIncludeByTag = operation.tags.some((tag) =>
+  const shouldIncludeByTag = (operation.tags || []).some((tag) =>
     shouldInclude(tag, {
       include: options.paths?.includeTags ?? [],
       exclude: options.paths?.excludeTags ?? [],
@@ -313,32 +312,19 @@ export function generateOpenApiParams(
   ['get', 'post', 'put', 'delete', 'options', 'head', 'patch'].forEach(
     (method) => {
       if (Object.prototype.hasOwnProperty.call(pathItem, method)) {
-        // @ts-ignore
-        const operation: Operation = pathItem[method];
-        if (!shouldIncludeOperation(options, pathItem, path, method as any))
+        const operation: Operation | undefined = pathItem[method as keyof OpenAPIPathItem] as Operation | undefined;
+        if (!operation || !shouldIncludeOperation(options, pathItem, path, method as any))
           return;
 
-        // @ts-ignore
-        const methodType:
-          | 'get'
-          | 'post'
-          | 'put'
-          | 'delete'
-          | 'options'
-          | 'head'
-          | 'patch' = method;
+        const methodType = method as MethodType;
 
-        // @ts-ignore
-        const opParamMethod: ParameterInterfaces = opParams[method];
+        const opParamMethod: ParameterInterfaces = opParams[methodType];
 
         const props: t.TSPropertySignature[] = [];
 
         Object.keys(opParamMethod).forEach((key) => {
-          // @ts-ignore
-          const params: Parameter[] = opParamMethod[key];
-          // @ts-ignore
-          const paramType: 'query' | 'body' | 'formData' | 'header' | 'path' =
-            key;
+          const params: Parameter[] = opParamMethod[key as keyof ParameterInterfaces];
+          const paramType = key as 'query' | 'body' | 'formData' | 'header' | 'path';
 
           // only include body sometimes
           if (
@@ -446,13 +432,11 @@ export function getOpenApiParams(
   ['get', 'post', 'put', 'delete', 'options', 'head', 'patch'].forEach(
     (method) => {
       if (Object.prototype.hasOwnProperty.call(pathItem, method)) {
-        // @ts-ignore
-        const operation: Operation = pathItem[method];
-        if (!shouldIncludeOperation(options, pathItem, path, method as any))
+        const operation: Operation | undefined = pathItem[method as keyof OpenAPIPathItem] as Operation | undefined;
+        if (!operation || !shouldIncludeOperation(options, pathItem, path, method as any))
           return;
 
-        // @ts-ignore
-        const opParamMethod: ParameterInterfaces = opParams[method];
+        const opParamMethod: ParameterInterfaces = opParams[method as keyof OpParameterInterfaces];
 
         // push Path-Level params into op
         opParamMethod.path.push(...opParams.pathLevel.path);
@@ -642,8 +626,7 @@ function generateGVKOpsStatements(
   // Extract GVK metadata from paths section (where it actually exists in many schemas)
   Object.entries(patchedSchema.paths).forEach(([path, pathItem]) => {
     METHOD_TYPES.forEach((m) => {
-      // @ts-ignore
-      const operation: Operation = (pathItem as any)[m];
+      const operation: Operation | undefined = pathItem[m as keyof OpenAPIPathItem] as Operation | undefined;
       if (!operation || !shouldIncludeOperation(options, pathItem, path, m as any)) return;
       
       // Check for GVK metadata in the operation
@@ -677,8 +660,7 @@ function generateGVKOpsStatements(
   const pathBaseToDef = new Map<string, string>();
   Object.entries(patchedSchema.paths).forEach(([path, pathItem]) => {
     METHOD_TYPES.forEach((m) => {
-      // @ts-ignore
-      const operation: Operation = (pathItem as any)[m];
+      const operation: Operation | undefined = pathItem[m as keyof OpenAPIPathItem] as Operation | undefined;
       if (!operation || !shouldIncludeOperation(options, pathItem, path, m as any)) return;
       const retDef = getRefDefName(operation.responses?.['200']);
       const bodyParam = (operation.parameters || []).find((p) => p.in === 'body' && (p.schema as any)?.$ref);
@@ -695,8 +677,7 @@ function generateGVKOpsStatements(
   const map = new Map<string, GVKEntry>();
   Object.entries(patchedSchema.paths).forEach(([path, pathItem]) => {
     METHOD_TYPES.forEach((m) => {
-      // @ts-ignore
-      const operation: Operation = (pathItem as any)[m];
+      const operation: Operation | undefined = pathItem[m as keyof OpenAPIPathItem] as Operation | undefined;
       if (!operation || !shouldIncludeOperation(options, pathItem, path, m as any)) return;
       const kind = classifyOperation(operation.operationId, m);
       if (kind === 'watch' || kind === 'unknown') return;
@@ -954,8 +935,7 @@ function buildInterfaceRenameMapFromSchema(
   // Extract GVK metadata from paths section (where it actually exists in many schemas)
   Object.entries(schema.paths).forEach(([path, pathItem]) => {
     METHOD_TYPES.forEach((m) => {
-      // @ts-ignore
-      const operation: Operation = (pathItem as any)[m];
+      const operation: Operation | undefined = pathItem[m as keyof OpenAPIPathItem] as Operation | undefined;
       if (!operation || !shouldIncludeOperation(options, pathItem, path, m as any)) return;
       
       // Check for GVK metadata in the operation
