@@ -11,9 +11,6 @@ it('swagger', () => {
     exclude: [
       '*.v1beta1.*',
       '*.v2beta1.*',
-      'io.k8s.api.events.v1.EventSeries',
-      'io.k8s.api.events.v1.Event',
-      'io.k8s.api.flowcontrol*',
     ],
   });
   const code = generateOpenApiClient(
@@ -171,4 +168,93 @@ it('full-name-strategy', () => {
     __dirname + '/../../../__fixtures__/output/swagger-extended-client-full-name-strategy.ts',
     code
   );
+});
+
+it('jsonpatch', () => {
+  const options = getDefaultSchemaSDKOptions({
+    clientName: 'KubernetesClient',
+    includeSwaggerUrl: true,
+    exclude: [
+      '*.v1beta1.*',
+      '*.v2beta1.*',
+    ],
+  });
+  const code = generateOpenApiClient(
+    {
+      ...options,
+      paths: {
+        exclude: ['*flowschema*', '*v1beta1*', '*v2beta1*'],
+        excludeRequests: ['head', 'options'],
+        excludeTags: [
+          'storage_v1beta1',
+          '*v1beta1',
+          '*v2beta1',
+          '*v1beta1*',
+          '*v2beta1*',
+        ],
+      },
+      includeTypeComments: true,
+      includeMethodComments: true,
+      mergedParams: false,
+      namingStrategy: {
+        useLastSegment: true,
+        renameMap: {
+          'io.k8s.api.discovery.v1.EndpointPort': 'DiscoveryEndpointPort',
+          'io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.ServiceReference':
+            'ApiExtServiceReference',
+          'io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.WebhookClientConfig':
+            'ApiExtWebhookClientConfig',
+          'io.k8s.api.admissionregistration.v1.ServiceReference':
+            'AdmissionServiceReference',
+        },
+      },
+      jsonpatch: [
+        {
+          op: 'remove',
+          path: '/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString/type'
+        },
+        {
+          op: 'remove',
+          path: '/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString/format'
+        },
+        {
+          op: 'add',
+          path: '/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString/oneOf',
+          value: [
+            { type: 'string' },
+            { type: 'integer', format: 'int32' }
+          ]
+        }
+      ]
+    },
+    schema as any
+  );
+  expect(code).toMatchSnapshot();
+  writeFileSync(
+    __dirname + '/../../../__fixtures__/output/swagger-extended-client-jsonpatch.ts',
+    code
+  );
+});
+
+it('jsonpatch-conditional', () => {
+  const options = getDefaultSchemaSDKOptions({
+    clientName: 'KubernetesClient',
+    includeSwaggerUrl: true,
+  });
+  
+  // Test that it handles non-existent paths gracefully
+  expect(() => {
+    generateOpenApiClient(
+      {
+        ...options,
+        jsonpatch: [
+          {
+            op: 'remove',
+            path: '/definitions/non.existent.definition/type'
+          }
+        ]
+      },
+      schema as any
+    );
+  }).toThrow('Failed to apply JSON patches');
 });
