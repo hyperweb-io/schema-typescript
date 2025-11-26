@@ -129,20 +129,25 @@ export const generateTypeNameFromGVK = (
 // Generate qualified type names for Option 2: Keep core simple, qualify non-core
 export const generateQualifiedTypeName = (
   gvk: GVKInfo,
-  options: OpenAPIOptions
+  options: OpenAPIOptions,
+  definitionName?: string
 ): string => {
   const { group, version, kind } = gvk;
   
+  // Check if this is a List type based on the definition name
+  const isListType = definitionName && definitionName.split('.').pop()?.endsWith('List');
+  const kindName = isListType ? definitionName.split('.').pop()! : kind;
+  
   // Core resources (empty group or "core") keep simple names
   if (!group || group === '' || group === 'core') {
-    return getApiTypeNameSafe(options, kind);
+    return getApiTypeNameSafe(options, kindName);
   }
   
   // Non-core resources get qualified names: {Group}{Version}{Kind}
   // e.g., "serving.knative.dev" + "v1" + "Service" -> "ServingKnativeDevV1Service"
   const groupParts = group.split('.').map(part => toPascalCase(part)).join('');
   const versionPart = toPascalCase(version);
-  const qualifiedName = `${groupParts}${versionPart}${toPascalCase(kind)}`;
+  const qualifiedName = `${groupParts}${versionPart}${toPascalCase(kindName)}`;
   
   return getApiTypeNameSafe(options, qualifiedName);
 };
@@ -639,13 +644,23 @@ function generateGVKOpsStatements(
         
         if (defCandidate) {
           const baseDef = baseDefFromListName(defCandidate);
-          if (!defToGVKs.has(baseDef)) defToGVKs.set(baseDef, []);
           
-          // Check if this GVK is already recorded for this definition
-          const existing = defToGVKs.get(baseDef)!;
-          const alreadyExists = existing.some(e => e.group === group && e.version === version && e.kind === kind);
-          if (!alreadyExists) {
+          // Associate GVK with the base definition
+          if (!defToGVKs.has(baseDef)) defToGVKs.set(baseDef, []);
+          const baseExisting = defToGVKs.get(baseDef)!;
+          const baseAlreadyExists = baseExisting.some(e => e.group === group && e.version === version && e.kind === kind);
+          if (!baseAlreadyExists) {
             defToGVKs.get(baseDef)!.push({ group, version, kind });
+          }
+          
+          // Also associate GVK with the List definition if it's different from base
+          if (defCandidate !== baseDef) {
+            if (!defToGVKs.has(defCandidate)) defToGVKs.set(defCandidate, []);
+            const listExisting = defToGVKs.get(defCandidate)!;
+            const listAlreadyExists = listExisting.some(e => e.group === group && e.version === version && e.kind === kind);
+            if (!listAlreadyExists) {
+              defToGVKs.get(defCandidate)!.push({ group, version, kind });
+            }
           }
         }
       }
@@ -702,8 +717,8 @@ function generateGVKOpsStatements(
         const key = `${groupNorm}/${g.version}/${g.kind}`;
         
         // Use qualified naming: keep core resources simple, qualify non-core resources
-        const mainType = generateQualifiedTypeName(g, options);
-        const listType = defCandidate && /List$/.test(defCandidate.split('.').pop()!) ? getApiTypeNameSafe(options, defCandidate.split('.').pop()!) : undefined;
+        const mainType = generateQualifiedTypeName(g, options, baseDef);
+        const listType = defCandidate && /List$/.test(defCandidate.split('.').pop()!) ? generateQualifiedTypeName(g, options, defCandidate) : undefined;
         
         if (!map.has(key)) {
           map.set(key, { key, gvk: { group: groupNorm, version: g.version, kind: g.kind }, scope: 'Unknown', types: { main: mainType, ...(listType ? { list: listType } : {}) }, ops: {} });
@@ -948,13 +963,23 @@ function buildInterfaceRenameMapFromSchema(
         
         if (defCandidate) {
           const baseDef = baseDefFromListName(defCandidate);
-          if (!defToGVKs.has(baseDef)) defToGVKs.set(baseDef, []);
           
-          // Check if this GVK is already recorded for this definition
-          const existing = defToGVKs.get(baseDef)!;
-          const alreadyExists = existing.some(e => e.group === group && e.version === version && e.kind === kind);
-          if (!alreadyExists) {
+          // Associate GVK with the base definition
+          if (!defToGVKs.has(baseDef)) defToGVKs.set(baseDef, []);
+          const baseExisting = defToGVKs.get(baseDef)!;
+          const baseAlreadyExists = baseExisting.some(e => e.group === group && e.version === version && e.kind === kind);
+          if (!baseAlreadyExists) {
             defToGVKs.get(baseDef)!.push({ group, version, kind });
+          }
+          
+          // Also associate GVK with the List definition if it's different from base
+          if (defCandidate !== baseDef) {
+            if (!defToGVKs.has(defCandidate)) defToGVKs.set(defCandidate, []);
+            const listExisting = defToGVKs.get(defCandidate)!;
+            const listAlreadyExists = listExisting.some(e => e.group === group && e.version === version && e.kind === kind);
+            if (!listAlreadyExists) {
+              defToGVKs.get(defCandidate)!.push({ group, version, kind });
+            }
           }
         }
       }
@@ -966,7 +991,7 @@ function buildInterfaceRenameMapFromSchema(
     if (gvks.length > 0) {
       // Use the first GVK entry (there's usually only one per definition)
       const gvk = gvks[0];
-      const qualifiedName = generateQualifiedTypeName(gvk, options);
+      const qualifiedName = generateQualifiedTypeName(gvk, options, defName);
       
       // Extract the simple name from the definition name (e.g., "io.k8s.api.core.v1.Service" -> "Service")
       const simpleName = defName.split('.').pop() || defName;
@@ -987,7 +1012,7 @@ function buildInterfaceRenameMapFromSchema(
 
     const gvks = defToGVKs.get(defName);
     if (gvks && gvks.length) {
-      renameMap[defName] = generateQualifiedTypeName(gvks[0], options);
+      renameMap[defName] = generateQualifiedTypeName(gvks[0], options, defName);
     } else {
       renameMap[defName] = pascalFromDefinitionName(defName);
     }

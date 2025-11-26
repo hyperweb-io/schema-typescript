@@ -80,7 +80,13 @@ export function applyJsonPatch<T>(spec: T, options: OpenAPIOptions): T {
     
     return patchedSpec.newDocument;
   } catch (error) {
-    console.error('Failed to apply JSON patches:', error);
+    console.error('JSON Patch Error Details:', {
+      message: error instanceof Error ? error.message : String(error),
+      patches: options.jsonpatch,
+      availableDefinitions: Object.keys((spec as any).definitions || {}).filter(key => 
+        key.includes('IntOrString')).slice(0, 5), // Show first 5 IntOrString-related definitions
+      targetDefinition: (spec as any).definitions?.['io.k8s.apimachinery.pkg.util.intstr.IntOrString'],
+    });
     throw new Error(`Failed to apply JSON patches: ${error instanceof Error ? error.message : String(error)}`);
   }
 }

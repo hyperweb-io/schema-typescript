@@ -22594,6 +22594,27 @@ export interface DiscoveryK8sIoV1EndpointSliceList {
 export interface ForZone {
   name: string;
 }
+/* io.k8s.api.events.v1.Event */
+/* Event is a report of an event somewhere in the cluster. It generally denotes some state change in the system. Events have a limited retention time and triggers and messages may evolve with time.  Event consumers should not rely on the timing of an event with a given Reason reflecting a consistent underlying trigger, or the continued existence of events with that Reason.  Events should be treated as informative, best-effort, supplemental data. */
+export interface EventsK8sIoV1Event {
+  action?: string;
+  apiVersion?: string;
+  deprecatedCount?: number;
+  deprecatedFirstTimestamp?: Time;
+  deprecatedLastTimestamp?: Time;
+  deprecatedSource?: EventSource;
+  eventTime: MicroTime;
+  kind?: string;
+  metadata?: ObjectMeta;
+  note?: string;
+  reason?: string;
+  regarding?: ObjectReference;
+  related?: ObjectReference;
+  reportingController?: string;
+  reportingInstance?: string;
+  series?: IoK8sApiEventsV1EventSeries;
+  type?: string;
+}
 /* io.k8s.api.events.v1.EventList */
 /* EventList is a list of Event objects. */
 export interface EventsK8sIoV1EventList {
@@ -22601,6 +22622,174 @@ export interface EventsK8sIoV1EventList {
   items: EventsK8sIoV1Event[];
   kind?: string;
   metadata?: ListMeta;
+}
+/* io.k8s.api.events.v1.EventSeries */
+/* EventSeries contain information on series of events, i.e. thing that was/is happening continuously for some time. How often to update the EventSeries is up to the event reporters. The default event reporter in "k8s.io/client-go/tools/events/event_broadcaster.go" shows how this struct is updated on heartbeats and can guide customized reporter implementations. */
+export interface IoK8sApiEventsV1EventSeries {
+  count: number;
+  lastObservedTime: MicroTime;
+}
+/* io.k8s.api.flowcontrol.v1.ExemptPriorityLevelConfiguration */
+/* ExemptPriorityLevelConfiguration describes the configurable aspects of the handling of exempt requests. In the mandatory exempt configuration object the values in the fields here can be modified by authorized users, unlike the rest of the `spec`. */
+export interface ExemptPriorityLevelConfiguration {
+  lendablePercent?: number;
+  nominalConcurrencyShares?: number;
+}
+/* io.k8s.api.flowcontrol.v1.FlowDistinguisherMethod */
+/* FlowDistinguisherMethod specifies the method of a flow distinguisher. */
+export interface FlowDistinguisherMethod {
+  type: string;
+}
+/* io.k8s.api.flowcontrol.v1.FlowSchema */
+/* FlowSchema defines the schema of a group of flows. Note that a flow is made up of a set of inbound API requests with similar attributes and is identified by a pair of strings: the name of the FlowSchema and a "flow distinguisher". */
+export interface FlowcontrolApiserverK8sIoV1FlowSchema {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: FlowSchemaSpec;
+  status?: FlowSchemaStatus;
+}
+/* io.k8s.api.flowcontrol.v1.FlowSchemaCondition */
+/* FlowSchemaCondition describes conditions for a FlowSchema. */
+export interface FlowSchemaCondition {
+  lastTransitionTime?: Time;
+  message?: string;
+  reason?: string;
+  status?: string;
+  type?: string;
+}
+/* io.k8s.api.flowcontrol.v1.FlowSchemaList */
+/* FlowSchemaList is a list of FlowSchema objects. */
+export interface FlowcontrolApiserverK8sIoV1FlowSchemaList {
+  apiVersion?: string;
+  items: FlowcontrolApiserverK8sIoV1FlowSchema[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+/* io.k8s.api.flowcontrol.v1.FlowSchemaSpec */
+/* FlowSchemaSpec describes how the FlowSchema's specification looks like. */
+export interface FlowSchemaSpec {
+  distinguisherMethod?: FlowDistinguisherMethod;
+  matchingPrecedence?: number;
+  priorityLevelConfiguration: PriorityLevelConfigurationReference;
+  rules?: PolicyRulesWithSubjects[];
+}
+/* io.k8s.api.flowcontrol.v1.FlowSchemaStatus */
+/* FlowSchemaStatus represents the current state of a FlowSchema. */
+export interface FlowSchemaStatus {
+  conditions?: FlowSchemaCondition[];
+}
+/* io.k8s.api.flowcontrol.v1.GroupSubject */
+/* GroupSubject holds detailed information for group-kind subject. */
+export interface GroupSubject {
+  name: string;
+}
+/* io.k8s.api.flowcontrol.v1.LimitResponse */
+/* LimitResponse defines how to handle requests that can not be executed right now. */
+export interface LimitResponse {
+  queuing?: QueuingConfiguration;
+  type: string;
+}
+/* io.k8s.api.flowcontrol.v1.LimitedPriorityLevelConfiguration */
+/* LimitedPriorityLevelConfiguration specifies how to handle requests that are subject to limits. It addresses two issues:
+  - How are requests for this priority level limited?
+  - What should be done with requests that exceed the limit? */
+export interface LimitedPriorityLevelConfiguration {
+  borrowingLimitPercent?: number;
+  lendablePercent?: number;
+  limitResponse?: LimitResponse;
+  nominalConcurrencyShares?: number;
+}
+/* io.k8s.api.flowcontrol.v1.NonResourcePolicyRule */
+/* NonResourcePolicyRule is a predicate that matches non-resource requests according to their verb and the target non-resource URL. A NonResourcePolicyRule matches a request if and only if both (a) at least one member of verbs matches the request and (b) at least one member of nonResourceURLs matches the request. */
+export interface NonResourcePolicyRule {
+  nonResourceURLs: string[];
+  verbs: string[];
+}
+/* io.k8s.api.flowcontrol.v1.PolicyRulesWithSubjects */
+/* PolicyRulesWithSubjects prescribes a test that applies to a request to an apiserver. The test considers the subject making the request, the verb being requested, and the resource to be acted upon. This PolicyRulesWithSubjects matches a request if and only if both (a) at least one member of subjects matches the request and (b) at least one member of resourceRules or nonResourceRules matches the request. */
+export interface PolicyRulesWithSubjects {
+  nonResourceRules?: NonResourcePolicyRule[];
+  resourceRules?: ResourcePolicyRule[];
+  subjects: IoK8sApiFlowcontrolV1Subject[];
+}
+/* io.k8s.api.flowcontrol.v1.PriorityLevelConfiguration */
+/* PriorityLevelConfiguration represents the configuration of a priority level. */
+export interface FlowcontrolApiserverK8sIoV1PriorityLevelConfiguration {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: PriorityLevelConfigurationSpec;
+  status?: PriorityLevelConfigurationStatus;
+}
+/* io.k8s.api.flowcontrol.v1.PriorityLevelConfigurationCondition */
+/* PriorityLevelConfigurationCondition defines the condition of priority level. */
+export interface PriorityLevelConfigurationCondition {
+  lastTransitionTime?: Time;
+  message?: string;
+  reason?: string;
+  status?: string;
+  type?: string;
+}
+/* io.k8s.api.flowcontrol.v1.PriorityLevelConfigurationList */
+/* PriorityLevelConfigurationList is a list of PriorityLevelConfiguration objects. */
+export interface FlowcontrolApiserverK8sIoV1PriorityLevelConfigurationList {
+  apiVersion?: string;
+  items: FlowcontrolApiserverK8sIoV1PriorityLevelConfiguration[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+/* io.k8s.api.flowcontrol.v1.PriorityLevelConfigurationReference */
+/* PriorityLevelConfigurationReference contains information that points to the "request-priority" being used. */
+export interface PriorityLevelConfigurationReference {
+  name: string;
+}
+/* io.k8s.api.flowcontrol.v1.PriorityLevelConfigurationSpec */
+/* PriorityLevelConfigurationSpec specifies the configuration of a priority level. */
+export interface PriorityLevelConfigurationSpec {
+  exempt?: ExemptPriorityLevelConfiguration;
+  limited?: LimitedPriorityLevelConfiguration;
+  type: string;
+}
+/* io.k8s.api.flowcontrol.v1.PriorityLevelConfigurationStatus */
+/* PriorityLevelConfigurationStatus represents the current state of a "request-priority". */
+export interface PriorityLevelConfigurationStatus {
+  conditions?: PriorityLevelConfigurationCondition[];
+}
+/* io.k8s.api.flowcontrol.v1.QueuingConfiguration */
+/* QueuingConfiguration holds the configuration parameters for queuing */
+export interface QueuingConfiguration {
+  handSize?: number;
+  queueLengthLimit?: number;
+  queues?: number;
+}
+/* io.k8s.api.flowcontrol.v1.ResourcePolicyRule */
+/* ResourcePolicyRule is a predicate that matches some resource requests, testing the request's verb and the target resource. A ResourcePolicyRule matches a resource request if and only if: (a) at least one member of verbs matches the request, (b) at least one member of apiGroups matches the request, (c) at least one member of resources matches the request, and (d) either (d1) the request does not specify a namespace (i.e., `Namespace==""`) and clusterScope is true or (d2) the request specifies a namespace and least one member of namespaces matches the request's namespace. */
+export interface ResourcePolicyRule {
+  apiGroups: string[];
+  clusterScope?: boolean;
+  namespaces?: string[];
+  resources: string[];
+  verbs: string[];
+}
+/* io.k8s.api.flowcontrol.v1.ServiceAccountSubject */
+/* ServiceAccountSubject holds detailed information for service-account-kind subject. */
+export interface ServiceAccountSubject {
+  name: string;
+  namespace: string;
+}
+/* io.k8s.api.flowcontrol.v1.Subject */
+/* Subject matches the originator of a request, as identified by the request authentication system. There are three ways of matching an originator; by user, group, or service account. */
+export interface IoK8sApiFlowcontrolV1Subject {
+  group?: GroupSubject;
+  kind: string;
+  serviceAccount?: ServiceAccountSubject;
+  user?: UserSubject;
+}
+/* io.k8s.api.flowcontrol.v1.UserSubject */
+/* UserSubject holds detailed information for user-kind subject. */
+export interface UserSubject {
+  name: string;
 }
 /* io.k8s.api.networking.v1.HTTPIngressPath */
 /* HTTPIngressPath associates a path with a backend. Incoming urls matching the path are forwarded to the backend. */

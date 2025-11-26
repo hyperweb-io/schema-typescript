@@ -21580,11 +21580,148 @@ export interface DiscoveryK8sIoV1EndpointSliceList {
 export interface ForZone {
   name: string;
 }
+export interface EventsK8sIoV1Event {
+  action?: string;
+  apiVersion?: string;
+  deprecatedCount?: number;
+  deprecatedFirstTimestamp?: Time;
+  deprecatedLastTimestamp?: Time;
+  deprecatedSource?: EventSource;
+  eventTime: MicroTime;
+  kind?: string;
+  metadata?: ObjectMeta;
+  note?: string;
+  reason?: string;
+  regarding?: ObjectReference;
+  related?: ObjectReference;
+  reportingController?: string;
+  reportingInstance?: string;
+  series?: IoK8sApiEventsV1EventSeries;
+  type?: string;
+}
 export interface EventsK8sIoV1EventList {
   apiVersion?: string;
   items: EventsK8sIoV1Event[];
   kind?: string;
   metadata?: ListMeta;
+}
+export interface IoK8sApiEventsV1EventSeries {
+  count: number;
+  lastObservedTime: MicroTime;
+}
+export interface ExemptPriorityLevelConfiguration {
+  lendablePercent?: number;
+  nominalConcurrencyShares?: number;
+}
+export interface FlowDistinguisherMethod {
+  type: string;
+}
+export interface FlowcontrolApiserverK8sIoV1FlowSchema {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: FlowSchemaSpec;
+  status?: FlowSchemaStatus;
+}
+export interface FlowSchemaCondition {
+  lastTransitionTime?: Time;
+  message?: string;
+  reason?: string;
+  status?: string;
+  type?: string;
+}
+export interface FlowcontrolApiserverK8sIoV1FlowSchemaList {
+  apiVersion?: string;
+  items: FlowcontrolApiserverK8sIoV1FlowSchema[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface FlowSchemaSpec {
+  distinguisherMethod?: FlowDistinguisherMethod;
+  matchingPrecedence?: number;
+  priorityLevelConfiguration: PriorityLevelConfigurationReference;
+  rules?: PolicyRulesWithSubjects[];
+}
+export interface FlowSchemaStatus {
+  conditions?: FlowSchemaCondition[];
+}
+export interface GroupSubject {
+  name: string;
+}
+export interface LimitResponse {
+  queuing?: QueuingConfiguration;
+  type: string;
+}
+export interface LimitedPriorityLevelConfiguration {
+  borrowingLimitPercent?: number;
+  lendablePercent?: number;
+  limitResponse?: LimitResponse;
+  nominalConcurrencyShares?: number;
+}
+export interface NonResourcePolicyRule {
+  nonResourceURLs: string[];
+  verbs: string[];
+}
+export interface PolicyRulesWithSubjects {
+  nonResourceRules?: NonResourcePolicyRule[];
+  resourceRules?: ResourcePolicyRule[];
+  subjects: IoK8sApiFlowcontrolV1Subject[];
+}
+export interface FlowcontrolApiserverK8sIoV1PriorityLevelConfiguration {
+  apiVersion?: string;
+  kind?: string;
+  metadata?: ObjectMeta;
+  spec?: PriorityLevelConfigurationSpec;
+  status?: PriorityLevelConfigurationStatus;
+}
+export interface PriorityLevelConfigurationCondition {
+  lastTransitionTime?: Time;
+  message?: string;
+  reason?: string;
+  status?: string;
+  type?: string;
+}
+export interface FlowcontrolApiserverK8sIoV1PriorityLevelConfigurationList {
+  apiVersion?: string;
+  items: FlowcontrolApiserverK8sIoV1PriorityLevelConfiguration[];
+  kind?: string;
+  metadata?: ListMeta;
+}
+export interface PriorityLevelConfigurationReference {
+  name: string;
+}
+export interface PriorityLevelConfigurationSpec {
+  exempt?: ExemptPriorityLevelConfiguration;
+  limited?: LimitedPriorityLevelConfiguration;
+  type: string;
+}
+export interface PriorityLevelConfigurationStatus {
+  conditions?: PriorityLevelConfigurationCondition[];
+}
+export interface QueuingConfiguration {
+  handSize?: number;
+  queueLengthLimit?: number;
+  queues?: number;
+}
+export interface ResourcePolicyRule {
+  apiGroups: string[];
+  clusterScope?: boolean;
+  namespaces?: string[];
+  resources: string[];
+  verbs: string[];
+}
+export interface ServiceAccountSubject {
+  name: string;
+  namespace: string;
+}
+export interface IoK8sApiFlowcontrolV1Subject {
+  group?: GroupSubject;
+  kind: string;
+  serviceAccount?: ServiceAccountSubject;
+  user?: UserSubject;
+}
+export interface UserSubject {
+  name: string;
 }
 export interface HTTPIngressPath {
   backend: IngressBackend;
